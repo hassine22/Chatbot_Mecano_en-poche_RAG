@@ -1,2 +1,3 @@
 # Dépendances Python du projet (à compléter au fur et à mesure).
 pymupdf>=1.24
+streamlit>=1.30

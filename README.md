@@ -84,6 +84,14 @@ cd mecano-de-poche
 pip install -r requirements.txt
 ```
 
+## Lancer l'interface
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+Détails, fonctionnalités et contrat avec le pipeline : [`app/README.md`](app/README.md).
+
 ## Répartition
 
 | Membre | Voiture | Branche | Passages |
