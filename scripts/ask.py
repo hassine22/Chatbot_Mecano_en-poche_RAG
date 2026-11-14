@@ -14,7 +14,7 @@ from mecano.pipeline import ask
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Mécano de poche 🔧 - Assistant RAG pour notices automobiles"
+        description="Mécano de poche - Assistant RAG pour notices automobiles"
     )
     parser.add_argument(
         "question",
@@ -60,7 +60,7 @@ def main():
             pass
 
     print("\n" + "=" * 70)
-    print(f"🔧 MÉCANO DE POCHE — QUESTION DU CONDUCTEUR :")
+    print("MÉCANO DE POCHE — QUESTION DU CONDUCTEUR :")
     print(f"« {args.question} »")
     if args.modele or args.categorie:
         print(f"Filtres : modèle={args.modele or 'tous'} | catégorie={args.categorie or 'toutes'}")
@@ -90,7 +90,7 @@ def main():
         )
         print("   Reformulations générées :")
         for ref in res_mq.get("reformulations", []):
-            print(f"   • « {ref} »")
+            print(f"   - « {ref} »")
         print("   Passages après fusion RRF :")
         for i, s in enumerate(res_mq["sources"], 1):
             print(f"   [{i}] ID: {s['id']} | Pages: {', '.join(s['pages'])} | Score RRF: {s.get('score')} | {s['titre']}")
@@ -112,17 +112,17 @@ def main():
     )
 
     if res.get("multi_query_used") and res.get("reformulations"):
-        print("\n🔍 Reformulations multi-requêtes (Gemini) :")
+        print("\n[Reformulations multi-requêtes (Gemini)] :")
         for ref in res["reformulations"]:
-            print(f"  • {ref}")
+            print(f"  - {ref}")
 
-    print(f"\n📄 Sources retenues ({len(res['sources'])} passages) :")
+    print(f"\n[Sources retenues ({len(res['sources'])} passages)] :")
     for i, s in enumerate(res["sources"], 1):
         score_info = f"Score RRF: {s['score']}" if res.get("multi_query_used") else f"Score: {s.get('score')}"
         print(f"  [{i}] {s['marque']} {s['modele']} | Page(s) {', '.join(s['pages'])} | {score_info} | {s['titre']} (ID: {s['id']})")
 
     print("\n" + "=" * 70)
-    print("💬 RÉPONSE :")
+    print("RÉPONSE :")
     print("=" * 70)
     print(res["answer"])
     print("=" * 70 + "\n")

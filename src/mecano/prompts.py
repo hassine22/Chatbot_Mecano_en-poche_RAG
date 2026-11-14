@@ -29,12 +29,12 @@ Ta mission est d'aider le conducteur en répondant à sa question UNIQUEMENT à 
 4. QUESTIONS AMBIGUËS OU TROP VAGUES (QUESTION DE CLARIFICATION) :
    - Si la question du conducteur est trop vague ou ambiguë pour identifier avec certitude la panne ou le voyant précis (ex. : "J'ai un voyant rouge allumé", "Un témoin clignote sur mon tableau de bord", "Ma voiture a un problème", ou lorsque plusieurs voyants/cas distincts de <CONTEXTE> pourraient correspondre sans qu'on puisse trancher) :
      • NE RÉPONDS JAMAIS AU HASARD en choisissant arbitrairement un seul cas.
-     • Commence ta réponse par "🤔 **Précision nécessaire :**" (ou "🤔 **Clarification needed:**" en anglais).
+     • Commence ta réponse par "**Précision nécessaire :**" (ou "**Clarification needed:**" en anglais).
      • Indique brièvement les différentes pistes visibles dans <CONTEXTE> (avec leurs pages [p. X]) et pose 2 à 3 questions de clarification ciblées au conducteur pour identifier son cas exact (ex. : Quelle est la forme/icône exacte du voyant ? Est-il fixe ou clignotant ? Quel message exact s'affiche à l'écran ? Quel est le modèle du véhicule si non précisé ?).
 
 5. SÉCURITÉ ET CONSEIL GARAGISTE :
    - Si un extrait mentionne un danger (WARNING, DANGER, CAUTION, STOP, arrêt impératif), un problème de freinage, de pression d'huile, de surchauffe moteur, d'airbag ou de direction :
-     • Commence par une alerte visible (🚨 ou ⚠️).
+     • Commence par une mention explicite "**ALERTE DE SÉCURITÉ :**" (ou "**SAFETY WARNING:**" en anglais). N'utilise aucun emoji.
      • Indique explicitement la consigne de sécurité (ex. : immobiliser le véhicule dès que possible en sécurité, couper le moteur).
      • Recommande fermement de faire appel à un réparateur agréé ou un garagiste professionnel.
 
@@ -42,10 +42,10 @@ Ta mission est d'aider le conducteur en répondant à sa question UNIQUEMENT à 
    - Explique la démarche ou la signification clairement et de manière synthétique, avec citations courtes [p. X] dans le corps du texte.
    - Termine TOUJOURS ta réponse (sauf en cas de refus d'information absente) par un bloc dédié aux références exactes :
      • En français :
-       📚 Références :
+       **Références :**
        - [Marque Modèle (Années)] – Chapitre > Titre — Page(s) : X (ID: xxx-000)
      • En anglais :
-       📚 References:
+       **References:**
        - [Marque Modèle (Années)] – Chapter > Title — Page(s) : X (ID: xxx-000)
 """
 
@@ -127,7 +127,7 @@ def build_clarification_response(question: str, modele: str = None) -> str:
     if is_english:
         model_q = "" if modele else "\n4. **Vehicle model:** Which car are you driving (Renault Clio 4, Hyundai i10, Ford EcoSport, or Kia Picanto)?"
         return (
-            "🤔 **Clarification needed:** Your question is a bit too general to identify the exact issue in the owner's manual without guessing.\n\n"
+            "**Clarification needed:** Your question is a bit too general to identify the exact issue in the owner's manual without guessing.\n\n"
             "Could you please specify:\n"
             "1. **Warning light symbol or system:** What does the icon look like (e.g., oil can, battery, thermometer, brake/exclamation mark, tyre, engine, airbag, ABS) or which part of the car is affected?\n"
             "2. **Color and behavior:** Is the light red, amber/orange, steady, or flashing?\n"
@@ -136,7 +136,7 @@ def build_clarification_response(question: str, modele: str = None) -> str:
 
     model_q = "" if modele else "\n4. **Modèle du véhicule :** De quelle voiture s'agit-il (Renault Clio 4, Hyundai i10, Ford EcoSport ou Kia Picanto) ?"
     return (
-        "🤔 **Précision nécessaire :** Votre question est trop générale pour identifier la bonne section de la notice sans répondre au hasard.\n\n"
+        "**Précision nécessaire :** Votre question est trop générale pour identifier la bonne section de la notice sans répondre au hasard.\n\n"
         "Pour que je puisse vous donner la procédure exacte, pouvez-vous préciser :\n"
         "1. **Le symbole ou système concerné :** À quoi ressemble le voyant (ex. : burette d'huile, batterie, thermomètre, point d'exclamation/frein, pneu, moteur, airbag, ABS) ou quelle pièce est touchée ?\n"
         "2. **La couleur et le comportement :** Le voyant est-il rouge ou orange ? Est-il fixe ou clignotant ?\n"

@@ -20,41 +20,42 @@ sys.path.insert(0, str(ROOT / "app"))
 import demo_backend  # noqa: E402
 from mecano import ner  # noqa: E402
 
+
 # ---------------------------------------------------------------- backend
 def charger_backend():
     """Renvoie (fonction ask, nom du mode). Utilise le vrai pipeline s'il est prêt."""
     try:
         from mecano import pipeline
         if callable(getattr(pipeline, "ask", None)):
-            return pipeline.ask, "RAG complet (embeddings + LLM)"
+            return pipeline.ask, "RAG Actif (FAISS + Gemini)"
     except Exception:
         pass
-    return demo_backend.ask, "Démo (mots-clés, sans LLM)"
+    return demo_backend.ask, "Recherche lexicale (sans LLM)"
 
 
 ASK, MODE = charger_backend()
 DEMO = ASK is demo_backend.ask
 
-# ---------------------------------------------------------------- libellés
+# ---------------------------------------------------------------- libellés sobres
 CATEGORIES = {
-    "voyant": "🚨 Voyants du tableau de bord",
-    "message_tableau_de_bord": "💬 Messages affichés",
-    "anomalie": "🔍 Pannes et anomalies",
-    "demarrage_moteur": "🔑 Démarrage et moteur",
-    "aides_conduite": "🛞 ABS, ESP, pression des pneus",
-    "boite_automatique": "⚙️ Boîte automatique",
-    "direction": "🎯 Direction",
-    "carburant": "⛽ Carburant",
-    "entretien": "🛢️ Entretien et niveaux",
-    "pneus_roues": "🛞 Pneus et roues",
-    "fusibles": "🔌 Fusibles",
-    "electricite_batterie": "🔋 Batterie et électricité",
-    "remorquage": "🚛 Remorquage",
-    "identification": "🪪 Identification du véhicule",
-    "caracteristiques_moteur": "📋 Caractéristiques moteur",
-    "code_obd": "🧾 Codes défaut OBD-II",
+    "voyant": "Voyants du tableau de bord",
+    "message_tableau_de_bord": "Messages affichés",
+    "anomalie": "Pannes et anomalies",
+    "demarrage_moteur": "Démarrage et moteur",
+    "aides_conduite": "ABS, ESP, pression des pneus",
+    "boite_automatique": "Boîte automatique",
+    "direction": "Direction",
+    "carburant": "Carburant",
+    "entretien": "Entretien et niveaux",
+    "pneus_roues": "Pneus et roues",
+    "fusibles": "Fusibles",
+    "electricite_batterie": "Batterie et électricité",
+    "remorquage": "Remorquage",
+    "identification": "Identification du véhicule",
+    "caracteristiques_moteur": "Caractéristiques moteur",
+    "code_obd": "Codes défaut OBD-II",
 }
-DRAPEAU = {"fr": "🇫🇷", "en": "🇬🇧", "ar": "🇹🇳"}
+LANGUE_CODE = {"fr": "FR", "en": "EN", "ar": "AR"}
 
 EXEMPLES = [
     ("Le voyant de pression d'huile s'allume sur ma Clio 4, que faire ?", None),
@@ -66,15 +67,19 @@ EXEMPLES = [
 ]
 
 # Mots indiquant le niveau d'urgence dans les passages (français et anglais)
-URGENT = ["arrêt impératif", "arrêtez-vous", "arrêtez votre moteur", "stop the vehicle",
-          "stop safely", "stop immediately", "do not drive", "ne redémarrez pas", "risque casse"]
-ATTENTION = ["consultez", "représentant de la marque", "faites contrôler", "have the vehicle",
-             "authorized", "dealer", "as soon as possible", "au plus tôt", "service now"]
+URGENT = [
+    "arrêt impératif", "arrêtez-vous", "arrêtez votre moteur", "stop the vehicle",
+    "stop safely", "stop immediately", "do not drive", "ne redémarrez pas", "risque casse",
+]
+ATTENTION = [
+    "consultez", "représentant de la marque", "faites contrôler", "have the vehicle",
+    "authorized", "dealer", "as soon as possible", "au plus tôt", "service now",
+]
 
 
 def niveau_urgence(resultat):
     """Indication heuristique, déduite du passage le plus pertinent."""
-    if resultat["info_absente"] or not resultat["sources"]:
+    if resultat.get("info_absente") or resultat.get("needs_clarification") or not resultat.get("sources"):
         return None
     texte = (resultat["sources"][0]["titre"] + " " + resultat["sources"][0]["texte"]).lower()
     if any(m in texte for m in URGENT):
@@ -84,15 +89,124 @@ def niveau_urgence(resultat):
     return "info"
 
 
-# ---------------------------------------------------------------- page
-st.set_page_config(page_title="Mécano de poche", page_icon="🔧", layout="wide")
+# ---------------------------------------------------------------- configuration page & CSS pro
+st.set_page_config(page_title="Mécano de poche — Documentation Technique", page_icon=None, layout="wide")
 st.markdown("""
 <style>
-.chip {display:inline-block; padding:2px 10px; margin:0 6px 6px 0; border-radius:12px;
-       font-size:0.82rem; background:#f1f5f9; border:1px solid #e2e8f0;}
-.chip-obd {background:#fff7ed; border-color:#fdba74;}
-.chip-auto {background:#eff6ff; border-color:#93c5fd;}
-.src-meta {color:#64748b; font-size:0.85rem;}
+/* Typographie et sobriété générale */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-width: 1080px;
+}
+h1, h2, h3 {
+    letter-spacing: -0.02em;
+    font-weight: 600;
+}
+
+/* Badges d'entités (Modèle / OBD) */
+.entity-bar {
+    margin-bottom: 0.65rem;
+}
+.chip {
+    display: inline-block;
+    padding: 3px 10px;
+    margin: 0 6px 6px 0;
+    border-radius: 4px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+.chip-obd {
+    background: #fffbeb;
+    color: #92400e;
+    border-color: #fcd34d;
+}
+.chip-auto {
+    background: #f0f9ff;
+    color: #0369a1;
+    border-color: #bae6fd;
+}
+
+/* Bandeaux d'état techniques */
+.status-banner {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.85rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    border-left: 4px solid;
+}
+.status-urgent {
+    background-color: #fef2f2;
+    border-left-color: #dc2626;
+    color: #7f1d1d;
+}
+.status-attention {
+    background-color: #fffbeb;
+    border-left-color: #d97706;
+    color: #78350f;
+}
+.status-absent {
+    background-color: #f8fafc;
+    border-left-color: #64748b;
+    color: #334155;
+}
+.status-obd {
+    background-color: #f0f9ff;
+    border-left-color: #0284c7;
+    color: #0c4a6e;
+    margin-top: 0.75rem;
+}
+
+/* Cartes de sources documentaires */
+.src-card {
+    padding: 0.75rem 0;
+}
+.src-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.25rem;
+}
+.src-title {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: #0f172a;
+}
+.src-meta {
+    color: #64748b;
+    font-size: 0.8rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+.src-excerpt {
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: #334155;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 0.65rem 0.85rem;
+    margin: 0.45rem 0;
+    white-space: pre-wrap;
+}
+
+/* Cartes d'exemples */
+div[data-testid="stButton"] > button {
+    text-align: left;
+    font-weight: 400;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+div[data-testid="stButton"] > button:hover {
+    border-color: #94a3b8;
+    background-color: #f8fafc;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -104,10 +218,10 @@ if "question_exemple" not in st.session_state:
 # ---------------------------------------------------------------- barre latérale
 modeles = demo_backend.modeles_disponibles()
 with st.sidebar:
-    st.title("🔧 Mécano de poche")
-    st.caption("Votre notice de voiture, en questions-réponses.")
+    st.markdown("### Mécano de poche")
+    st.caption("Système RAG d'assistance technique sur notices constructeurs")
 
-    st.subheader("Ma voiture")
+    st.markdown("**Véhicule**")
     options = ["Détection automatique"] + [m[1] for m in modeles]
 
     def libelle(o):
@@ -115,43 +229,52 @@ with st.sidebar:
             if o == modele:
                 debut, fin = annees.split("-")
                 periode = debut if debut == fin else annees
-                return f"{marque} {modele} ({periode}) {DRAPEAU.get(langue, '')}"
-        return "🔎 " + o
+                code_lang = LANGUE_CODE.get(langue, langue.upper())
+                return f"{marque} {modele} ({periode}) [{code_lang}]"
+        return o
 
     choix_modele = st.selectbox("Modèle", options, format_func=libelle, label_visibility="collapsed")
 
-    st.subheader("Rechercher dans")
+    st.markdown("**Section de la notice**")
     cats_dispo = [c for c in CATEGORIES if c in demo_backend.categories_disponibles()]
-    choix_cats = st.multiselect("Catégories", cats_dispo, format_func=lambda c: CATEGORIES[c],
-                                placeholder="Toute la notice", label_visibility="collapsed")
+    choix_cats = st.multiselect(
+        "Catégories",
+        cats_dispo,
+        format_func=lambda c: CATEGORIES[c],
+        placeholder="Toutes les sections",
+        label_visibility="collapsed",
+    )
 
-    st.subheader("Réglages")
-    top_k = st.select_slider("Nombre de passages consultés (top-k)", options=[3, 5, 8, 10], value=5)
-    voir_sources = st.toggle("Afficher les passages des notices", value=True)
+    st.markdown("**Paramètres de recherche**")
+    top_k = st.select_slider("Passages extraits (top-k)", options=[3, 5, 8, 10], value=5)
+    voir_sources = st.toggle("Afficher les extraits sources", value=True)
 
     st.divider()
-    st.caption(f"**Mode :** {MODE}")
     total = sum(m[4] for m in modeles)
-    st.caption(f"**Corpus :** {total} passages, {len(modeles)} notices officielles")
-    if st.button("🗑️ Nouvelle conversation", use_container_width=True):
+    st.caption(f"**Moteur :** {MODE}")
+    st.caption(f"**Index :** {total} passages · {len(modeles)} manuels officiels")
+    if st.button("Réinitialiser la session", use_container_width=True):
         st.session_state.historique = []
         st.rerun()
-    st.caption("⚠️ Cet assistant ne remplace pas un garagiste. En cas de doute sur la sécurité, "
-               "arrêtez-vous et faites appel à un professionnel.")
+    st.caption(
+        "Note de responsabilité : cet outil consulte les manuels d'utilisation officiels et ne "
+        "se substitue pas au diagnostic d'un professionnel qualifié."
+    )
+
 
 # ---------------------------------------------------------------- affichage d'une réponse
 def afficher_entites(ent, filtre_auto):
     chips = []
     if ent["modele"]:
         cls = "chip chip-auto" if filtre_auto else "chip"
-        txt = f"🚗 {ent['modele'][0]} {ent['modele'][1]}"
+        txt = f"Véhicule : {ent['modele'][0]} {ent['modele'][1]}"
         if filtre_auto:
-            txt += " · filtre appliqué"
+            txt += " (détecté)"
         chips.append(f"<span class='{cls}'>{txt}</span>")
     for c in ent["codes_obd"]:
-        chips.append(f"<span class='chip chip-obd'>🧾 Code {c['code']} · {c['famille']}</span>")
+        chips.append(f"<span class='chip chip-obd'>OBD-II {c['code']} · {c['famille']}</span>")
     if chips:
-        st.markdown("".join(chips), unsafe_allow_html=True)
+        st.markdown(f"<div class='entity-bar'>{''.join(chips)}</div>", unsafe_allow_html=True)
 
 
 def afficher_reponse(tour):
@@ -160,37 +283,65 @@ def afficher_reponse(tour):
 
     niveau = niveau_urgence(res)
     if res["info_absente"]:
-        st.warning("**Information absente des notices.** " + res["reponse"], icon="🤷")
+        st.markdown(
+            f"<div class='status-banner status-absent'>"
+            f"<strong>Information hors notice :</strong> {res['reponse']}</div>",
+            unsafe_allow_html=True,
+        )
     else:
         if niveau == "urgent":
-            st.error("**Urgent** : la notice demande de s'arrêter dès que possible, "
-                     "en sécurité. Ne continuez pas à rouler.", icon="🛑")
+            st.markdown(
+                "<div class='status-banner status-urgent'>"
+                "<strong>Arrêt impératif recommandé :</strong> la documentation constructeur indique un risque "
+                "pour la sécurité ou le moteur. Immobilisez le véhicule dès que possible en sécurité."
+                "</div>",
+                unsafe_allow_html=True,
+            )
         elif niveau == "attention":
-            st.warning("**À faire vérifier** : la notice recommande de consulter "
-                       "un professionnel rapidement.", icon="🔧")
+            st.markdown(
+                "<div class='status-banner status-attention'>"
+                "<strong>Contrôle atelier recommandé :</strong> la notice préconise de faire vérifier le véhicule "
+                "par un réparateur qualifié."
+                "</div>",
+                unsafe_allow_html=True,
+            )
         st.markdown(res["reponse"])
 
     if tour["codes_sans_source"]:
-        st.info("Les codes défaut OBD-II ne figurent pas dans les notices du constructeur : "
-                "faites lire le code complet par un garagiste équipé d'une valise de diagnostic.",
-                icon="🧾")
+        st.markdown(
+            "<div class='status-banner status-obd'>"
+            "<strong>Note OBD-II :</strong> la table complète des codes défaut DTC ne figure pas dans le manuel "
+            "conducteur. Un relevé par outil de diagnostic en atelier est nécessaire."
+            "</div>",
+            unsafe_allow_html=True,
+        )
 
     if voir_sources and res["sources"]:
-        titre = "📚 Passages consultés" + (" (aucun ne répond à la question)" if res["info_absente"] else "")
-        with st.expander(f"{titre} — {len(res['sources'])}", expanded=False):
+        suffixe = " (non retenus)" if res["info_absente"] else ""
+        titre_exp = f"Extraits des notices consultés ({len(res['sources'])}{suffixe})"
+        with st.expander(titre_exp, expanded=False):
             for i, s in enumerate(res["sources"], 1):
                 pages = ", ".join(s["pages"])
-                st.markdown(f"**{i}. {s['titre']}**")
+                code_lang = LANGUE_CODE.get(s.get("langue", ""), s.get("langue", "").upper())
+                cat_label = CATEGORIES.get(s.get("categorie", ""), s.get("categorie", ""))
+                score_pct = min(max(float(s.get("score", 0.0)), 0.0), 1.0)
+
                 st.markdown(
-                    f"<span class='src-meta'>{s['marque']} {s['modele']} "
-                    f"{DRAPEAU.get(s['langue'], '')} · page {pages} · "
-                    f"{CATEGORIES.get(s['categorie'], s['categorie'])} · pertinence {s['score']:.0%}</span>",
-                    unsafe_allow_html=True)
-                st.progress(min(max(float(s["score"]), 0.0), 1.0))
+                    f"<div class='src-header'>"
+                    f"<span class='src-title'>{i}. {s['titre']}</span>"
+                    f"<span class='src-meta'>Pertinence : {score_pct:.0%}</span>"
+                    f"</div>"
+                    f"<div class='src-meta'>{s['marque']} {s['modele']} [{code_lang}] · "
+                    f"Page(s) {pages} · Section : {cat_label}</div>",
+                    unsafe_allow_html=True,
+                )
                 texte = s["texte"]
-                st.text(texte if len(texte) < 1500 else texte[:1500] + "…")
-                st.markdown(f"<span class='src-meta'>Source : [{s['document']}]({s['source_url']})</span>",
-                            unsafe_allow_html=True)
+                extrait = texte if len(texte) < 1500 else texte[:1500] + "…"
+                st.markdown(f"<div class='src-excerpt'>{extrait}</div>", unsafe_allow_html=True)
+                st.markdown(
+                    f"<span class='src-meta'>Document : <a href='{s['source_url']}' target='_blank'>{s['document']}</a></span>",
+                    unsafe_allow_html=True,
+                )
                 if i < len(res["sources"]):
                     st.divider()
 
@@ -207,27 +358,36 @@ def traiter(question, modele_force=None):
         modele, filtre_auto = ent["modele"][1], True
     else:
         modele = None
-    with st.spinner("Je consulte les notices…"):
+    with st.spinner("Recherche dans les notices et génération de la réponse…"):
         res = ASK(question, modele=modele, categories=choix_cats or None, top_k=top_k)
     codes_sans_source = bool(ent["codes_obd"]) and not any(
-        s.get("categorie") == "code_obd" for s in res["sources"])
+        s.get("categorie") == "code_obd" for s in res["sources"]
+    )
     st.session_state.historique.append({
-        "question": question, "resultat": res, "entites": ent,
-        "filtre_auto": filtre_auto, "modele": modele, "codes_sans_source": codes_sans_source,
+        "question": question,
+        "resultat": res,
+        "entites": ent,
+        "filtre_auto": filtre_auto,
+        "modele": modele,
+        "codes_sans_source": codes_sans_source,
     })
 
 
 # ---------------------------------------------------------------- page principale
-st.header("Un voyant s'allume ? Une question sur votre voiture ?")
-st.caption("Les réponses viennent uniquement des notices officielles des constructeurs, "
-           "avec la page à consulter.")
+st.subheader("Assistance technique sur notices constructeurs")
+st.caption(
+    "Interrogez les manuels d'utilisation officiels (Renault Clio 4, Hyundai i10, Ford EcoSport, Kia Picanto). "
+    "Chaque réponse est sourcée avec le numéro de page correspondant."
+)
+
 if DEMO:
-    st.info("Mode démo : la recherche se fait par mots-clés et la réponse est l'extrait le plus "
-            "pertinent de la notice. Le vrai RAG (embeddings + LLM) sera branché automatiquement "
-            "dès que `src/mecano/pipeline.py` sera prêt.", icon="🧪")
+    st.info(
+        "Mode de secours actif : recherche lexicale directe sans génération LLM.",
+        icon=None,
+    )
 
 if not st.session_state.historique:
-    st.markdown("**Exemples de questions :**")
+    st.markdown("##### Questions fréquentes")
     cols = st.columns(3)
     for i, (q, m) in enumerate(EXEMPLES):
         if cols[i % 3].button(q, key=f"ex{i}", use_container_width=True):
@@ -235,14 +395,14 @@ if not st.session_state.historique:
             st.rerun()
 
 for tour in st.session_state.historique:
-    with st.chat_message("user", avatar="🧑"):
+    with st.chat_message("user"):
         st.markdown(tour["question"])
         if tour["modele"] and not tour["filtre_auto"]:
-            st.caption(f"Voiture : {tour['modele']}")
-    with st.chat_message("assistant", avatar="🔧"):
+            st.caption(f"Filtre véhicule : {tour['modele']}")
+    with st.chat_message("assistant"):
         afficher_reponse(tour)
 
-question = st.chat_input("Ex. : Le voyant batterie reste allumé sur ma Clio 4, c'est grave ?")
+question = st.chat_input("Posez une question technique (ex. : Que faire si le témoin de pression d'huile s'allume sur Clio 4 ?)")
 exemple = st.session_state.question_exemple
 if exemple:
     st.session_state.question_exemple = None
