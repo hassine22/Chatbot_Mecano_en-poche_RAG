@@ -2,9 +2,9 @@
 
 Source : Kia Picanto Owner's Manual (2023) – https://www.kia.com/
 
-367 passages.
+360 passages.
 
-## [picanto-001] Features of your vehicle > Page 4-40
+## [picanto-001] Instrument cluster
 *pages 4-40 · catégorie : entretien*
 
 Features of your vehicle
@@ -24,7 +24,7 @@ Type B
 * The actual cluster in the vehicle may differ from the illustration. For more details, 
 refer to "Gauges" on page 4-40.
 
-## [picanto-002] Features of your vehicle > Page 122
+## [picanto-002] LCD display control
 *pages 122 · catégorie : pneus_roues*
 
 Features of your vehicle
@@ -59,7 +59,7 @@ hour (mph) and/or kilometers per hour
 
 OJAPE033036_2
 
-## [picanto-003] Features of your vehicle > Page 7-7
+## [picanto-003] Engine Coolant Temperature
 *pages 7-7 · catégorie : entretien*
 
 Features of your vehicle
@@ -98,7 +98,7 @@ engine is hot. The engine coolant is
 under pressure and could severely burn. 
 Wait until the engine is cool before adding coolant to the reservoir.
 
-## [picanto-004] Features of your vehicle > Page 9-9
+## [picanto-004] Fuel Gauge
 *pages 9-9 · catégorie : carburant*
 
 Features of your vehicle
@@ -143,7 +143,7 @@ periodic maintenance should be performed.
 - Odometer range: 0 ~ 1,599,999 km or 
 999,999 miles.
 
-## [picanto-005] Features of your vehicle > Page 4-46
+## [picanto-005] Distance to empty
 *pages 4-46 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -194,7 +194,7 @@ LCD display.
 * For more details, refer to "LCD display" 
 on page 4-46.
 
-## [picanto-006] Features of your vehicle > Page 126
+## [picanto-006] Transmission shift indicator
 *pages 126 · catégorie : carburant*
 
 Features of your vehicle
@@ -229,7 +229,7 @@ is in the 2nd or 1st gear).
 lever is in the 4th or 5th gear).
 When the system is not working properly, the indicator is not displayed.
 
-## [picanto-007] Features of your vehicle > Page 127
+## [picanto-007] Automated Manual Transmission
 *pages 127 · catégorie : carburant*
 
 Features of your vehicle
@@ -255,7 +255,7 @@ gear is desired (currently the shift lever
 is in the 2nd or 1st gear).
 When the system is not working properly, the indicator is not displayed.
 
-## [picanto-008] Features of your vehicle > Page 4-40
+## [picanto-008] LCD display
 *pages 4-40 · catégorie : carburant*
 
 Features of your vehicle
@@ -314,7 +314,7 @@ Convenience*
 Units
 Reset
 
-## [picanto-009] Features of your vehicle > Page 4-55
+## [picanto-009] Trip computer mode
 *pages 4-55 · catégorie : pneus_roues*
 
 Features of your vehicle
@@ -366,7 +366,7 @@ To reset the service interval to the mileage and days you inputted before:
 僅Press the OK button (RESET) for more 
 than 1 second.
 
-## [picanto-010] Features of your vehicle > Page 130
+## [picanto-010] Master warning mode
 *pages 130 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -413,7 +413,7 @@ lever to P (Park).
 僅Manual Transmission
 For your safety, change the User Settings after engaging the parking brake.
 
-## [picanto-011] Features of your vehicle > Page 6-52
+## [picanto-011] 1. Driver Assistance (if equipped)
 *pages 6-52 · catégorie : carburant*
 
 Features of your vehicle
@@ -482,7 +482,7 @@ Cluster Voice Guidance Volume
 Welcome Sound
 To activate or deactivate the Welcome Sound function.
 
-## [picanto-012] Features of your vehicle > Page 4-69
+## [picanto-012] 3. Lights (if equipped)
 *pages 4-69 · catégorie : demarrage_moteur*
 
 Features of your vehicle
@@ -555,7 +555,7 @@ Welcome Mirror
 On door unlock / On driver approach
 To select the welcome mirror function.
 
-## [picanto-013] Features of your vehicle > Page 133
+## [picanto-013] 8. Units (if equipped)
 *pages 133 · catégorie : pneus_roues*
 
 Features of your vehicle
@@ -599,7 +599,7 @@ Reset
 You can reset the menus in the User Settings mode. All menus in the User Settings mode 
 are reset to factory settings, except language and service interval.
 
-## [picanto-014] Features of your vehicle > Page 134
+## [picanto-014] Warning messages
 *pages 134 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -650,12 +650,12 @@ ENGINE START/STOP button whilst
 turning the steering wheel right and 
 left.
 
-## [picanto-015] Features of your vehicle > Page 135
+## [picanto-015] Steering wheel not locked (for
 *pages 135 · catégorie : pneus_roues*
 
 Features of your vehicle LCD display Steering wheel not locked (for smart key system) (if equipped) 僅This warning message illuminates if the steering wheel does not lock when the ENGINE START/STOP button changes to the OFF position. Check Steering Wheel Lock System (for smart key system) (if equipped) 僅This warning message illuminates if the steering wheel does not lock normally when the ENGINE START/STOP button changes to the OFF position. Press brake pedal to start engine (for smart key system and Automatic Transmission/Automated Manual Transmission) (if equipped) 僅This warning message illuminates if the ENGINE START/STOP button changes to the ACC position twice by pressing the button repeatedly without depressing the brake pedal. 僅It means that you should depress the brake pedal to start the engine. Press clutch pedal to start engine (for smart key system and Manual Transmission) (if equipped) 僅This warning message illuminates if the ENGINE START/STOP button changes to the ACC position twice by pressing the button repeatedly without depressing the clutch pedal. 僅It means that you should depress the clutch pedal to start the engine. Key not in vehicle (for smart key system) (if equipped) 僅This warning message illuminates on the cluster if you open or close the door when the ENGINE START/STOP button is in the ACC or ON position and the smart key is not in the vehicle. Especially when you close the door, a warning alarm will also sound for approximately 5 seconds. 僅It means that you should always have the smart key with you. Key not detected (for smart key system) (if equipped) 僅This warning message illuminates for 10 seconds on the cluster if you don’t have the smart key with you or it is not detected when you press the ENGINE START/STOP button. In this case, the immobiliser indicator light will blink for 10 seconds. Press START button again (for smart key system) (if equipped) 僅This warning message illuminates if you can not operate the ENGINE START/STOP button when there is a problem with the ENGINE START/ STOP button system. 僅It means that you could start the engine by pressing the ENGINE START/STOP button once more. 僅If the warning illuminates each time you press the ENGINE START/STOP button, have the vehicle inspected by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner.
 
-## [picanto-016] Features of your vehicle > Page 7-7
+## [picanto-016] Press START button with key (for
 *pages 7-7 · catégorie : fusibles*
 
 Features of your vehicle
@@ -721,7 +721,7 @@ come on.
 It is recommended to look for the nearest fueling station and refuel as soon 
 possible.
 
-## [picanto-017] Features of your vehicle > Page 137
+## [picanto-017] Battery discharging due to exter-
 *pages 137 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -759,7 +759,7 @@ B: TRIP B
 To change the trip mode, scroll the 
 MOVE scroll switch (∧/∨) or TRIP button in the trip computer mode.
 
-## [picanto-018] Features of your vehicle > Page 138
+## [picanto-018] Distance To Empty (1)
 *pages 138 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -819,7 +819,7 @@ seconds or 300 metres (0.19 miles) since
 the ignition switch or ENGINE START/
 STOP button is turned to ON.
 
-## [picanto-019] Features of your vehicle > Page 4-46
+## [picanto-019] Trip information (trip computer)
 *pages 4-46 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -869,7 +869,7 @@ Reset" mode in User Setting menu of
 the LCD display (Refer to "LCD display 
 modes" on page 4-46).
 
-## [picanto-020] Features of your vehicle > Page 140
+## [picanto-020] Instant Fuel Economy
 *pages 140 · catégorie : carburant*
 
 Features of your vehicle
@@ -915,7 +915,7 @@ will be reset.
 僅If the engine is running, even when 
 the vehicle is not in motion, the information will be accumulated.
 
-## [picanto-021] Features of your vehicle > Page 3-13
+## [picanto-021] Drive Info display
 *pages 3-13 · catégorie : carburant*
 
 Features of your vehicle
@@ -970,7 +970,7 @@ the seat belt is not fastened.
 * For more details, refer to "Seat belts" on 
 page 3-13.
 
-## [picanto-022] Features of your vehicle > Page 8-31
+## [picanto-022] Parking Brake & Brake Fluid
 *pages 8-31 · catégorie : pneus_roues*
 
 Features of your vehicle
@@ -1033,7 +1033,7 @@ In this case, have the vehicle inspected
 by a professional workshop. Kia recommends to visit an authorised Kia dealer/
 service partner.
 
-## [picanto-023] Features of your vehicle > Page 143
+## [picanto-023] Anti-lock Brake System (ABS)
 *pages 143 · catégorie : demarrage_moteur*
 
 Features of your vehicle
@@ -1107,7 +1107,7 @@ MDPS.
 In this case, have the vehicle 
 inspected by a professional workshop.
 
-## [picanto-024] Features of your vehicle > Page 144
+## [picanto-024] Malfunction Indicator Lamp (MIL)
 *pages 144 · catégorie : entretien*
 
 Features of your vehicle
@@ -1182,7 +1182,7 @@ started.
 僅Drive carefully to the nearest safe 
 location and stop your vehicle.
 
-## [picanto-025] Features of your vehicle > Page 7-8
+## [picanto-025] Low Fuel Level Warning Light
 *pages 7-8 · catégorie : pneus_roues*
 
 Features of your vehicle
@@ -1251,7 +1251,7 @@ accelerator pedal, apply the brakes
 gradually with light force, and slowly 
 move to a safe position off the road.
 
-## [picanto-026] Features of your vehicle > Page 6-3
+## [picanto-026] Forward Safety warning light
 *pages 6-3 · catégorie : voyant*
 
 Features of your vehicle
@@ -1307,7 +1307,7 @@ equipped), etc.
 If the warning situation is solved, the 
 master warning light will turn off.
 
-## [picanto-027] Features of your vehicle > Page 5-38
+## [picanto-027] Door Ajar Warning Light
 *pages 5-38 · catégorie : demarrage_moteur*
 
 Features of your vehicle
@@ -1372,7 +1372,7 @@ by pressing the ESC OFF button.
 Stability Control (ESC) (if equipped)" 
 on page 5-38.
 
-## [picanto-028] Features of your vehicle > Page 5-15
+## [picanto-028] Auto stop indicator
 *pages 5-15 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -1451,7 +1451,7 @@ weak.
 engine. However, you can start the 
 engine if you press the ENGINE
 
-## [picanto-029] Features of your vehicle > Page 5-10
+## [picanto-029] Turn Signal Indicator Light
 *pages 5-10 · catégorie : demarrage_moteur*
 
 Features of your vehicle
@@ -1511,7 +1511,7 @@ equipped)
 This indicator light illuminates:
 僅When the front fog lights are on.
 
-## [picanto-030] Features of your vehicle > Page 6-57
+## [picanto-030] Rear Fog Indicator Light
 *pages 6-57 · catégorie : voyant*
 
 Features of your vehicle
@@ -1578,7 +1578,7 @@ Petrol Particulate Filter (PPF) system.
 僅When this warning light illuminates, it 
 may turn off after driving the vehicle:
 
-## [picanto-031] Features of your vehicle > Page 151
+## [picanto-031] Battery saver function
 *pages 151 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -1629,7 +1629,7 @@ The DRL system turns OFF when:
 3. The front fog light is on.
 4. Engaging the Parking Brake
 
-## [picanto-032] Features of your vehicle > Page 152
+## [picanto-032] Headlight escort function (if
 *pages 152 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -1689,7 +1689,7 @@ the end of the control lever to one of the
 following positions:
 1. OFF (O): Off position
 
-## [picanto-033] Features of your vehicle > Page 154
+## [picanto-033] High beam operation
 *pages 154 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -1736,7 +1736,7 @@ flash or if it flashes abnormally, one of
 the turn signal bulbs may be burned out 
 and will require replacement.
 
-## [picanto-034] Features of your vehicle > Page 6-3
+## [picanto-034] High Beam Assist (HBA) (if
 *pages 6-3 · catégorie : voyant*
 
 Features of your vehicle
@@ -1780,7 +1780,7 @@ function.
 For your safety, change the Settings 
 after parking the vehicle at a safe location.
 
-## [picanto-035] Features of your vehicle > Page 157
+## [picanto-035] High Beam Assist operation
 *pages 157 · catégorie : voyant*
 
 Features of your vehicle
@@ -1849,7 +1849,7 @@ Depending on the instrument cluster
 specification or theme, images or 
 colours may be displayed differently.
 
-## [picanto-036] Features of your vehicle > Page 6-13
+## [picanto-036] High Beam Assist malfunction
 *pages 6-13 · catégorie : pneus_roues*
 
 Features of your vehicle
@@ -1919,7 +1919,7 @@ view camera is initialized or restarted.
 僅If the high beam assistance is not 
 operated properly, switch the headlights manually.
 
-## [picanto-037] Features of your vehicle > Page 1-3
+## [picanto-037] Windscreen wipers (front)
 *pages 1-3 · catégorie : entretien*
 
 Features of your vehicle
@@ -1975,7 +1975,7 @@ windscreen with the defrosters; the
 washer solution could freeze on the 
 windscreen and obscure your vision.
 
-## [picanto-038] Features of your vehicle > Page 161
+## [picanto-038] Heated washer nozzle (if
 *pages 161 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -2040,7 +2040,7 @@ twice to spray rear washer fluid and to
 run the rear wipers 1~3 cycles.
 The spray and wiper operation will continue until you release the lever.
 
-## [picanto-039] Features of your vehicle > Page 162
+## [picanto-039] Interior light
 *pages 162 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -2103,7 +2103,7 @@ front map lamps off.
 The DOOR mode and ROOM mode can 
 not be selected at a time.
 
-## [picanto-040] Features of your vehicle > Page 4-98
+## [picanto-040] Luggage room lamp
 *pages 4-98 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -2157,7 +2157,7 @@ or when the ignition switch is turned off.
 To turn off the defroster, press the rear 
 window defroster button again.
 
-## [picanto-041] Features of your vehicle > Page 165
+## [picanto-041] Manual climate control system (if equipped)
 *pages 165 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -2173,7 +2173,7 @@ Manual climate control system (if equipped)
 Operating the blower when the ignition switch is in the ON position could cause the 
 battery to discharge. Operate the blower when the engine is running.
 
-## [picanto-042] Features of your vehicle > Page 166
+## [picanto-042] Heating and air conditioning
 *pages 166 · catégorie : identification*
 
 Features of your vehicle
@@ -2191,7 +2191,7 @@ For improving the effectiveness of heating and cooling;
 5. Set the fan speed control to the desired speed.
 6. If air conditioning is desired, turn the air conditioning (if equipped) system on.
 
-## [picanto-043] Features of your vehicle > Page 167
+## [picanto-043] Mode selection
 *pages 167 · catégorie : pneus_roues*
 
 Features of your vehicle
@@ -2237,7 +2237,7 @@ change the air temperature in the passenger compartment, turn the knob to
 the right position for warm and hot air or 
 left position for cooler air.
 
-## [picanto-044] Features of your vehicle > Page 168
+## [picanto-044] Air intake control
 *pages 168 · catégorie : identification*
 
 Features of your vehicle
@@ -2295,7 +2295,7 @@ Setting the fan speed control knob to the
 To turn off the blowers, turn the fan 
 speed control knob to the “0” position.
 
-## [picanto-045] Features of your vehicle > Page 170
+## [picanto-045] Air conditioning system opera-
 *pages 170 · catégorie : anomalie*
 
 Features of your vehicle
@@ -2356,7 +2356,7 @@ because of rapid cooling and humid
 air intake. This is a normal system 
 operation characteristic.
 
-## [picanto-046] Features of your vehicle > Page 171
+## [picanto-046] Automatic climate control system (if equipped)
 *pages 171 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -2376,7 +2376,7 @@ Automatic climate control system (if equipped)
 Operating the blower when the ignition switch is in the ON position could cause the 
 battery to discharge. Operate the blower when the engine is running.
 
-## [picanto-047] Features of your vehicle > Page 4-83
+## [picanto-047] Mode selection
 *pages 4-83 · catégorie : pneus_roues*
 
 Features of your vehicle
@@ -2426,7 +2426,7 @@ Instrument panel vents
 The outlet port can be opened or closed 
 separately using the horizontal thumbwheel. To close the vent, rotate it downOJAPE033312
 
-## [picanto-048] Features of your vehicle > Page 174
+## [picanto-048] Temperature control
 *pages 174 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -2483,7 +2483,7 @@ the air within the passenger compartment may become stale.
 In addition, prolonged use of the air conditioning with the recirculated air position selected will result in excessively dry 
 air in the passenger compartment.
 
-## [picanto-049] Features of your vehicle > Page 175
+## [picanto-049] Fan speed control
 *pages 175 · catégorie : identification*
 
 Features of your vehicle
@@ -2522,7 +2522,7 @@ can still operate the air intake buttons as
 long as the ignition switch is in the ON 
 position.
 
-## [picanto-050] Features of your vehicle > Page 177
+## [picanto-050] Air conditioning system opera-
 *pages 177 · catégorie : anomalie*
 
 Features of your vehicle
@@ -2588,7 +2588,7 @@ flow from the air vents may decrease,
 resulting in moisture accumulation on 
 the inside of the windscreen even when
 
-## [picanto-051] Features of your vehicle > Page 180
+## [picanto-051] Windscreen defrosting and
 *pages 180 · catégorie : identification*
 
 Features of your vehicle
@@ -2639,7 +2639,7 @@ If the air conditioning and outside (fresh)
 air position are not selected automatically, press the corresponding button 
 manually.
 
-## [picanto-052] Features of your vehicle > Page 182
+## [picanto-052] Defogging logic (if equipped)
 *pages 182 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -2696,7 +2696,7 @@ Centre console storage (if
 equipped)
 Type A
 
-## [picanto-053] Features of your vehicle > Page 183
+## [picanto-053] Glove box
 *pages 183 · catégorie : identification*
 
 Features of your vehicle
@@ -2734,7 +2734,7 @@ face and body out of the luggage net’s
 recoil path. DO NOT use when the strap 
 has visible signs of wear or damage.
 
-## [picanto-054] Features of your vehicle > Page 186
+## [picanto-054] Features of your vehicle
 *pages 186 · catégorie : identification*
 
 Features of your vehicle
@@ -2781,7 +2781,7 @@ holding a tollgate ticket. (if equipped)
 For your safety, do not obstruct your 
 vision when using the sunvisor.
 
-## [picanto-055] Features of your vehicle > Page 187
+## [picanto-055] Seat warmer (if equipped)
 *pages 187 · catégorie : anomalie*
 
 Features of your vehicle
@@ -2844,7 +2844,7 @@ that burn easily
 cause drowsiness or sleepiness 
 (sleeping pills, cold tablets, etc.)
 
-## [picanto-056] Features of your vehicle > Page 188
+## [picanto-056] Air ventilation seat (if equipped)
 *pages 188 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -2904,7 +2904,7 @@ breakdown.
 僅Always make sure the electrical part is 
 firmly plugged into the power outlet.
 
-## [picanto-057] Features of your vehicle > Page 189
+## [picanto-057] USB charger
 *pages 189 · catégorie : electricite_batterie*
 
 Features of your vehicle
@@ -2939,17 +2939,17 @@ speed.
 - Digital devices with normal 
 charging: 5.0 V, 2.1 A
 
-## [picanto-058] Features of your vehicle > Page 190
+## [picanto-058] Floor mat anchor(s) (if equipped)
 *pages 190 · catégorie : electricite_batterie*
 
 Features of your vehicle Interior features 僅Use the USB car charger with the vehicle on. Otherwise, Vehicle battery can be discharged. 僅Use the official USB cable of the manufacturer of the digital device to be charged. 僅Make sure that any foreign object, drinks, and water do not come into contact with the USB car charger. Water or foreign object can damage the USB charger. 僅Do not use the device those current consumption exceeds 2.1 A. 僅Do not connect an electrical device that generates excessive electromagnetic noise to the USB car port. If you do so, noise can be caused or vehicle electronic devices can be interrupted whilst audio or AV is on. 僅If the charger is connected incorrectly, it can cause serious damage to the devices. Please note that damages due to incorrect usage are not covered by warranty service. Floor mat anchor(s) (if equipped) When using a floor mat on the front floor carpet, make sure it attaches to the floor mat anchor(s) in your vehicle. This keeps the floor mat from sliding forward. The following must be observed when installing ANY floor mat to the vehicle. 僅Ensure to remove a protective film attached on the carpet before attaching a floor mat on the front floor carpet. Otherwise, the floor mat may move freely on the protective film and it could result in unintentional braking or accelerating. 僅Ensure that the floor mats are securely attached to the vehicle's floor mat anchor(s) before driving the vehicle. 僅Do not use ANY floor mat that cannot be firmly attached to the vehicle's floor mat anchors. 僅Do not stack floor mats on top of one another (e.g. all-weather rubber mat on top of a carpeted floor mat). Only a single floor mat should be installed in each position. 僅Use floor mats not too thick and designed to be properly secured on the floor to avoid the interference with pedals. Make sure that installing the floor mats without removing plastic films on carpets may damage or break floor mat fix rings, resulting in the mats to be unsecured. Especially for a driver's seat, the unsecured mats may cause unintended acceleration/ brake. Ensure to remove all the plastic films on the carpets before installing the mats. IMPORTANT - Your vehicle was manufactured with driver's side
 
-## [picanto-059] Features of your vehicle > Page 190 (part 2)
+## [picanto-059] Floor mat anchor(s) (if equipped) > Part 2
 *pages 190 · catégorie : electricite_batterie*
 
 floor mat anchors that are designed to securely hold the floor mat in place. To avoid any interference with pedal operation, Kia recommends that only the Kia floor mat designed for use in your vehicle be installed.
 
-## [picanto-060] Features of your vehicle > Page 194
+## [picanto-060] Using a mobile phone or a two-
 *pages 194 · catégorie : identification*
 
 Features of your vehicle
@@ -3004,7 +3004,7 @@ vehicle.
 Do not use a mobile phone whilst driving. Stop at a safe location to use a 
 mobile phone.
 
-## [picanto-061] Driving your vehicle > Page 5-5
+## [picanto-061] Driving your vehicle
 *pages 5-5 · catégorie : carburant*
 
 Driving your vehicle
@@ -3040,7 +3040,7 @@ Automated Manual Transmission (AMT).................................. 5-21
 僅 Parking................................................................................................................5-27
 僅 Good driving practices ................................................................................5-28
 
-## [picanto-062] 5 Driving your vehicle > Page 5-29
+## [picanto-062] Kia Picanto owner manual
 *pages 5-29 · catégorie : electricite_batterie*
 
 5 Driving your vehicle
@@ -3077,7 +3077,7 @@ Winter driving .................................................................
 僅 Use approved window washer anti-freeze in system....................5-52
 僅 Don't let your parking brake freeze.......................................................5-52
 
-## [picanto-063] Driving your vehicle > Page 5-52
+## [picanto-063] Driving your vehicle
 *pages 5-52 · catégorie : identification*
 
 Driving your vehicle
@@ -3088,7 +3088,7 @@ accumulates inside the exhaust pipes............................................
 Vehicle weight .............................................................................5-53
 僅 Loading Your Vehicle.................................................................................. 5-54
 
-## [picanto-064] Driving your vehicle > Page 200
+## [picanto-064] Driving your vehicle
 *pages 200 · catégorie : identification*
 
 Driving your vehicle
@@ -3125,7 +3125,7 @@ To assure proper operation of the ventilation system, be sure the ventilation ai
 intakes located just in front of the windscreen are kept clear of snow, ice, leaves or 
 other obstructions.
 
-## [picanto-065] Driving your vehicle > Page 3-13
+## [picanto-065] Before driving
 *pages 3-13 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -3190,7 +3190,7 @@ affect your reflexes, perceptions and
 judgment. Driving whilst under the influence of drugs is as dangerous or more 
 dangerous than driving drunk.
 
-## [picanto-066] Driving your vehicle > Page 202
+## [picanto-066] Key positions
 *pages 202 · catégorie : electricite_batterie*
 
 Driving your vehicle
@@ -3249,7 +3249,7 @@ Do not leave the ignition switch ON if the
 engine is not running to prevent battery 
 discharge.
 
-## [picanto-067] Driving your vehicle > Page 203
+## [picanto-067] START (4)
 *pages 203 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -3315,17 +3315,17 @@ at full throttle and the accelerator pedal
 will be easier to depress. This is not a 
 malfunction but a normal condition.
 
-## [picanto-068] Driving your vehicle > Page 204
+## [picanto-068] Starting the petrol engine
 *pages 204 · catégorie : demarrage_moteur*
 
 Driving your vehicle Key positions Starting the petrol engine 1. Make sure the parking brake is applied. 2. Manual Transmission - Depress the clutch pedal fully and shift the transmission into Neutral. Keep the clutch pedal and brake pedal depressed whilst turning the ignition switch to the start position. Automatic Manual Transmission - Place the shift lever in N (Neutral). Depress the brake pedal fully. The engine cannot be started unless the shift lever is N (Neutral) position. Automatic Transmission - Place the transmission shift lever in P (Park). Depress the brake pedal fully. You can also start the engine when the shift lever is in the N (Neutral) position. 3. Turn the ignition switch to START and hold it there until the engine starts (a maximum of 10 seconds), then release the key. It should be started without depressing the accelerator. 4. Do not wait for the engine to warm up whilst the vehicle remains stationary. Start driving at moderate engine speeds. (Steep accelerating and decelerating should be avoided.) Manual transmission 僅When starting the vehicle, keep the clutch and brake pedal depressed, check if the rpm is within the appropriate range, and place the shift lever into the required position. 僅Release the parking brake, take your foot off the clutch pedal, depress the accelerator pedal and slowly start the vehicle. If the engine stalls whilst you are in motion, do not attempt to move the shift lever to the P (Park) position. If traffic and road conditions permit, you may put the shift lever in the N (Neutral) position whilst the vehicle is still moving and turn the ignition switch to the START position in an attempt to restart the engine. 僅Do not engage the starter for more than 10 seconds. If the engine stalls or fails to start, wait 5 to 10 seconds before re-engaging the starter. Improper use of the starter may damage it. 僅Do not turn the ignition switch to the START position with the engine running. It may damage the starter. Stopping the Engine Manual Transmission 1. When the vehicle is stationary, depress the clutch and brake pedal at the same time. 2. With the clutch and brake pedal depressed, shift the shift lever into N (Neutral). 3. With the brake pedal depressed, apply the
 
-## [picanto-069] Driving your vehicle > Page 204 (part 2)
+## [picanto-069] Starting the petrol engine > Part 2
 *pages 204 · catégorie : demarrage_moteur*
 
 parking brake. 4. Turn the ignition switch to the lock position and remove it.
 
-## [picanto-070] Driving your vehicle > Page 4-27
+## [picanto-070] Automated Manual Transmission
 *pages 4-27 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -3378,7 +3378,7 @@ should be the petrol in the reservoir.
 For filling the petrol, refer to "Fuel filler 
 door" on page 4-27.
 
-## [picanto-071] Driving your vehicle > Page 206
+## [picanto-071] ENGINE START/STOP button
 *pages 206 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -3447,7 +3447,7 @@ STOP button.
 僅When you turn off the engine, the 
 vehicle should be stopped.
 
-## [picanto-072] Driving your vehicle > Page 207
+## [picanto-072] ACC (Accessory)
 *pages 207 · catégorie : electricite_batterie*
 
 Driving your vehicle
@@ -3514,27 +3514,27 @@ pedal and press the ENGINE START/
 STOP button with the shift lever in the N 
 (Neutral) position.
 
-## [picanto-073] Driving your vehicle > Page 208
+## [picanto-073] With Automatic Transmission
 *pages 208 · catégorie : electricite_batterie*
 
 Driving your vehicle ENGINE START/STOP button With Automatic Transmission To start the engine, depress the brake pedal and press the ENGINE START/ STOP button with the shift lever in the P (Park) or the N (Neutral) position. For your safety, start the engine with the shift lever in the P (Park) position. If you press the ENGINE START/STOP button without depressing the clutch pedal for Manual Transmission vehicles or without depressing the brake pedal for Automatic Transmission/Automated Manual Transmission vehicles, the engine will not start and the ENGINE START/STOP button changes as follow: OFF → ACC → ON → OFF or ACC If you leave the ENGINE START/ STOP button in the ACC or ON position for a long time, the battery will discharge. 僅Never press the ENGINE START/STOP button whilst the vehicle is in motion. This would result in loss of directional control and braking function, which could cause an accident. 僅The anti-theft steering column lock is not a substitute for the parking brake. Before leaving the driver's seat, always make sure the shift lever is engaged in P (Park), set the parking brake fully and shut the engine off. Unexpected and sudden vehicle movement may occur if these precautions are not taken. 僅Never reach for the ENGINE START/ STOP button or any other controls through the steering wheel whilst the vehicle is in motion. The presence of your hand or arm in the area could cause loss of vehicle control, an accident and serious bodily injury or death. 僅Do not place any movable objects around the driver's seat as they may move whilst driving, interfere with the driver and lead to an accident. Starting the engine 僅Always wear appropriate shoes when operating your vehicle. Unsuitable shoes (high heels, ski boots, etc.) may interfere with your ability to use the brake and accelerator pedal. 僅Do not start the vehicle with the accelerator pedal depressed. The vehicle can move and lead to an accident. 僅Wait until the engine rpm is normal. The vehicle may suddenly move if the brake pedal is released when the rpm is high. Kick down mechanism (if equipped) If your vehicle is equipped with a kick down mechanism in the accelerator pedal, it prevents you from driving at full throttle unintentionally by making the driver require
 
-## [picanto-074] Driving your vehicle > Page 208 (part 2)
+## [picanto-074] With Automatic Transmission > Part 2
 *pages 208 · catégorie : electricite_batterie*
 
 increased effort to depress the accelerator pedal. However, if you depress the pedal more than approximately 80%, the vehicle can be at full throttle and the accelerator pedal will be easier to depress. This is not a malfunction but a normal condition.
 
-## [picanto-075] Driving your vehicle > Page 209
+## [picanto-075] Starting the petrol engine
 *pages 209 · catégorie : demarrage_moteur*
 
 Driving your vehicle ENGINE START/STOP button Starting the petrol engine 1. Carry the smart key or leave it inside the vehicle. 2. Make sure the parking brake is firmly applied. 3. Manual Transmission - Depress the clutch pedal fully and shift the transmission into Neutral. Keep the clutch pedal and brake pedal depressed whilst starting the engine. Automatic Manual Transmission - Automated Manual Transmission - Place the shift lever in N (Neutral). Depress the brake pedal fully. The engine cannot be started unless the shift lever is N (Neutral) position. Automatic Transmission - Place the transmission shift lever in P (Park). Depress the brake pedal fully. You can also start the engine when the shift lever is in the N (Neutral) position. 4. Press the ENGINE START/STOP button. It should be started without depressing the accelerator. 5. Do not wait for the engine to warm up whilst the vehicle remains stationary. Start driving at moderate engine speeds. (Steep accelerating and decelerating should be avoided.) Manual transmission 僅When starting the vehicle, keep the clutch and brake pedal depressed, check if the rpm is within the appropriate range, and place the shift lever into the required position. 僅Release the parking brake, take your foot off the clutch pedal, depress the accelerator pedal and slowly start the vehicle. Do not turn the ignition switch to the START position with the engine running. It may damage the starter. 僅Even if the smart key is in the vehicle, if it is far away from you, the engine may not start. 僅When the ENGINE START/STOP button is in the ACC position or above, if any door is opened, the system checks for the smart key. If the smart key is not in the vehicle, the “ ” indicator will blink or the warning "Key is not in vehicle" will illuminate on the LCD display. And if all doors are closed, the chime will sound for 5 seconds. The indicator or warning will turn off whilst the vehicle is moving. Always have the smart key with you. The engine will start, only when the smart key is in the vehicle. Never allow children or any person who is unfamiliar with the vehicle touch the ENGINE START/STOP button or related parts. If the engine stalls whilst the vehicle
 
-## [picanto-076] Driving your vehicle > Page 209 (part 2)
+## [picanto-076] Starting the petrol engine > Part 2
 *pages 209 · catégorie : demarrage_moteur*
 
 is in motion, do not attempt to move the shift lever to the P (Park) position. If the traffic and road conditions permit, you may put the shift lever in the N (Neutral) position whilst the vehicle is still moving and press the ENGINE START/STOP button in an attempt to restart the engine.
 
-## [picanto-077] Driving your vehicle > Page 210
+## [picanto-077] Stopping the Engine
 *pages 210 · catégorie : fusibles*
 
 Driving your vehicle
@@ -3599,7 +3599,7 @@ engine.
 make sure the transmission is shifted 
 into the 1 (First gear, for Manual
 
-## [picanto-078] Driving your vehicle > Page 211
+## [picanto-078] ISG (Idle Stop and Go) system
 *pages 211 · catégorie : electricite_batterie*
 
 Driving your vehicle
@@ -3636,7 +3636,7 @@ This happens because of low battery
 voltage. It does not mean the system is 
 malfunctioning.
 
-## [picanto-079] Driving your vehicle > Page 212
+## [picanto-079] Auto stop
 *pages 212 · catégorie : demarrage_moteur*
 
 Driving your vehicle
@@ -3693,7 +3693,7 @@ minutes.
 僅The air conditioning is ON with the fan 
 speed set to the highest position.
 
-## [picanto-080] Driving your vehicle > Page 213
+## [picanto-080] Condition of ISG system opera-
 *pages 213 · catégorie : electricite_batterie*
 
 Driving your vehicle
@@ -3757,7 +3757,7 @@ on the instrument cluster will stay on
 after blinking for 5 seconds and the light 
 on the ISG OFF button will illuminate.
 
-## [picanto-081] Driving your vehicle > Page 214
+## [picanto-081] Manual Transmission (if
 *pages 214 · catégorie : electricite_batterie*
 
 Driving your vehicle
@@ -3825,17 +3825,17 @@ tachometer (rpm) in the red zone.
 fourth gear, caution should be taken 
 not to inadvertently press the shift
 
-## [picanto-082] Driving your vehicle > Page 215
+## [picanto-082] Using the clutch
 *pages 215 · catégorie : identification*
 
 Driving your vehicle Manual Transmission lever sideways in such a manner that the second gear is engaged. Such a drastic downshift may cause the engine speed to increase to the point that the tachometer will enter the redzone. Such over-revving of the engine and transmission may possibly cause engine damage. 僅Do not downshift more than 2 gears or downshift the gear when the engine is running at high speed (5,000 RPM or higher). Such a downshifting may damage the engine, clutch and the transmission. 僅During cold weather, shifting may be difficult until the transmission lubricant is warmed up. This is normal and not harmful to the transmission. 僅If you've come to a complete stop and it's hard to shift into 1st or R(Reverse), leave the shift lever at N(Neutral) position and release the clutch. Press the clutch pedal back down, and then shift into 1st or R(Reverse) gear position. 僅To avoid premature clutch wear and damage, do not drive with your foot resting on the clutch pedal. Also, don’t use the clutch to hold the vehicle stopped on an uphill grade, whilst waiting for a traffic light, etc. 僅Do not use the shift lever as a handrest during driving, as this can result in premature wear of the transmission shift forks. 僅To prevent possible damage to the clutch system, do not start with the 2nd (second) gear engaged except when you start on a slippery road. 僅Before leaving the driver’s seat, always set the parking brake fully and shut the engine off.Then make sure the transmission is shifted into 1st gear when the vehicle is parked on a level or uphill grade, and shifted into R (Reverse) on a downhill grade. Unexpected and sudden vehicle movement can occur if these precautions are not followed in the order identified. 僅Do not use the engine brake (shifting from a high gear to lower gear) rapidly on slippery roads. The vehicle may slip causing an accident. Using the clutch The clutch should be pressed all the way to the floor before shifting, then released slowly. The clutch pedal should always be fully released whilst driving. Do not rest your foot on the clutch pedal whilst driving. This can cause unnecessary wear. Do not partially engage the clutch to hold the vehicle on an
 
-## [picanto-083] Driving your vehicle > Page 215 (part 2)
+## [picanto-083] Using the clutch > Part 2
 *pages 215 · catégorie : identification*
 
 incline. This causes unnecessary wear. Use the foot brake or parking brake to hold the vehicle on an incline. Do not operate the clutch pedal rapidly and repeatedly. When operating the clutch pedal, press the clutch pedal down fully. If you don’t press the clutch pedal fully, the clutch may be damaged or noise may occur.
 
-## [picanto-084] Driving your vehicle > Page 216
+## [picanto-084] Good driving practices
 *pages 216 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -3901,7 +3901,7 @@ Instead, slow down before pulling
 back into the travel lanes.
 僅Never exceed posted speed limits.
 
-## [picanto-085] Driving your vehicle > Page 217
+## [picanto-085] Automated Manual Transmis-
 *pages 217 · catégorie : carburant*
 
 Driving your vehicle
@@ -3965,7 +3965,7 @@ vehicle speed, the engine rpm may
 increase highly depending on the 
 vehicle’s driving condition.
 
-## [picanto-086] Driving your vehicle > Page 218
+## [picanto-086] Automated Manual Transmission
 *pages 218 · catégorie : identification*
 
 Driving your vehicle
@@ -4008,7 +4008,7 @@ Read and follow the instruction label
 attached on the driver side’s sunvisor 
 before driving the vehicle
 
-## [picanto-087] Driving your vehicle > Page 219
+## [picanto-087] Lever shifting condition
 *pages 219 · catégorie : demarrage_moteur*
 
 Driving your vehicle
@@ -4103,7 +4103,7 @@ N/A
 -
 -
 
-## [picanto-088] Driving your vehicle > Page 220
+## [picanto-088] Automated Manual Trans-
 *pages 220 · catégorie : message_tableau_de_bord*
 
 Driving your vehicle
@@ -4165,7 +4165,7 @@ brake must be applied.
 僅Ignoring the warnings can lead to 
 damage to the transmission
 
-## [picanto-089] Driving your vehicle > Page 221
+## [picanto-089] Transmission (clutch) High tem-
 *pages 221 · catégorie : message_tableau_de_bord*
 
 Driving your vehicle
@@ -4221,37 +4221,37 @@ On” warning will be displayed.
 僅The warning will display a time to wait 
 for the transmission to cool.
 
-## [picanto-090] Driving your vehicle > Page 222
+## [picanto-090] Transmission ranges
 *pages 222 · catégorie : pneus_roues*
 
 Driving your vehicle Automated Manual Transmission (AMT) 僅If this occurs, pull over to a safe location, stop the vehicle with the engine running, apply the brakes and shift the vehicle to N (Neutral), and allow the transmission to cool. 僅When the message “Transmission cooled down. Resume driving” appears you can continue to drive your vehicle. 僅When possible, drive the vehicle smoothly.If any of the warning messages in the LCD display continue to blink, for your safety, have the system checked by a professional workshop.Kia recommends to visit an authorised Kia dealer/service partner. Transmission ranges R (Reverse) Use this position to drive the vehicle backward. 僅Always come to a complete stop before shifting into R (Reverse) position. 僅When moving to R (Reverse) position the gear is not shifted if the vehicle speed is over 2 km/h (1 mph). 僅Depress the brake pedal fully. If not, the brake press indicator will illuminate and the gear is not shifted. N (Neutral) The wheels and transmission are not engaged.Use N (Neutral) if you need to restart a stalled engine, or if it is necessary to stop with the engine ON. Always depress the brake pedal when you are shifting from N (Neutral) to another gear. Do not shift into gear unless your foot is firmly on the brake pedal. Shifting into gear when the engine is running at high speed can cause the vehicle to move very rapidly. You could lose control of the vehicle and hit people or objects. D (Drive) This is the normal forward driving position. The transmission will automatically shift to the appropriate gear position upon operation of the accelerator pedal and variation of vehicle speed.For extra power when passing another vehicle or driving uphill, depress the accelerator further until you feel the transmission downshift to a lower gear. When starting off on an uphill 僅Engage the parking brake firmly to prevent the vehicle from rolling backwards. 僅Move the shift lever to D (Drive) position whilst depressing the brake pedal. Make sure that the shift indicator in the cluster displays 1st gear. 僅Take your foot of the brake pedal and depress the accelerator pedal gradually. Then, when the vehicle starts moving, release the parking brake and depress the accelerator pedal. When starting off on a downhill 僅Depress the brake pedal
 
-## [picanto-091] Driving your vehicle > Page 222 (part 2)
+## [picanto-091] Transmission ranges > Part 2
 *pages 222 · catégorie : pneus_roues*
 
 and move the shift lever to D (Drive) position. Make sure that the shift indicator in the cluster displays 1st gear. 僅Take your foot off the brake pedal and slowly depress the accelerator pedal. When the vehicle speed increases, the clutch will be engaged.
 
-## [picanto-092] Driving your vehicle > Page 223
+## [picanto-092] Manual shift mode
 *pages 223 · catégorie : identification*
 
 Driving your vehicle Automated Manual Transmission (AMT) 僅If the gear is not shifted after changing the shift lever from N (Neutral) to D (Drive)/M (Manual)/R (Reverse), try to shift the gear again. In this case, time delay and intermittent noise may occur which are normal. 僅Always come to a complete stop and depress the brake pedal before shifting into D (Drive) position . 僅When moving from R (Reverse) to D (Drive) position, the gear is not shifted if the vehicle speed is over 7 km/h (4 mph). 僅Depress the brake pedal fully. If not, the brake press indicator will illuminate and the gear is not shifted. Manual shift mode Whether the vehicle is stationary or in motion, Manual shift mode is selected by pushing the shift lever from the D (Drive) position into the manual gate (M). To return to D (Drive) range operation, push the shift lever back into the main gate.In Manual shift mode, moving the shift lever backwards and forwards will allow you to select the desired range of gears for the current driving conditions. + (Up) : Push the lever forward once to shift up one gear. - (Down) : Pull the lever backwards once to shift down one gear. 僅Only the five forward gears can be selected. To reverse or park the vehicle, move the shift lever to the R (Reverse) or N (Neutral) position as required. 僅Downshifts are made automatically when the vehicle slows down. When the vehicle stops, 1st gear is automatically selected. 僅When the engine rpm approaches the red zone the transmission will upshift automatically. 僅If the driver presses the lever to + (Up) or - (Down) position, the transmission may not make the requested gear change if the next gear is outside of the allowable engine rpm range. The driver must execute upshifts in accordance with road conditions, taking care to keep the engine rpms below the red zone. 僅When accelerating from a stop on a slippery road, push the shift lever forward into the + (Up) position. This allows the transmission to shift into the 2nd gear which is better for smooth driving on a slippery road. Push the shift lever to the - (Down) side to shift back to the 1st gear. Parking To park your vehicle, always come
 
-## [picanto-093] Driving your vehicle > Page 223 (part 2)
+## [picanto-093] Manual shift mode > Part 2
 *pages 223 · catégorie : identification*
 
 to a complete stop and continue to depress the brake pedal. 僅When parking on the flat road, move the shift lever from D (Drive)/R (Reverse) to N (Neutral) position. Then, engage the parking brake firmly before turning off the engine. 僅When parking on a slope, it is recommended to place the shift lever in D
 
-## [picanto-094] Driving your vehicle > Page 224
+## [picanto-094] Good driving practices
 *pages 224 · catégorie : pneus_roues*
 
 Driving your vehicle Automated Manual Transmission (AMT) (Drive) for uphill and R (Reverse) for downhill and to engage the parking brake before turning off the engine. If the engine was turned off with the shift lever in D (Drive) or R (Reverse) position, it is necessary to depress the brake pedal and move the shift lever to N (Neutral) position to turn on the engine. Take the Key with you when exiting the vehicle. When you stay in the vehicle with the engine running, be careful not to depress the accelerator pedal for a long period of time. The engine or exhaust system may overheat and start a fire.The exhaust gas and the exhaust system are very hot. Keep away from the exhaust system components.Do not stop or park over flammable materials, such as dry grass, paper or leaves. They may ignite and cause a fire. Good driving practices 僅Never move the shift lever from N (Neutral) to any other position with the accelerator pedal depressed. 僅Be sure the vehicle is completely stopped before you attempt to shift into R (Reverse) or D (Drive). 僅Do not move the shift lever to N (Neutral) when driving. Doing so may result in an accident because of a loss of engine braking and the transmission could be damaged. 僅Do not drive with your foot resting on the brake pedal. Even light, but consistent pedal pressure can result in the brakes overheating, brake wear and possibly even brake failure. 僅Depressing both accelerator and brake pedals at the same time can trigger logic for engine power reduction to assure vehicle deceleration. Vehicle acceleration will resume after the brake pedal is released. 僅When driving in Manual shift mode, slow down before shifting to a lower gear. Otherwise, the lower gear may not be engaged if the engine rpms are outside of the allowable range. 僅Always apply the parking brake when leaving the vehicle. Do not depend on placing the transmission in N (Neutral) to keep the vehicle from moving. 僅Exercise extreme caution when driving on a slippery surface. Be especially careful when braking, accelerating or shifting gears. On a slippery surface, an abrupt change in vehicle speed can cause the drive wheels to lose traction and may cause loss of vehicle control resulting in an accident.
 
-## [picanto-095] Driving your vehicle > Page 224 (part 2)
+## [picanto-095] Good driving practices > Part 2
 *pages 224 · catégorie : pneus_roues*
 
 僅Optimum vehicle performance and economy is obtained by smoothly depressing and releasing the accelerator. To reduce the risk of SERIOUS INJURY or DEATH: 僅ALWAYS wear your seatbelt. In a collision, an unbelted occupant is significantly more likely to be seriously injured or killed than a properly belted occupant. 僅Avoid high speeds when cornering or turning. 僅Do not make quick steering wheel movements, such as sharp lane changes or fast, sharp turns. 僅The risk of rollover is greatly increased if you lose control of your vehicle at highway speeds.
 
-## [picanto-096] Driving your vehicle > Page 225
+## [picanto-096] Automatic Transmission (if
 *pages 225 · catégorie : electricite_batterie*
 
 Driving your vehicle
@@ -4285,7 +4285,7 @@ For smooth operation, depress the brake
 pedal when shifting from N (Neutral) to 
 a forward or reverse gear.
 
-## [picanto-097] Driving your vehicle > Page 226
+## [picanto-097] Transmission ranges
 *pages 226 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -4353,27 +4353,27 @@ may damage the transmission if you
 shift into R (Reverse) whilst the vehicle is 
 in motion, except as explained in “Rocking the vehicle” in this section.
 
-## [picanto-098] Driving your vehicle > Page 227
+## [picanto-098] N (Neutral)
 *pages 227 · catégorie : remorquage*
 
 Driving your vehicle Automatic Transmission N (Neutral) The wheels and transmission are not engaged. The vehicle will roll freely even on the slightest incline unless the parking brake or service brakes are applied. Do not drive with the shift lever in N (Neutral). The engine brake will not work and lead to an accident. D (Drive) This is the normal forward driving position. The transmission will automatically shift through a 4-gear sequence, providing the best fuel economy and power. For extra power when passing another vehicle or climbing grades, depress the accelerator pedal fully (more than 80%) until the kick down mechanism (if equipped) works witha clicking noise, at which time the transmission will automatically downshift to the next lower gear. Always come to a complete stop before shifting into D (Drive). 3 (Third gear) Use for towing a trailer during hill climbing or to use engine braking downhill. "3" automatically shifts between 1st, 2nd and 3rd gears. This means that no shiftup to 4th gear is performed. However, the shift-up to 4th gear is done when the car speed exceeds a certain value to prevent the engine from over-revving. Manually move the selector to "D" when returning to normal driving condition. 2 (Second gear) Use for driving on a slippery road, hill climbing or engine braking downhill. "2" automatically shifts between first and second gears. This means that no shift-up to 3rd gear is performed. However, theshift-up to third gear is done when the car speed exceeds a certain value to prevent the engine from over-revving. Manually move the selector to "D" returning to normal driving condition. 1 (First gear) Use for driving up a very steep grade or for engine braking when descending steep hills. When downshifting to "1", the transmission will temporarily remain in second gear until the vehicle has slowed enough for low gear to engage. Do not exceed 50 km/h (30 mph) in low gear. "1" shifts to 1st gear only. However, shift up to 2nd is performed when the car exceeds a certain speed and, as speed increases, the transmission will shift up to 3rd gear to prevent over-revving the engine. 僅For smooth and safe operation, depress the brake pedal when shifting from "N" (Neutral) position or "P" (Park) position to a forward or
 
-## [picanto-099] Driving your vehicle > Page 227 (part 2)
+## [picanto-099] N (Neutral) > Part 2
 *pages 227 · catégorie : remorquage*
 
 "R" (Reverse) gear. 僅Fully depress the brake pedal in order to move the shift lever from the "P" (Park) position to any of the other positions. 僅It is always possible to shift from "R", "N", "D", "3", "2", "1" position to "P" position. The vehicle must be fully
 
-## [picanto-100] Driving your vehicle > Page 228
+## [picanto-100] Shift lock system (if equipped)
 *pages 228 · catégorie : pneus_roues*
 
 Driving your vehicle Automatic Transmission stopped to avoid transmission damage. 僅Shift into "R" and "P" position only when the vehicle has completely stopped. 僅Do not accelerate the engine in reverse or any of the forward positions with the brakes applied. 僅Always apply the footbrake when shifting from "P" or "N", to "R", "D","3", "2" or "1" position. 僅Check the Automatic Transmission fluid level regularly, and add fluid as necessary. See the maintenance schedule for the proper fluid recommendation. Shift lock system (if equipped) For your safety, the Automatic Transmission has a shift lock system which prevents shifting the transmission from P (Park) into R (Reverse) unless the brake pedal is depressed. To shift the transmission from P (Park) into R (Reverse): 1. Depress and hold the brake pedal. 2. Move the shift lever. If the brake pedal is repeatedly depressed and released with the shift lever in the P (Park) position, a chattering noise near the shift lever may be heard. This is a normal condition. Always fully depress the brake pedal before and whilst shifting out of the P (Park) position into another position to avoid inadvertent motion of the vehicle which could injure persons in or around the car. Good driving practices 僅Never move the shift lever from P (Park) or N (Neutral) to any other position with the accelerator pedal depressed. 僅Never move the shift lever into P (Park) when the vehicle is in motion. 僅Be sure the car is completely stopped before you attempt to shift into R (Reverse) or D (Drive). 僅Never take the car out of gear and coast down a hill. This may be extremely hazardous. Always leave the car in gear when moving. 僅Do not "ride" the brakes. This can cause them to overheat and malfunction. Instead, when you are driving down a long hill, slow down and shift to a lower gear. When you do this, engine braking will help slow the car. 僅Slow down before shifting to a lower gear. Otherwise, the lower gear may not be engaged. 僅Always use the parking brake. Do not depend on placing the transmission in P (Park) to keep the car from moving. 僅Exercise extreme caution when driving on a slippery surface. Be especially careful when braking, accelerating or shifting gears. On a slippery
 
-## [picanto-101] Driving your vehicle > Page 228 (part 2)
+## [picanto-101] Shift lock system (if equipped) > Part 2
 *pages 228 · catégorie : pneus_roues*
 
 surface, an abrupt change in vehicle speed can cause the drive wheels to lose traction and the vehicle to go out of control. 僅Optimum vehicle performance and economy is obtained by smoothly depressing and releasing the accelerator pedal.
 
-## [picanto-102] Driving your vehicle > Page 229
+## [picanto-102] Moving up a steep grade from a
 *pages 229 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -4427,17 +4427,17 @@ release the parking brake. Depress the
 accelerator gradually whilst releasing 
 the service brakes.
 
-## [picanto-103] Driving your vehicle > Page 230
+## [picanto-103] Brake system
 *pages 230 · catégorie : pneus_roues*
 
 Driving your vehicle Brake system Brake system Power brakes Your vehicle has power-assisted brakes that adjust automatically through normal usage. In the event that the power-assisted brakes lose power because of a stalled engine or some other reason, you can still stop your vehicle by applying greater force to the brake pedal than you normally would. The stopping distance, however, will be longer. When the engine is not running, the reserve brake power is partially depleted each time the brake pedal is applied. Do not pump the brake pedal when the power assist has been interrupted. Pump the brake pedal only when necessary to maintain steering control on slippery surfaces. 僅When stepping on the brake pedal under a certain driving or weather condition. you may witness your car make a sound of squealing or some other noises. This is not a brake malfunction but a normal phenomenon. 僅When driving on the road to which deicing chemicals are applied, the vehicle may witness noises from the brake or abnormal abrasion of tyres because of such deicing chemicals. You should operate brake additionally so that you would be able to remove the deicing chemicals on the brake disk and pad under a safe traffic condition. Brakes 僅Do not drive with your foot resting on the brake pedal. This will create abnormal high brake temperatures, excessive brake lining and pad wear, and increased stopping distances. 僅When descending a long or steep hill, shift to a lower gear and avoid continuous application of the brakes. Continuous brake application will cause the brakes to ove heat and could result in a temporary loss of braking performance. 僅Wet brakes may impair the vehicle’s ability to safely slow down; the vehicle may also pull to one side when the brakes are applied. Applying the brakes lightly will indicate whether they have been affected in this way. Always test your brakes in this fashion after driving through deep water. To dry the brakes, apply them lightly whilst maintaining a safe forward speed until brake performance returns to normal. 僅Always, confirm the position of the brake and accelerator pedal before driving. If you don't check the position of the accelerator and brake pedal before driving, you may depress the accelerator instead of the brake pedal. It may cause a
 
-## [picanto-104] Driving your vehicle > Page 230 (part 2)
+## [picanto-104] Brake system > Part 2
 *pages 230 · catégorie : pneus_roues*
 
 serious accident. In the event of brake failure If service brakes fail to operate whilst the vehicle is in motion, you can make an emergency stop with the parking brake. The stopping distance, however, will be much greater than normal.
 
-## [picanto-105] Driving your vehicle > Page 231
+## [picanto-105] Disc brakes wear indicator (if
 *pages 231 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -4504,37 +4504,37 @@ whilst the vehicle is moving except in
 an emergency situation. It could damage the vehicle system and make 
 endanger driving safety.
 
-## [picanto-106] Driving your vehicle > Page 232
+## [picanto-106] Releasing the parking brake
 *pages 232 · catégorie : pneus_roues*
 
 Driving your vehicle Brake system Releasing the parking brake To release the parking brake, first apply the foot brake and pull up the parking brake lever slightly. Secondly depress the release button (1) and lower the parking brake lever (2) whilst holding the button. If the parking brake does not release or does not release all the way, have the system checked by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. 僅To prevent unintentional movement when stopped and leaving the vehicle, do not use the gearshift lever in place of the parking brake. Set the parking brake AND make sure the gearshift lever is securely positioned in P (Park) for Automatic Transmission vehicles. 僅Never allow anyone who is unfamiliar with the vehicle to touch the parking brake. If the parking brake is released unintentionally, serious injury may occur. 僅All vehicles should always have the parking brake fully engaged when parking to avoid inadvertent movement of the vehicle which can injure occupants or pedestrians. Check the brake warning light by turning the ignition switch or ENGINE START/STOP button ON (do not start the engine). This light will be illuminated when the parking brake is applied with the ignition switch or ENGINE START/ STOP button in the START or ON position. Before driving, be sure the parking brake is fully released and the brake warning light is off. If the brake warning light remains on after the parking brake is released whilst engine is running, there may be a malfunction in the brake system. Immediate attention is necessary. If at all possible, cease driving the vehicle immediately. If that is not possible, use extreme caution whilst operating the vehicle and only continue to drive the vehicle until you can reach a safe location or repair shop. Anti-lock brake system (ABS) (if equipped) ABS (or ESC) will not prevent accidents due to improper or dangerous driving manoeuvres. Even though vehicle control is improved during emergency braking, always maintain a safe distance between you and objects ahead. Vehicle speeds should always be reduced during extreme road conditions. The braking distance for cars equipped with an anti-lock braking system (or Electronic Stability Control system) may be longer than for those without it in the following road conditions. During these conditions the
 
-## [picanto-107] Driving your vehicle > Page 232 (part 2)
+## [picanto-107] Releasing the parking brake > Part 2
 *pages 232 · catégorie : pneus_roues*
 
 vehicle should be driven at reduced speeds: 僅Rough, gravel or snow-covered roads. 僅With tyre chains installed. 僅On roads where the road surface is pitted or has different surface height.
 
-## [picanto-108] Driving your vehicle > Page 233
+## [picanto-108] Driving your vehicle
 *pages 233 · catégorie : pneus_roues*
 
 Driving your vehicle Brake system The safety features of an ABS (or ESC) equipped vehicle should not be tested by high speed driving or cornering. This could endanger the safety of yourself or others. The ABS continuously senses the speed of the wheels. If the wheels are going to lock, the ABS system repeatedly modulates the hydraulic brake pressure to the wheels. When you apply your brakes under conditions which may lock the wheels, you may hear a “tik-tik’’ sound from the brakes, or feel a corresponding sensation in the brake pedal. This is normal and it means your ABS is active. In order to obtain the maximum benefit from your ABS in an emergency situation, do not attempt to modulate your brake pressure and do not try to pump your brakes. Press your brake pedal as hard as possible or as hard as the situation warrants and allow the ABS to control the force being delivered to the brakes. A click sound may be heard in the engine compartment when the vehicle begins to move after the engine is started. These conditions are normal and indicate that the anti-lock brake system is functioning properly. 僅Even with the anti-lock brake system, your vehicle still requires sufficient stopping distance. Always maintain a safe distance from the vehicle in front of you. 僅Always slow down when cornering. The anti-lock brake system cannot prevent accidents resulting from excessive speeds. 僅On loose or uneven road surfaces, operation of the anti-lock brake system may result in a longer stopping distance than for vehicles equipped with a conventional brake system. 僅If the ABS warning light is on and stays on, you may have a problem with the ABS. In this case, however, your regular brakes will work normally. 僅The ABS warning light will stay on for approximately 3 seconds after the ignition switch or ENGINE START/ STOP button is ON. During that time, the ABS will go through selfdiagnosis and the light will go off if everything is normal. If the light stays on, you may have a problem with your ABS. In this case, have the system checked by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. 僅When you drive on a road having poor traction, such as an icy road,
 
-## [picanto-109] Driving your vehicle > Page 233 (part 2)
+## [picanto-109] Driving your vehicle > Part 2
 *pages 233 · catégorie : pneus_roues*
 
 and operate your brakes continuously, the ABS will be active continuously and the ABS warning light may illuminate. Pull your car over to a safe place and stop the engine. 僅Restart the engine. If the ABS warning light is off, then your ABS system is normal. Otherwise, you may have a problem with the ABS. In this case, have the system checked by a professional workshop. Kia recommends to
 
-## [picanto-110] Driving your vehicle > Page 234
+## [picanto-110] Electronic Stability Control (ESC)
 *pages 234 · catégorie : electricite_batterie*
 
 Driving your vehicle Brake system visit an authorised Kia dealer/service partner. When you jump start your vehicle because of a drained battery, the engine may not run as smoothly and the ABS warning light may turn on at the same time. This happens because of the low battery voltage. It does not mean your ABS is malfunctioning. 僅Do not pump your brakes! 僅Have the battery recharged before driving the vehicle. Electronic Stability Control (ESC) (if equipped) The Electronic Stability Control (ESC) system is designed to stabilize the vehicle during cornering manoeuvres. ESC checks where you are steering and where the vehicle is actually going. ESC applies the brakes at individual wheels and intervenes in the engine management system to stabilize the vehicle. Never drive too fast for the road conditions or too quickly when cornering. Electronic stability Control (ESC) will not prevent accidents. Excessive speed in turns, abrupt manoeuvres and hydroplaning on wet surfaces can still result in serious accidents. Only a safe and attentive driver can prevent accidents by avoiding manoeuvres that cause the vehicle to lose traction. Even with ESC installed, always follow all the normal precautions for driving - including driving at safe speeds for the conditions. The Electronic Stability Control (ESC) system is an electronic system designed to help the driver maintain vehicle control under adverse conditions. It is not a substitute for safe driving practices. Factors including speed, road conditions and driver steering input can all affect whether ESC will be effective in preventing a loss of control. It is still your responsibility to drive and corner at reasonable speeds and to leave a sufficient margin of safety. When you apply your brakes under conditions which may lock the wheels, you may hear a “tik-tik’’ sound from the brakes, or feel a corresponding sensation in the brake pedal. This is normal and it means your ESC is active. A click sound may be heard in the engine compartment when the vehicle begins to move after the engine is started. These conditions are normal and indicate that the Electronic Stability Control System is functioning properly. ESC operation ESC ON condition 僅When the ignition is turned ON, ESC and ESC OFF indicator lights illuminate for approximately 3 seconds, then ESC is turned on. 僅Press the ESC OFF
 
-## [picanto-111] Driving your vehicle > Page 234 (part 2)
+## [picanto-111] Electronic Stability Control (ESC) > Part 2
 *pages 234 · catégorie : electricite_batterie*
 
 button after turning the ignition ON to turn ESC off. (ESC OFF indicator will illuminate). To
 
-## [picanto-112] Driving your vehicle > Page 235
+## [picanto-112] When operating
 *pages 235 · catégorie : demarrage_moteur*
 
 Driving your vehicle
@@ -4587,7 +4587,7 @@ ESC remains off. Upon restarting the
 engine, the ESC will automatically turn 
 on again.
 
-## [picanto-113] Driving your vehicle > Page 236
+## [picanto-113] Indicator light
 *pages 236 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -4645,7 +4645,7 @@ To turn ESC off whilst driving, press the
 ESC OFF button whilst driving on a flat 
 road surface.
 
-## [picanto-114] Driving your vehicle > Page 237
+## [picanto-114] Hill-start assist control (HAC) (if
 *pages 237 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -4712,7 +4712,7 @@ To turn on the VSM, press the button
 again. The ESC OFF indicator light goes 
 out.
 
-## [picanto-115] Driving your vehicle > Page 238
+## [picanto-115] Malfunction indicator
 *pages 238 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -4785,17 +4785,17 @@ on driver's driving habit, vehicle speed,
 the degree to which the brake pedal is 
 depressed and the road surface condition.
 
-## [picanto-116] Driving your vehicle > Page 239
+## [picanto-116] Good braking practices
 *pages 239 · catégorie : pneus_roues*
 
 Driving your vehicle Brake system Good braking practices 僅Whenever leaving vehicle or parking, always set the parking brake as far as possible and fully engage the vehicle's transmission into the park position. Vehicles not fully engaged in park with the parking brake set are at risk for moving inadvertently and injuring yourself or others. 僅All vehicles should always have the parking brake fully engaged when parking to avoid inadvertent movement of the car which can injure occupants or pedestrians. 僅After parking the vehicle, check to be sure the parking brake is not engaged and that the parking brake indicator light is out before driving away. 僅Driving through water may get the brakes wet. They can also get wet when the car is washed. Wet brakes can be dangerous! Your car will not stop as quickly if the brakes are wet. Wet brakes may cause the car to pull to one side. 僅To dry the brakes, apply the brakes lightly until the braking action returns to normal, taking care to keep the car under control at all times. If the braking action does not return to normal, stop as soon as it is safe to do so and have your vehicle inspected by a professional workshop. Kia recommends to call an authorised Kia dealer/service partner. 僅Don't coast down hills with the car out of gear. This is extremely hazardous. Keep the car in gear at all times, use the brakes to slow down, then shift to a lower gear so that engine braking will help you maintain a safe speed. 僅Don't "ride" the brake pedal. Resting your foot on the brake pedal whilst driving can be dangerous because it can result in the brakes overheating and losing their effectiveness. It also increases the wear of the brake components. 僅If a tyre goes flat whilst you are driving, apply the brakes gently and keep the car pointed straight ahead whilst you slow down. When you are moving slowly enough for it to be safe to do so, pull off the road and stop in a safe place. 僅If your car is equipped with an Automatic Transmission, don't let your car creep forward. To avoid creeping forward, keep your foot firmly on the brake pedal when the car is stopped. 僅Be cautious when
 
-## [picanto-117] Driving your vehicle > Page 239 (part 2)
+## [picanto-117] Good braking practices > Part 2
 *pages 239 · catégorie : pneus_roues*
 
 parking on a hill. Firmly engage the parking brake and place the shift lever in P (Park). If your car is facing downhill, turn the front wheels into the kerb to help keep the car from rolling. If your car is facing uphill, turn the front wheels away from the kerb to help keep the car from rolling. If there is no kerb or if it is required by other conditions to keep the car from rolling, block the wheels. 僅Under some conditions your parking brake can freeze in the engaged position. This is most likely to happen when there is an accumulation of snow or ice around or near the rear brakes or if the brakes are wet. If there is a risk that the parking brake may freeze, apply it only temporarily whilst you put the shift lever in P (Park) and block the rear wheels so the car cannot roll. Then release the parking brake.
 
-## [picanto-118] Driving your vehicle > Page 240
+## [picanto-118] Economical operation
 *pages 240 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -4843,17 +4843,17 @@ more serious consequences.
 inflated to the recommended pressure. Incorrect inflation, either too 
 much or too little, results in unnecessary tyre wear. Check the tyre pressures at least once a month.
 
-## [picanto-119] Driving your vehicle > Page 241
+## [picanto-119] Driving your vehicle
 *pages 241 · catégorie : pneus_roues*
 
 Driving your vehicle Economical operation 僅Be sure that the wheels are aligned correctly. Improper alignment can result from hitting kerbs or driving too fast over irregular surfaces. Poor alignment causes faster tyre wear and may also result in other problems as well as greater fuel consumption. 僅Keep your car in good condition. For better fuel economy and reduced maintenance costs, maintain your car in accordance with the maintenance schedule in section 8. If you drive your car in severe conditions, more frequent maintenance is required (see section 8 for details). 僅Keep your car clean. For maximum service, your vehicle should be kept clean and free of corrosive materials. It is especially important that mud, dirt, ice, etc. not be allowed to accumulate on the underside of the car. This extra weight can result in increased fuel consumption and also contribute to corrosion. 僅Travel lightly. Don't carry unnecessary weight in your car. Weight reduces fuel economy. 僅Don't let the engine idle longer than necessary. If you are waiting (and not in traffic), turn off your engine and restart only when you're ready to go. 僅Remember, your vehicle does not require extended warm-up. After the engine has started, allow the engine to run for 10 to 20 seconds prior to placing the vehicle in gear. In very cold weather, however, give your engine a slightly longer warmup period. 僅Don't "lug" or "over-rev" the engine. Lugging is driving too slowly in too high a gear resulting in the engine bucking. If this happens, shift to a lower gear. Over-revving is racing the engine beyond its safe limit. This can be avoided by shifting at the recommended speeds. 僅Use your air conditioning sparingly. The air conditioning system is operated by engine power so your fuel economy is reduced when you use it. 僅Open windows at high speeds can reduce fuel economy. 僅Fuel economy is less in crosswinds and headwinds. To help offset some of this loss, slow down when driving in these conditions. Keeping a vehicle in good operating condition is important both for economy and safety. Therefore, have the system serviced by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. Engine off during motion Never turn the engine off to coast down hills or anytime the vehicle is in
 
-## [picanto-120] Driving your vehicle > Page 241 (part 2)
+## [picanto-120] Driving your vehicle > Part 2
 *pages 241 · catégorie : pneus_roues*
 
 motion. The power steering and power brakes will not function properly without the engine running. Instead, keep the engine on and downshift to an appropriate gear for engine braking effect. In addition, turning off the ignition whilst driving could engage the steering wheel lock resulting in loss of vehicle steering which could cause serious injury or death.
 
-## [picanto-121] Driving your vehicle > Page 242
+## [picanto-121] Special driving conditions
 *pages 242 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -4919,7 +4919,7 @@ bystanders.
 The ESC system (if equipped) should be 
 turned OFF prior to rocking the vehicle.
 
-## [picanto-122] Driving your vehicle > Page 243
+## [picanto-122] Smooth cornering
 *pages 243 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -4969,7 +4969,7 @@ windscreen wiper blades when they
 show signs of streaking or missing 
 areas on the windscreen.
 
-## [picanto-123] Driving your vehicle > Page 8-43
+## [picanto-123] Driving in flooded areas
 *pages 8-43 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -5032,7 +5032,7 @@ collisions, injury, and even death.
 Worn-out tyres should be replaced as 
 soon as possible and should never be
 
-## [picanto-124] Driving your vehicle > Page 245
+## [picanto-124] Fuel, engine coolant and engine
 *pages 245 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -5079,7 +5079,7 @@ Tyre chains are not legal in all countries.
 Check the country laws before fitting 
 tyre chains.
 
-## [picanto-125] Driving your vehicle > Page 246
+## [picanto-125] Snow tyres
 *pages 246 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -5140,7 +5140,7 @@ remount the chains if they are loose.
 僅Even with the appropriate chain 
 installed, do not make a full turn(turn
 
-## [picanto-126] Driving your vehicle > Page 247
+## [picanto-126] Chain installation
 *pages 247 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -5211,17 +5211,17 @@ Before winter, have your coolant tested
 to assure that its freezing point is sufficient for the temperatures anticipated 
 during the winter.
 
-## [picanto-127] Driving your vehicle > Page 248
+## [picanto-127] Check battery and cables
 *pages 248 · catégorie : electricite_batterie*
 
 Driving your vehicle Winter driving Check battery and cables Winter puts additional burdens on the battery system. Visually inspect the battery and cables as described in section 8. Have the level of charge in your battery checked by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. Change to "winter weight" oil if necessary In some climates it is recommended that a lower viscosity "winter weight" oil be used during cold weather. See section 9 for recommendations. If you aren't sure what weight oil you should use, Kia recommends to consult an authorised Kia dealer/service partner. Check spark plugs and ignition system Inspect your spark plugs as described in section 8 and replace them if necessary. Also check all ignition wiring and components to be sure they are not cracked, worn or damaged in any way. To keep locks from freezing To keep the locks from freezing, squirt an approved de-icer fluid or glycerine into the key opening. If a lock is covered with ice, squirt it with an approved deicing fluid to remove the ice. If the lock is frozen internally, you may be able to thaw it out by using a heated key. Handle the heated key with care to avoid injury. Use approved window washer anti-freeze in system To keep the water in the window washer system from freezing, add an approved window washer anti-freeze solution in accordance with instructions on the container. Window washer anti-freeze is available from an authorised Kia dealer/ service partner and most auto parts outlets. Do not use engine coolant or other types of anti-freeze as these may damage the paint finish. Don't let your parking brake freeze Under some conditions your parking brake can freeze in the engaged position. This is most likely to happen when there is an accumulation of snow or ice around or near the rear brakes or if the brakes are wet. When there is the risk that your parking brake may freeze, temporarily apply it with the shift lever in P (Automatic Transmission) or N (for Automated Manual Transmission) or in first or reverse gear (for Manual Transmission /Automated Manual Transmission). Also, block the rear wheels in advance, so the vehicle may not roll. Then, release the parking brake. Don't let ice and
 
-## [picanto-128] Driving your vehicle > Page 248 (part 2)
+## [picanto-128] Check battery and cables > Part 2
 *pages 248 · catégorie : electricite_batterie*
 
 snow accumulate underneath Under some conditions, snow and ice can build up under the fenders and interfere with the steering. When driving in severe winter conditions where this may happen, you should periodically check underneath the car to be sure the movement of the front wheels and the steering components is not obstructed.
 
-## [picanto-129] Driving your vehicle > Page 249
+## [picanto-129] Carry emergency equipment
 *pages 249 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -5277,7 +5277,7 @@ the certification label.
 The total load on each axle must never 
 exceed its GAWR.
 
-## [picanto-130] Driving your vehicle > Page 250
+## [picanto-130] GVW (Gross vehicle weight)
 *pages 250 · catégorie : pneus_roues*
 
 Driving your vehicle
@@ -5330,7 +5330,7 @@ could cause you to lose control. Also,
 overloading can shorten the life of your 
 vehicle.
 
-## [picanto-131] Driver assistance guide > Page 6-3
+## [picanto-131] Driver assistance guide
 *pages 6-3 · catégorie : aides_conduite*
 
 Driver assistance guide
@@ -5366,7 +5366,7 @@ Intelligent Speed Limit Assist (ISLA).........................................6-
 僅 Intelligent Speed Limit Assist operation.............................................. 6-49
 僅 Intelligent Speed Limit Assist malfunction and limitations.........6-50
 
-## [picanto-132] 6 Driver assistance guide > Page 6-52
+## [picanto-132] Kia Picanto owner manual
 *pages 6-52 · catégorie : aides_conduite*
 
 6 Driver assistance guide
@@ -5395,7 +5395,7 @@ Reverse Parking Distance Warning (PDW) ..............................6-73
 precautions........................................................................................................6-75
 Declaration of conformity ......................................................... 6-76
 
-## [picanto-133] Driver assistance guide > Page 253
+## [picanto-133] Forward Collision-Avoidance
 *pages 253 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -5447,7 +5447,7 @@ may adversely affect the performance
 of Forward Collision-Avoidance Assist 
 may not operate properly.
 
-## [picanto-134] Driver assistance guide > Page 254
+## [picanto-134] Forward Collision-Avoidance
 *pages 254 · catégorie : voyant*
 
 Driver assistance guide
@@ -5504,7 +5504,7 @@ Assist.
 僅Use Normal in normal driving conditions. If the Warning Timing seems 
 sensitive, change it to Late.
 
-## [picanto-135] Driver assistance guide > Page 255
+## [picanto-135] Warning Methods
 *pages 255 · catégorie : voyant*
 
 Driver assistance guide
@@ -5564,7 +5564,7 @@ audible warning.
 Collision Warning will be activated in the 
 following conditions.
 
-## [picanto-136] Driver assistance guide > Page 256
+## [picanto-136] Emergency Braking
 *pages 256 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -5628,7 +5628,7 @@ Collision-Avoidance Assist on people,
 objects, etc. It may cause serious 
 injury or death.
 
-## [picanto-137] Driver assistance guide > Page 257
+## [picanto-137] Driver assistance guide
 *pages 257 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -5689,7 +5689,7 @@ braking is insufficient by the driver.
 the cluster type or theme selected 
 from the settings menu.
 
-## [picanto-138] Driver assistance guide > Page 258
+## [picanto-138] Forward Collision-Avoidance
 *pages 258 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -5760,17 +5760,17 @@ damaged glass, or sticky foreign
 material (sticker, bug, etc.) on the 
 glass
 
-## [picanto-139] Driver assistance guide > Page 259
+## [picanto-139] Driver assistance guide
 *pages 259 · catégorie : pneus_roues*
 
 Driver assistance guide Forward Collision-Avoidance Assist (FCA) (Front Camera Only) 僅Moisture is not removed or frozen on the windscreen 僅Washer fluid is continuously sprayed, or the wiper is on 僅Driving in heavy rain or snow, or thick fog 僅The field of view of the front view camera is obstructed by sun glare 僅Street light or light from an oncoming traffic is reflected on the wet road surface, such as a puddle on the road 僅An object is placed on the instrument panel 僅Your vehicle is being towed with another car 僅The surrounding is very bright or the surrounding is very dark, such as in a tunnel, etc. 僅The brightness changes suddenly, for example when entering or exiting a tunnel 僅The brightness outside is low, and the headlamps are not on or are not bright 僅Only part of the vehicle, powered twowheeler, pedestrian or cyclist is detected 僅The vehicle, powered two-wheeler or motorcycle in front is a bus, heavy truck, truck with an unusually shaped cargo, trailer, etc. 僅The vehicle in front has no tail lights, tail lights are located unusually, etc. 僅The brightness outside is low, and the tail lamps are not on or are not bright 僅The rear of the front vehicle is small or the vehicle does not look normal, such as when the vehicle is tilted, overturned, or the side of the vehicle is visible, etc. 僅The front vehicle's ground clearance is low or high 僅A vehicle, powered two-wheeler, pedestrian or cyclist suddenly cuts in front 僅The vehicle, powered two-wheeler in front is detected late 僅The vehicle, powered two-wheeler in front is suddenly blocked by an obstacle 僅The vehicle, powered two-wheeler in front suddenly changes lane or suddenly reduces speed 僅The vehicle, powered two-wheeler in front is bent out of shape 僅The front vehicle speed is fast or slow 僅The vehicle in front steers in the opposite direction of your vehicle to avoid a collision 僅With a vehicle in front, your vehicle changes lane at low speed 僅The vehicle in front is covered with snow 僅You are departing or returning to the lane 僅Unstable driving 僅You are on a roundabout and the vehicle or powered two-wheeler in front is not detected 僅You are continuously driving in a circle 僅The vehicle or powered two-wheeler in front has an
 
-## [picanto-140] Driver assistance guide > Page 259 (part 2)
+## [picanto-140] Driver assistance guide > Part 2
 *pages 259 · catégorie : pneus_roues*
 
 unusual shape 僅The vehicle or powered two-wheeler in front is driving uphill or downhill 僅The pedestrian or cyclist is not fully detected, for example, if the pedestrian is leaning over or is not fully walking upright 僅The pedestrian or cyclist is wearing clothing or equipment that makes it difficult to detect
 
-## [picanto-141] Driver assistance guide > Page 260
+## [picanto-141] Driver assistance guide
 *pages 260 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -5843,7 +5843,7 @@ assist when necessary.
 
 OMV053011_4
 
-## [picanto-142] Driver assistance guide > Page 261
+## [picanto-142] Driver assistance guide
 *pages 261 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -5896,7 +5896,7 @@ speed in order to maintain a safe distance.
 OMV053012_4
 OMV053013_4
 
-## [picanto-143] Driver assistance guide > Page 262
+## [picanto-143] Driver assistance guide
 *pages 262 · catégorie : remorquage*
 
 Driver assistance guide
@@ -5948,7 +5948,7 @@ camera is initialized.
 
 OJAPE053002_2
 
-## [picanto-144] Driver assistance guide > Page 263
+## [picanto-144] Forward Collision-Avoidance
 *pages 263 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -5990,7 +5990,7 @@ damage to it.
 replaced or repaired, have the vehicle 
 inspected by a professional workshop.
 
-## [picanto-145] Driver assistance guide > Page 264
+## [picanto-145] Forward Collision-Avoidance
 *pages 264 · catégorie : voyant*
 
 Driver assistance guide
@@ -6058,7 +6058,7 @@ warning light (
 ) will appear on the 
 cluster.
 
-## [picanto-146] Driver assistance guide > Page 265
+## [picanto-146] Forward Safety Warning Timing
 *pages 265 · catégorie : voyant*
 
 Driver assistance guide
@@ -6111,7 +6111,7 @@ is slow.
 If the vehicle is restarted, Warning timing 
 will maintain the last setting.
 
-## [picanto-147] Driver assistance guide > Page 266
+## [picanto-147] Warning Methods
 *pages 266 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6167,7 +6167,7 @@ A: Emergency braking
 Emergency braking will alert the driver 
 with the Forward Safety warning light
 
-## [picanto-148] Driver assistance guide > Page 10-30
+## [picanto-148] Stopping vehicle and ending
 *pages 10-30 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6235,7 +6235,7 @@ power
 10~75 km/h (6~47 
 mph)
 
-## [picanto-149] Driver assistance guide > Page 30-70
+## [picanto-149] Emergency Braking
 *pages 30-70 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6293,7 +6293,7 @@ Collision Warning will be activated in following conditions.
 僅Oncoming vehicle or powered twowheeler speed: Approximately above 
 10 km/h (6 mph)
 
-## [picanto-150] Driver assistance guide > Page 19-80
+## [picanto-150] Emergency braking
 *pages 19-80 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6357,7 +6357,7 @@ may not operate if the driver
 depresses the brake pedal to avoid 
 collision.
 
-## [picanto-151] Driver assistance guide > Page 270
+## [picanto-151] Driver assistance guide
 *pages 270 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6417,7 +6417,7 @@ driver fails to brake enough.
 僅The images or colours may be displayed differently depending on the 
 specifications of the instrument cluster or theme.
 
-## [picanto-152] Driver assistance guide > Page 271
+## [picanto-152] Forward Collision-Avoidance
 *pages 271 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -6475,17 +6475,17 @@ may not function properly when the
 obstruction or malfunction condition 
 persists.
 
-## [picanto-153] Driver assistance guide > Page 272
+## [picanto-153] Limitations of Forward Collision-
 *pages 272 · catégorie : pneus_roues*
 
 Driver assistance guide Forward Collision-Avoidance Assist (FCA) (Sensor Fusion) Limitations of Forward CollisionAvoidance Assist Forward Collision-Avoidance Assist may not operate normally, or it may operate unexpectedly under the following circumstances: 僅The detecting sensor or the surroundings are contaminated or damaged 僅The temperature around the front view camera is high or low due to surrounding environment 僅The camera lens is contaminated due to tinted, filmed or coated windscreen, damaged glass, or sticky foreign material (sticker, bug, etc.) on the glass 僅Moisture is not removed or frozen on the windscreen 僅Washer fluid is continuously sprayed, or the wiper is on 僅Driving in heavy rain or snow, or thick fog 僅The field of view of the front view camera is obstructed by sun glare 僅Street light or light from a oncoming traffic is reflected on the wet road surface, such as a puddle on the road 僅An object is placed on the instrument panel 僅Your vehicle is being towed 僅The surrounding is very bright or the surrounding is very dark, such as in a tunnel, etc. 僅The brightness changes suddenly, for example when entering or exiting a tunnel 僅The brightness outside is low, and the headlamps are not on or are not bright 僅Only part of the vehicle, powered twowheeler, pedestrian or cyclist is detected 僅The vehicle or powered two-wheeler in front is a bus, heavy truck, truck with an unusually shaped cargo, trailer, etc. 僅The vehicle or powered two-wheeler in front has no tail lights, tail lights are located unusually, etc. 僅The brightness outside is low, and the tail lights are not on or are not bright 僅The rear of the front vehicle is small or the vehicle does not look normal, such as when the vehicle is tilted, overturned, or the side of the vehicle is visible, etc. 僅The front vehicle's ground clearance is low or high 僅A vehicle, powered two-wheeler, pedestrian or cyclist suddenly cuts in front 僅The bumper around the front radar is impacted, damaged, or the front radar is out of position 僅The temperature around the front radar is high or low 僅Driving through a tunnel or iron bridge 僅Driving in vast areas where there are few vehicles or structures (for example, desert, meadow, suburb, etc.) 僅Driving near areas containing metal substances, such as a construction zone, railroad,
 
-## [picanto-154] Driver assistance guide > Page 272 (part 2)
+## [picanto-154] Limitations of Forward Collision- > Part 2
 *pages 272 · catégorie : pneus_roues*
 
 etc. 僅A material is near that reflects very well on the front radar, such as a guardrail, nearby vehicle, etc. 僅The cyclist in front is on a bicycle made of material that does not reflect on the front radar 僅The vehicle or powered two-wheeler in front is detected late
 
-## [picanto-155] Driver assistance guide > Page 273
+## [picanto-155] Driver assistance guide
 *pages 273 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6562,7 +6562,7 @@ trees or street lights
 - Driving through a narrow road 
 where trees or grass are overgrown
 
-## [picanto-156] Driver assistance guide > Page 274
+## [picanto-156] Driver assistance guide
 *pages 274 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6623,7 +6623,7 @@ OMV053011_4
 OMV053012_4
 OMV053013_4
 
-## [picanto-157] Driver assistance guide > Page 275
+## [picanto-157] Driver assistance guide
 *pages 275 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6671,7 +6671,7 @@ your driving speed in order to maintain distance.
 
 OJAPE053130_2
 
-## [picanto-158] Driver assistance guide > Page 6-13
+## [picanto-158] Lane Keeping Assist (LKA) (if
 *pages 6-13 · catégorie : remorquage*
 
 Driver assistance guide
@@ -6717,7 +6717,7 @@ For more details on the precautions of
 the front view camera, refer to "Forward 
 Collision-Avoidance Assist (FCA) (Sensor Fusion) (if equipped)" on page 6-13.
 
-## [picanto-159] Driver assistance guide > Page 277
+## [picanto-159] Lane Keeping Assist settings
 *pages 277 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6771,7 +6771,7 @@ of the warning sound.
 other audio volumes when the Driving 
 Safety system sounds a warning.
 
-## [picanto-160] Driver assistance guide > Page 278
+## [picanto-160] Lane Keeping Assist operation
 *pages 278 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6842,7 +6842,7 @@ Lane Departure Warning will be activated in the following conditions.
 僅Your driving speed: Approximately 
 60~200 km/h (40~120 mph)
 
-## [picanto-161] Driver assistance guide > Page 4-44
+## [picanto-161] Lane Keeping Assist
 *pages 4-44 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -6903,7 +6903,7 @@ from the settings menu.
 cluster, refer to "LCD display" on page 
 4-44.
 
-## [picanto-162] Driver assistance guide > Page 280
+## [picanto-162] Lane Keeping Assist malfunction
 *pages 280 · catégorie : voyant*
 
 Driver assistance guide
@@ -6976,17 +6976,17 @@ indistinct or damaged
 - When the shadow of objects 
 around the road (central reservaOJAPE073075R
 
-## [picanto-163] Driver assistance guide > Page 6-13
+## [picanto-163] Driver assistance guide
 *pages 6-13 · catégorie : remorquage*
 
 Driver assistance guide Lane Keeping Assist (LKA) tion, crash barrier, noise barrier, surrounding bushes, etc.) or the shadow of a vehicle covers the lane. 僅The lane number increases or decreases, or the lane markings (or road edges) are crossing 僅There are more than two lane markings (or road edges) on the road 僅The lane markings (or road edges) are complicated or a structure substitutes for the lines, such as a construction area 僅There are road markings, such as zigzag lanes, crosswalk markings and road signs 僅The lane suddenly disappears, such as at the intersection 僅The lane (or road width) is very wide or narrow 僅There is a road edge without a lane 僅There is a boundary structure in the roadway, such as a tollgate, sidewalk, kerb, etc. 僅The distance to the front vehicle is extremely short or the vehicle in front is covering the lane marking (or road edge) For more details on the limitations of the front view camera, refer to "Forward Collision-Avoidance Assist (FCA) (Sensor Fusion) (if equipped)" on page 6-13. 僅The driver should hold the responsibility to safely drive and control the vehicle. Do not solely rely on Lane Keeping Assist and drive dangerously. 僅The operation of Lane Keeping Assist can be cancelled or not work properly depending on road conditions and surroundings. Always be cautious whilst driving. 僅Refer to "Lane Keeping Assist malfunction and limitations" on page 630. if the lane is not detected properly. 僅When you are towing a trailer or another vehicle, turn off Lane Keeping Assist for safety reasons. 僅If the vehicle is driven at high speed, the steering wheel will not be controlled. The driver must always follow the speed limit when using Lane Keeping Assist. 僅If any other function's warning message is displayed or audible warning is generated, Lane Keeping Assist warning message may not be displayed and audible warning may not be generated. 僅You may not hear the warning sound of Lane Keeping Assist if the surrounding is noisy. Adjust the vehicle volume moderately and always pay attention to the surrounding. 僅If you attach objects to the steering wheel, steering may not be assisted properly. 僅Lane Keeping Assist may not operate for approximately 15 seconds after the vehicle is started, or the front view camera is initialized. 僅Lane Keeping Assist
 
-## [picanto-164] Driver assistance guide > Page 6-13 (part 2)
+## [picanto-164] Driver assistance guide > Part 2
 *pages 6-13 · catégorie : remorquage*
 
 will not operate when: - Right after turning the turn signal or hazard warning flasher on or off. - The vehicle is not driven in the centre of the lane when Lane Keeping Assist is turned on or right after changing a lane.
 
-## [picanto-165] Driver assistance guide > Page 282
+## [picanto-165] Blind-Spot Collision-Avoid-
 *pages 282 · catégorie : identification*
 
 Driver assistance guide
@@ -7031,7 +7031,7 @@ helps detect and informs the driver that
 a vehicle is approaching at high speed 
 from the blind spot area.
 
-## [picanto-166] Driver assistance guide > Page 283
+## [picanto-166] Detecting sensor
 *pages 283 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -7085,7 +7085,7 @@ of the rear corner radar or Blind-Spot
 Collision-Avoidance Assist may not 
 operate.
 
-## [picanto-167] Driver assistance guide > Page 284
+## [picanto-167] Blind-Spot Collision-Avoidance
 *pages 284 · catégorie : voyant*
 
 Driver assistance guide
@@ -7130,12 +7130,12 @@ settings:
 僅Warning volume: Adjusts the volume 
 of the warning sound.
 
-## [picanto-168] Driver assistance guide > Page 285
+## [picanto-168] Blind-Spot Collision-Avoidance
 *pages 285 · catégorie : identification*
 
 Driver assistance guide Blind-Spot Collision-Avoidance Assist (BCA) 僅Driving safety priority: Lowers all other audio volumes when the Driving Safety system sounds a warning. 僅If you change the Warning Methods, it can be applied to each function of the driver assistance system. Please check and change it in each function. 僅If the vehicle is restarted, Warning Methods will maintain the last setting. 僅The setting menu may not exist based on vehicle specification. Blind-Spot Collision-Avoidance Assist operation Blind-Spot Collision-Avoidance Assist will warn and control as following operation. 僅Collision warning 僅Collision-avoidance assist (whilst departing) Collision warning The warning light on the cluster, the outside rear view mirror will appear when the vehicle on both lanes is detected from the rear. A vehicle is detected in the following conditions. 僅Your driving speed: Above 20 km/h (12 mph) 僅The speed of the vehicle in your blind spot area: Above 10 km/h (7 mph) With the vehicle detection state, Collision warning will alert the driver when the turn signal is activated to make a lane change with an adjacent car in the blind spot area. 僅Collision warning will alert the driver with the warning light on the cluster, the outside rear view mirror, audible warning. 僅When the turn signal is turned off or you move away from the lane, the collision warning will be cancelled and the function will return to Vehicle detection state. Collision Warning operate in the following conditions. 僅Your driving speed: Above 40 km/h (25 mph) 僅The speed of the vehicle in your blind spot area: Above 10 km/h (7 mph) 僅The detecting range of the rear corner radar is determined by a standard road width, therefore, on a narrow road, Blind-Spot Collision-Avoidance Assist may detect other vehicles two lanes over and warn you. In contrast, on a wide road, Blind-Spot CollisionAvoidance Assist may not be able to detect a vehicle driving in the next lane and may not warn you. 僅When the hazard warning flasher is on, the collision warning by the turn signal will not operate. 僅If the driver's seat is on the left side, the collision warning may occur when you turn left. If the driver's seat is on the right side, the collision warning may occur when you turn right. Maintain a proper distance with the vehicles in the lane.
 
-## [picanto-169] Driver assistance guide > Page 286
+## [picanto-169] Collision-Avoidance Assist (whilst
 *pages 286 · catégorie : voyant*
 
 Driver assistance guide
@@ -7207,7 +7207,7 @@ may warn the driver late or may not
 warn the driver depending on the 
 road and driving conditions.
 
-## [picanto-170] Driver assistance guide > Page 287
+## [picanto-170] Blind-Spot Collision-Avoidance
 *pages 287 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -7266,17 +7266,17 @@ At this time, the warning message and
 the Master warning light (
 ) are displayed on the cluster display, but it does
 
-## [picanto-171] Driver assistance guide > Page 288
+## [picanto-171] Limitations of Blind-Spot Colli-
 *pages 288 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide Blind-Spot Collision-Avoidance Assist (BCA) not indicate a malfunction of Blind-Spot Collision-Avoidance Assist. Blind-Spot Collision-Avoidance Assist will operate properly when such foreign material or trailer, etc., is removed, and then the vehicle is restarted. If Blind-Spot Collision-Avoidance Assist does not operate properly after it is removed, have Blind-Spot CollisionAvoidance Assist be inspected by a professional workshop. Kia recommends that you visit an authorised Kia dealer/ service partner. 僅Even though the warning message and warning light does not appear on the cluster, Blind-Spot Collision-Avoidance Assist may not properly operate. 僅Blind-Spot Collision-Avoidance Assist may not properly operate in an area (for example, open terrain) where any objects are not detected right after the vehicle is turned on, or when the detecting sensor is blocked with foreign material right after the vehicle is turned on. Turn off Blind-Spot Collision-Avoidance Assist to install or remove a trailer, carrier, or another attachment. Turn on Blind-Spot Collision-Avoidance Assist when finished. Limitations of Blind-Spot Collision-Avoidance Assist Blind-Spot Collision-Avoidance Assist may not operate properly, or it may operate unexpectedly under the following circumstances: 僅There is inclement weather, such as heavy snow and heavy rain. 僅The detecting sensor is covered with snow, rain, dirt, etc. 僅The temperature around the detecting sensor is high or low due to the surrounding environment. 僅The detecting sensor is blocked whilst driving near a vehicle, pillar, or wall. 僅Driving on a highway (or motorway) ramp or driving through a tollgate. 僅The road pavement (or the peripheral ground) abnormally contains metallic components (for example, possibly due to subway construction). 僅There is a fixed object near the vehicle, such as sound barriers, guardrails, central dividers, entry barriers, street lamps, signs, tunnels, walls, etc. (including double structures) 僅Driving through a narrow road where trees or grass are overgrown 僅Driving in vast areas where there are few vehicles or structures (for example, desert, meadow, suburb, etc.) 僅Driving on a wet road surface, such as a puddle on the road 僅The other vehicle drives very close behind your vehicle, or the other vehicle passes by your vehicle in close proximity 僅The speed of the other vehicle is very fast that it passes by your vehicle in a short time 僅Your vehicle passes by the other vehicle 僅Your vehicle changes lane 僅Your vehicle has started at the same
 
-## [picanto-172] Driver assistance guide > Page 288 (part 2)
+## [picanto-172] Limitations of Blind-Spot Colli- > Part 2
 *pages 288 · catégorie : message_tableau_de_bord*
 
 time as the vehicle next to you and has accelerated 僅The vehicle in the next lane moves two lanes away from you, or when the vehicle two lanes away moves to the next lane from you
 
-## [picanto-173] Driver assistance guide > Page 289
+## [picanto-173] Driver assistance guide
 *pages 289 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -7324,7 +7324,7 @@ may not operate properly when driving on a curved road. Blind-Spot Collision-Avo
 vehicle in the same lane.
 Always pay attention to road and driving conditions whilst driving.
 
-## [picanto-174] Driver assistance guide > Page 290
+## [picanto-174] Driver assistance guide
 *pages 290 · catégorie : remorquage*
 
 Driver assistance guide
@@ -7367,7 +7367,7 @@ the front view camera or rear corner
 radars are initialized.
 OJAPE053005_2
 
-## [picanto-175] Driver assistance guide > Page 6-32
+## [picanto-175] Safe Exit Warning (SEW) (if
 *pages 6-32 · catégorie : voyant*
 
 Driver assistance guide
@@ -7408,7 +7408,7 @@ and sudden situations from occurring.
 
 If the vehicle is restarted, Safe Exit Warning will maintain the last setting.
 
-## [picanto-176] Driver assistance guide > Page 292
+## [picanto-176] Warning Methods
 *pages 292 · catégorie : voyant*
 
 Driver assistance guide
@@ -7464,7 +7464,7 @@ location.
 僅If any other function's warning message is displayed or audible warning 
 is generated, Safe Exit Warning mesOJAPE063051R
 
-## [picanto-177] Driver assistance guide > Page 293
+## [picanto-177] Safe Exit Warning malfunction
 *pages 293 · catégorie : voyant*
 
 Driver assistance guide
@@ -7511,7 +7511,7 @@ Have Safe Exit Warning be inspected by
 a professional workshop. Kia recommends that you visit an authorised Kia 
 dealer/service partner.
 
-## [picanto-178] Driver assistance guide > Page 6-32
+## [picanto-178] Safe Exit Warning disabled
 *pages 6-32 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -7573,7 +7573,7 @@ radars are initialized.
 僅Even after starting the vehicle again, 
 Safe Exit Warning not function properly when the obstruction or malfunction condition persists.
 
-## [picanto-179] Driver assistance guide > Page 295
+## [picanto-179] Manual Speed Limit Assist
 *pages 295 · catégorie : identification*
 
 Driver assistance guide
@@ -7626,7 +7626,7 @@ limit will turn off but the Speed Limit
 indicator (
 ) will stay on.
 
-## [picanto-180] Driver assistance guide > Page 296
+## [picanto-180] Resuming Manual Speed Limit
 *pages 296 · catégorie : identification*
 
 Driver assistance guide
@@ -7672,7 +7672,7 @@ be aware of unexpected and sudden
 situations from occurring. Pay attention to the road conditions at all times.
 OJAPE053010_3
 
-## [picanto-181] Driver assistance guide > Page 6-13
+## [picanto-181] Intelligent Speed Limit Assist
 *pages 6-13 · catégorie : voyant*
 
 Driver assistance guide
@@ -7726,7 +7726,7 @@ limit.
 僅Speed limit warning: Intelligent 
 Speed Limit Assist will inform the
 
-## [picanto-182] Driver assistance guide > Page 298
+## [picanto-182] Warning Methods
 *pages 298 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -7776,7 +7776,7 @@ Methods will maintain the last setting.
 僅The setting menu may not exist based 
 on vehicle specification.
 
-## [picanto-183] Driver assistance guide > Page 6-50
+## [picanto-183] Intelligent Speed Limit Assist
 *pages 6-50 · catégorie : voyant*
 
 Driver assistance guide
@@ -7826,7 +7826,7 @@ change the set speed. Raise or lower the
 adjust the set speed according to the 
 speed limit.
 
-## [picanto-184] Driver assistance guide > Page 300
+## [picanto-184] Auto set speed change (if
 *pages 300 · catégorie : voyant*
 
 Driver assistance guide
@@ -7888,17 +7888,17 @@ foreign material, such as snow or rain, it
 can reduce the detecting performance 
 and temporarily limit or disable Intelligent Speed Limit Assist. If this occurs,
 
-## [picanto-185] Driver assistance guide > Page 301
+## [picanto-185] Limitations of Intelligent Speed
 *pages 301 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide Intelligent Speed Limit Assist (ISLA) the warning message will appear on the cluster and the Master warning light ( ) and the Intelligent Speed Limit Assist warning light ( ) will appear on the cluster. After removing the foreign material and starting driving again, the warning light will turn off, and Intelligent Speed Limit Assist will operate normally again. Always keep it clean. If Intelligent Speed Limit Assist does not operate properly after it is removed, we recommend the function checked by an authorised Kia dealer/service partner. 僅Even though the warning message or warning light does not appear on the cluster, Intelligent Speed Limit Assist may not operate properly. 僅Even if restarting the vehicle with the sensors blocked or malfunctioned, Intelligent Speed Limit Assist may not properly operate as the function maintains the broken/covered state. Limitations of Intelligent Speed Limit Assist Intelligent Speed Limit Assist may not operate properly, or it may operate unexpectedly under the following circumstances: 僅The road sign is contaminated or indistinguishable - The road sign is difficult to see due to bad weather, such as rain, snow, fog. - The road sign is partially obscured by surrounding objects or shadow 僅The road signs do not conform to the standard - The text or picture on the road sign is different from the standard - The road sign is installed between the main line and the exit road or between diverging roads - A sign is attached to another vehicle 僅The distance between the vehicle and the road signs is far 僅The vehicle encounters illuminating road signs 僅Intelligent Speed Limit Assist incorrectly recognizes numbers or pictures in the street signs or other signs as the speed limit 僅A road sign near the road you are driving is detected 僅Multiple signs are installed close together 僅When auxiliary signs or other signs are installed around the road signs 僅The minimum speed limit sign is misrecognized 僅The brightness changes suddenly, for example when entering or exiting a tunnel or passing under a bridge 僅Headlamps are not used or the brightness of the headlamps are weak at night or in the tunnel 僅Road signs are difficult to recognize due to the reflection of sunlight, street lights, or oncoming vehicles 僅When strong backlighting is present from the direction of
 
-## [picanto-186] Driver assistance guide > Page 301 (part 2)
+## [picanto-186] Limitations of Intelligent Speed > Part 2
 *pages 301 · catégorie : message_tableau_de_bord*
 
 the vehicle's movement 僅Driving on a road that is sharply curved or continuously curved 僅Driving through speed bumps, or driving up and down or left to right on steep inclines 僅The vehicle is shaking heavily 僅The navigation information or GPS information contains errors.
 
-## [picanto-187] Driver assistance guide > Page 6-13
+## [picanto-187] Driver Attention Warning
 *pages 6-13 · catégorie : identification*
 
 Driver assistance guide
@@ -7953,7 +7953,7 @@ Warning.
 僅For more details on the precautions of 
 the front view camera, refer to "Forward Collision-Avoidance Assist (FCA)
 
-## [picanto-188] Driver assistance guide > Page 6-13
+## [picanto-188] Driver Attention Warning set-
 *pages 6-13 · catégorie : voyant*
 
 Driver assistance guide
@@ -8002,7 +8002,7 @@ driving pattern or habits, even if the
 driver doesn't feel fatigue.
 僅Driver Attention Warning is a supplemental function and may not be able
 
-## [picanto-189] Driver assistance guide > Page 304
+## [picanto-189] Leading Vehicle Departure Alert
 *pages 304 · catégorie : voyant*
 
 Driver assistance guide
@@ -8060,7 +8060,7 @@ Driver Attention Warning disabled
 A: Driver Assistance system limited. 
 Camera obscured.
 
-## [picanto-190] Driver assistance guide > Page 305
+## [picanto-190] Limitations of Driver Attention
 *pages 305 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -8123,7 +8123,7 @@ making a U-turn, etc., Leading Vehicle
 Departure Alert may not operate 
 properly.
 
-## [picanto-191] Driver assistance guide > Page 6-13
+## [picanto-191] Driver assistance guide
 *pages 6-13 · catégorie : identification*
 
 Driver assistance guide
@@ -8159,7 +8159,7 @@ For more details on the precautions of
 the front view camera, refer to "Forward 
 Collision-Avoidance Assist (FCA) (Sensor Fusion) (if equipped)" on page 6-13.
 
-## [picanto-192] Driver assistance guide > Page 307
+## [picanto-192] Cruise Control (CC) (if
 *pages 307 · catégorie : identification*
 
 Driver assistance guide
@@ -8211,7 +8211,7 @@ it immediately. The set speed will
 decrease by 1 km/h increments.To 
 decrease the set speed quickly, push
 
-## [picanto-193] Driver assistance guide > Page 308
+## [picanto-193] Accelerating temporarily
 *pages 308 · catégorie : identification*
 
 Driver assistance guide
@@ -8281,7 +8281,7 @@ If your vehicle is equipped with Manual
 Speed Limit Assist, press and hold the 
 Driving Assist button to turn off Cruise
 
-## [picanto-194] Driver assistance guide > Page 6-13
+## [picanto-194] Lane Following Assist (LFA)
 *pages 6-13 · catégorie : identification*
 
 Driver assistance guide
@@ -8333,7 +8333,7 @@ For more details on the precautions of
 the front view camera, refer to "Forward 
 Collision-Avoidance Assist (FCA) (Sensor Fusion) (if equipped)" on page 6-13.
 
-## [picanto-195] Driver assistance guide > Page 310
+## [picanto-195] Lane Following Assist settings
 *pages 310 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -8390,7 +8390,7 @@ the white (
 ) indicator light blinks and 
 change to grey.
 
-## [picanto-196] Driver assistance guide > Page 311
+## [picanto-196] Hands-off warning
 *pages 311 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -8443,7 +8443,7 @@ from the settings menu.
 僅If lane markings are not detected, 
 steering wheel control by Lane Following Assist can be limited dependOJAPE073074L
 
-## [picanto-197] Driver assistance guide > Page 6-26
+## [picanto-197] Lane Following Assist malfunc-
 *pages 6-26 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -8483,7 +8483,7 @@ load allowance or concentrated loading at one point in the cargo compartment can
 stability, which can in turn reduce the 
 effectiveness of Lane Following Assist
 
-## [picanto-198] Driver assistance guide > Page 313
+## [picanto-198] Rear View Monitor (RVM) (if
 *pages 313 · catégorie : identification*
 
 Driver assistance guide
@@ -8526,7 +8526,7 @@ Methods will maintain the last setting.
 僅The setting menu may not exist based 
 on vehicle specification.
 
-## [picanto-199] Driver assistance guide > Page 314
+## [picanto-199] Camera Settings
 *pages 314 · catégorie : identification*
 
 Driver assistance guide
@@ -8574,7 +8574,7 @@ will turn off under the following conditions whilst parking:
 Rear View will not turn off when the 
 vehicle is in R (Reverse).
 
-## [picanto-200] Driver assistance guide > Page 315
+## [picanto-200] Extended Rear View Monitor
 *pages 315 · catégorie : identification*
 
 Driver assistance guide
@@ -8636,7 +8636,7 @@ containing high alkaline or volatile
 organic solvents (petrol, acetone etc.). 
 This may damage the camera lens.
 
-## [picanto-201] Driver assistance guide > Page 6-32
+## [picanto-201] Rear Cross-Traffic Collision-
 *pages 6-32 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -8686,7 +8686,7 @@ will always turn on. However, if Rear
 Cross-traffic safety is deselected after 
 the vehicle is restarted, the driver should
 
-## [picanto-202] Driver assistance guide > Page 317
+## [picanto-202] Warning Methods
 *pages 317 · catégorie : voyant*
 
 Driver assistance guide
@@ -8733,7 +8733,7 @@ infotainment system screen.
 Collision warning will operate when all 
 the following conditions are satisfied:
 
-## [picanto-203] Driver assistance guide > Page 318
+## [picanto-203] Emergency braking
 *pages 318 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -8794,7 +8794,7 @@ down
 僅The driver depresses the brake pedal 
 with sufficient power
 
-## [picanto-204] Driver assistance guide > Page 319
+## [picanto-204] Stopping vehicle and ending
 *pages 319 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -8853,7 +8853,7 @@ Cross-Traffic Collision-Avoidance
 Assist on people, animals, objects, etc. 
 It may cause serious injury or death.
 
-## [picanto-205] Driver assistance guide > Page 320
+## [picanto-205] Rear Cross-Traffic Collision-
 *pages 320 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -8910,7 +8910,7 @@ Collision-Avoidance Assist.
 If this occurs, the warning message will 
 appear on the cluster.
 
-## [picanto-206] Driver assistance guide > Page 6-32
+## [picanto-206] Limitations of Rear Cross-Traffic
 *pages 6-32 · catégorie : pneus_roues*
 
 Driver assistance guide
@@ -8975,7 +8975,7 @@ are parking or pulling out near your
 vehicle (example, a vehicle leaving 
 beside your vehicle, a vehicle parking
 
-## [picanto-207] Driver assistance guide > Page 322
+## [picanto-207] Driver assistance guide
 *pages 322 · catégorie : aides_conduite*
 
 Driver assistance guide
@@ -9028,7 +9028,7 @@ brake.
 Always check your surroundings 
 whilst backing up.
 
-## [picanto-208] Driver assistance guide > Page 323
+## [picanto-208] Reverse Parking Distance
 *pages 323 · catégorie : aides_conduite*
 
 Driver assistance guide
@@ -9057,7 +9057,7 @@ Warning Methods
 A: Driver assistance
 1 Warning methods
 
-## [picanto-209] Driver assistance guide > Page 324
+## [picanto-209] Reverse Parking Distance Warn-
 *pages 324 · catégorie : voyant*
 
 Driver assistance guide
@@ -9118,7 +9118,7 @@ within 30 cm
 (12 in)
 Beeps continuously
 
-## [picanto-210] Driver assistance guide > Page 325
+## [picanto-210] Reverse Parking Distance Warn-
 *pages 325 · catégorie : message_tableau_de_bord*
 
 Driver assistance guide
@@ -9172,7 +9172,7 @@ detected:
 僅Sharp or slim objects, such as ropes, 
 chains or small poles.
 
-## [picanto-211] Driver assistance guide > Page 326
+## [picanto-211] Declaration of conformity
 *pages 326 · catégorie : identification*
 
 Driver assistance guide
@@ -9223,7 +9223,7 @@ For United States and United
 States territories
 For Canada
 
-## [picanto-212] Driver assistance guide > Page 327
+## [picanto-212] For Europe and countries subject
 *pages 327 · catégorie : aides_conduite*
 
 Driver assistance guide
@@ -9239,7 +9239,7 @@ For United States and United
 States territories
 For Singapore
 
-## [picanto-213] Driver assistance guide > Page 328
+## [picanto-213] For Malaysia
 *pages 328 · catégorie : aides_conduite*
 
 Driver assistance guide
@@ -9254,7 +9254,7 @@ For Australia
 For Nigeria
 For Mexico
 
-## [picanto-214] Driver assistance guide > Page 329
+## [picanto-214] For Brazil
 *pages 329 · catégorie : aides_conduite*
 
 Driver assistance guide
@@ -9268,7 +9268,7 @@ For Zambia
 For Oman
 For Ghana
 
-## [picanto-215] Driver assistance guide > Page 330
+## [picanto-215] For Pakistan
 *pages 330 · catégorie : aides_conduite*
 
 Driver assistance guide
@@ -9284,7 +9284,7 @@ For Jordan
 For Taiwan
 For Israel
 
-## [picanto-216] Driver assistance guide > Page 331
+## [picanto-216] For Thailand
 *pages 331 · catégorie : aides_conduite*
 
 Driver assistance guide
@@ -9295,7 +9295,7 @@ For UAE
 For Ukraine
 For China
 
-## [picanto-217] What to do in an emergency > Page 7-3
+## [picanto-217] What to do in an emergency
 *pages 7-3 · catégorie : electricite_batterie*
 
 What to do in an emergency
@@ -9331,7 +9331,7 @@ If you have a flat tyre (with tyre mobility kit)..........................7-20
 僅 Using the TMK.................................................................................................7-23
 僅 Distributing the sealant ...............................................................................7-24
 
-## [picanto-218] 7 What to do in an emergency > Page 7-25
+## [picanto-218] Kia Picanto owner manual
 *pages 7-25 · catégorie : remorquage*
 
 7 What to do in an emergency
@@ -9345,12 +9345,12 @@ Towing..........................................................................
 Emergency Commodity............................................................... 7-31
 僅 ERA-GLONASS emergency call............................................................... 7-32
 
-## [picanto-219] What to do in an emergency > Page 335
+## [picanto-219] Road warning
 *pages 335 · catégorie : pneus_roues*
 
 What to do in an emergency Road warning What to do in an emergency Road warning Hazard warning flasher The hazard warning flasher serves as a warning to other drivers to exercise extreme caution when approaching, overtaking, or passing your vehicle. It should be used whenever emergency repairs are being made or when the vehicle is stopped near the edge of a roadway. Depress the flasher switch with the ignition switch in any position. The flasher switch is located in the centre console switch panel. All turn signal lights will flash simultaneously. 僅The hazard warning flasher operates whether your vehicle is running or not. 僅The turn signals do not work when the hazard flasher is on. 僅Care must be taken when using the hazard warning flasher whilst the vehicle is being towed. In case of an emergency whilst driving If the engine stalls at a crossroad or crossing 僅If the engine stalls at a crossroad or crossing, set the shift lever in the N (Neutral) position and then push the vehicle to a safe place. 僅If your vehicle has a manual transmission not equipped with a ignition lock switch, the vehicle can move forward by shifting to the 2 (second) or 3 (third) gear and then turning the starter without depressing the clutch pedal. If you have a flat tyre whilst driving If a tyre goes flat whilst you are driving: 1. Take your foot off the accelerator pedal and let the vehicle slowdown whilst driving straight ahead. Do not apply the brakes immediately or attempt to pull off the road as this may cause a loss of control. When the vehicle has slowed down to such a speed that it is safe to do so, brake carefully and pull off the road. Drive off the road as far as possible and park on a firm level ground. If you are on a divided highway, do not park in the median area between the two traffic lanes. 2. When the vehicle is stopped, turn on your emergency hazard flashers, set the parking brake and put the transmission in P (automatic transmission) or reverse (manual transmission). 3. Have all passengers get out of the vehicle. Be sure they all get out on the side of the vehicle that is away from traffic.
 
-## [picanto-220] What to do in an emergency > Page 336
+## [picanto-220] If engine stalls whilst driving
 *pages 336 · catégorie : electricite_batterie*
 
 What to do in an emergency
@@ -9399,17 +9399,17 @@ loose.
 professional workshop. Kia recommends to call an authorised Kia 
 dealer/service partner.
 
-## [picanto-221] What to do in an emergency > Page 337
+## [picanto-221] Emergency starting
 *pages 337 · catégorie : electricite_batterie*
 
 What to do in an emergency Emergency starting Emergency starting Connect cables in numerical order and disconnect in reverse order. Jump starting Jump starting can be dangerous if done incorrectly. Therefore, to avoid harm to yourself or damage to your vehicle or battery, follow the jump starting procedures. If in doubt, we strongly recommend that you have a competent technician or towing service jump start your vehicle. Use only a 12-volt jumper system. You can damage a 12-volt starting motor, ignition system, and other electrical parts beyond repair by use of a 24-volt power supply (either two 12-volt batteries in series or a 24-volt motor generator set) Battery Never attempt to check the electrolyte level of the battery as this may cause the battery to rupture or explode causing serious injury. Battery 僅Keep all flames or sparks away from the battery. The battery produces hydrogen gas which may explode if exposed to flame or sparks. If these instructions are not followed exactly, serious personal injury and damage to the vehicle may occur! If you are not sure how to follow this procedure, seek qualified assistance. Automobile batteries contain sulfuric acid. This is poisonous and highly corrosive. When jump starting, wear protective glasses and be careful not to get acid on yourself, your clothing or on the vehicle. 僅Do not attempt to jump start the vehicle if the discharged battery is frozen or if the electrolyte level is low; the battery may rupture or explode. 僅Do not allow the (+) and (-) jumper cables to touch. It may cause sparks. 僅The battery may rupture or explode when you jump start with a low or frozen battery. Jump starting procedure 1. Make sure the booster battery is 12volt and that its negative terminal is grounded. 2. If the booster battery is in another vehicle, do not allow the vehicles come in contact. 3. Turn off all unnecessary electrical loads. 4. Connect the jumper cables in the exact sequence shown in the illustration. First connect one end of a jumper cable to the positive terminal of the discharged battery (1), then connect the other end to the positive terminal on the booster attery (2). Proceed to connect one end of the other jumper cable to the negative terminal of the booster battery (3),
 
-## [picanto-222] What to do in an emergency > Page 337 (part 2)
+## [picanto-222] Emergency starting > Part 2
 *pages 337 · catégorie : electricite_batterie*
 
 then the other end to a solid, stationary, metallic point (for example, the
 
-## [picanto-223] What to do in an emergency > Page 338
+## [picanto-223] What to do in an emergency
 *pages 338 · catégorie : electricite_batterie*
 
 What to do in an emergency
@@ -9458,17 +9458,17 @@ the sudden surge forward when the
 engine starts could cause a collision with 
 the tow vehicle.
 
-## [picanto-224] What to do in an emergency > Page 339
+## [picanto-224] If the engine overheats
 *pages 339 · catégorie : entretien*
 
 What to do in an emergency If the engine overheats If the engine overheats If your temperature gauge indicates overheating, you will experience a loss of power, or hear loud pinging or knocking, the engine is probably too hot. If this happens, you should: 1. Pull off the road and stop as soon as it is safe to do so. 2. Place the shift lever in P (automatic transmission) or neutral (manual transmission) and set the parking brake. If the air conditioning is on, turn it off. 3. If engine coolant is running out under the vehicle or steam is coming out from the bonnet, stop the engine. Do not open the bonnet until the coolant has stopped running or the steaming has stopped. If there is no visible loss of engine coolant and no steam, leave the engine running and check to be sure the engine cooling fan is operating. If the fan is not running, turn the engine off. 4. Check to see if the water pump drive belt is missing. If it is not missing, check to see that it is tight. If the drive belt seems to be satisfactory, check for coolant leaking from the radiator, hoses or under the vehicle. (If the air conditioning had been in use, it is normal for cold water to be draining from it when you stop). Whilst the engine is running, keep hair, hands and clothing away from moving parts such as the fan and drive belts to prevent injury. 5. If the water pump drive belt is broken or engine coolant is leaking out, stop the engine immediately and call a professional workshop. Kia recommends to call an authorised Kia dealer/service partner. Do not remove the radiator cap when the engine is hot.This can allow coolant to blow out of the opening and cause serious burns. 6. If you cannot find the cause of the overheating, wait until the engine temperature has returned to normal.Then, if coolant has been lost, carefully add coolant to the reservoir to bring the fluid level in the reservoir up to the halfway mark. 7. Proceed with caution, keeping alert for further signs of overheating. If overheating happens again, call a professional workshop. Kia recommends to call an authorised Kia dealer/service partner. 僅Serious
 
-## [picanto-225] What to do in an emergency > Page 339 (part 2)
+## [picanto-225] If the engine overheats > Part 2
 *pages 339 · catégorie : entretien*
 
 loss of coolant indicates there is a leak in the cooling system. In this case, have the system checked by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. 僅When the engine overheats from low engine coolant, suddenly adding engine coolant may cause cracks in the engine. To prevent damage, add engine coolant slowly in small quantities.
 
-## [picanto-226] What to do in an emergency > Page 340
+## [picanto-226] Tyre Pressure Monitoring Sys-
 *pages 340 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -9530,27 +9530,27 @@ pressure.
 僅Without inflating the tyres, if you reset 
 TPMS, the system may not inform you
 
-## [picanto-227] What to do in an emergency > Page 341
+## [picanto-227] Indication of Low Tyre Pressure
 *pages 341 · catégorie : pneus_roues*
 
 What to do in an emergency Tyre Pressure Monitoring System (TPMS) properly even though the tyres are significantly under-inflated. You must check the proper tyre pressure before resetting TPMS. 僅The TPMS may not function properly if you do not reset TPMS although the TPMS needs to be reset. 僅If you push the TPMS reset button whilst driving, the TPMS reset process is not activated. You must push the TPMS reset button whilst the vehicle is at a complete stop. 僅Tyre pressure should be checked and inflated whilst the tyres are cold. A cold tyre means the vehicle has been sitting for 3 hours and driven for less than 1.6 km (1 mile) in that 3 hour period. Indication of Low Tyre Pressure The ( ) warning light will illuminate when an under-inflated tyre is indicated. In certain types, the above message might be displayed on the cluster. If the warning light illuminates, reduce your speed, avoid hard cornering and rapid braking. Have your vehicle inspected by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. A: Low tyre pressure Check the pressure of all tyres and inflate to the proper pressure according to procedures, and if required, replace or repair the tyres. If you cannot reach a close service station, stop the vehicle at a safe place, check all tyres and operate the TPMS setting procedure. If you are unable to adjust the tyre pressure, use the repair tools to repair or change to spare tyre and contact a professional workshop. Kia recommends to call an authorised Kia dealer/service partner. You may not be able to identify low tyre pressure visually. Use precise tools to measure and adjust tyre pressure. Please note that a tyre that is hot due to prolonged driving, therefore will have high pressure. We recommend you to measure and adjust the tyre pressure after the vehicle has driven for less than 1.6km (1mile) within 3 hours. Low pressure damage Significantly low tyre pressure makes the vehicle unstable and can contribute to loss of vehicle control and increased braking distances. Continued driving on low pressure tyres can cause the tyres to overheat and fail. 僅The indicator may remain illuminated after changing to a spare tyre, because radius of spare tyre is different. Be sure
 
-## [picanto-228] What to do in an emergency > Page 341 (part 2)
+## [picanto-228] Indication of Low Tyre Pressure > Part 2
 *pages 341 · catégorie : pneus_roues*
 
 to change to a regular tyre. 僅For safe driving, please note that the TPMS is not a substitute for proper tyre maintenance. It is the driver’s responsibility to maintain correct tyre pressure, and all tyres should be checked monthly to maintain the recommended pressure.
 
-## [picanto-229] What to do in an emergency > Page 342
+## [picanto-229] Tyre Pressure Monitoring System
 *pages 342 · catégorie : pneus_roues*
 
 What to do in an emergency Tyre Pressure Monitoring System (TPMS) 僅The warning light may illuminate if the system is not set in required situations. 僅In cold weather, the low tyre pressure warning light may illuminate even if the tyre was adjusted to the proper pressure. It does not mean your TPMS in malfunctioning because the decreased temperature leads to a lowering of tyre pressure. Check the tyres and adjust to the recommended pressure. 僅System performance may reduce in the following situations. - Improper system setting - Using tyres on the market (Original tyre recommended) - Driving on snowy, slippery, or unpaved roads - Hard cornering, rapid accelerating and braking repeatedly - Driving too slow or fast - If the vehicle is overloaded - If a spare tyre or snow chain is installed 僅Driving with an under-inflated tyre causes the tyre to overheat and lead to tyre failure. It also reduces tyre tread life, handling of the vehicle, braking ability, and fuel efficiency, causing instability of the vehicle. In this case, contact professional workshop to maintain proper tyre pressure. Kia recommends to contact an authorised Kia dealer/service partner. 僅Sudden damage to the tyre caused by external factors may not be indicated immediately. If the vehicle is unstable, immediately remove your foot off the accelerator pedal, move the vehicle to a safe position for inspection. Tyre Pressure Monitoring System malfunction The TPMS malfunction indicator will illuminate ( ) after it blinks for approximately 1 minute when there is a problem with the Tyre Pressure Monitoring System. This sequence will continue upon subsequent vehicle start-ups as long as the malfunction exists. If the indicator remains illuminated or illuminates even after TPMS setting, have the system checked by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. 僅If there is a malfunction with the TPMS, low tyre pressure will not be indicated. In this case, have the system serviced by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. 僅If the system does not work due to TPMS removal or installation of related parts with different specification, it might be a problem when the vehicle is being regularly inspected. 僅When repairing TPMS related parts, be sure to replace them to parts with original specification or those which
 
-## [picanto-230] What to do in an emergency > Page 342 (part 2)
+## [picanto-230] Tyre Pressure Monitoring System > Part 2
 *pages 342 · catégorie : pneus_roues*
 
 satisfy the TPMS regulation. - TPMS related parts : tyre, wheel, ABS unit, suspension
 
-## [picanto-231] What to do in an emergency > Page 343
+## [picanto-231] Reference: Indicator Light Status
 *pages 343 · catégorie : remorquage*
 
 What to do in an emergency
@@ -9588,7 +9588,7 @@ Setting
 ▶
 Turns off after blinking(4seconds)
 
-## [picanto-232] What to do in an emergency > Page 344
+## [picanto-232] Jacking instructions
 *pages 344 · catégorie : remorquage*
 
 What to do in an emergency
@@ -9647,7 +9647,7 @@ to prevent the spare tyre from “rattling”.
 Otherwise, it may cause the spare tyre to 
 fall off the carrier and lead to an accident.
 
-## [picanto-233] What to do in an emergency > Page 345
+## [picanto-233] Changing tyres
 *pages 345 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -9690,37 +9690,37 @@ jack.
 
 OJAPE073062L_2
 
-## [picanto-234] What to do in an emergency > Page 9-5
+## [picanto-234] What to do in an emergency
 *pages 9-5 · catégorie : pneus_roues*
 
 What to do in an emergency If you have a flat tyre (with spare tyre) Jack location To reduce the possibility of injury, be sure to use only the jack provided with the vehicle and in the correct jack position; never use any other part of the vehicle for jack support. 8. Insert the jack handle into the jack and turn it clockwise, raising the vehicle until the tyre just clears the ground. This measurement is approximately 30 mm (1.2 in). Before removing the wheel lug nuts, make sure the vehicle is stable and that there is no chance for movement or slippage. Refer to "Tyres and wheels" on page 9-5 or the tyre pressure label on the driver’s door. 9. Loosen the wheel nuts and remove them with your fingers. Slide the wheel off the studs and lay it flat so it cannot roll away. To put the wheel on the hub, pick up the spare tyre, line up the holes with the studs and slide the wheel onto them. If this is difficult, tip the wheel slightly and get the top hole in the wheel lined up with the top stud. Then jiggle the wheel back and forth until the wheel can be slid over the other studs. Wheels may have sharp edges. Handle them carefully to avoid possible severe injury. Before putting the wheel into place, be sure that there is nothing on the hub or wheel (such as mud, tar, gravel, etc.) that interferes with the wheel from fitting solidly against the hub. If there is, remove it. If there is not good contact on the mounting surface between the wheel and hub, the wheel nuts could come loose and cause the loss of a wheel. Loss of a wheel may result in loss of control of the vehicle. This may cause serious injury or death. 10.To reinstall the wheel, hold it on the studs, put the wheel nuts on the studs and tighten them finger tight. Jiggle the tyre to be sure it is completely seated, then tighten the nuts as much as possible with your fingers again. 11.Lower the vehicle to the ground by turning the wheel nut wrench counterclockwise. Then position the wrench as shown in the drawing and tighten the wheel nuts.
 
-## [picanto-235] What to do in an emergency > Page 9-5 (part 2)
+## [picanto-235] What to do in an emergency > Part 2
 *pages 9-5 · catégorie : pneus_roues*
 
 Be sure the socket is seated completely over the nut. Do not stand on the wrench handle or use an extension pipe over the wrench handle. Go around the wheel tightening every other nut until they are all tight. Then double-check each nut for tightness. After changing wheels, have the system checked by a professional OJAPE073063L_2 OJAPE073064L_2
 
-## [picanto-236] What to do in an emergency > Page 9-5
+## [picanto-236] Important - use of compact spare
 *pages 9-5 · catégorie : pneus_roues*
 
 What to do in an emergency If you have a flat tyre (with spare tyre) workshop. Kia recommends to visit an authorised Kia dealer/service partner. Wheel nut tightening torque: Steel wheel & aluminium alloy wheel: 11~13kgf·m (79~94lbf·ft) If you have a tyre gauge, remove the valve cap and check the air pressure. If the pressure is lower than recommended, drive slowly to the nearest service station and inflate to the correct pressure. If it is too high, adjust it until it is correct. Always reinstall the valve cap after checking or adjusting tyre pressure. If the cap is not replaced, air may leak from the tyre. If you lose a valve cap, buy another and install it as soon as possible. After you have changed wheels, always secure the flat tyre in its place and return the jack and tools to their proper storage locations. Your vehicle has metric threads on the wheel studs and nuts. Make certain during wheel removal that the same nuts that were removed are reinstalled - or, if replaced, that nuts with metric threads and the same chamfer configuration are used. Installation of a nonmetric thread nut on a metric stud or vice-versa will not secure the wheel to the hub properly and will damage the stud so that it must be replaced. Note that most lug nuts do not have metric threads. Be sure to use extreme care in checking for thread style before installing aftermarket lug nuts or wheels. If in doubt, consult a professional workshop. Kia recommends to consult an authorised Kia dealer/service partner. Wheel studs If the studs are damaged, they may lose their ability to retain the wheel.This could lead to the loss of the wheel and a collision resulting in serious injuries. To prevent the jack, jack handle, wheel lug nut wrench and spare tyre from rattling whilst the vehicle is in motion, store them properly. Inadequate spare tyre pressure Check the inflation pressures as soon as possible after installing the spare tyre. Adjust it to the specified pressure, if necessary. Refer to "Tyres and wheels" on page 9-5. Important - use of compact spare tyre (if equipped) Your vehicle is equipped with a compact spare tyre. This compact spare tyre takes up less space than a regular-size tyre.
 
-## [picanto-237] What to do in an emergency > Page 9-5 (part 2)
+## [picanto-237] Important - use of compact spare > Part 2
 *pages 9-5 · catégorie : pneus_roues*
 
 This tyre is smaller than a conventional tyre and is designed for temporary use only. 僅You should drive carefully when the compact spare is in use. The compact spare should be replaced by the proper conventional tyre and rim at the first opportunity.
 
-## [picanto-238] What to do in an emergency > Page 348
+## [picanto-238] What to do in an emergency
 *pages 348 · catégorie : pneus_roues*
 
 What to do in an emergency If you have a flat tyre (with spare tyre) 僅The operation of this vehicle is not recommended with more than one compact spare tyre in use at the same time. The compact spare tyre is for emergency use only. Do not operate your vehicle on this compact spare at the speed over 80 km/h (50 mph).The original tyre should be repaired or replaced as soon as possible to avoid failure of the spare possibly leading to personal injury or death. The compact spare should be inflated to 420 kPa (60 psi). Check the inflation pressure after installing the spare tyre. Adjust it to the specified pressure, as necessary. When using a compact spare tyre, observe the following precautions: 僅Under no circumstances should you exceed 80 km/h (50 mph); a higher speed could damage the tyre. 僅Ensure that you drive slowly enough to avoid all hazards. Any road hazard, such as a pothole or debris, could seriously damage the compact spare. 僅Any continuous road use of this tyre could result in tyre failure, loss of vehicle control, and possible personal injury. 僅Do not exceed the vehicle’s maximum load rating or the load-carrying capacity shown on the sidewall of the compact spare tyre. 僅Avoid driving over obstacles. The compact spare tyre diameter is smaller than the diameter of a conventional tyre and reduces the ground clearance approximately 2.5 cm (1 inch), which could result in damage to the vehicle. 僅Do not take the vehicle through an automatic car wash whilst the compact spare tyre is installed. 僅Do not use tyre chains on the temporary compact tyre. Because of the smaller size, a tyre chain will not fit properly. This could damage the vehicle and result in loss of the chain. 僅Temporary compact tyre should not be installed on the front axle if the vehicle must be driven in snow or on ice. 僅Do not use the temporary compact tyre on any other vehicle because this tyre has been designed especially for your vehicle. 僅The temporary compact tyre tread life is shorter than a regular tyre. Inspect your temporary compact tyre regularly and replace worn compact spare tyres with the same size and design, mounted on the same wheel. 僅The temporary compact tyre should not be used
 
-## [picanto-239] What to do in an emergency > Page 348 (part 2)
+## [picanto-239] What to do in an emergency > Part 2
 *pages 348 · catégorie : pneus_roues*
 
 on any other wheels, nor should standard tyres, snow tyres, wheel covers or trim rings be used with the temporary compact spare wheel. If such use is attempted, damage to these items or other car components may occur. 僅Do not use more than one temporary compact tyre at a time. 僅Do not tow a trailer whilst the temporary compact tyre is installed.
 
-## [picanto-240] What to do in an emergency > Page 349
+## [picanto-240] Jack label
 *pages 349 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -9745,7 +9745,7 @@ lever to the P position on vehicles with automatic transmission.
 11.Production date
 12.Representative company and address
 
-## [picanto-241] What to do in an emergency > Page 350
+## [picanto-241] Declaration of Conformity for Jack
 *pages 350 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -9755,14 +9755,14 @@ If you have a flat tyre (with spare tyre)
 Declaration of Conformity for Jack
 CE
 
-## [picanto-242] What to do in an emergency > Page 351
+## [picanto-242] What to do in an emergency
 *pages 351 · catégorie : pneus_roues*
 
 What to do in an emergency
 If you have a flat tyre (with spare tyre)
 UKCA
 
-## [picanto-243] What to do in an emergency > Page 352
+## [picanto-243] If you have a flat tyre (with
 *pages 352 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -9829,7 +9829,7 @@ max. speed of 80 km/h (50 mph) in
 order to reach a vehicle or tyre dealer to 
 have the tyre replaced.
 
-## [picanto-244] What to do in an emergency > Page 353
+## [picanto-244] What to do in an emergency
 *pages 353 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -9859,7 +9859,7 @@ Only punctured areas located within the
 tread region of the tyre can be sealed 
 using the TMK.
 
-## [picanto-245] What to do in an emergency > Page 354
+## [picanto-245] Components of the Tyre Mobility Kit (TMK)
 *pages 354 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -9877,7 +9877,7 @@ Components of the Tyre Mobility Kit (TMK)
 8. Pressure gauge for displaying the tyre inflation pressure
 9. Button for reducing tyre inflation pressure
 
-## [picanto-246] What to do in an emergency > Page 355
+## [picanto-246] Using the TMK
 *pages 355 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -9911,7 +9911,7 @@ switched off, position 0.
 Securely install the sealant filling hose to 
 the valve. If not, sealant may flow backward, possibly clogging the filling hose.
 
-## [picanto-247] What to do in an emergency > Page 356
+## [picanto-247] Distributing the sealant
 *pages 356 · catégorie : remorquage*
 
 What to do in an emergency
@@ -9976,17 +9976,17 @@ Kia dealer/service partner.
 
 OJAPE063015_2
 
-## [picanto-248] What to do in an emergency > Page 357
+## [picanto-248] Checking the tyre inflation pres-
 *pages 357 · catégorie : electricite_batterie*
 
 What to do in an emergency If you have a flat tyre (with tyre mobility kit) Checking the tyre inflation pressure 1. After driving approximately 7~10 km (4~6 miles or about 10 minutes), stop at a suitable location. 2. Connect the filling hose (3) of the compressor (clip mounted side) directly and then connect the filling hose (3) (opposite side) to the tyre valve. 3. Connect between compressor and the vehicle power outlet using the cable and connectors. 4. Adjust the tyre inflation pressure to 200 kPa (29 psi). With the ignition switched on, proceed as follows. 僅To increase the inflation pressure: Switch on the compressor, position I. To check the current inflation pressure setting, briefly switch off the compressor. Do not let the compressor run for more than 10 minutes, otherwise the device will overheat and may be damaged. 僅To reduce the inflation pressure: Press the button (9) on the compressor. If the inflation pressure is not maintained, drive the vehicle a second time, refer to Distributing the sealant. Then repeat steps 1 to 4. Use of the TMK may be ineffectual for tyre damage larger than approximately 4 mm (0.16 in). Contact a professional workshop if the tyre cannot be made roadworthy with the Tyre Mobility Kit. Kia recommends to visit an authorised Kia dealer/service partner. The tyre inflation pressure must be at least 200 kPa (29 psi). If it is not, do not continue driving. Call for road side service or towing. Notes on the safe use of the Tyre Mobility Kit 僅Park your car at the side of the road so that you can work with the TMK away from moving traffic. Place your warning triangle in a prominent place to make passing vehicles aware of your location. 僅To be sure your vehicle will not move, even when you're on fairly level ground, always set your parking brake. 僅Only use the TMK for sealing/inflation passenger car tyres. Do not use on motorcycles, bicycles or any other type of tyres. 僅Do not remove any foreign objectssuch as nails or screws -that have penetrated the tyre. 僅Before using the TMK, read the precautionary advice printed on the sealant bottle! 僅Provided the car is outdoors, leave the engine running. Otherwise operating the compressor may eventually drain the car battery.
 
-## [picanto-249] What to do in an emergency > Page 357 (part 2)
+## [picanto-249] Checking the tyre inflation pres- > Part 2
 *pages 357 · catégorie : electricite_batterie*
 
 僅Never leave the TMK unattended whilst it is being used. 僅Do not leave the compressor running for more than 10 min. at a time or it may overheat. 僅Do not use the TMK if the ambient temperature is below -30°C (-22°F).
 
-## [picanto-250] What to do in an emergency > Page 358
+## [picanto-250] What to do in an emergency
 *pages 358 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -9996,7 +9996,7 @@ If you have a flat tyre (with tyre mobility kit)
 僅When the tyre and wheel are damaged, do not use Tyre Mobility Kit for 
 your safety.
 
-## [picanto-251] What to do in an emergency > Page 359
+## [picanto-251] Technical Data
 *pages 359 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -10027,7 +10027,7 @@ Compressor weight
 Sealant volume
 200 ml (12.2 cu. in.)
 
-## [picanto-252] What to do in an emergency > Page 360
+## [picanto-252] Towing service
 *pages 360 · catégorie : remorquage*
 
 What to do in an emergency
@@ -10073,7 +10073,7 @@ lever in N (Neutral) may cause internal
 damage to the transmission.
 OJAPE063017_3
 
-## [picanto-253] What to do in an emergency > Page 361
+## [picanto-253] Removable towing hook (if
 *pages 361 · catégorie : remorquage*
 
 What to do in an emergency
@@ -10118,12 +10118,12 @@ the vehicle doing the towing.
 communicate with each other frequently.
 OJAPE063021_2
 
-## [picanto-254] What to do in an emergency > Page 362
+## [picanto-254] Emergency towing precautions
 *pages 362 · catégorie : remorquage*
 
 What to do in an emergency Towing 僅Attach a towing strap to the tow hook. 僅Using a portion of the vehicle other than the tow hooks for towing may damage the body of your vehicle. 僅Use only a cable or chain specifically intended for use in towing vehicles. Securely fasten the cable or chain to the towing hook provided. 僅Accelerate or decelerate the vehicle in a slow and gradual manner whilst maintaining tension on the tow rope or chain to start or drive the vehicle, otherwise tow hooks and the vehicle may be damaged. 僅Before emergency towing, check if the hook is not broken or damaged. 僅Fasten the towing cable or chain securely to the hook. 僅Do not jerk the hook. Apply it steadily and with even force. 僅To avoid damaging the hook, do not pull from the side or at a vertical angle. Always pull straight ahead. Use extreme caution when towing the vehicle. 僅Avoid sudden starts or erratic driving manoeuvres which would place excessive stress on the emergency towing hook and towing cable or chain. The hook and towing cable or chain may break and cause serious injury or damage. 僅If the disabled vehicle is unable to be moved, do not forcibly continue the towing. We recommend that you contact an authorised Kia dealer or a commercial tow truck service for assistance. 僅Tow the vehicle as straight ahead as possible. 僅Keep away from the vehicle during towing. 僅Use a towing strap less than 5 m (16 feet) long. Attach a white or red cloth (about 30 cm (12 inches) wide) in the middle of the strap for easy visibility. 僅Drive carefully so that the towing strap is not loosened during towing. 僅The driver must be in the vehicle for steering and braking operations when the vehicle is towed and passengers other than the driver must not be allowed to be on board. Emergency towing precautions 僅Turn the ignition switch to ACC so the steering wheel isn’t locked. 僅Place the transmission shift lever in N (Neutral). 僅Release the parking bake. 僅Press the brake pedal with more force than normal since you will have reduced brake performance. 僅More steering effort will be required because the power steering system will be disabled. 僅If you are driving down a long hill,the brakes may overheat and brake perOJAPE063024
 
-## [picanto-255] What to do in an emergency > Page 363
+## [picanto-255] Emergency Commodity (if
 *pages 363 · catégorie : remorquage*
 
 What to do in an emergency
@@ -10179,7 +10179,7 @@ Place the triangle reflector on the road
 to warn oncoming vehicles during emergencies, such as when the vehicle is 
 parked by the roadside due to any problems.
 
-## [picanto-256] What to do in an emergency > Page 9-5
+## [picanto-256] Tyre pressure gauge (if
 *pages 9-5 · catégorie : pneus_roues*
 
 What to do in an emergency
@@ -10230,7 +10230,7 @@ Once the data which stored in the ERAGLONASS system is delivered to the rescue c
 the data will be deleted after rescue 
 operation is completed.
 
-## [picanto-257] What to do in an emergency > Page 366
+## [picanto-257] Automatic accident reporting
 *pages 366 · catégorie : identification*
 
 What to do in an emergency
@@ -10271,17 +10271,17 @@ Driver or passenger manually can make
 an emergency call in the single duty dispatch service, by pressing SOS button to 
 call the necessary emergency services.
 
-## [picanto-258] What to do in an emergency > Page 7-32
+## [picanto-258] What to do in an emergency
 *pages 7-32 · catégorie : electricite_batterie*
 
 What to do in an emergency Emergency Commodity A call to the emergency services through the ERA-GLONASS system can be cancelled by pressing the SOS button again only before the call connection. After activation of emergency call in the manual mode (for proper emergency services and support), the ERA-GLONASS system automatically transmits the road accident data/or data on other accident to the officer of the single duty dispatch service (during emergency call) by pressing the SOS button. In case of road accident or other accident for activation of emergency call in manual mode it is necessary: 1. Stop a car, after which in accordance with traffic rules to ensure safety to yourself and other participants of road traffic; 2. Press the SOS button, when pressing the button SOS registration of the device in the wireless telephonic communication networks is carried out, minimum data set about car and its location is collected in accordance with of the technical requirements of the device. After that connection with the officer of the ERA-GLONASS system is made for clearing up reasons (conditions) of the emergency call. 3. After clearing up reasons of the emergency call, the officer of the single duty dispatch service sends minimum data set to emergency services and completes the emergency call. If the emergency call is not carried out in accordance with the procedure, mentioned above, the emergency call will be considered as erroneous. Emergency power supply of the system ERA-GLONASS from the battery 僅The ERA-GLONASS system battery supplies power during 1 hour in case main power source of the vehicle is cut off due to the collision during the emergency situations. 僅The ERA-GLONASS system battery should be replaced every 4 years. For more information refer to "ERAGLONASS emergency call (if equipped)" on page 7-32. LED illumination in red (system malfunction) If red LED illuminates in normal driving conditions, this can indicate malfunction of the ERA-GLONASS system. Please, have the ERA-GLONASS system checked at an authorised Kia dealer/service partner immediately. Otherwise correct operation of the ERA-GLONASS system device, installed in your car is not guaranteed. Owner of the car incurs liability for consequences, occurred as a result of nonobservance of conditions, mentioned above. Arbitrary Removal or Modification The ERA-GLONASS system calls emergency services for assistance. Thus, any arbitrary removal or
 
-## [picanto-259] What to do in an emergency > Page 7-32 (part 2)
+## [picanto-259] What to do in an emergency > Part 2
 *pages 7-32 · catégorie : electricite_batterie*
 
 changes to the ERA-GLONASS system settings may affect your driving safety. Also, it may even make an erroneous emergency call to the single duty dispatch service. Thereby, we kindly ask you not to make any changes by yourself or by the third parties in the settings of the equipment of the ERA-GLONASS system, installed in your car.
 
-## [picanto-260] 僅 Normal Maintenance Schedule - For petrol Engine [For Australia > Page 8-5
+## [picanto-260] Maintenance
 *pages 8-5 · catégorie : entretien*
 
 Maintenance
@@ -10317,7 +10317,7 @@ Brake/clutch fluid..............................................................
 Automatic transmission fluid.....................................................8-32
 僅 Checking the automatic transmission fluid level.............................8-32
 
-## [picanto-261] Kia Picanto owner manual > Page 8-33
+## [picanto-261] Kia Picanto owner manual
 *pages 8-33 · catégorie : electricite_batterie*
 
 8 Maintenance
@@ -10352,7 +10352,7 @@ Tyres and wheels ...............................................................
 僅 Tyre maintenance..........................................................................................8-47
 僅 Tyre sidewall labeling...................................................................................8-47
 
-## [picanto-262] Kia Picanto owner manual > Page 8-50
+## [picanto-262] Maintenance
 *pages 8-50 · catégorie : fusibles*
 
 Maintenance
@@ -10388,7 +10388,7 @@ Light bulbs.....................................................................
 Appearance care......................................................................... 8-78
 僅 Exterior care .................................................................................................... 8-78
 
-## [picanto-263] (Petrol) 1.0 MPI > Page 373
+## [picanto-263] Engine compartment
 *pages 373 · catégorie : fusibles*
 
 Maintenance
@@ -10407,7 +10407,7 @@ Engine compartment
 7. Positive battery terminal
 8. Engine oil dipstick
 
-## [picanto-264] 9. Radiator cap > Page 374
+## [picanto-264] Maintenance
 *pages 374 · catégorie : fusibles*
 
 Maintenance
@@ -10429,7 +10429,7 @@ Smartstream G1.2
 7. Positive battery terminal
 8. Engine oil dipstick
 
-## [picanto-265] 9. Radiator cap > Page 375
+## [picanto-265] Maintenance
 *pages 375 · catégorie : fusibles*
 
 Maintenance
@@ -10451,7 +10451,7 @@ Engine compartment
 11.Automatic transmission fluid dipstick
 12.Petrol reservoir
 
-## [picanto-266] You should exercise the utmost care to > Page 376
+## [picanto-266] Maintenance services
 *pages 376 · catégorie : entretien*
 
 Maintenance
@@ -10519,7 +10519,7 @@ working under the bonnet, make certain that you remove all jewelry (especially r
 necklaces) and all neckties, scarves, 
 and similar loose clothing before getting near the engine or cooling fans.
 
-## [picanto-267] 僅Do not put heavy objects or apply > Page 377
+## [picanto-267] Owner maintenance
 *pages 377 · catégorie : electricite_batterie*
 
 Maintenance
@@ -10575,7 +10575,7 @@ Scalding hot coolant and steam may
 blow out under pressure. This could 
 cause burns or other serious injury.
 
-## [picanto-268] Whilst operating your vehicle: > Page 378
+## [picanto-268] Whilst operating your vehicle:
 *pages 378 · catégorie : electricite_batterie*
 
 Maintenance
@@ -10642,7 +10642,7 @@ transmission linkage and controls.
 僅Clean the battery and terminals.
 僅Check the brake/clutch fluid level.
 
-## [picanto-269] Scheduled maintenance service > Page 379
+## [picanto-269] Scheduled maintenance ser-
 *pages 379 · catégorie : remorquage*
 
 Maintenance
@@ -10686,7 +10686,7 @@ using the severe usage maintenance
 schedule instead of the normal usage 
 maintenance schedule.
 
-## [picanto-270] Scheduled maintenance service > Page 380
+## [picanto-270] Normal Maintenance Schedule - For petrol Engine [For Australia and
 *pages 380 · catégorie : entretien*
 
 Maintenance
@@ -10738,7 +10738,7 @@ other items.
 Transmission fluid
 Transmission fluid should be changed anytime it has been submerged in water.
 
-## [picanto-271] Scheduled maintenance service > Page 381
+## [picanto-271] Normal Maintenance Schedule - Non Turbo Model [For Australia and
 *pages 381 · catégorie : electricite_batterie*
 
 Maintenance
@@ -10952,7 +10952,7 @@ I
 -
 I
 
-## [picanto-272] Scheduled maintenance service > Page 382
+## [picanto-272] Maintenance Under Severe Usage Conditions - Non Turbo Model [For
 *pages 382 · catégorie : entretien*
 
 Maintenance
@@ -11021,7 +11021,7 @@ Suspension ball joints
 More frequently
 C, D, E, G, H, I
 
-## [picanto-273] Scheduled maintenance service > Page 383
+## [picanto-273] Severe driving conditions
 *pages 383 · catégorie : remorquage*
 
 Maintenance
@@ -11041,7 +11041,7 @@ K : Frequently driving in stop-and-go conditions.
 L : Engine oil usage which is not recommended (Mineral type, Semi-synthetic, Lower 
 grade spec, etc.)
 
-## [picanto-274] Scheduled maintenance service > Page 384
+## [picanto-274] Normal Maintenance Schedule - For Europe (Except Russia)
 *pages 384 · catégorie : entretien*
 
 Maintenance
@@ -11088,17 +11088,17 @@ other items.
 Transmission fluid
 Transmission fluid should be changed anytime it has been submerged in water.
 
-## [picanto-275] Scheduled maintenance service > Page 385
+## [picanto-275] Maintenance
 *pages 385 · catégorie : electricite_batterie*
 
 Maintenance Scheduled maintenance service I : Inspect and if necessary, adjust, correct, clean or replace. R : Replace or change. 僅Fuel filter (petrol): The fuel filter is normally maintenance free but periodic inspection is recommended during scheduled maintenance schedule to look for conditions caused by poor fuel quality. - If there safety risks such as fuel flow restriction, surging, loss of power, hard starting problem etc, replace the fuel filter immediately regardless of maintenance schedule and consult an authorized Kia dealer/service partner for details. Number of months or driving distance, whichever comes first Months Miles×1,000 Km×1,000 Engine oil and engine oil filter *1 Smartstream G1.0 R R R R R R R R Smartstream G1.2 Coolant (Engine) *2 At first, replace 180,000 km (120,000 miles) or 120 months After that, replace every 30,000 km (20,000 miles) or 24 months Drive belts (Engine) *3 Smartstream G1.0 At first, inspect 90,000 km (60,000 miles) or 72 months After that, inspect every 30,000 km (20,000 miles) or 24 months Smartstream G1.2 Vacuum hoses and crankcase ventilation hoses - I - I - I - I Spark plugs*4 Smartstream G1.0 Replace every 150,000 km (100,000 miles) Smartstream G1.2 Replace every 150,000 km (100,000 miles) Manual transmission (MT) fluid * No check, No service required Automated manual transmission (AMT) fluid* Drive shaft and boots - I - I - I - I Fuel lines, hoses and connections - - - I - - - I Vapour hose and fuel filler cap - - - I - - - I Air cleaner filter - I - R - I - R Exhaust system I I I I I I I I Cooling system I I I I I I I I Air conditioner compressor/refrigerant I I I I I I I I Climate control air filter I R I R I R I R Brake discs and pads I I I I I I I I Brake drums and linings - I - I - I - I Brake lines, hoses and connections I I I I I I I I Brake/clutch fluid | R | R | R I R Parking brake - I - I - I - I Steering gear rack, linkage and boots I I I I I I I I Suspension
 
-## [picanto-276] Scheduled maintenance service > Page 385 (part 2)
+## [picanto-276] Maintenance > Part 2
 *pages 385 · catégorie : electricite_batterie*
 
 ball joints I I I I I I I I Tyre (pressure & tread wear) I I I I I I I I Battery (12V) condition I I I I I I I I
 
-## [picanto-277] Scheduled maintenance service > Page 386
+## [picanto-277] Maintenance Under Severe Usage Conditions - For Europe (Except
 *pages 386 · catégorie : remorquage*
 
 Maintenance
@@ -11183,7 +11183,7 @@ I
 More frequently
 C, D, E, G, H, I
 
-## [picanto-278] Scheduled maintenance service > Page 387
+## [picanto-278] Normal Maintenance Schedule - Except Europe (Including Russia)
 *pages 387 · catégorie : entretien*
 
 Maintenance
@@ -11239,7 +11239,7 @@ authorised Kia dealer/service partner.
 Transmission fluid
 Transmission fluid should be changed anytime it has been submerged in water.
 
-## [picanto-279] Scheduled maintenance service > Page 388
+## [picanto-279] Maintenance
 *pages 388 · catégorie : entretien*
 
 Maintenance
@@ -11402,7 +11402,7 @@ I
 -
 R
 
-## [picanto-280] Scheduled maintenance service > Page 389
+## [picanto-280] Maintenance
 *pages 389 · catégorie : electricite_batterie*
 
 Maintenance
@@ -11623,7 +11623,7 @@ Miles×1,000
 
 Km×1,000
 
-## [picanto-281] Scheduled maintenance service > Page 390
+## [picanto-281] Maintenance Under Severe Usage Conditions - Except Europe (Includ-
 *pages 390 · catégorie : entretien*
 
 Maintenance
@@ -11747,7 +11747,7 @@ Every 7,500 km (5,000
 miles) or 6 months
 A, K
 
-## [picanto-282] Scheduled maintenance service > Page 391
+## [picanto-282] Severe driving conditions
 *pages 391 · catégorie : remorquage*
 
 Maintenance
@@ -11767,7 +11767,7 @@ K : Frequently driving in stop-and-go conditions.
 L : Engine oil usage which is not recommended (Mineral type, Semi-synthetic, Lower 
 grade spec, etc.)
 
-## [picanto-283] Explanation of scheduled maintenance items > Page 392
+## [picanto-283] Explanation of scheduled
 *pages 392 · catégorie : entretien*
 
 Maintenance
@@ -11834,7 +11834,7 @@ and that no leaks are present. Hoses
 should be replaced immediately if there 
 is any evidence of deterioration or damage.
 
-## [picanto-284] Explanation of scheduled maintenance items > Page 9-9
+## [picanto-284] Air cleaner filter
 *pages 9-9 · catégorie : entretien*
 
 Maintenance
@@ -11900,7 +11900,7 @@ chafing, cracks, deterioration and any
 leakage. Replace any deteriorated or 
 damaged parts immediately
 
-## [picanto-285] Explanation of scheduled maintenance items > Page 394
+## [picanto-285] Brake/Clutch fluid (if equipped)
 *pages 394 · catégorie : pneus_roues*
 
 Maintenance
@@ -11944,7 +11944,7 @@ Air conditioning refrigerant (if
 equipped)
 Check the air conditioning lines and connections for leakage and damage.
 
-## [picanto-286] Checking the engine oil level > Page 395
+## [picanto-286] Engine oil
 *pages 395 · catégorie : entretien*
 
 Maintenance
@@ -11991,7 +11991,7 @@ damage.
 (Petrol) 1.0 MPI, 1.0 FFV
 (Petrol) 1.2 MPI
 
-## [picanto-287] Smartstream G1.0/Smartstream G1.2 > Page 9-9
+## [picanto-287] Changing the engine oil and filter
 *pages 9-9 · catégorie : entretien*
 
 Maintenance
@@ -12057,7 +12057,7 @@ oil. Engine oil additives can change the
 properties of engine oil and may cause 
 serious engine failure.
 
-## [picanto-288] Engine coolant ((Petrol) 1.0 MPI/1.0 FFV/1.2 MPI, smartstream > Page 397
+## [picanto-288] Engine coolant ((Petrol) 1.0
 *pages 397 · catégorie : entretien*
 
 Maintenance
@@ -12112,7 +12112,7 @@ the cooling fan so that you are not
 injured by a rotating fan blades. As the 
 engine coolant temperature decreases,
 
-## [picanto-289] Checking the coolant level > Page 398
+## [picanto-289] Recommended engine coolant
 *pages 398 · catégorie : entretien*
 
 Maintenance
@@ -12177,7 +12177,7 @@ Water
 
 -45°C (-49°F)
 
-## [picanto-290] Changing the coolant > Page 9-9
+## [picanto-290] Changing the coolant
 *pages 9-9 · catégorie : entretien*
 
 Maintenance
@@ -12226,7 +12226,7 @@ Use only the specified brake fluid. (Refer
 to "Recommended lubricants and capacities" on page 9-9.)
 Never mix different types of fluid.
 
-## [picanto-291] Automatic transmission fluid > Page 400
+## [picanto-291] Automatic transmission fluid
 *pages 400 · catégorie : entretien*
 
 Maintenance
@@ -12296,7 +12296,7 @@ P(Park) position.
 "HOT" range on the level gauge. If the 
 fluid level is lower, add the specified
 
-## [picanto-292] Automatic transmission fluid > Page 9-9
+## [picanto-292] Changing the automatic trans-
 *pages 9-9 · catégorie : entretien*
 
 Maintenance
@@ -12352,7 +12352,7 @@ according to the maintenance schedule.
 Kia recommends to visit an authorised 
 Kia dealer/service partner.
 
-## [picanto-293] Checking the washer fluid level > Page 402
+## [picanto-293] Washer fluid
 *pages 402 · catégorie : entretien*
 
 Maintenance
@@ -12391,7 +12391,7 @@ and avoid contacting windscreen
 washer fluid. Serious injury or death 
 could occur.
 
-## [picanto-294] Checking the parking brake > Page 8-11
+## [picanto-294] Parking brake
 *pages 8-11 · catégorie : entretien*
 
 Maintenance
@@ -12429,7 +12429,7 @@ usual recommended intervals. (Refer to
 "Scheduled maintenance service" on 
 page 8-11.)
 
-## [picanto-295] Air cleaner (Smartstream G1.0/G1.2) > Page 8-11
+## [picanto-295] Air cleaner (Smartstream
 *pages 8-11 · catégorie : entretien*
 
 Maintenance
@@ -12465,7 +12465,7 @@ If the vehicle is operated in extremely
 dusty or sandy areas, replace the element more often than the usual recommended intervals. (Refer to "Scheduled 
 maintenance service" on page 8-11.)
 
-## [picanto-296] Climate control air filter > Page 405
+## [picanto-296] Climate control air filter
 *pages 405 · catégorie : entretien*
 
 Maintenance
@@ -12500,7 +12500,7 @@ right side of the cover.
 4. Reassemble in the reverse order of 
 disassembly.
 
-## [picanto-297] For best battery service > Page 408
+## [picanto-297] For best battery service
 *pages 408 · catégorie : electricite_batterie*
 
 Maintenance
@@ -12561,7 +12561,7 @@ An inappropriately disposed battery can be harmful to the environment and human 
 Dispose the battery according to your 
 local law(s) or regulation.
 
-## [picanto-298] The battery contains lead. Do not > Page 409
+## [picanto-298] Battery capacity label
 *pages 409 · catégorie : electricite_batterie*
 
 Maintenance
@@ -12623,7 +12623,7 @@ the vehicle is being used, recharge
 OUM074113L it at 20-30A for two 
 hours.
 
-## [picanto-299] When recharging the battery, observe > Page 410
+## [picanto-299] Reset items
 *pages 410 · catégorie : electricite_batterie*
 
 Maintenance
@@ -12680,7 +12680,7 @@ been disconnected.
 僅Climate control system
 僅Audio
 
-## [picanto-300] Tyres and wheels > Page 9-5
+## [picanto-300] Tyres and wheels
 *pages 9-5 · catégorie : pneus_roues*
 
 Maintenance
@@ -12743,17 +12743,17 @@ reduce tyre life, adversely affect vehicle
 handling, and lead to sudden tyre failure. This could result in loss of vehicle 
 control and potential injury.
 
-## [picanto-301] Tyres and wheels > Page 412
+## [picanto-301] Checking tyre inflation pressure
 *pages 412 · catégorie : pneus_roues*
 
 Maintenance Tyres and wheels Tyre pressure Always observe the following: 僅Check tyre pressure when the tyres are cold. (After vehicle has been parked for at least three hours or hasn't been driven more than 1.6 km (1 mile) since startup.) 僅Check the pressure of your spare tyre each time you check the pressure of other tyres. 僅Never overload your vehicle. Be careful not to overload a vehicle luggage rack if your vehicle is equipped with one. 僅Worn, old tyres can cause accidents. If your tread is badly worn, or if your tyres have been damaged, replace them. Checking tyre inflation pressure Check your tyres once a month or more. Also, check the tyre pressure of the spare tyre. How to check Use a good quality gauge to check tyre pressure. You can not tell if your tyres are properly inflated simply by looking at them. Radial tyres may look properly inflated even when they're underinflated. Check the tyre's inflation pressure when the tyres are cold. - "Cold" means your vehicle has been sitting for at least three hours or driven no WARNING more than 1.6 km (1 mile). Remove the valve cap from the tyre valve stem. Press the tyre gauge firmly onto the valve to get a pressure measurement. If the cold tyre inflation pressure matches the recommended pressure on the tyre and loading information label, no further adjustment is necessary. If the pressure is low, add air until you reach the recommended amount. If you overfill the tyre, release air by pushing on the metal stem in the centre of the tyre valve. Recheck the tyre pressure with the tyre gauge. Be sure to put the valve caps back on the valve stems. They help prevent leaks by keeping out dirt and moisture. 僅Inspect your tyres frequently for proper inflation as well as wear and damage. Always use a tyre pressure gauge. 僅Tyres with too much or too little pressure wear unevenly causing poor handling, loss of vehicle control, and sudden tyre failure leading to accidents, injuries, and even death. The recommended cold tyre pressure for your vehicle can be found in this manual and on the tyre label located on the driver's side centre pillar. 僅Worn tyres can cause accidents. Replace tyres that are worn, show uneven
 
-## [picanto-302] Tyres and wheels > Page 412 (part 2)
+## [picanto-302] Checking tyre inflation pressure > Part 2
 *pages 412 · catégorie : pneus_roues*
 
 wear, or are damaged. 僅Remember to check the pressure of your spare tyre. Kia recommends that you check the spare every time you check the pressure of the other tyres on your vehicle. Tyre rotation To equalize tread wear, it is recommended that the tyres be rotated every 10,000 km (6,500 miles) or sooner if irregular wear develops.
 
-## [picanto-303] Tyres and wheels > Page 9-5
+## [picanto-303] Wheel alignment and tyre bal-
 *pages 9-5 · catégorie : pneus_roues*
 
 Maintenance
@@ -12812,17 +12812,17 @@ Do not wait for the band to appear
 across the entire tread before replacing 
 the tyre.
 
-## [picanto-304] Tyres and wheels > Page 414
+## [picanto-304] Compact spare tyre replacement
 *pages 414 · catégorie : pneus_roues*
 
 Maintenance Tyres and wheels We recommend that when replacing tyres, use the same originally supplied with the vehicles. If not, that affects driving performance. When replacing the tyres, recheck and tighten the wheel nuts after driving about 50 km (31 miles) and recheck after driving about 1,000 km (620 miles). If the steering wheel shakes or the vehicle vibrates whilst driving, the tyre is out of balance. Align the tyre balance. If the problem is not solved, contact a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. Replacing tyres To reduce the chance of serious or fatal injuries from an accident caused by tyre failure or loss of vehicle control: 僅Replace tyres that are worn, show uneven wear, or are damaged. Worn tyres can cause loss of braking effectiveness, steering control, and traction. 僅Do not drive your vehicle with too little or too much pressure in your tyres. This can lead to uneven wear and tyre failure. 僅When replacing tyres, never mix radial and bias-ply tyres on the same car. You must replace all tyres (including the spare) if moving from radial to bias-ply tyres. 僅It is best to replace all four tyres at the same time. If that is not possible, or necessary, then replace the two front or two rear tyres as a pair. Replacing just one tyre can seriously affect your vehicle's handling. 僅Using tyres and wheels other than the recommended sizes could cause unusual handling characteristics and poor vehicle control, resulting in a serious accident. 僅Wheels that do not meet Kia’s specifications may fit poorly and result in damage to the vehicle or unusual handling and poor vehicle control. 僅The ABS works by comparing the speed of the wheels. The tyre size affects wheel speed. When replacing tyres, all 4 tyres must use the same size originally supplied with the vehicle. Using tyres of a different size can cause the ABS (Anti-lock Brake System) and ESC (Electronic Stability Control) to work irregularly. Compact spare tyre replacement (if equipped) A compact spare tyre has a shorter tread life than a regular size tyre. Replace it when you can see the tread wear indicator bars on the tyre. The replacement compact spare tyre should be the same size and design tyre as the one provided
 
-## [picanto-305] Tyres and wheels > Page 414 (part 2)
+## [picanto-305] Compact spare tyre replacement > Part 2
 *pages 414 · catégorie : pneus_roues*
 
 with your new vehicle and should be mounted on the same compact spare tyre wheel. The compact spare tyre is not designed to be mounted on a regular size wheel, and the compact spare
 
-## [picanto-306] Tyres and wheels > Page 415
+## [picanto-306] Wheel replacement
 *pages 415 · catégorie : pneus_roues*
 
 Maintenance
@@ -12894,27 +12894,27 @@ Wheel size designation
 Wheels are also marked with important 
 information that you need if you ever
 
-## [picanto-307] Tyres and wheels > Page 416
+## [picanto-307] Example wheel size designation:
 *pages 416 · catégorie : pneus_roues*
 
 Maintenance Tyres and wheels have to replace one. The following explains what the letters and numbers in the wheel size designation mean. Example wheel size designation: 7.5JX19 7.5 - Rim width in inches. J - Rim contour designation. 19 - Rim diameter in inches. Tyre speed ratings The chart below lists many of the different speed ratings currently being used for passenger car tyres. The speed rating is part of the tyre size designation on the sidewall of the tyre. This symbol corresponds to that tyre's designed maximum safe operating speed. 3. Checking tyre life (TIN : Tyre Identification Number) Any tyres that are over 6 years old, based on the manufacturing date, (including the spare tyre) should bereplaced by new ones. You can find the manufacturing date on the tyre sidewall (possibly on the inside of the wheel), displaying the DOT Code. The DOT Code is a series of numbers on a tyre consisting of numbers and English letters. The manufacturing date is designated by the last four digits (characters) of the DOT code. DOT : XXXX XXXX OOOO The front part of the DOT means a plant code number, tyre size and tread pattern and the last four numbers indicate week and year manufactured. For example: DOT XXXX XXXX 1624 represents that the tyre was produced in the 16th week of 2024. Tyre age Tyres degrade over time, even when they are not being used. Regardless of the remaining tread, we recommend that tyres be replaced after approximately six (6) years of normal service. Heat caused by hot climates or frequent high loading conditions can accelerate the aging process. Failure to follow this warning can result in sudden tyre failure, which could lead to a loss of control and an accident involving serious injury or death. 4. Tyre ply composition and material The number of layers or plies of rubbercoated fabric in the tyre. Tyre manufacturers also must indicate the materials in the tyre, which include steel, nylon, polyester, and others. The letter "R" means radial ply construction; the letter "D" means diagonal or bias ply construction; and the letter "B" means belted-bias ply construction. Speed Rating Symbol Maximum Speed S 180 km/h (112 mph) T 190 km/h (118 mph) H 210 km/h (130 mph) V 240 km/h
 
-## [picanto-308] Tyres and wheels > Page 416 (part 2)
+## [picanto-308] Example wheel size designation: > Part 2
 *pages 416 · catégorie : pneus_roues*
 
 (149 mph) W 270 km/h (168 mph) Y 300 km/h (186 mph)
 
-## [picanto-309] Tyres and wheels > Page 417
+## [picanto-309] 5. Maximum permissible inflation
 *pages 417 · catégorie : pneus_roues*
 
 Maintenance Tyres and wheels 5. Maximum permissible inflation pressure This number is the greatest amount of air pressure that should be put in the tyre. Do not exceed the maximum permissible inflation pressure. Refer to the Tyre and Loading Information label for recommended inflation pressure. 6. Maximum load rating This number indicates the maximum load in kilograms and pounds that can be carried by the tyre. When replacing the tyres on the vehicle, always use a tyre that has the same load rating as the factory installed tyre. 7. Uniform tyre quality grading Quality grades can be found where applicable on the tyre sidewall between tread shoulder and maximum section width. For example: TREADWEAR 200 TRACTION AA TEMPERATURE A Tread wear The tread wear grade is a comparative rating based on the wear rate of the tyre when tested under controlled conditions on a specified government test course. For example, a tyre graded 150 would wear one-and-ahalf times (1½) as well on the government course as a tyre graded 100. The relative performance of tyres depends upon the actual conditions of their use, however, and may depart significantly from the norm due to variations in driving habits, service practices and differences in road characteristics and climate. These grades are molded on the sidewalls of passenger vehicle tyres. The tyres available as standard or optional equipment on your vehicle may vary with respect to grade. Traction - AA, A, B & C The traction grades, from highest to lowest, are AA, A, B and C. Those grades represent the tyre’s ability to stop on wet pavement as measured under controlled conditions on specified government test surfaces of asphalt and concrete. A tyre marked C may have poor traction performance. Temperature -A, B & C The temperature grades are A (the highest), B, and C, representing the tyre’s resistance to the generation of heat and its ability to dissipate heat when tested under controlled conditions on a specified indoor laboratory test wheel. Sustained high temperature can cause the material of the tyre to degenerate and reduce tyre life, and excessive temperature can lead to sudden tyre failure. Grades B and A represent higher levels of performance on the laboratory test wheel than the minimum required by law. The traction grade assigned to
 
-## [picanto-310] Tyres and wheels > Page 417 (part 2)
+## [picanto-310] 5. Maximum permissible inflation > Part 2
 *pages 417 · catégorie : pneus_roues*
 
 this tyre is based on straightahead braking traction tests, and does not include acceleration, cornering, hydroplaning, or peak traction characteristics.
 
-## [picanto-311] Tyres and wheels > Page 418
+## [picanto-311] Low aspect ratio tyre (if
 *pages 418 · catégorie : pneus_roues*
 
 Maintenance
@@ -12975,7 +12975,7 @@ rough road, off road, pothole, manhole, or kerb stone, it will not be covered by
 僅You can find out the tyre information 
 on the tyre sidewall.
 
-## [picanto-312] * Left side : Normal Right side : Blown > Page 419
+## [picanto-312] Maintenance
 *pages 419 · catégorie : fusibles*
 
 Maintenance
@@ -13032,7 +13032,7 @@ the system.
 OSG2H071051_2
 OSG2H071052_2
 
-## [picanto-313] 僅When replacing fuse, turn the ignition > Page 420
+## [picanto-313] Maintenance
 *pages 420 · catégorie : fusibles*
 
 Maintenance
@@ -13098,7 +13098,7 @@ etc.). It might cause malfunction of the
 vehicle, wiring damage, battery discharge, connector damage, or fire. the 
 vehicle or cause fire.
 
-## [picanto-314] Window tinting precaution > Page 8-40
+## [picanto-314] Inner panel fuse replacement
 *pages 8-40 · catégorie : fusibles*
 
 Maintenance
@@ -13160,7 +13160,7 @@ reset after replacement. Refer to "Battery" on page 8-40.
 僅Even when the memory fuse is pulled 
 up, the battery can still be discharged
 
-## [picanto-315] by operation of the headlights or > Page 422
+## [picanto-315] Engine compartment fuse
 *pages 422 · catégorie : fusibles*
 
 Maintenance
@@ -13208,7 +13208,7 @@ blown, consult a professional workshop.
 Kia recommends to consult an 
 authorised Kia dealer/service partner.
 
-## [picanto-316] Fuse/relay panel description > Page 423
+## [picanto-316] Fuse/relay panel description
 *pages 423 · catégorie : fusibles*
 
 Maintenance
@@ -13225,7 +13225,7 @@ manual may be applicable to your vehicle. It is accurate at the time of printing
 When you inspect the fuse panel in your 
 vehicle, refer to the fuse panel label.
 
-## [picanto-317] Driver’s side fuse panel > Page 424
+## [picanto-317] Driver’s side fuse panel
 *pages 424 · catégorie : fusibles*
 
 Maintenance
@@ -13257,7 +13257,7 @@ BCM (Body Control Module), Hazard Switch
 20A
 Cigarette Lighter
 
-## [picanto-318] Power Window Main Switch, Passenger Power Window Switch > Page 425
+## [picanto-318] Maintenance
 *pages 425 · catégorie : fusibles*
 
 Maintenance
@@ -13323,7 +13323,7 @@ Symbol
 Fuse rating
 Circuit Protected
 
-## [picanto-319] BCM (Body Control Module)/SLM(Seat Belt & Lighting Module), Smart Key Control Module > Page 426
+## [picanto-319] Maintenance
 *pages 426 · catégorie : fusibles*
 
 Maintenance
@@ -13367,7 +13367,7 @@ Symbol
 Fuse rating
 Circuit Protected
 
-## [picanto-320] Engine compartment fuse panel > Page 427
+## [picanto-320] Engine compartment fuse panel
 *pages 427 · catégorie : fusibles*
 
 Maintenance
@@ -13398,7 +13398,7 @@ Instrument Panel Junction Block (Power Outlet Relay)
 30A
 [Smartstream G1.0, G1.2] Main Relay (FUSE - ECU2, ECU3)
 
-## [picanto-321] Instrument Panel Junction Block (Rear Defogger Relay) > Page 428
+## [picanto-321] Maintenance
 *pages 428 · catégorie : fusibles*
 
 Maintenance
@@ -13466,7 +13466,7 @@ Symbol
 Fuse rating
 Circuit Protected
 
-## [picanto-322] Relay [(Petrol) 1.0 MPI, 1.2 MPI], [Smartstream G1.0, G1.2] > Page 429
+## [picanto-322] Relay [(Petrol) 1.0 MPI, 1.2 MPI], [Smartstream G1.0, G1.2]
 *pages 429 · catégorie : fusibles*
 
 Maintenance
@@ -13530,7 +13530,7 @@ Panel Junction Block Fuse(Door Lock, Hazard)
 40A
 Instrument Panel Junction Block (Power Outlet Relay)
 
-## [picanto-323] Instrument Panel Junction Block (Rear Defogger Relay) > Page 430
+## [picanto-323] Maintenance
 *pages 430 · catégorie : fusibles*
 
 Maintenance
@@ -13593,7 +13593,7 @@ Symbol
 Fuse rating
 Circuit Protected
 
-## [picanto-324] Relay [(Petrol) 1.0 FFV] > Page 9-4
+## [picanto-324] Relay [(Petrol) 1.0 FFV]
 *pages 9-4 · catégorie : electricite_batterie*
 
 Maintenance
@@ -13657,17 +13657,17 @@ MICRO
 Fuel Pump Relay
 MICRO
 
-## [picanto-325] In many cases, it is difficult to replace > Page 432
+## [picanto-325] Maintenance
 *pages 432 · catégorie : fusibles*
 
 Maintenance Light bulbs In many cases, it is difficult to replace vehicle light bulbs because other parts of the vehicle must be removed before you can get to the bulb.This is especially true if you have to remove the headlight assembly to get to the bulb(s). Removing/ installing the headlight assembly can result in damage to the vehicle. 僅If unauthentic parts or substandard lights are used when changing lights, it may lead to fuse disconnection and malfunction, and other wiring damages. 僅Do not install extra lamps or LED to the vehicle. If supplementary lights are installed, it may lead to lamp malfunction and flickering of the lights. In addition, the fuse box and other writing may be damaged. 僅Lamp part malfunction due to network failure The headlamp, taillight, and fog light may lit up when the head lamp switch is turned ON, and not light up when the taillight or for light switch is turned ON. This may be cause by network failure or vehicle electrical control system malfunction. If there is a problem, have the system serviced by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. 僅Lamp part malfunction due to electrical control system stabilization A normally functioning lamp may flicker momentarily. This momentary occurrence is due to stabilization unction of the vehicle's electrical on control system. If the lamp soon returns to normal, the vehicle does not require service. However, if the lamp goes out after he momentary flickering, or the flickering continues, have the system serviced by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner. 僅If the light bulb or lamp connector is removed from an operating lamp activated by electricity, the fuse box’s electronic device may scan it as a malfunction. Therefore, a lamp malfunction history may be recorded in Diagnostic Trouble Code (DTC) in the fuse box. 僅It is normal for an operating lamp may blink temporarily. Since this occurrence is due stabilization function of the vehicle’s electronic control device, if the lamp lights up normally after temporary blinking, there is no problem in the vehicle. However, if the lamp continues to blink several times or turn off completely, there may be an error in the vehicle’s electronic control device. In this case, have the vehicle checked
 
-## [picanto-326] In many cases, it is difficult to replace > Page 432 (part 2)
+## [picanto-326] Maintenance > Part 2
 *pages 432 · catégorie : fusibles*
 
 by a professional workshop immediately. Kia recommends to visit an authorised Kia dealer/service partner. After an accident or after the headlight assembly is reinstalled, have the headlight aiming adjusted by a professional workshop. Kia recommends to visit an authorised Kia dealer/service partner.
 
-## [picanto-327] You can find moisture inside the lens of > Page 433
+## [picanto-327] Light bulb position (Front)
 *pages 433 · catégorie : identification*
 
 Maintenance
@@ -13706,7 +13706,7 @@ Light bulb position (Rear)
 Rear combination lamp – Type A
 Rear combination lamp – Type B
 
-## [picanto-328] 6. Disconnect the rear combination lamp > Page 436
+## [picanto-328] Tail lamp (Bulb type) bulb
 *pages 436 · catégorie : aides_conduite*
 
 Maintenance
@@ -13752,7 +13752,7 @@ with the slots on the assembly.
 pressing it in and rotating it counterclockwise until the tabs on the bulb 
 align with the slots in the socket.
 
-## [picanto-329] 9. Insert a new bulb by inserting it into > Page 437
+## [picanto-329] Back up lamp (Bulb type) bulb
 *pages 437 · catégorie : aides_conduite*
 
 Maintenance
@@ -13809,7 +13809,7 @@ ignition to "OFF".
 3. Remove the lens by pulling it forward 
 from the vehicle.
 
-## [picanto-330] 4. Disconnect the bulb connector. > Page 438
+## [picanto-330] Map lamp (Bulb type) bulb
 *pages 438 · catégorie : identification*
 
 Maintenance
@@ -13864,7 +13864,7 @@ or receiving an electric shock.
 Be careful not to dirty or damage the 
 lens, lens tab, and plastic housings.
 
-## [picanto-331] Vanity mirror lamp (LED type) > Page 439
+## [picanto-331] Vanity mirror lamp (LED type)
 *pages 439 · catégorie : pneus_roues*
 
 Maintenance
@@ -13909,7 +13909,7 @@ and tools.
 2. The vehicle should be placed on a flat 
 floor.
 
-## [picanto-332] 3. Draw vertical lines (Vertical lines passing through respective head lamp > Page 440
+## [picanto-332] Maintenance
 *pages 440 · catégorie : electricite_batterie*
 
 Maintenance
@@ -13929,17 +13929,17 @@ counterclockwise. To aim the low and
 high beams up or down, turn the 
 driver (2) clockwise or counterclockwise.
 
-## [picanto-333] If you park the vehicle around a stainless > Page 446
+## [picanto-333] Appearance care
 *pages 446 · catégorie : identification*
 
 Maintenance Appearance care Appearance care Exterior care If you park the vehicle around a stainless signboard or windscreen building etc., the plastic exterior trim (bumper, spoiler, garnish, lamp, outside mirror etc.) may be damaged by reflected sunlight from the external structure. To avoid damaging the plastic exterior trim, park the vehicle away from the areas where the reflected light may occur or use a vehicle cover (Depending on the vehicle, the type of exterior trim applied such as spoiler may differ). Exterior general caution It is very important to follow the label directions when using any chemical cleaner or polish. Read all warning and caution statements that appear on the label. Finish maintenance Washing To help protect your vehicle’s finish from rust and deterioration, wash it thoroughly and frequently at least once a month with lukewarm or cold water. If you use your vehicle for off-road driving, you should wash it after each offroad trip. Pay special attention to the removal of any accumulation of salt, dirt, mud, and other foreign materials. Make sure the drain holes in the lower edges of the doors and rocker panels are kept clear and clean. Insects, tar, tree sap, bird droppings, industrial pollution and similar deposits can damage your vehicle’s finish if not removed immediately. 僅Do not use strong soap, chemical detergents or hot water, and do not wash the vehicle in direct sunlight or when the body of the vehicle is warm. 僅Be careful when washing the side windows of your vehicle. Especially, with high-pressure water, water may leak through the windows and wet the interior. 僅To prevent damage to the plastic parts and lamps, do not clean with chemical solvents or strong detergents. Wet brakes After washing the vehicle, test the brakes whilst driving slowly to see if they have been affected by water. If braking performance is impaired, dry the brakes by applying them lightly whilst maintaining a slow forward speed. High-pressure washing 僅When using high-pressure washers, make sure to maintain sufficient distance from the vehicle. Insufficient clearance or excessive pressure can lead to component damage or water penetration. 僅Do not spray the camera, sensors or its surrounding area directly with a high pressure washer. Shock applied from high pressure water may cause the device to not operate normally. 僅Do
 
-## [picanto-334] If you park the vehicle around a stainless > Page 446 (part 2)
+## [picanto-334] Appearance care > Part 2
 *pages 446 · catégorie : identification*
 
 not bring the nozzle tip close to boots (rubber or plastic covers) or connectors as they may be damaged
 
-## [picanto-335] if they come into contact with high > Page 447
+## [picanto-335] Finish damage repair
 *pages 447 · catégorie : entretien*
 
 Maintenance
@@ -14001,52 +14001,52 @@ with a heavier coating of wax or preservative. If necessary, coat the parts
 with non-corrosive petroleum jelly or 
 other protective compound.
 
-## [picanto-336] Corrosive materials used for ice and > Page 448
+## [picanto-336] Underbody maintenance
 *pages 448 · catégorie : pneus_roues*
 
 Maintenance Appearance care Underbody maintenance Corrosive materials used for ice and snow removal and dust control may collect on the underbody. If these materials are not removed, accelerated rusting can occur on underbody parts such as the fuel lines, frame, floor pan and exhaust system, even though they have been treated with rust protection. Thoroughly flush the vehicle underbody and wheel openings with lukewarm or cold water once a month, after off-road driving and at the end of each winter. Pay special attention to these areas because it is difficult to see all the mud and dirt. It will do more harm than good to wet down the road grime without removing it. The lower edges of the doors, rocker panels, and frame members have drain holes that should not clog with dirt; trapped water in these areas can cause rusting. After washing the vehicle, test the brakes whilst driving slowly to see if they have been affected by water. If braking performance is impaired, dry the brakes by applying them lightly whilst maintaining a slow forward speed. Aluminium wheel maintenance The aluminium wheels are coated with a clear protective finish. 僅Do not use any abrasive cleaner, polishing compound, solvent, or wire brushes on aluminium wheels. They may scratch or damage the finish. 僅Clean the wheel when it has cooled. 僅Use only a mild soap or neutral detergent, and rinse thoroughly with water. Also, be sure to clean the wheels after driving on salted roads.This helps prevent corrosion. 僅Avoid washing the wheels with highspeed car wash brushes. 僅Do not use any alkaline or acid detergent. It may damage and corrode the aluminium wheels coated with a clear protective finish. Corrosion protection Protecting your vehicle from corrosion By using the most advanced design and construction practices to combat corrosion, we produce vehicles of the highest quality. However, this is only part of the job. To achieve the longterm corrosion resistance your vehicle can deliver, the owner's cooperation and assistance is also required. Common causes of corrosion The most common causes of corrosion on your vehicle are: 僅Road salt, dirt and moisture that is allowed to accumulate underneath the vehicle. 僅Removal of paint or protective coatings by stones, gravel, abrasion or minor scrapes and dents which leave unprotected metal exposed to corrosion.
 
-## [picanto-337] Corrosive materials used for ice and > Page 448 (part 2)
+## [picanto-337] Underbody maintenance > Part 2
 *pages 448 · catégorie : pneus_roues*
 
 High-corrosion areas If you live in an area where your vehicle is regularly exposed to corrosive materials, corrosion protection is particularly important. Some of the common causes of accelerated corrosion are road salts, dust control chemicals, ocean air and industrial pollution.
 
-## [picanto-338] Moisture breeds corrosion > Page 449
+## [picanto-338] Moisture breeds corrosion
 *pages 449 · catégorie : identification*
 
 Maintenance Appearance care Moisture breeds corrosion Moisture creates the conditions in which corrosion is most likely to occur. For example, corrosion is accelerated by high humidity, particularly when temperatures are just above freezing. In such conditions, the corrosive material is kept in contact with the vehicle’s surface by moisture that evaporate slowly. Mud is particularly corrosive because it dries slowly and holds moisture in contact with the vehicle. Although the mud appears to be dry, it can still retain moisture and promote corrosion. High temperatures can also accelerate corrosion of parts that are not properly ventilated so the moisture can be dispersed. For all these reasons, it is particularly important to keep your vehicle clean and free of mud or accumulations of other materials. This applies not only to the visible surfaces but particularly to the underside of the vehicle. To help prevent corrosion You can help prevent corrosion from getting started by observing the following: Keep your vehicle clean The best way to prevent corrosion is to keep your vehicle clean and free of corrosive materials. Attention to the underside of the vehicle is particularly important. 僅If you live in a high-corrosion area — where road salts are used, near the ocean, areas with industrial pollution, acid rain, etc.—, you should take extra care to prevent corrosion. In winter, hose off the underside of your vehicle at least once a month and be sure to clean the underside thoroughly when winter is over. 僅When cleaning underneath the vehicle, give particular attention to the components under the fenders and other areas that are hidden from view. Do a thorough job; just dampening the accumulated mud rather than washing it away will accelerate corrosion rather than prevent it. Water under high pressure and steam are particularly effective in removing accumulated mud and corrosive materials. 僅When cleaning lower door panels, rocker panels and frame members, be sure that drain holes are kept open so that moisture can escape and not be trapped inside to accelerate corrosion. Keep your garage dry Don't park your vehicle in a damp, poorly ventilated garage. This creates a favorable environment for corrosion. This is particularly true if you wash your vehicle in the garage or drive it into the garage when it is still wet or covered
 
-## [picanto-339] Moisture breeds corrosion > Page 449 (part 2)
+## [picanto-339] Moisture breeds corrosion > Part 2
 *pages 449 · catégorie : identification*
 
 with snow, ice or mud. Even a heated garage can contribute to corrosion unless it is well ventilated so moisture is dispersed. Keep paint and trim in good condition Scratches or chips in the finish should be covered with "touch-up" paint as soon as possible to reduce the possibility of corrosion. If bare metal is showing through, the attention of a qualified body and paint shop is recommended. Bird droppings : Bird droppings are highly corrosive and may damage painted surfaces in just a few hours.
 
-## [picanto-340] Always remove bird droppings as soon > Page 450
+## [picanto-340] Don't neglect the interior
 *pages 450 · catégorie : pneus_roues*
 
 Maintenance Appearance care Always remove bird droppings as soon as possible. Don't neglect the interior Moisture can collect under the floor mats and carpeting and cause corrosion. Check under the mats periodically to be sure the carpeting is dry. Use particular care if you carry fertilizers, cleaning materials or chemicals in the vehicle. These should be carried only in proper containers and any spills or leaks should be cleaned up, flushed with clean water and thoroughly dried. Interior care Interior general precautions Prevent chemicals such as perfume, cosmetic oil, sun cream, hand cleaner, and air freshener from contacting the interior parts because they may cause damage or discoloration. If they do contact the interior parts, wipe them off immediately. If necessary, use a mixture of warm water and mild non-detergent cleaner (test all cleaners on a concealed area before use). Never allow water or other liquids to come in contact with electrical/electronic components inside the vehicle as this may damage them. When cleaning leather products (steering wheel, seats etc.), use neutral detergents or low alcohol content solutions. If you use high alcohol content solutions or acid/alkaline detergents, the colour of the leather may fade or the surface may get stripped off. Taking care of leather seats 僅Vacuum the seat periodically to remove dust and sand on the seat. It will prevent abrasion or damage of the leather and maintain its quality. 僅Wipe the leather seat cover often with dry or soft cloth. 僅Sufficient use of a leather protective may prevent abrasion of the cover and helps maintain the colour. Be sure to read the instructions and consult a specialist when using leather coating or protective agents. 僅Leather with bright colours(beige, cream beige) is easily contaminated and clear in appearance. Clean the seats frequently. 僅Avoid wiping with wet cloth. It may cause the surface to crack. Cleaning the leather seats 僅Remove all contaminations instantly. Refer to instructions below for removal of each contaminant. 僅Cosmetic products(sunscreen, foundation, etc.) - Apply cleansing cream on a cloth and wipe the contaminated point. Wipe off the cream with a wet cloth and remove water with a dry cloth. 僅Beverages(coffee, soft drink, etc.) - Apply a small amount of neutral detergent and wipe until contaminations do not smear. 僅Oil - Remove oil instantly with absorbable cloth
 
-## [picanto-341] Always remove bird droppings as soon > Page 450 (part 2)
+## [picanto-341] Don't neglect the interior > Part 2
 *pages 450 · catégorie : pneus_roues*
 
 and wipe with stain remover for leather only. 僅Chewing gum - Harden the gum with ice and remove gradually.
 
-## [picanto-342] Emission control system > Page 452
+## [picanto-342] Emission control system (if
 *pages 452 · catégorie : entretien*
 
 Maintenance Emission control system Emission control system (if equipped) The emission control system of your vehicle is covered by a written limited warranty. Please see the warranty information contained in the Warranty & Maintenance book in your vehicle. Your vehicle is equipped with an emission control system to meet all applicable emission regulations. There are three emission control systems, as follows. 1. Crankcase emission control system 2. Evaporative emission control system 3. Exhaust emission control system In order to assure the proper function of the emission control systems, have your vehicle inspected and maintained by a professional workshop in accordance with the maintenance schedule in this manual. Kia recommends to visit an authorised Kia dealer/service partner. Caution for the Inspection and Maintenance Test (With Electronic Stability Control (ESC) system) 僅To prevent the vehicle from misfiring during dynamometer testing, turn the Electronic Stability Control (ESC) system off by pressing the ESC switch. 僅After dynamometer testing is completed, turn the ESC system back on by pressing the ESC switch again. 1. Crankcase emission control system The positive crankcase ventilation system is employed to prevent air pollution caused by blow-by gases being emitted from the crankcase. This system supplies fresh filtered air to the crankcase through the air intake hose. Inside the crankcase, the fresh air mixes with blowby gases, which then pass through the PCV valve into the induction system. 2. Evaporative emission control system The Evaporative Emission Control System is designed to prevent fuel vapours from escaping into the atmosphere. Canister Fuel vapours generated inside the fuel tank are absorbed and stored in the onboard canister. When the engine is running, the fuel vapours absorbed in the canister are drawn into the surge tank through the purge control solenoid valve. Purge Control Solenoid Valve (PCSV) The purge control solenoid valve is controlled by the Engine Control Module (ECM); when the engine coolant temperature is low during idling, the PCSV closes so that evaporated fuel is not taken into the engine. After the engine warms up during ordinary driving, the PCSV opens to introduce evaporated fuel to the engine. 3. Exhaust emission control system The Exhaust Emission Control System is a highly effective system which controls exhaust emissions whilst maintaining good vehicle performance. Engine exhaust gas precautions (carbon monoxide) 僅Carbon monoxide can
 
-## [picanto-343] Emission control system > Page 452 (part 2)
+## [picanto-343] Emission control system (if > Part 2
 *pages 452 · catégorie : entretien*
 
 be present with other exhaust fumes. Therefore, if you smell exhaust fumes of any kind inside your vehicle, have it inspected
 
-## [picanto-344] Emission control system > Page 453
+## [picanto-344] Operating precautions for cata-
 *pages 453 · catégorie : carburant*
 
 Maintenance Emission control system and repaired immediately. If you ever suspect exhaust fumes are coming into your vehicle, drive it only with all the windows fully open. Have your vehicle checked and repaired immediately. Exhaust Engine exhaust gases contain carbon monoxide (CO). Though colourless and odourless, it is dangerous and could be lethal if inhaled. Follow the instructions on this page to avoid CO poisoning. 僅Do not operate the engine in confined or closed areas (such as garages) any more than what is necessary to move the vehicle in or out of the area. 僅When the vehicle is stopped in an open area for more than a short time with the engine running, adjust the ventilation system (as needed) to draw outside air into the vehicle. 僅Never sit in a parked or stopped vehicle for any extended time with the engine running. 僅When the engine stalls or fails to start, excessive attempts to restart the engine may cause damage to the emission control system. Operating precautions for catalytic converters (if equipped) Fire 僅A hot exhaust system can ignite flammable items under your vehicle. Do not park the vehicle over or near flammable objects, such as grass, vegetation, paper, leaves, etc. 僅The exhaust system and catalytic system are very hot whilst the engine is running or immediately after the engine is turned off. Keep away from the exhaust system and catalytic, you may get burned. Also, do not remove the heat sink around the exhaust system, do not seal the bottom of the vehicle or do not coat the vehicle for corrosion control. It may present a fire risk under certain conditions. Your vehicle is equipped with a catalytic converter emission control device. Therefore, the following precautions must be observed: 僅Make sure to refuel your vehicle according to the "Fuel requirements" suggested in chapter 1. 僅Do not operate the vehicle when there are signs of engine malfunction, such as misfire or a noticeable loss of performance. 僅Do not misuse or abuse the engine. Examples of misuse are coasting with the ignition off and descending steep grades in gear with the ignition off. 僅Do not operate the engine at high idle speed for extended periods (5 minutes or more). 僅Do not modify or tamper with any part of the engine or emission control
 
-## [picanto-345] Emission control system > Page 454
+## [picanto-345] Petrol Particulate Filter (PPF) (if
 *pages 454 · catégorie : carburant*
 
 Maintenance
@@ -14095,7 +14095,7 @@ Kia dealer/service partner. Constant
 driving with the PPF warning light on 
 can damage the PPF system and undermine fuel economy.
 
-## [picanto-346] Specifications & Consumer > Page 9-2
+## [picanto-346] Specifications & Consumer information
 *pages 9-2 · catégorie : electricite_batterie*
 
 Specifications & Consumer
@@ -14125,7 +14125,7 @@ Information for EU Battery Regulation .................................... 9-17
 僅 IMPORTER & DISTRIBUTOR INFORMATION (EU 2023/1542).... 9-17
 僅 Manufacturer Information.......................................................................... 9-17
 
-## [picanto-347] Specifications & Consumer information > Page 457
+## [picanto-347] Specifications & Consumer information
 *pages 457 · catégorie : pneus_roues*
 
 Specifications & Consumer information
@@ -14172,7 +14172,7 @@ Rear tread
 Wheelbase
 2,400 (94.5)
 
-## [picanto-348] Specifications & Consumer information > Page 459
+## [picanto-348] Tyres and wheels
 *pages 459 · catégorie : pneus_roues*
 
 Specifications & Consumer information
@@ -14334,7 +14334,7 @@ M
 *2.
 : Speed Symbol
 
-## [picanto-349] Specifications & Consumer information > Page 460
+## [picanto-349] Specifications & Consumer information
 *pages 460 · catégorie : pneus_roues*
 
 Specifications & Consumer information
@@ -14351,7 +14351,7 @@ Additionally required tyre air pressure per km above sea level: 1.5psi/km
 When replacing tyres, use the same size originally supplied with the vehicle.
 Using tyres of a different size can damage the related parts or make it work irregularly.
 
-## [picanto-350] Specifications & Consumer information > Page 463
+## [picanto-350] Recommended lubricants and capacities
 *pages 463 · catégorie : entretien*
 
 Specifications & Consumer information
@@ -14444,12 +14444,12 @@ MTF(H.K.SHELL), GS MTF HD 70W
 MTF&DCTF 70WSYNTHETIC
 Smartstream G1.2
 
-## [picanto-351] Specifications & Consumer information > Page 464
+## [picanto-351] Specifications & Consumer information
 *pages 464 · catégorie : entretien*
 
 Specifications & Consumer information Recommended lubricants and capacities 1. Refer to the recommended SAE viscosity numbers on the next page. 2. Requires <API SN PLUS (or above) Full synthetic)> grade engine oil. If a lower grade engine oil (mineral oil including Semi-synthetic) is used, then the engine oil and engine oil filter must be replaced as indicated severe maintenance condition. 3. Requires <API SN PLUS (or above) or ACEA A5/B5 Full synthetic> grade engine oil. If a lower grade engine oil (mineral oil including Semi-synthetic) is used, then the engine oil and engine oil filter must be replaced as indicated severe maintenance condition. 4. Requires <API Latest (ILSAC Latest) or ACEA C5 Full synthetic> grade engine oil. If a lower grade engine oil (mineral oil including Semi-synthetic) is used, then the engine oil and engine oil filter must be replaced as indicated severe maintenance condition. 5. Requires <API Latest (ILSAC Latest) or ACEA A5/B5 Full synthetic> grade engine oil. If a lower grade engine oil (mineral oil including Semi-synthetic) is used, then the engine oil and engine oil filter must be replaced as indicated severe maintenance condition. 6. Requires <API Latest (ILSAC Latest) Full synthetic> grade engine oil. If a lower grade engine oil (mineral oil including Semi-synthetic) is used, then the engine oil and engine oil filter must be replaced as indicated severe maintenance condition. 7. Requires <API Latest (ILSAC Latest) or ACEA C2 Full synthetic> grade engine oil. If a lower grade engine oil (mineral oil including Semi-synthetic) is used, then the engine oil and engine oil filter must be replaced as indicated severe maintenance condition. 8. If the genuine oil that is developed for best performance is not used, it may cause the problems of transmission performance. 9. To maintain your vehicle's best performance, use Kia genuine oil or those of an equivalent standard oil. Automatic transmission (AT) fluid *8 (Petrol) 1.0 MPI (Petrol) 1.0 MPI FFV 5.7 SK ATF SP-III, MICHANG ATF SP-III, Kia Genuine ATF SP-III (Petrol) 1.2 MPI 6.1 Smartstream G1.0 5.7 Coolant (Petrol) 1.0 MPI (Petrol) 1.0 MPI FFV 5.0 An Phosphate based ethylene glycol based coolant (Petrol) 1.2 MPI 5.5 Smartstream G1.0 5.2 Smartstream G1.2 5.4 Brake/clutch fluid*9 0.4~0.44 SAE J1704 DOT-4 LV, ISO4925 CLASS-6, FMVSS116 DOT-4 Fuel - Fuel (FFV) Petrol reservoir 0.8 Aclohol Lubricant Volume (L) Classification
 
-## [picanto-352] Specifications & Consumer information > Page 465
+## [picanto-352] Recommended SAE viscosity
 *pages 465 · catégorie : entretien*
 
 Specifications & Consumer information
@@ -14471,7 +14471,7 @@ Never add any additives to the engine oil. Engine oil additives can change its p
 When choosing an oil, consider the range of temperature your vehicle will be operated in before the next oil change. Proceed to select the recommended oil viscosity 
 from the chart.
 
-## [picanto-353] Specifications & Consumer information > Page 466
+## [picanto-353] Temperature Range for SAE Viscosity Numbers
 *pages 466 · catégorie : entretien*
 
 Specifications & Consumer information
@@ -14491,7 +14491,7 @@ An engine oil displaying this American Petroleum Institute (API) Certification M
 Committee (ILSAC). It is recommended to only use engine oils that uphold 
 this API Certification Mark.
 
-## [picanto-354] Specifications & Consumer information > Page 467
+## [picanto-354] Vehicle identification number
 *pages 467 · catégorie : pneus_roues*
 
 Specifications & Consumer information
@@ -14521,7 +14521,7 @@ The tyre label located on the driver's
 side centre pillar gives the tyre pressures 
 recommended for your car.
 
-## [picanto-355] Specifications & Consumer information > Page 468
+## [picanto-355] Engine number
 *pages 468 · catégorie : identification*
 
 Specifications & Consumer information
@@ -14543,7 +14543,7 @@ Refrigerant label (if equipped)
 The refrigerant label is located on the 
 underside of the bonnet.
 
-## [picanto-356] Specifications & Consumer information > Page 470
+## [picanto-356] Fuel label (if equipped)
 *pages 470 · catégorie : carburant*
 
 Specifications & Consumer information
@@ -14560,7 +14560,7 @@ B. Identifiers for Petrol-type fuels
 * This symbol means usable fuel. Do not use any other fuel.
 C. For further details, refer to the “Fuel Requirement” in the chapter 1.
 
-## [picanto-357] Specifications & Consumer information > Page 1-1
+## [picanto-357] Information for EU Battery
 *pages 1-1 · catégorie : electricite_batterie*
 
 Specifications & Consumer information
@@ -14620,7 +14620,7 @@ Portable battery
 Portable battery of General
 use
 
-## [picanto-358] Specifications & Consumer information > Page 1-1
+## [picanto-358] ■ Remote key Battery (if
 *pages 1-1 · catégorie : electricite_batterie*
 
 Specifications & Consumer information
@@ -14643,7 +14643,7 @@ City, Osaka, 570-8511, Japan
 www.bexel.co.kr/html/index/
 index.php
 
-## [picanto-359] Anti-lock Brake System > Page 474
+## [picanto-359] Kia Picanto owner manual
 *pages 474 · catégorie : aides_conduite*
 
 Abbreviation
@@ -14706,7 +14706,7 @@ Rear Cross-Traffic Collision-Avoidance Assist
 RCCW
 Rear Cross-Traffic Collision Warning
 
-## [picanto-360] Rear View Monitor > Page 475
+## [picanto-360] Kia Picanto owner manual
 *pages 475 · catégorie : pneus_roues*
 
 A
@@ -14733,1014 +14733,4 @@ VIN
 Vehicle Identification Number
 VSM
 Vehicle Stability Management
-
-## [picanto-361] air bag collision sensors > Page 3-39
-*pages 3-39 · catégorie : electricite_batterie*
-
-I
-Index
-A
-air bag 
-3-39
-air bag collision sensors 
-3-53
-air bag warning label 
-3-58
-air bag warning labels 
-3-41
-air bag warning light 
-3-42
-curtain air bag 
-3-51
-driver’s and passenger’s 
-front air bag 
-3-46
-passenger’s front air bag ON/OFF 
-switch 
-3-48
-side air bag 
-3-50
-SRS components and functions 
-3-43
-air cleaner ((petrol) 1.0 MPI/1.0 FFV/
-1.2 MPI) 
-8-35
-air cleaner 
-(smartstream G1.0/G1.2) 
-8-36
-filter replacement 
-8-36
-air conditioner compressor 
-label 
-9-14
-air conditioning system 
-9-8
-air ventilation seat 
-4-106
-AMT warning indicator 
-5-24
-AMT warning message 
-5-24
-appearance care 
-8-78
-exterior care 
-8-78
-interior care 
-8-82
-ashtray 
-4-103
-automated manual transmission 
-(AMT) 
-5-21
-AMT warning indicator 
-5-24
-AMT warning message 
-5-24
-automated manual transmission (AMT) 
-operation 
-5-21
-instruction label 
-5-22
-lever shifting condition 
-5-23
-automatic climate control 
-system 
-4-89
-air intake control 
-4-92
-automatic heating and air 
-conditioning 
-4-90
-defrost mode 
-4-91
-fan speed control 
-4-93
-manual heating and air conditioning 4-90
-OFF mode 
-4-93
-outside (fresh) air 
-4-92
-recirculated air 
-4-92
-temperature control 
-4-92
-automatic transmission 
-5-29
-automatic transmission operation 
-5-29
-automatic transmission fluid 
-8-32
-changing the automatic transmission 
-fluid 
-8-33
-checking the automatic transmission fluid 
-level 
-8-32
-B
-battery 
-8-40
-battery capacity label 
-8-41
-battery recharging 
-8-41
-for best battery service 
-8-40
-reset items 
-8-42
-before driving 
-5-5
-before starting 
-5-5
-blind-spot collision-avoidance assist 
-(BCA) 
-6-32
-malfunction and limitations 
-6-37
-operation 
-6-35
-settings 
-6-34
-bonnet 
-4-25
-bonnet open warning 
-4-25
-closing 
-4-26
-brake Assist System (BAS) 
-5-42
-brake system 
-5-34
-anti-lock brake system (ABS) 
-5-36
-electronic Stability Control (ESC) 
-5-38
-ESS-Emergency Stop Signal 
-5-42
-hill-start assist control (HAC) 
-5-41
-parking brake 
-5-35
-power brakes 
-5-34
-vehicle stability management (VSM) 5-41
-brake/clutch fluid 
-8-31
-checking the brake/clutch fluid level 8-31
-bulb wattage 
-9-4
-C
-cargo area cover 
-4-102
-central door lock switch 
-4-16
-centre console storage 
-4-100
-child restraint system (CRS) 
-3-25
-
-## [picanto-362] installing a child restraint system > Page 3-27
-*pages 3-27 · catégorie : fusibles*
-
-I
-installing a child restraint system 
-(CRS) 
-3-27
-installing a child restraint system with a 
-lap/shoulder belt 
-3-31
-ISOFIX anchorage 
-3-28
-top-tether anchorage 
-3-28
-child-protector rear door lock 
-4-17
-climate control air filter 
-8-37
-filter inspection 
-8-37
-clothes hanger 
-4-109
-cruise control (CC) 
-6-57
-operation 
-6-57
-cup holder 
-4-103
-curtain air bag 
-3-51
-D
-declaration of conformity 6-76, 9-15
-defroster 
-4-81
-rear window defroster 
-4-81
-dimensions 
-9-3
-distance to empty 
-4-43
-door locks 
-4-14
-central door lock switch 
-4-16
-child-protector rear door lock 
-4-17
-door lock/unlock features 
-4-17
-from inside the vehicle 
-4-15
-rear occupant alert (ROA) system 
-4-18
-driver attention warning (DAW) 6-52
-malfunction and limitations 
-6-54
-operation 
-6-53
-settings 
-6-53
-E
-economical operation 
-5-44
-emergency commodity 
-7-31
-fire extinguisher 
-7-31
-first aid kit 
-7-31
-triangle reflector 
-7-31
-tyre pressure gauge 
-7-32
-emergency starting 
-7-5
-jump starting 
-7-5
-push-starting 
-7-6
-emission control system 
-8-84
-crankcase emission control system 
-8-84
-evaporative emission control system 8-84
-exhaust emission control system 
-8-84
-engine 
-9-2
-engine compartment 
-2-8, 8-5
-engine coolant ((gasoline) 1.0 MPI/
-1.0 FFV/1.2 MPI, smartstream G1.0/
-G1.2)
-changing the coolant 
-8-31
-checking the coolant level 
-8-29
-engine coolant ((petrol) 1.0 MPI/1.0 
-FFV/1.2 MPI, smartstream G1.0/
-G1.2) 
-8-29
-engine number 
-9-14
-engine oil 
-8-27
-changing the engine oil and filter 
-8-28
-checking the engine oil level 
-8-27
-ENGINE START/STOP button 
-5-10
-illuminated ENGINE START/STOP 
-button 
-5-10
-starting the engine 
-5-12
-stopping the engine 
-5-14
-explanation of scheduled 
-maintenance items 
-8-24
-exterior overview 
-2-2
-F
-floor mat anchor(s) 
-4-108
-forward collision-avoidance assist 
-(FCA)
-malfunction and limitations 
-6-21
-operation 
-6-16
-settings 
-6-14
-forward/reverse parking distance 
-warning (PDW) 
-6-73
-malfunction and precautions 
-6-75
-operation 
-6-74
-settings 
-6-73
-front headrest 
-3-7
-fuel filler door 
-4-27
-closing 
-4-27
-opening 
-4-27
-petrol reservoir in the engine room (flex 
-fuel vehicle) 
-4-27
-fuel label 
-9-16
-fuel requirements 
-1-3
-petrol engine 
-1-3
-fuses 
-8-51
-
-## [picanto-363] engine compartment fuse > Page 8-54
-*pages 8-54 · catégorie : fusibles*
-
-I
-engine compartment fuse 
-replacement 
-8-54
-fuse/relay panel description 
-8-55
-inner panel fuse replacement 
-8-53
-G
-gauges 
-4-40
-glove box 
-4-101
-H
-heated steering wheel 
-4-35
-high beam assist (HBA) 
-4-74
-malfunction and limitations 
-4-76
-operation 
-4-75
-hood
-opening 
-4-25
-how to use this manual 
-1-2
-I
-if the engine overheats 
-7-7
-if the engine will not start 
-7-4
-if engine doesn’t turn over or turns over 
-slowly 
-7-4
-if engine turns over normally but does not 
-start 
-7-4
-if you have a flat tire (with spare tire)
-declaration of conformity for Jack 
-7-18
-if you have a flat tire (with spare 
-tyre)
-jack label 
-7-17
-if you have a flat tire (with tire 
-mobility kit)
-technical data 
-7-27
-if you have a flat tyre (with spare 
-tyre) 
-7-11
-jack and tools 
-7-11
-removing and storing the spare tyre 7-12
-if you have a flat tyre (with tyre 
-mobility kit) 
-7-20
-checking the tyre inflation pressure 
-7-25
-components of the tyre mobility kit 
-(TMK) 
-7-22
-distributing the sealant 
-7-24
-introduction 
-7-20
-notes on the safe use of the tyre mobility 
-kit 
-7-25
-using the TMK 
-7-23
-if you have a flat tyres (with spare 
-tyre)
-changing tyres 
-7-13
-in case of an emergency whilst 
-driving 
-7-3
-if engine stalls whilst driving 
-7-4
-if the engine stalls at a crossroad or 
-crossing 
-7-3
-if you have a flat tyre whilst driving 
-7-3
-infotainment system 
-4-110
-antenna 
-4-110
-USB port 
-4-110
-instrument cluster 
-4-39
-distance to empty 
-4-43
-gauges 
-4-40
-LCD display control 
-4-40
-odometer 
-4-42
-outside temperature gauge 
-4-43
-transmission shift indicator 
-4-44
-instrument panel overview 
-2-6
-intelligent speed limit assist (ISLA)
-malfunction and limitations 
-6-50
-operation 
-6-49
-settings 
-6-47
-interior features 
-4-103
-air ventilation seat 
-4-106
-ashtray 
-4-103
-clothes hanger 
-4-109
-cup holder 
-4-103
-floor mat anchor(s) 
-4-108
-power outlet 
-4-106
-seat warmer 
-4-105
-shopping bag holder 
-4-109
-sunvisor 
-4-104
-USB charger 
-4-107
-interior light 
-4-80
-luggage room lamp 
-4-81
-map lamp 
-4-80
-room lamp 
-4-80
-vanity mirror lamp 
-4-81
-interior overview 
-2-4
-ISG (idle stop and go) system 
-5-15
-auto start 
-5-16
-auto stop 
-5-16
-normal ISG 
-5-16
-
-## [picanto-364] Kia Picanto owner manual > Page 5-17
-*pages 5-17 · catégorie : electricite_batterie*
-
-I
-system deactivation 
-5-17
-system malfunction 
-5-17
-K
-key
-remote key 
-4-6
-smart key 
-4-8
-key positions 
-5-6
-ignition switch 
-5-6
-starting the engine 
-5-7
-stopping the engine 
-5-8
-keys 
-4-5
-immobiliser system 
-4-10
-L
-lane following assist (LFA) 
-6-59
-malfunction and limitations 
-6-62
-operation 
-6-60
-settings 
-6-60
-lane keeping assist (LKA) 
-6-26
-malfunction and limitations 
-6-30
-operation 
-6-28
-settings 
-6-27
-LCD display 
-4-46
-driving assist mode 
-4-47
-master warning mode 
-4-48
-service mode 
-4-47
-trip computer mode 
-4-47
-user settings mode 
-4-48
-warning messages 
-4-52
-LCD display control 
-4-40
-light bulbs 
-8-63
-back up lamp (bulb type) bulb 
-replacement 
-8-69
-bulb replacement precaution 
-8-63
-front turn signal lamp (bulb type) bulb 
-replacement (headlamp type A) 
-8-67
-headlamp and front fog lamp aiming (for 
-europe) 
-8-71
-headlamp (low/high beam) bulb 
-replacement (headlamp type A) 
-8-66
-high mounted stop lamp (bulb type) bulb 
-replacement 
-8-69
-license plate lamp (bulb type) bulb 
-replacement 
-8-69
-light bulb position (front) 
-8-65
-light bulb position (rear) 
-8-65
-light bulb position (side) 
-8-66
-map lamp (bulb type) bulb 
-replacement 
-8-70
-position lamp (bulb type) bulb 
-replacement (headlamp type A) 
-8-67
-position lamp/daytime running lamp (LED 
-type) bulb replacement (headlamp 
-type B, C) 
-8-67
-rear turn signal lamp (bulb type) bulb 
-replacement (rear combination lamp type 
-A, B, C) 
-8-67
-replacing lights (LED type) 
-8-66
-room lamp (bulb type) bulb 
-replacement 
-8-70
-tail lamp (bulb type) bulb replacement 
-(rear combination lamp type A) 
-8-68
-tailgate room lamp (bulb type) bulb 
-replacement 
-8-71
-vanity mirror lamp (LED type) bulb 
-replacement 
-8-71
-lighting 
-4-69
-battery saver function 
-4-69
-daytime running light 
-4-69
-headlight escort function 
-4-70
-headlight levelling device 
-4-73
-headlight welcome function 
-4-70
-high beam assist (HBA) 
-4-74
-high beam operation 
-4-72
-lighting control 
-4-70
-one-touch lane change function 
-4-73
-rear fog light 
-4-73
-turn signals and lane change signals 4-72
-luggage board 
-4-102
-luggage net holder 
-4-101
-luggage room lamp 
-4-81
-M
-maintenance services 
-8-8
-owner maintenance precautions 
-8-8
-owner’s responsibility 
-8-8
-manual climate control system 4-83
-air intake control 
-4-86
-fan speed control 
-4-86
-mode selection 
-4-85
-outside (fresh) air 
-4-86
-recirculated air 
-4-86
-
-## [picanto-365] sunroof inside air recirculation > Page 4-96
-*pages 4-96 · catégorie : electricite_batterie*
-
-I
-refrigerant label 
-4-96
-sunroof inside air recirculation 
-4-97
-temperature control 
-4-85
-manual speed limit assist 
-(MSLA) 
-6-45
-operation 
-6-45
-manual transmission 
-5-18
-manual transmission operation 
-5-18
-map lamp 
-4-80
-mirror-inside rearview 
-4-36
-day/night rearview mirror 
-4-36
-mirror-outside rearview 
-4-37
-folding 
-4-38
-remote control 
-4-37
-O
-odometer 
-4-42
-outside temperature gauge 
-4-43
-owner maintenance 
-8-9
-owner maintenance schedule 
-8-9
-P
-parking brake 
-8-35
-checking the parking brake 
-8-35
-power outlet 
-4-106
-power window lock button 
-4-24
-R
-rear cross-traffic collisionavoidance assist (RCCA) 
-6-66
-malfunction and limitations 
-6-70
-operation 
-6-67
-settings 
-6-66
-rear headrest 
-3-9
-rear occupant alert (ROA) 
-system 
-4-18
-rear view monitor (RVM) 
-6-63
-malfunction and limitations 
-6-65
-operation 
-6-64
-settings 
-6-63
-recommended lubricants and 
-capacities 
-9-9
-recommended SAE viscosity number 9-11
-refrigerant label 
-9-14
-remote key 
-4-6
-mechanical key 
-4-7
-remote keyless entry
-battery replacement 
-4-5
-transmitter precautions 
-4-7
-replacing lights (LED type) 
-8-66
-road warning 
-7-3
-hazard warning flasher 
-7-3
-room lamp 
-4-80
-S
-safe exit warning (SEW) 
-6-41
-malfunction and limitations 
-6-43
-operation 
-6-42
-settings 
-6-41
-scheduled maintenance service 8-11
-maintenance under severe usage 
-conditions for petrol engine (except 
-europe (including russia)) 
-8-22
-maintenance under severe usage 
-conditions for petrol engine (for europe 
-(except russia)) 
-8-18
-normal maintenance schedule for petrol 
-engine (except europe 
-(including russia)) 
-8-19
-scheduled maintenance service 
-precaution 
-8-11
-seat belt warning 
-3-14
-seat belts 
-3-13
-lap belt 
-3-19
-lap/shoulder belt 
-3-16
-pre-tensioner seat belt 
-3-20
-seat belt restraint system 
-3-13
-seat belt warning 
-3-14
-seat warmer 
-4-105
-seats 
-3-3
-front headrest adjustment 
-3-7
-front seat adjustment 
-3-6
-rear headrest adjustment 
-3-9
-rear seat adjustment 
-3-9
-seatback pocket 
-3-9
-shopping bag holder 
-4-109
-side air bag 
-3-50
-smart key 
-4-8
-special driving conditions 
-5-46
-driving at night 
-5-47
-driving in flooded areas 
-5-48
-
-## [picanto-366] driving in the rain > Page 5-47
-*pages 5-47 · catégorie : remorquage*
-
-I
-driving in the rain 
-5-47
-driving off-road 
-5-48
-hazardous driving conditions 
-5-46
-highway driving 
-5-48
-rocking the vehicle 
-5-46
-smooth cornering 
-5-47
-steering wheel 
-4-33
-heated steering wheel 
-4-35
-horn 
-4-35
-motor driven power steering 
-4-33
-tilt steering 
-4-34
-storage compartments 
-4-100
-cargo area cover 
-4-102
-centre console storage 
-4-100
-glove box 
-4-101
-luggage board 
-4-102
-luggage net holder 
-4-101
-sunroof 
-4-29
-automatic reversal 
-4-31
-resetting the sunroof 
-4-32
-slide open/close 
-4-31
-sunroof open warning 
-4-33
-sunshade 
-4-30
-tilt open/close 
-4-30
-sunvisor 
-4-104
-T
-tailgate 
-4-19
-closing 
-4-19
-opening 
-4-19
-theft-alarm system 
-4-12
-tire pressure monitoring system 
-(TPMS)
-reference -indicator light status 
-7-11
-system overview 
-7-8
-tires and wheels
-wheel alignment and tire balance 
-8-45
-towing 
-7-28
-emergency towing 
-7-29
-removable towing hook 
-7-29
-towing service 
-7-28
-trip computer 
-4-55
-tyre pressure monitoring system 
-(TPMS) 
-7-8
-indication of low tyre pressure 
-7-9
-tyre pressure monitoring system 
-malfunction 
-7-10
-tyre specification and pressure 
-label 
-9-13
-tyres and wheels 
-8-43, 9-5
-checking tyre inflation pressure 
-8-44
-low aspect ratio tyre 
-8-50
-recommended cold tyre inflation 
-pressures 
-8-43
-tyre care 
-8-43
-tyre maintenance 
-8-47
-tyre replacement 
-8-45
-tyre rotation 
-8-44
-tyre sidewall labeling 
-8-47
-tyre traction 
-8-47
-wheel replacement 
-8-47
-U
-USB charger 
-4-107
-USB port 
-4-110
-user settings mode 
-4-48
-V
-vanity mirror lamp 
-4-81
-vehicle break-In process 
-1-6
-vehicle certification label 
-9-13
-vehicle identification number 
-(VIN) 
-9-13
-vehicle modifications 
-1-5
-vehicle safety system
-Brake Assistant System (BAS) 
-5-42
-vehicle weight 
-5-53
-W
-warning and indicator lights 
-4-59
-indicator lights 
-4-65
-warning lights 
-4-59
-warning messages 
-4-52
-washer fluid 
-8-34
-checking the washer fluid level 
-8-34
-weight/volume 
-9-7
-windows 
-4-21
-manual windows 
-4-24
-power window lock button 
-4-24
-window opening and closing 
-4-22
-
-## [picanto-367] windscreen defrosting and > Page 4-98
-*pages 4-98 · catégorie : identification*
-
-I
-windscreen defrosting and 
-defogging 
-4-98
-automatic climate control 
-system 
-4-99, 4-100
-defogging logic 
-4-100
-manual climate control system 
-4-98
-winter driving 
-5-49
-snowy or icy conditions 
-5-49
-wiper blades 
-8-38
-blade inspection 
-8-38
-blade replacement 
-8-38
-wipers and washers 
-4-77
-heated washer nozzle 
-4-79
-rear window wiper and washer 
-switch 
-4-79
-windscreen washers 
-4-78
-windscreen wipers (front) 
-4-78
 
