@@ -10,7 +10,6 @@ venv/
 .env
 
 # Index et modèles (générés plus tard)
-*.faiss
 *.index
 models/
 
@@ -18,9 +17,7 @@ models/
 .DS_Store
 .ipynb_checkpoints/
 
-# Index FAISS et embeddings générés
-index/*
-!index/.gitkeep
+# Index FAISS généré
 data/obd/*.json
 evaluation/results/*
 !evaluation/results/.gitkeep
