@@ -80,7 +80,7 @@ Chatbot_Mecano_en-poche_RAG/
 │   ├── llm.py                   ← Client API Google Gemini (génération et reformulation multi-requêtes)
 │   └── pipeline.py              ← Orchestration complète : Question → Multi-Query + RRF → Réponse + Sources
 │
-├── index/                       ← Fichiers d'index générés (corpus.faiss, corpus_metadata.json)
+├── index/                       ← index FAISS partagé
 │
 ├── scripts/                     ← Outils en ligne de commande (CLI)
 │   ├── build_index.py           ← Génère les embeddings et sauvegarde l'index FAISS
@@ -94,11 +94,14 @@ Chatbot_Mecano_en-poche_RAG/
 │
 ├── evaluation/                  ← ÉTAPE 4 : Évaluation du système
 │   ├── questions.jsonl          ← Jeu de questions de test (avec questions pièges hors-notice)
+│   ├── retrieval_questions.jsonl← Questions annotées pour l'évaluation top-k du retrieval
 │   ├── evaluate_retrieval.py    ← Évaluation de la pertinence de recherche (top-k=3 vs top-k=5)
 │   └── evaluate_generation.py   ← Évaluation de la fidélité et de la détection d'information absente
 │
 └── tests/                       ← Tests unitaires automatisés
-    └── test_generation.py       ← Tests RRF, formatage des prompts, détection d'ambiguïté et contrat Streamlit
+    ├── test_retriever.py        ← Tests de recherche vectorielle et filtres
+    ├── test_evaluate_retrieval.py ← Tests des métriques et annotations retrieval
+    └── test_generation.py       ← Tests RRF, prompts et détection d'ambiguïté
 ```
 
 ---
@@ -233,14 +236,39 @@ python -X utf8 -m unittest discover -s tests -v
 
 ---
 
-## 6. État d'Avancement du Projet
+## 6. Évaluation du Retrieval
 
-- [x] **Étape 0 — Corpus :** Extraction, nettoyage, validation (`0 erreur`) et fusion des 4 notices constructeurs (`1 119` passages dans `all_corpus.jsonl`).
-- [x] **Étape 1 — Recherche :** Embeddings multilingues Sentence-BERT + indexation FAISS + filtres par modèle et catégorie.
-- [x] **Étape 2 — Génération :** Intégration Google Gemini, prompt d'ancrage strict bilingue FR/EN, refus hors-notice, alertes de sécurité, citations des pages, **Multi-Query + RRF** et **clarification des questions ambiguës**.
-- [x] **Étape 3 — Interface :** Application Streamlit professionnelle connectée au pipeline RAG, détection automatique du véhicule et des codes OBD-II, visualisation des sources et du niveau d'urgence.
-- [ ] **Étape 4 — Évaluation :** Exécution du protocole d'évaluation sur les 10+ questions de test (`evaluation/`).
-- [ ] **Étape 5 — Rapport & Soutenance :** Rédaction finale et support de présentation.
+Pour tester la recherche seule, exécuter depuis la racine du dépôt :
+
+```bash
+python scripts/search.py "Que faire si le voyant ABS reste allumé ?" --modele "Clio 4" --categorie voyant
+```
+
+Les filtres `--modele` et `--categorie` sont facultatifs. La commande compare
+top-k=3 et top-k=5 par défaut.
+
+Le jeu d'évaluation personnel est séparé des questions d'évaluation de génération :
+`evaluation/retrieval_questions.jsonl` contient les questions, les filtres à appliquer
+et les identifiants des passages pertinents. Lancer l'évaluation avec :
+
+```bash
+python evaluation/evaluate_retrieval.py
+```
+
+Le script affiche précision, rappel, F1, MRR et hit-rate moyens pour chaque k,
+et écrit le détail dans `evaluation/results/retrieval_topk.json`. Le meilleur k
+est choisi selon le F1 moyen, puis le MRR en cas d'égalité. Lors de l'évaluation
+des 10 questions annotées avec l'index partagé, top-k=3 a obtenu un F1 moyen de
+0,350 contre 0,267 pour top-k=5.
+
+## 7. État d'avancement du projet
+
+- [x] **Corpus :** extraction, validation et fusion des quatre notices.
+- [x] **Retrieval :** embeddings Sentence-BERT, index FAISS, filtres modèle/catégorie et tests top-k=3/5.
+- [x] **Génération :** intégration Gemini, refus hors-notice, alertes de sécurité, citations, Multi-Query + RRF et clarification.
+- [x] **Interface :** application Streamlit et détection automatique du véhicule et des codes OBD-II.
+- [ ] **Évaluation génération :** exécution des questions de test.
+- [ ] **Rapport et soutenance :** rédaction finale et présentation.
 
 ## Droits d'auteur
 

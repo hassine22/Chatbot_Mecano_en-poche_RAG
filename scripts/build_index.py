@@ -8,11 +8,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
-from mecano.corpus_loader import load_corpus
-from mecano.embeddings import DEFAULT_MODEL, EmbeddingModel
-from mecano.index import build_index, save_index
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
 
 def parse_args() -> argparse.Namespace:
@@ -20,10 +20,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--corpus",
         type=Path,
-        default=Path("corpus/output/all_corpus.jsonl"),
+        default=ROOT / "corpus" / "output" / "all_corpus.jsonl",
     )
-    parser.add_argument("--output-dir", type=Path, default=Path("index"))
-    parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "index")
+    parser.add_argument("--model", help="Nom du modèle Sentence-BERT")
     parser.add_argument("--batch-size", type=int, default=32)
     return parser.parse_args()
 
@@ -32,8 +32,13 @@ def main() -> None:
     args = parse_args()
     if args.batch_size < 1:
         raise ValueError("--batch-size doit être supérieur ou égal à 1")
+    from mecano.corpus_loader import load_corpus
+    from mecano.embeddings import DEFAULT_MODEL, EmbeddingModel
+    from mecano.index import build_index, save_index
+
+    model_name = args.model or DEFAULT_MODEL
     records = load_corpus(args.corpus)
-    model = EmbeddingModel(args.model)
+    model = EmbeddingModel(model_name)
     vectors = model.encode(
         [record["texte_embedding"] for record in records],
         batch_size=args.batch_size,
@@ -46,7 +51,7 @@ def main() -> None:
     metadata_path.write_text(
         json.dumps(
             {
-                "model": args.model,
+                "model": model_name,
                 "dimension": model.dimension,
                 "count": len(records),
                 "records": records,

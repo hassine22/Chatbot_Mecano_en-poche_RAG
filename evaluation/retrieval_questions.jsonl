@@ -1,0 +1,10 @@
+{"id":"q01","question":"Que signifie le témoin ABS allumé en roulant sur une Clio 4 et que faut-il faire ?","modele":"Clio 4","categorie":"voyant","relevant_ids":["clio4-016"]}
+{"id":"q02","question":"Que faire si le témoin de pression d'huile s'allume sur la route ?","modele":"Clio 4","categorie":"voyant","relevant_ids":["clio4-012"]}
+{"id":"q03","question":"Comment remplacer une roue après une crevaison sur la Clio 4 ?","modele":"Clio 4","categorie":"pneus_roues","relevant_ids":["clio4-189"]}
+{"id":"q04","question":"What does it mean if the EcoSport ABS warning lamp illuminates while driving?","modele":"EcoSport","categorie":"voyant","relevant_ids":["ecosport-006"]}
+{"id":"q05","question":"What should I do when the EcoSport displays Steering loss Stop safely?","modele":"EcoSport","categorie":"message_tableau_de_bord","relevant_ids":["ecosport-076"]}
+{"id":"q06","question":"Where is the EcoSport passenger compartment fuse box and how do I access it?","modele":"EcoSport","categorie":"fusibles","relevant_ids":["ecosport-138"]}
+{"id":"q07","question":"What does it mean when the ABS and regular brake warning lights are on together while driving in the i10?","modele":"i10","categorie":"voyant","relevant_ids":["i10-015"]}
+{"id":"q08","question":"How do I check the engine oil level on the Hyundai i10?","modele":"i10","categorie":"entretien","relevant_ids":["i10-201"]}
+{"id":"q09","question":"What should I check about tyre pressure after fitting the Picanto compact spare?","modele":"Picanto","categorie":"pneus_roues","relevant_ids":["picanto-236"]}
+{"id":"q10","question":"How do I safely jump start a Kia Picanto with a discharged battery?","modele":"Picanto","categorie":"electricite_batterie","relevant_ids":["picanto-221"]}
