@@ -1,1 +1,20 @@
-# Paramètres du projet : modèle d'embeddings, LLM, top-k, chemins des fichiers.
+corpus:
+  path: "corpus/output/all_corpus.jsonl"
+
+embeddings:
+  model_name: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+
+index:
+  dir: "index"
+
+retrieval:
+  top_k: 5
+  rrf_k: 60
+  use_multi_query: true
+  num_reformulations: 3
+
+llm:
+  provider: "gemini"
+  model_name: "gemini-flash-lite-latest"
+  temperature: 0.0
+  max_output_tokens: 1024
