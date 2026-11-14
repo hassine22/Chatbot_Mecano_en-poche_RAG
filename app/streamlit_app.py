@@ -4,7 +4,7 @@ Interface web de « Mécano de poche ».
 Lancement (depuis la racine du dépôt) :
     streamlit run app/streamlit_app.py
 
-L'interface appelle mecano.pipeline.ask() (le vrai RAG : embeddings + FAISS + LLM).
+L'interface appelle mecano.pipeline.ask() (le vrai RAG : embeddings + FAISS + LLM + mémoire conversationnelle).
 Tant que ce pipeline n'est pas prêt, elle bascule sur app/demo_backend.py
 (recherche par mots-clés, sans LLM), qui respecte le même contrat.
 """
@@ -253,6 +253,7 @@ with st.sidebar:
     total = sum(m[4] for m in modeles)
     st.caption(f"**Moteur :** {MODE}")
     st.caption(f"**Index :** {total} passages · {len(modeles)} manuels officiels")
+    st.caption(f"**Mémoire active :** {len(st.session_state.historique)} échange(s) en session")
     if st.button("Réinitialiser la session", use_container_width=True):
         st.session_state.historique = []
         st.rerun()
@@ -263,7 +264,7 @@ with st.sidebar:
 
 
 # ---------------------------------------------------------------- affichage d'une réponse
-def afficher_entites(ent, filtre_auto):
+def afficher_entites(ent, filtre_auto, modele_actif=None, filtre_memoire=False):
     chips = []
     if ent["modele"]:
         cls = "chip chip-auto" if filtre_auto else "chip"
@@ -271,6 +272,8 @@ def afficher_entites(ent, filtre_auto):
         if filtre_auto:
             txt += " (détecté)"
         chips.append(f"<span class='{cls}'>{txt}</span>")
+    elif modele_actif and filtre_memoire:
+        chips.append(f"<span class='chip chip-auto'>Véhicule : {modele_actif} (contexte session)</span>")
     for c in ent["codes_obd"]:
         chips.append(f"<span class='chip chip-obd'>OBD-II {c['code']} · {c['famille']}</span>")
     if chips:
@@ -279,7 +282,12 @@ def afficher_entites(ent, filtre_auto):
 
 def afficher_reponse(tour):
     res = tour["resultat"]
-    afficher_entites(tour["entites"], tour["filtre_auto"])
+    afficher_entites(
+        tour["entites"],
+        tour["filtre_auto"],
+        modele_actif=tour.get("modele"),
+        filtre_memoire=tour.get("filtre_memoire", False),
+    )
 
     niveau = niveau_urgence(res)
     if res["info_absente"]:
@@ -350,6 +358,7 @@ def afficher_reponse(tour):
 def traiter(question, modele_force=None):
     ent = ner.analyser(question)
     filtre_auto = False
+    filtre_memoire = False
     if choix_modele != "Détection automatique":
         modele = choix_modele
     elif modele_force:
@@ -358,8 +367,21 @@ def traiter(question, modele_force=None):
         modele, filtre_auto = ent["modele"][1], True
     else:
         modele = None
+        for prev in reversed(st.session_state.historique):
+            if prev.get("modele"):
+                modele = prev["modele"]
+                filtre_memoire = True
+                break
+
+    historique_recent = st.session_state.historique[-3:] if st.session_state.historique else None
     with st.spinner("Recherche dans les notices et génération de la réponse…"):
-        res = ASK(question, modele=modele, categories=choix_cats or None, top_k=top_k)
+        res = ASK(
+            question,
+            modele=modele,
+            categories=choix_cats or None,
+            top_k=top_k,
+            historique=historique_recent,
+        )
     codes_sans_source = bool(ent["codes_obd"]) and not any(
         s.get("categorie") == "code_obd" for s in res["sources"]
     )
@@ -368,6 +390,7 @@ def traiter(question, modele_force=None):
         "resultat": res,
         "entites": ent,
         "filtre_auto": filtre_auto,
+        "filtre_memoire": filtre_memoire,
         "modele": modele,
         "codes_sans_source": codes_sans_source,
     })
@@ -377,7 +400,7 @@ def traiter(question, modele_force=None):
 st.subheader("Assistance technique sur notices constructeurs")
 st.caption(
     "Interrogez les manuels d'utilisation officiels (Renault Clio 4, Hyundai i10, Ford EcoSport, Kia Picanto). "
-    "Chaque réponse est sourcée avec le numéro de page correspondant."
+    "Chaque réponse est sourcée avec le numéro de page correspondant et conserve le contexte de la conversation."
 )
 
 if DEMO:
@@ -397,12 +420,12 @@ if not st.session_state.historique:
 for tour in st.session_state.historique:
     with st.chat_message("user"):
         st.markdown(tour["question"])
-        if tour["modele"] and not tour["filtre_auto"]:
+        if tour["modele"] and not tour["filtre_auto"] and not tour.get("filtre_memoire"):
             st.caption(f"Filtre véhicule : {tour['modele']}")
     with st.chat_message("assistant"):
         afficher_reponse(tour)
 
-question = st.chat_input("Posez une question technique (ex. : Que faire si le témoin de pression d'huile s'allume sur Clio 4 ?)")
+question = st.chat_input("Posez une question technique ou poursuivez la discussion (ex. : Et si le témoin clignote ?)")
 exemple = st.session_state.question_exemple
 if exemple:
     st.session_state.question_exemple = None

@@ -1,8 +1,10 @@
 """
-Tests unitaires pour le module de génération (Membre 2) et sa compatibilité avec l'interface Streamlit (Membre 3) :
+Tests unitaires pour le module de génération (Membre 2), la mémoire conversationnelle (<HISTORIQUE>),
+et la compatibilité avec l'interface Streamlit (Membre 3) :
 - RRF (Reciprocal Rank Fusion) et normalisation des scores dans [0, 1]
-- Prompts et formatage du contexte
-- Détection des questions ambiguës / trop vagues (clarification)
+- Prompts, formatage du contexte et de l'historique conversationnel
+- Détection des questions ambiguës / trop vagues (clarification) et résolution au tour suivant
+- Persistance du modèle de véhicule dans l'historique multi-tours
 - Pipeline RAG, refus sur information absente et contrat Streamlit (reponse, info_absente, sources, categories)
 """
 import sys
@@ -11,11 +13,12 @@ import unittest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 
-from mecano.pipeline import reciprocal_rank_fusion, ask
+from mecano.pipeline import reciprocal_rank_fusion, ask, infer_modele_from_history
 from mecano.prompts import (
     build_rag_prompt,
     build_multiquery_prompt,
     is_question_ambiguous,
+    contextualize_question_with_history,
 )
 
 
@@ -31,7 +34,7 @@ class TestGeneration(unittest.TestCase):
             {"id": "doc2", "titre": "Titre 2", "pages": ["1.20"], "score": 0.85},
             {"id": "doc3", "titre": "Titre 3", "pages": ["1.30"], "score": 0.7},
         ]
-        
+
         fused = reciprocal_rank_fusion([list1, list2], k=60, top_k=3)
         self.assertEqual(len(fused), 3)
         self.assertEqual(fused[0]["id"], "doc2")
@@ -41,8 +44,8 @@ class TestGeneration(unittest.TestCase):
         self.assertAlmostEqual(fused[0]["score_rrf"], expected_rrf, places=3)
         self.assertTrue(0.0 <= fused[0]["score"] <= 1.0)
 
-    def test_build_rag_prompt(self):
-        """Vérifie que le prompt RAG emballe bien le contexte et les métadonnées."""
+    def test_build_rag_prompt_and_history(self):
+        """Vérifie que le prompt RAG emballe bien l'historique <HISTORIQUE>, le contexte et les métadonnées."""
         passages = [
             {
                 "id": "clio4-001",
@@ -56,16 +59,52 @@ class TestGeneration(unittest.TestCase):
                 "texte": "Le témoin s'allume au démarrage."
             }
         ]
-        prompt = build_rag_prompt("Que signifie ce témoin ?", passages)
+        historique = [
+            {
+                "question": "J'ai un voyant rouge sur ma Clio 4",
+                "resultat": {"reponse": "**Précision nécessaire :** Quel est le symbole ?", "needs_clarification": True},
+                "modele": "Clio 4",
+            }
+        ]
+        prompt = build_rag_prompt("C'est une burette d'huile", passages, historique=historique)
+        self.assertIn("<HISTORIQUE>", prompt)
+        self.assertIn("J'ai un voyant rouge sur ma Clio 4", prompt)
         self.assertIn("<CONTEXTE>", prompt)
         self.assertIn("clio4-001", prompt)
         self.assertIn("Page(s): 1.56", prompt)
-        self.assertIn("Question du conducteur : Que signifie ce témoin ?", prompt)
+        self.assertIn("Question du conducteur : C'est une burette d'huile", prompt)
 
     def test_build_multiquery_prompt(self):
-        """Vérifie la construction du prompt de reformulation."""
+        """Vérifie la construction du prompt de reformulation avec et sans historique."""
         p = build_multiquery_prompt("voyant huile clignote")
         self.assertIn("voyant huile clignote", p)
+
+        hist = [{"question": "Comment vérifier l'huile sur i10 ?", "reponse": "Utilisez la jauge."}]
+        p_hist = build_multiquery_prompt("Et quelle quantité ajouter ?", historique=hist)
+        self.assertIn("<HISTORIQUE>", p_hist)
+        self.assertIn("Comment vérifier l'huile sur i10 ?", p_hist)
+        self.assertIn("Et quelle quantité ajouter ?", p_hist)
+
+    def test_multi_turn_clarification_resolution_and_model_memory(self):
+        """Vérifie qu'un second tour résout l'ambiguïté du premier tour et conserve le modèle en mémoire."""
+        # Tour 1 : Question vague sur Clio 4 -> demande de clarification
+        res_t1 = ask("J'ai un voyant rouge allumé sur mon tableau de bord, que faire ?", modele="Clio 4")
+        self.assertTrue(res_t1["needs_clarification"])
+
+        historique = [
+            {
+                "question": "J'ai un voyant rouge allumé sur mon tableau de bord, que faire ?",
+                "resultat": res_t1,
+                "modele": "Clio 4",
+            }
+        ]
+        # Vérifie l'héritage du modèle depuis l'historique
+        self.assertEqual(infer_modele_from_history(historique), "Clio 4")
+
+        # Vérifie que la question de suivi combinée à l'historique n'est plus ambiguë
+        contextualized = contextualize_question_with_history("C'est une burette d'huile", historique)
+        self.assertFalse(is_question_ambiguous(contextualized))
+        self.assertIn("burette d'huile", contextualized)
 
     def test_ambiguous_question_detection_and_clarification(self):
         """Vérifie que les questions trop vagues demandent une clarification au lieu de répondre au hasard."""

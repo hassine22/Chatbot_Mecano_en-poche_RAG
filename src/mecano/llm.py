@@ -91,15 +91,16 @@ def generate_response(
 def generate_reformulations(
     question: str,
     n: int = 3,
-    config: dict = None
+    config: dict = None,
+    historique: list[dict] | None = None
 ) -> list[str]:
-    """Génère n reformulations de recherche pour la question de l'utilisateur."""
+    """Génère n reformulations de recherche autonomes pour la question de l'utilisateur."""
     cfg_data = config or load_config()
     llm_cfg = cfg_data.get("llm", {})
     model_name = llm_cfg.get("model_name", "gemini-flash-lite-latest")
 
     try:
-        user_prompt = build_multiquery_prompt(question)
+        user_prompt = build_multiquery_prompt(question, historique=historique)
         raw_text = call_gemini_api(
             user_prompt=user_prompt,
             system_instruction=MULTIQUERY_SYSTEM_PROMPT,

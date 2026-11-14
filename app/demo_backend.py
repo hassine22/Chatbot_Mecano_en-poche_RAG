@@ -156,7 +156,7 @@ def _couverture(question, passage):
     return trouves / len(mots)
 
 
-def ask(question, modele=None, categories=None, top_k=5):
+def ask(question, modele=None, categories=None, top_k=5, historique=None):
     ranked = search(question, modele, categories, top_k)
     best = ranked[0][0] if ranked else 0.0
     sources = [dict(p, score=round(s / best, 3) if best else 0.0) for s, p in ranked]

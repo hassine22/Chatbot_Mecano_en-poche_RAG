@@ -1,6 +1,7 @@
 """
-Enchaîne recherche + génération :
-question → détection d'ambiguïté → reformulations (Multi-Query) → recherche (VectorRetriever FAISS ou secours lexical) → fusion RRF → LLM → réponse + sources.
+Enchaîne recherche + génération avec mémoire conversationnelle (<HISTORIQUE>) :
+question (+ historique) → contextualisation & détection d'ambiguïté → reformulations (Multi-Query) →
+recherche (VectorRetriever FAISS ou secours lexical) → fusion RRF → LLM → réponse + sources.
 
 Respecte le contrat attendu par app/streamlit_app.py (Membre 3), scripts/ask.py (Membre 2) et evaluation/ (Membre 4).
 """
@@ -12,6 +13,7 @@ from mecano.prompts import (
     build_rag_prompt,
     is_question_ambiguous,
     build_clarification_response,
+    contextualize_question_with_history,
 )
 from mecano.llm import generate_response, generate_reformulations
 
@@ -39,6 +41,22 @@ def normalize_modele(modele: str | None) -> str | None:
     if not clean:
         return None
     return MODELE_ALIASES.get(clean.lower(), clean)
+
+
+def infer_modele_from_history(historique: list[dict] | None) -> str | None:
+    """Récupère le dernier modèle de véhicule actif dans l'historique de conversation."""
+    if not historique:
+        return None
+    for turn in reversed(historique):
+        if not isinstance(turn, dict):
+            continue
+        mod = turn.get("modele")
+        if mod:
+            return normalize_modele(mod)
+        filters = turn.get("filters") or (turn.get("resultat", {}) if isinstance(turn.get("resultat"), dict) else {}).get("filters")
+        if isinstance(filters, dict) and filters.get("modele"):
+            return normalize_modele(filters["modele"])
+    return None
 
 
 def reciprocal_rank_fusion(
@@ -156,7 +174,6 @@ def _try_vector_retriever(
         retriever = _RETRIEVER_CACHE
         norm_modele = normalize_modele(modele)
 
-        # Cas standard : aucune catégorie ou 1 seule catégorie -> appel direct à VectorRetriever.search
         if not categories or len(categories) == 1:
             single_cat = categories[0] if categories else None
             raw_results = retriever.search(
@@ -166,7 +183,6 @@ def _try_vector_retriever(
                 categorie=single_cat,
             )
         else:
-            # Plusieurs catégories sélectionnées dans l'interface Streamlit
             allowed_cats = {str(c).strip().casefold() for c in categories if str(c).strip()}
             all_matches = retriever.search(
                 query,
@@ -284,10 +300,11 @@ def ask(
     top_k: int | None = None,
     categorie: str | None = None,
     use_multi_query: bool | None = None,
-    config: dict | None = None
+    config: dict | None = None,
+    historique: list[dict] | None = None,
 ) -> dict:
     """
-    Pipeline RAG complet compatible avec app/streamlit_app.py et scripts/ask.py :
+    Pipeline RAG complet avec mémoire conversationnelle, compatible avec app/streamlit_app.py et scripts/ask.py :
     Renvoie {
         "reponse": str,
         "answer": str,
@@ -295,6 +312,7 @@ def ask(
         "needs_clarification": bool,
         "sources": list[dict],
         "question": str,
+        "contextualized_question": str,
         "reformulations": list[str],
         "filters": dict,
         "multi_query_used": bool,
@@ -308,11 +326,18 @@ def ask(
     rrf_k = int(retrieval_cfg.get("rrf_k", 60))
     n_reforms = int(retrieval_cfg.get("num_reformulations", 3))
     cats_list = list(categories) if categories else ([categorie] if categorie else None)
-    norm_modele = normalize_modele(modele)
 
-    # 1. Détection de question trop vague / ambiguë (demande de clarification)
-    if is_question_ambiguous(question):
-        clarification = build_clarification_response(question, modele=norm_modele)
+    # 1. Mémoire du véhicule : si non spécifié sur ce tour, hériter du modèle des tours précédents
+    norm_modele = normalize_modele(modele)
+    if norm_modele is None and historique:
+        norm_modele = infer_modele_from_history(historique)
+
+    # 2. Contextualisation de la question avec l'historique récent (suivi ou réponse à une clarification)
+    search_question = contextualize_question_with_history(question, historique)
+
+    # 3. Détection de question trop vague / ambiguë (sur la question contextualisée)
+    if is_question_ambiguous(search_question):
+        clarification = build_clarification_response(search_question, modele=norm_modele)
         return {
             "reponse": clarification,
             "answer": clarification,
@@ -320,19 +345,25 @@ def ask(
             "needs_clarification": True,
             "sources": [],
             "question": question,
+            "contextualized_question": search_question,
             "reformulations": [],
             "filters": {"modele": norm_modele, "categories": cats_list, "categorie": categorie, "top_k": k},
             "multi_query_used": False,
         }
 
-    # 2. Génération des reformulations Multi-Query
+    # 4. Génération des reformulations Multi-Query (tenant compte de l'historique)
     reformulations = []
     if do_multi_query:
-        reformulations = generate_reformulations(question, n=n_reforms, config=cfg)
+        reformulations = generate_reformulations(
+            search_question,
+            n=n_reforms,
+            config=cfg,
+            historique=historique,
+        )
 
-    all_queries = [question] + reformulations
+    all_queries = [search_question] + [r for r in reformulations if r != search_question]
 
-    # 3. Exécuter la recherche pour chaque requête
+    # 5. Exécuter la recherche pour chaque requête
     results_per_query = []
     for q in all_queries:
         res = retrieve_passages(
@@ -345,7 +376,7 @@ def ask(
         if res:
             results_per_query.append(res)
 
-    # 4. Fusion RRF des résultats
+    # 6. Fusion RRF des résultats
     if not results_per_query:
         passages_finaux = []
     elif len(results_per_query) == 1:
@@ -353,7 +384,6 @@ def ask(
     else:
         passages_finaux = reciprocal_rank_fusion(results_per_query, k=rrf_k, top_k=k)
 
-    # Si aucun passage n'est trouvé
     if not passages_finaux:
         refusal = (
             "Cette information n'est pas présente dans la notice officielle du véhicule "
@@ -366,13 +396,14 @@ def ask(
             "needs_clarification": False,
             "sources": [],
             "question": question,
+            "contextualized_question": search_question,
             "reformulations": reformulations,
             "filters": {"modele": norm_modele, "categories": cats_list, "categorie": categorie, "top_k": k},
             "multi_query_used": bool(reformulations),
         }
 
-    # 5. Construction du prompt et génération LLM
-    user_prompt = build_rag_prompt(question, passages_finaux)
+    # 7. Construction du prompt (avec <HISTORIQUE> et <CONTEXTE>) et génération LLM
+    user_prompt = build_rag_prompt(question, passages_finaux, historique=historique)
     answer = generate_response(user_prompt=user_prompt, config=cfg)
     info_absente = _is_refusal_response(answer)
     needs_clarif = "Précision nécessaire" in answer or "Clarification needed" in answer
@@ -384,6 +415,7 @@ def ask(
         "needs_clarification": needs_clarif,
         "sources": passages_finaux,
         "question": question,
+        "contextualized_question": search_question,
         "reformulations": reformulations,
         "filters": {"modele": norm_modele, "categories": cats_list, "categorie": categorie, "top_k": k},
         "multi_query_used": bool(reformulations),

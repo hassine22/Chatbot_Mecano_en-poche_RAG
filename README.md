@@ -179,6 +179,10 @@ Chaque membre a extrait et structuré la notice officielle d'un véhicule en app
 - **Bonus — Détection et Clarification des Questions Ambiguës :**
   - La fonction `is_question_ambiguous()` détecte les questions qui ne mentionnent aucun système, symbole ou code précis (ex. *"J'ai un voyant rouge allumé sur mon tableau de bord, que faire ?"*).
   - Au lieu de répondre au hasard, `build_clarification_response()` invite le conducteur à préciser : (1) la forme du symbole ou le système concerné, (2) la couleur et le comportement (fixe/clignotant), (3) le message affiché à l'écran, et (4) le modèle du véhicule.
+- **Bonus — Mémoire Conversationnelle Multi-Tours (`<HISTORIQUE>`) :**
+  - **Persistance du véhicule en session (`infer_modele_from_history`) :** si le conducteur mentionne sa voiture au tour 1 (ex. `Clio 4`) puis pose une question de suivi au tour 2 sans répéter le modèle (*"Et quel fusible correspond à l'allume-cigare ?"*), le pipeline hérite automatiquement du véhicule actif et affiche le badge `VÉHICULE : CLIO 4 (CONTEXTE SESSION)`.
+  - **Contextualisation des questions de suivi (`contextualize_question_with_history`) :** lorsqu'un conducteur répond à une demande de clarification (ex. Tour 1 : *"J'ai un voyant rouge allumé"* → Tour 2 : *"C'est une burette d'huile"*) ou utilise des pronoms (*"Et s'il clignote ?"*), la requête de recherche et les reformulations Multi-Query intègrent automatiquement le contexte des 3 derniers échanges.
+  - **Bloc `<HISTORIQUE>` dans le prompt RAG :** les 3 derniers échanges sont injectés dans `build_rag_prompt()` afin que le LLM comprenne la continuité du dialogue tout en restant strictement ancré sur `<CONTEXTE>` pour les faits techniques et les numéros de page.
 
 ---
 
