@@ -8,6 +8,7 @@ L'interface appelle mecano.pipeline.ask() (le vrai RAG : embeddings + FAISS + LL
 Tant que ce pipeline n'est pas prêt, elle bascule sur app/demo_backend.py
 (recherche par mots-clés, sans LLM), qui respecte le même contrat.
 """
+import importlib
 import sys
 from pathlib import Path
 
@@ -25,7 +26,10 @@ from mecano import ner  # noqa: E402
 def charger_backend():
     """Renvoie (fonction ask, nom du mode). Utilise le vrai pipeline s'il est prêt."""
     try:
-        from mecano import pipeline
+        from mecano import prompts, llm, pipeline
+        importlib.reload(prompts)
+        importlib.reload(llm)
+        importlib.reload(pipeline)
         if callable(getattr(pipeline, "ask", None)):
             return pipeline.ask, "RAG Actif (FAISS + Gemini)"
     except Exception:
@@ -375,13 +379,21 @@ def traiter(question, modele_force=None):
 
     historique_recent = st.session_state.historique[-3:] if st.session_state.historique else None
     with st.spinner("Recherche dans les notices et génération de la réponse…"):
-        res = ASK(
-            question,
-            modele=modele,
-            categories=choix_cats or None,
-            top_k=top_k,
-            historique=historique_recent,
-        )
+        try:
+            res = ASK(
+                question,
+                modele=modele,
+                categories=choix_cats or None,
+                top_k=top_k,
+                historique=historique_recent,
+            )
+        except TypeError:
+            res = ASK(
+                question,
+                modele=modele,
+                categories=choix_cats or None,
+                top_k=top_k,
+            )
     codes_sans_source = bool(ent["codes_obd"]) and not any(
         s.get("categorie") == "code_obd" for s in res["sources"]
     )
