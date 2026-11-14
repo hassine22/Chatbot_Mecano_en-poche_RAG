@@ -1,0 +1,29 @@
+# Notices PDF : droits d'auteur des constructeurs, on ne les versionne pas
+data/pdf/*.pdf
+*.pdf
+
+# Fichier généré par merge_corpus.py
+corpus/output/all_corpus.jsonl
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# Index et modèles (générés plus tard)
+*.faiss
+*.index
+models/
+
+# Divers
+.DS_Store
+.ipynb_checkpoints/
+
+# Index FAISS et embeddings générés
+index/*
+!index/.gitkeep
+data/obd/*.json
+evaluation/results/*
+!evaluation/results/.gitkeep
