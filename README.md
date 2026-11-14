@@ -84,6 +84,56 @@ cd mecano-de-poche
 pip install -r requirements.txt
 ```
 
+## Construire les embeddings et l'index FAISS
+
+Les quatre corpus validés sont fusionnés dans `corpus/output/all_corpus.jsonl`.
+Chaque passage est transformé en vecteur avec Sentence-BERT, puis ces vecteurs
+sont rangés dans un index FAISS pour permettre une recherche sémantique rapide.
+Le modèle utilisé est multilingue et convient aux notices françaises et anglaises :
+
+```text
+sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+```
+
+Depuis la racine du dépôt :
+
+```bash
+python corpus/merge_corpus.py
+set PYTHONPATH=src
+python scripts/build_index.py
+```
+
+Sous PowerShell :
+
+```powershell
+python corpus\merge_corpus.py
+$env:PYTHONPATH = "src"
+python scripts\build_index.py
+```
+
+Les fichiers générés sont :
+
+```text
+index/corpus.faiss             # vecteurs et structure de recherche FAISS
+index/corpus_metadata.json     # passages, IDs, modèles et pages sources
+```
+
+Le fichier FAISS n'est pas lisible directement. Le résultat de recherche utilise
+la position renvoyée par FAISS pour retrouver le passage correspondant dans
+`corpus_metadata.json`. Les fichiers de l'index sont générés localement et ne
+sont pas versionnés.
+
+Pour reconstruire avec un autre corpus ou un autre modèle :
+
+```powershell
+$env:PYTHONPATH = "src"
+python scripts\build_index.py `
+  --corpus corpus\output\all_corpus.jsonl `
+  --output-dir index `
+  --model sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 `
+  --batch-size 32
+```
+
 ## Répartition
 
 | Membre | Voiture | Branche | Passages |
@@ -95,8 +145,8 @@ pip install -r requirements.txt
 
 ## Étapes suivantes
 
-- [x] Corpus des 4 voitures validés et fusionnés (`merge_corpus.py` → 1126 passages)
-- [ ] Embeddings (Sentence-BERT multilingue) + index FAISS
+- [x] Corpus des 4 voitures validés et fusionnés (`merge_corpus.py` → 1119 passages)
+- [x] Embeddings (Sentence-BERT multilingue) + index FAISS
 - [ ] Prompt LLM : réponse fondée sur les passages, citation des pages, refus si l'info est absente
 - [ ] Interface (Streamlit) avec filtre par modèle
 - [ ] 10 questions de test (dont 2 sans réponse) + évaluation
