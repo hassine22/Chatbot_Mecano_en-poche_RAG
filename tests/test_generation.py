@@ -2,6 +2,7 @@
 Tests unitaires pour le module de génération (Membre 2) :
 - RRF (Reciprocal Rank Fusion)
 - Prompts et formatage du contexte
+- Détection des questions ambiguës / trop vagues (clarification)
 - Pipeline RAG et refus sur information absente
 """
 import sys
@@ -11,7 +12,11 @@ import unittest
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 
 from mecano.pipeline import reciprocal_rank_fusion, ask
-from mecano.prompts import build_rag_prompt, build_multiquery_prompt
+from mecano.prompts import (
+    build_rag_prompt,
+    build_multiquery_prompt,
+    is_question_ambiguous,
+)
 
 
 class TestGeneration(unittest.TestCase):
@@ -27,12 +32,10 @@ class TestGeneration(unittest.TestCase):
             {"id": "doc3", "titre": "Titre 3", "pages": ["1.30"]},
         ]
         
-        # doc2 est présent dans les deux listes (rang 2 puis rang 1), son score RRF doit être le plus élevé
         fused = reciprocal_rank_fusion([list1, list2], k=60, top_k=3)
         self.assertEqual(len(fused), 3)
         self.assertEqual(fused[0]["id"], "doc2")
         self.assertIn("score", fused[0])
-        # Score doc2 : 1/(60+2) + 1/(60+1)
         expected_score = round(1.0 / 62 + 1.0 / 61, 4)
         self.assertAlmostEqual(fused[0]["score"], expected_score, places=3)
 
@@ -62,6 +65,22 @@ class TestGeneration(unittest.TestCase):
         p = build_multiquery_prompt("voyant huile clignote")
         self.assertIn("voyant huile clignote", p)
 
+    def test_ambiguous_question_detection_and_clarification(self):
+        """Vérifie que les questions trop vagues demandent une clarification au lieu de répondre au hasard."""
+        self.assertTrue(is_question_ambiguous("J'ai un voyant rouge allumé que faire ?"))
+        self.assertTrue(is_question_ambiguous("Ma voiture a un problème sur le tableau de bord"))
+        self.assertTrue(is_question_ambiguous("My warning light is on what should I do?"))
+        self.assertFalse(is_question_ambiguous("Que faire si le voyant de pression d'huile s'allume ?"))
+        self.assertFalse(is_question_ambiguous("Erreur P0420 sur ma voiture"))
+
+        res_fr = ask("J'ai un voyant rouge allumé sur mon tableau de bord, que faire ?", modele="clio4")
+        self.assertTrue(res_fr["needs_clarification"])
+        self.assertIn("Précision nécessaire", res_fr["answer"])
+
+        res_en = ask("A red warning light is blinking on my dashboard, what should I do?", modele="i10")
+        self.assertTrue(res_en["needs_clarification"])
+        self.assertIn("Clarification needed", res_en["answer"])
+
     def test_refusal_when_no_passages(self):
         """Vérifie que le pipeline refuse poliment si aucun passage n'est trouvé."""
         res = ask(
@@ -70,6 +89,7 @@ class TestGeneration(unittest.TestCase):
             use_multi_query=False
         )
         self.assertEqual(len(res["sources"]), 0)
+        self.assertFalse(res["needs_clarification"])
         self.assertIn("Cette information n'est pas présente dans la notice officielle", res["answer"])
 
 

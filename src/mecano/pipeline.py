@@ -1,10 +1,14 @@
 """
-Enchaîne recherche + génération : question → recherche (Multi-Query + RRF) → réponse + sources.
+Enchaîne recherche + génération : question → détection d'ambiguïté → recherche (Multi-Query + RRF) → réponse + sources.
 """
 import re
 from mecano.config import load_config
 from mecano.corpus_loader import load_all_corpus
-from mecano.prompts import build_rag_prompt
+from mecano.prompts import (
+    build_rag_prompt,
+    is_question_ambiguous,
+    build_clarification_response,
+)
 from mecano.llm import generate_response, generate_reformulations
 
 
@@ -117,7 +121,6 @@ def retrieve_passages(
         for fn_name in ("retrieve", "search", "rechercher"):
             if hasattr(retriever, fn_name):
                 fn = getattr(retriever, fn_name)
-                # Appeler la fonction du Membre 1
                 return fn(query=query, modele=modele, categorie=categorie, top_k=top_k)
     except Exception:
         pass
@@ -143,7 +146,7 @@ def ask(
 ) -> dict:
     """
     Pipeline RAG complet :
-    question → reformulations (optionnel) → recherche(s) → fusion RRF → LLM → réponse + sources.
+    question → détection d'ambiguïté → reformulations (optionnel) → recherche(s) → fusion RRF → LLM → réponse + sources.
     """
     cfg = config or load_config()
     retrieval_cfg = cfg.get("retrieval", {})
@@ -152,6 +155,19 @@ def ask(
     do_multi_query = use_multi_query if use_multi_query is not None else bool(retrieval_cfg.get("use_multi_query", True))
     rrf_k = int(retrieval_cfg.get("rrf_k", 60))
     n_reforms = int(retrieval_cfg.get("num_reformulations", 3))
+
+    # 1. Détection de question trop vague / ambiguë avant de répondre au hasard
+    if is_question_ambiguous(question):
+        clarification = build_clarification_response(question, modele=modele)
+        return {
+            "question": question,
+            "reformulations": [],
+            "answer": clarification,
+            "sources": [],
+            "filters": {"modele": modele, "categorie": categorie, "top_k": k},
+            "multi_query_used": False,
+            "needs_clarification": True,
+        }
     
     reformulations = []
     if do_multi_query:
@@ -159,7 +175,7 @@ def ask(
         
     all_queries = [question] + reformulations
     
-    # Exécuter la recherche pour chaque requête
+    # 2. Exécuter la recherche pour chaque requête
     results_per_query = []
     for q in all_queries:
         res = retrieve_passages(
@@ -172,7 +188,7 @@ def ask(
         if res:
             results_per_query.append(res)
             
-    # Fusion des résultats
+    # 3. Fusion des résultats
     if not results_per_query:
         passages_finaux = []
     elif len(results_per_query) == 1:
@@ -190,11 +206,13 @@ def ask(
             "sources": [],
             "filters": {"modele": modele, "categorie": categorie, "top_k": k},
             "multi_query_used": bool(reformulations),
+            "needs_clarification": False,
         }
         
-    # Construction du prompt et génération
+    # 4. Construction du prompt et génération
     user_prompt = build_rag_prompt(question, passages_finaux)
     answer = generate_response(user_prompt=user_prompt, config=cfg)
+    needs_clarif = "Précision nécessaire" in answer or "Clarification needed" in answer
     
     return {
         "question": question,
@@ -203,4 +221,5 @@ def ask(
         "sources": passages_finaux,
         "filters": {"modele": modele, "categorie": categorie, "top_k": k},
         "multi_query_used": bool(reformulations),
+        "needs_clarification": needs_clarif,
     }
