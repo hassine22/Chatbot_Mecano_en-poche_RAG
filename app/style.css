@@ -1,0 +1,236 @@
+/* =====================================================================
+   Mécano de poche : thème « tableau de bord de nuit »
+   ===================================================================== */
+@font-face {
+  font-family: "Saira";
+  src: url("app/static/fonts/saira.woff2") format("woff2-variations"),
+       url("app/static/fonts/saira.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+}
+
+:root {
+  --nuit: #0A1220;
+  --vitre: #101B2D;
+  --vitre-2: #14223A;
+  --bord: #1E2C44;
+  --texte: #E8F1FF;
+  --texte-2: #8EA3C0;
+  --eteint: #2B3B57;
+  --glacier: #4FC3F7;
+  --rouge: #FF4D3D;
+  --orange: #FFB020;
+  --vert: #3DDC84;
+}
+
+html, body, .stApp, .stMarkdown, button, input, textarea, select,
+[data-testid="stChatInput"] textarea {
+  font-family: "Saira", system-ui, -apple-system, "Segoe UI", sans-serif !important;
+}
+.stApp {
+  background:
+    radial-gradient(1200px 520px at 50% -180px, rgba(79,195,247,.10), transparent 70%),
+    var(--nuit);
+}
+[data-testid="stAppViewBlockContainer"], .block-container {
+  max-width: 1040px;
+  padding-top: 2.2rem;
+  padding-bottom: 7rem;
+}
+.stMarkdown p, .stMarkdown li { font-size: 1.02rem; line-height: 1.6; }
+header[data-testid="stHeader"] { background: transparent; }
+
+/* ---------------------------------------------------------------- en-tête */
+.mdp-hero { margin: 0 0 1.6rem; }
+.mdp-wordmark {
+  font-stretch: 125%;
+  font-weight: 700;
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  line-height: 1.02;
+  letter-spacing: .01em;
+  color: var(--texte);
+  margin: 0;
+}
+.mdp-tagline {
+  color: var(--texte-2);
+  font-size: 1.08rem;
+  max-width: 60ch;
+  margin: .5rem 0 0;
+}
+.mdp-step {
+  font-stretch: 112%;
+  font-weight: 600;
+  font-size: 1.18rem;
+  color: var(--texte);
+  margin: 1.6rem 0 .7rem;
+}
+.mdp-step small {
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: .9rem;
+  color: var(--texte-2);
+  margin-left: .5rem;
+}
+
+/* ---------------------------------------------------------------- éléments cliquables
+   Un conteneur Streamlit (clé "car_…", "tt_…", "ex_…") contient un rendu HTML
+   et un bouton transparent posé par-dessus : toute la carte est cliquable. */
+[class*="st-key-car_"], [class*="st-key-tt_"], [class*="st-key-ex_"] { position: relative; }
+[class*="st-key-car_"] [data-testid="stElementContainer"]:has(.stButton),
+[class*="st-key-tt_"] [data-testid="stElementContainer"]:has(.stButton),
+[class*="st-key-ex_"] [data-testid="stElementContainer"]:has(.stButton) {
+  position: absolute !important; inset: 0; z-index: 2; margin: 0; width: auto !important;
+}
+[class*="st-key-car_"] .stButton, [class*="st-key-tt_"] .stButton, [class*="st-key-ex_"] .stButton {
+  width: 100%; height: 100%;
+}
+[class*="st-key-car_"] .stButton button, [class*="st-key-tt_"] .stButton button,
+[class*="st-key-ex_"] .stButton button {
+  width: 100%; height: 100%; opacity: 0; cursor: pointer; min-height: 0;
+}
+
+/* ---------------------------------------------------------------- cartes voitures */
+.car {
+  border: 1px solid var(--bord);
+  border-radius: 14px;
+  padding: .9rem 1rem .85rem;
+  background: linear-gradient(180deg, var(--vitre-2), var(--vitre));
+  transition: border-color .15s, box-shadow .15s;
+  min-height: 118px;
+}
+.car-marque { color: var(--texte-2); font-size: .88rem; }
+.car-modele {
+  font-stretch: 125%; font-weight: 700; font-size: 1.5rem; line-height: 1.1;
+  color: var(--texte); margin: .1rem 0 .35rem;
+}
+.car-info { color: var(--texte-2); font-size: .84rem; line-height: 1.35; }
+.car.actif {
+  border-color: var(--glacier);
+  box-shadow: 0 0 0 1px var(--glacier), 0 0 26px rgba(79,195,247,.25);
+}
+.car.actif .car-modele { color: #fff; text-shadow: 0 0 14px rgba(79,195,247,.45); }
+[class*="st-key-car_"]:hover .car { border-color: #3A5478; }
+[class*="st-key-car_"]:has(button:focus-visible) .car { outline: 2px solid var(--glacier); outline-offset: 2px; }
+
+.car-strip {
+  display: flex; align-items: center; gap: .9rem;
+  border: 1px solid var(--bord); border-radius: 14px;
+  background: var(--vitre); padding: .7rem 1rem;
+}
+.car-strip .led { width: 10px; height: 10px; border-radius: 50%; background: var(--glacier);
+  box-shadow: 0 0 10px var(--glacier); flex: none; }
+.car-strip b { font-stretch: 120%; font-size: 1.15rem; }
+.car-strip span { color: var(--texte-2); font-size: .9rem; }
+
+/* ---------------------------------------------------------------- panneau de voyants */
+.cluster-note { color: var(--texte-2); font-size: .9rem; margin: -.3rem 0 .8rem; }
+[class*="st-key-telltales"] {
+  border: 1px solid var(--bord);
+  border-radius: 22px;
+  background:
+    radial-gradient(120% 140% at 50% 0%, #14233D 0%, #0C1627 70%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), inset 0 -18px 40px rgba(0,0,0,.35);
+  padding: 1.1rem 1rem .6rem;
+}
+.tt { text-align: center; padding: .35rem .2rem .55rem; border-radius: 12px; }
+.tt svg { width: 50px; height: 50px; color: var(--eteint); transition: color .12s, filter .12s; }
+.tt-label { color: var(--texte-2); font-size: .82rem; line-height: 1.25; margin-top: .25rem; min-height: 2.1em; }
+[class*="st-key-tt_"]:hover .tt svg,
+[class*="st-key-tt_"]:has(button:focus-visible) .tt svg {
+  color: var(--c); filter: drop-shadow(0 0 7px var(--c)) drop-shadow(0 0 16px var(--c));
+}
+[class*="st-key-tt_"]:hover .tt-label { color: var(--texte); }
+[class*="st-key-tt_"]:has(button:focus-visible) .tt { outline: 2px solid var(--glacier); }
+
+/* Test d'allumage : tous les voyants s'allument puis s'éteignent (une seule fois) */
+.selftest .tt svg { animation: allumage 1.9s ease-out .25s both; }
+@keyframes allumage {
+  0%   { color: var(--eteint); filter: none; }
+  12%  { color: var(--c); filter: drop-shadow(0 0 7px var(--c)) drop-shadow(0 0 16px var(--c)); }
+  62%  { color: var(--c); filter: drop-shadow(0 0 7px var(--c)) drop-shadow(0 0 16px var(--c)); }
+  100% { color: var(--eteint); filter: none; }
+}
+
+/* ---------------------------------------------------------------- questions exemples */
+.ex {
+  border: 1px solid var(--bord); border-radius: 999px;
+  padding: .45rem .95rem; color: var(--texte); font-size: .92rem;
+  background: rgba(16,27,45,.6); text-align: center; white-space: normal;
+}
+[class*="st-key-ex_"]:hover .ex { border-color: var(--glacier); color: #fff; }
+[class*="st-key-ex_"]:has(button:focus-visible) .ex { outline: 2px solid var(--glacier); }
+
+/* ---------------------------------------------------------------- conversation */
+[data-testid="stChatMessage"] { background: transparent; padding: .4rem 0; }
+[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) .stMarkdown p {
+  font-weight: 600; font-size: 1.08rem;
+}
+.chips { margin: 0 0 .7rem; }
+.chip {
+  display: inline-block; margin: 0 .4rem .4rem 0; padding: .15rem .65rem;
+  border-radius: 999px; font-size: .8rem; color: var(--texte-2);
+  border: 1px solid var(--bord); background: var(--vitre);
+}
+.chip.obd { color: var(--orange); border-color: rgba(255,176,32,.45); }
+
+/* Verdict d'urgence : un voyant allumé + une phrase d'action */
+.verdict {
+  display: flex; align-items: center; gap: .9rem;
+  border-radius: 14px; padding: .8rem 1rem; margin: .1rem 0 1rem;
+  border: 1px solid var(--bord); background: var(--vitre);
+}
+.verdict .lampe { width: 14px; height: 14px; border-radius: 50%; flex: none;
+  background: var(--c); box-shadow: 0 0 10px var(--c), 0 0 22px var(--c); }
+.verdict b { display: block; font-stretch: 112%; font-size: 1.08rem; color: var(--texte); }
+.verdict span { color: var(--texte-2); font-size: .9rem; }
+.verdict.urgent  { --c: var(--rouge);  border-color: rgba(255,77,61,.55); background: linear-gradient(90deg, rgba(255,77,61,.14), var(--vitre) 60%); }
+.verdict.attention { --c: var(--orange); border-color: rgba(255,176,32,.5); background: linear-gradient(90deg, rgba(255,176,32,.12), var(--vitre) 60%); }
+.verdict.info    { --c: var(--vert);   border-color: rgba(61,220,132,.4); }
+.verdict.absent  { --c: #6B7F9E; }
+.verdict.question { --c: var(--glacier); border-color: rgba(79,195,247,.45); }
+
+.cite {
+  display: inline-block; padding: 0 .45rem; margin: 0 .1rem; border-radius: 6px;
+  font-size: .8em; line-height: 1.5; color: var(--glacier);
+  background: rgba(79,195,247,.10); border: 1px solid rgba(79,195,247,.28);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* Extraits de la notice */
+.src { border-left: 3px solid var(--bord); padding: .1rem 0 .1rem .9rem; margin: .2rem 0 1.1rem; }
+.src-titre { font-weight: 600; color: var(--texte); }
+.src-meta { color: var(--texte-2); font-size: .84rem; margin: .15rem 0 .45rem; display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; }
+.jauge { width: 90px; height: 5px; border-radius: 3px; background: var(--eteint); overflow: hidden; display: inline-block; }
+.jauge i { display: block; height: 100%; background: var(--glacier); box-shadow: 0 0 6px var(--glacier); }
+.src-texte { color: #C9D6EA; font-size: .92rem; line-height: 1.55; white-space: pre-wrap; }
+.src a { color: var(--glacier); font-size: .84rem; }
+
+.note-repli { color: var(--orange); font-size: .86rem; margin: .4rem 0 0; }
+
+/* ---------------------------------------------------------------- barre latérale */
+[data-testid="stSidebar"] { background: #0C1626; border-right: 1px solid var(--bord); }
+.etat { display: flex; align-items: center; gap: .55rem; font-size: .92rem; }
+.etat .led { width: 9px; height: 9px; border-radius: 50%; background: var(--c); box-shadow: 0 0 8px var(--c); }
+.side-note { color: var(--texte-2); font-size: .82rem; line-height: 1.45; }
+
+/* ---------------------------------------------------------------- saisie */
+[data-testid="stChatInput"] { border-radius: 16px; }
+[data-testid="stBottomBlockContainer"] { background: linear-gradient(180deg, transparent, var(--nuit) 35%); }
+
+/* ---------------------------------------------------------------- mobile */
+@media (max-width: 640px) {
+  [class*="st-key-telltales"] [data-testid="stHorizontalBlock"] { flex-wrap: wrap; gap: .2rem; }
+  [class*="st-key-telltales"] [data-testid="stColumn"] { min-width: 23% !important; flex: 1 1 23% !important; }
+  .tt svg { width: 40px; height: 40px; }
+  .tt-label { font-size: .72rem; }
+  [class*="st-key-cars"] [data-testid="stHorizontalBlock"] { flex-wrap: wrap; }
+  [class*="st-key-cars"] [data-testid="stColumn"] { min-width: 46% !important; flex: 1 1 46% !important; }
+  .car { min-height: 0; }
+  .car-modele { font-size: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selftest .tt svg { animation: none; }
+  .tt svg, .car { transition: none; }
+}

@@ -1,0 +1,17 @@
+[theme]
+base = "dark"
+primaryColor = "#4FC3F7"
+backgroundColor = "#0A1220"
+secondaryBackgroundColor = "#101B2D"
+textColor = "#E8F1FF"
+
+[server]
+# Sert app/static/ (police Saira embarquée, utilisable hors connexion)
+enableStaticServing = true
+
+[browser]
+gatherUsageStats = false
+
+[client]
+# Cache le bouton « Deploy » et le menu développeur pendant la démo
+toolbarMode = "minimal"

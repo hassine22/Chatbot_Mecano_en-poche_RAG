@@ -1,42 +1,55 @@
 """
-Interface web de « Mécano de poche ».
+Interface web de « Mécano de poche » (membre 3).
 
-Lancement (depuis la racine du dépôt) :
+Lancement, depuis la racine du dépôt :
     streamlit run app/streamlit_app.py
 
-L'interface appelle mecano.pipeline.ask() (le vrai RAG : embeddings + FAISS + LLM).
-Tant que ce pipeline n'est pas prêt, elle bascule sur app/demo_backend.py
-(recherche par mots-clés, sans LLM), qui respecte le même contrat.
+Parcours : choisir sa voiture → cliquer sur le voyant allumé ou décrire le problème
+→ lire la réponse (verdict d'urgence, consignes, pages de la notice citées).
+
+Moteur : mecano.pipeline.ask() (embeddings + FAISS + Gemini). Si le pipeline est
+absent ou en erreur (quota, pas de réseau…), l'interface se replie sur
+app/demo_backend.py (recherche par mots-clés, sans LLM), qui respecte le même contrat.
+Variable d'environnement MECANO_HORS_LIGNE=1 : forcer ce mode de repli.
 """
+import html
+import json
+import os
+import re
 import sys
+import time
 from pathlib import Path
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 ROOT = Path(__file__).resolve().parents[1]
+APP = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "src"))
-sys.path.insert(0, str(ROOT / "app"))
+sys.path.insert(0, str(APP))
 
 import demo_backend  # noqa: E402
 from mecano import ner  # noqa: E402
+from telltales import VOYANTS, svg  # noqa: E402
+
+FEEDBACK = ROOT / "evaluation" / "results" / "feedback.jsonl"
 
 
-# ---------------------------------------------------------------- backend
-def charger_backend():
-    """Renvoie (fonction ask, nom du mode). Utilise le vrai pipeline s'il est prêt."""
+# ===================================================================== moteur RAG
+def charger_pipeline():
+    if os.environ.get("MECANO_HORS_LIGNE") == "1":
+        return None
     try:
         from mecano import pipeline
         if callable(getattr(pipeline, "ask", None)):
-            return pipeline.ask, "RAG Actif (FAISS + Gemini)"
+            return pipeline.ask
     except Exception:
         pass
-    return demo_backend.ask, "Recherche lexicale (sans LLM)"
+    return None
 
 
-ASK, MODE = charger_backend()
-DEMO = ASK is demo_backend.ask
+PIPELINE = charger_pipeline()
 
-# ---------------------------------------------------------------- libellés sobres
 CATEGORIES = {
     "voyant": "Voyants du tableau de bord",
     "message_tableau_de_bord": "Messages affichés",
@@ -55,33 +68,120 @@ CATEGORIES = {
     "caracteristiques_moteur": "Caractéristiques moteur",
     "code_obd": "Codes défaut OBD-II",
 }
-LANGUE_CODE = {"fr": "FR", "en": "EN", "ar": "AR"}
+LANGUE = {"fr": "en français", "en": "en anglais", "ar": "en arabe"}
+TOUTES = "__toutes__"
 
 EXEMPLES = [
-    ("Le voyant de pression d'huile s'allume sur ma Clio 4, que faire ?", None),
-    ("Mon moteur chauffe, que faire ?", "Clio 4"),
-    ("Comment changer une roue crevée sur l'EcoSport ?", None),
-    ("Comment démarrer avec des câbles si la batterie de ma i10 est à plat ?", None),
-    ("Comment vérifier le niveau d'huile moteur de la Picanto ?", None),
-    ("Combien coûte une vidange à Tunis ?", None),
+    "Mon moteur chauffe, que faire ?",
+    "Comment vérifier le niveau d'huile ?",
+    "Comment changer une roue crevée ?",
+    "Comment démarrer avec des câbles si la batterie est à plat ?",
 ]
 
-# Mots indiquant le niveau d'urgence dans les passages (français et anglais)
-URGENT = [
-    "arrêt impératif", "arrêtez-vous", "arrêtez votre moteur", "stop the vehicle",
-    "stop safely", "stop immediately", "do not drive", "ne redémarrez pas", "risque casse",
-]
-ATTENTION = [
-    "consultez", "représentant de la marque", "faites contrôler", "have the vehicle",
-    "authorized", "dealer", "as soon as possible", "au plus tôt", "service now",
-]
+# Mots qui indiquent le niveau d'urgence (passage le plus pertinent + réponse)
+URGENT = ["arrêt impératif", "arrêtez-vous", "arrêtez le moteur", "arrêtez votre moteur", "stoppez",
+          "immobilisez", "stop the vehicle", "stop safely", "stop immediately", "do not drive",
+          "ne redémarrez pas", "risque casse", "do not continue driving"]
+ATTENTION = ["consultez", "représentant de la marque", "faites contrôler", "faites vérifier",
+             "have the vehicle", "authorised", "authorized", "dealer", "as soon as possible",
+             "au plus tôt", "service now", "garagiste"]
+
+VERDICTS = {
+    "urgent": ("Arrêtez-vous dès que possible",
+               "La notice signale un risque pour votre sécurité ou pour le moteur."),
+    "attention": ("Faites vérifier la voiture rapidement",
+                  "Vous pouvez rouler prudemment jusqu'à un garage."),
+    "info": ("Pas d'urgence signalée", "Suivez les consignes ci-dessous."),
+    "absent": ("Ce n'est pas dans la notice",
+               "Pour ne pas vous induire en erreur, l'assistant ne répond qu'à partir de la notice."),
+    "question": ("Il manque une précision", "Répondez à la question ci-dessous."),
+}
 
 
-def niveau_urgence(resultat):
-    """Indication heuristique, déduite du passage le plus pertinent."""
-    if resultat.get("info_absente") or resultat.get("needs_clarification") or not resultat.get("sources"):
-        return None
-    texte = (resultat["sources"][0]["titre"] + " " + resultat["sources"][0]["texte"]).lower()
+# ===================================================================== état
+def init_state():
+    ss = st.session_state
+    ss.setdefault("voiture", None)        # valeur du champ "modele" ou TOUTES
+    ss.setdefault("historique", [])
+    ss.setdefault("en_attente", None)     # question posée avant le choix de la voiture
+    ss.setdefault("a_traiter", None)      # question à envoyer au moteur à ce tour
+    ss.setdefault("selftest", True)       # test d'allumage des voyants, une seule fois
+
+
+init_state()
+st.set_page_config(page_title="Mécano de poche", page_icon="🔧", layout="wide",
+                   initial_sidebar_state="collapsed")
+st.markdown(f"<style>{(APP / 'style.css').read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
+
+VOITURES = demo_backend.modeles_disponibles()  # [(marque, modele, annees, langue, nb)]
+INFO_VOITURE = {m[1]: m for m in VOITURES}
+
+
+def periode(annees):
+    debut, _, fin = annees.partition("-")
+    return debut if debut == fin else f"{debut}–{fin}"
+
+
+def nom_voiture(modele):
+    if modele == TOUTES or modele is None:
+        return "toutes les voitures"
+    marque, mod, annees, _, _ = INFO_VOITURE[modele]
+    return f"{marque} {mod}"
+
+
+# ===================================================================== barre latérale
+with st.sidebar:
+    st.markdown("### Réglages de la recherche")
+    choix_cats = st.multiselect("Chercher seulement dans", list(CATEGORIES),
+                                format_func=lambda c: CATEGORIES[c], placeholder="Toute la notice")
+    top_k = st.select_slider("Passages de la notice consultés (top-k)", options=[3, 5, 8, 10], value=5)
+    voir_extraits = st.toggle("Montrer les extraits de la notice", value=True)
+    hors_ligne = st.toggle("Mode hors ligne (sans LLM)", value=PIPELINE is None,
+                           disabled=PIPELINE is None,
+                           help="Recherche par mots-clés et extrait brut de la notice, sans appel à Gemini. "
+                                "Utile si le quota de l'API est atteint pendant une démonstration.")
+    st.divider()
+    if PIPELINE is not None and not hors_ligne:
+        st.markdown("<div class='etat' style='--c:#3DDC84'><span class='led'></span>"
+                    "Assistant complet : FAISS + Gemini</div>", unsafe_allow_html=True)
+    else:
+        st.markdown("<div class='etat' style='--c:#FFB020'><span class='led'></span>"
+                    "Mode hors ligne : recherche par mots-clés</div>", unsafe_allow_html=True)
+    total = sum(v[4] for v in VOITURES)
+    st.markdown(f"<p class='side-note'>{total} passages issus de {len(VOITURES)} notices officielles.</p>",
+                unsafe_allow_html=True)
+    if st.button("Effacer la conversation", use_container_width=True):
+        st.session_state.historique = []
+        st.session_state.en_attente = None
+        st.rerun()
+    st.markdown("<p class='side-note'>Cet assistant ne remplace pas un garagiste. En cas de doute "
+                "sur la sécurité, arrêtez-vous et appelez un professionnel.</p>", unsafe_allow_html=True)
+
+
+# ===================================================================== moteur : appel + repli
+def interroger(question, modele):
+    cats = choix_cats or None
+    filtre = None if modele in (None, TOUTES) else modele
+    erreur = None
+    if PIPELINE is not None and not hors_ligne:
+        try:
+            return PIPELINE(question, modele=filtre, categories=cats, top_k=top_k), None
+        except Exception as e:  # quota, réseau, clé invalide…
+            erreur = str(e)
+    return demo_backend.ask(question, modele=filtre, categories=cats, top_k=top_k), erreur
+
+
+def reponse_de(res):
+    return res.get("reponse") or res.get("answer") or ""
+
+
+def niveau(res):
+    if res.get("needs_clarification"):
+        return "question"
+    if res.get("info_absente") or not res.get("sources"):
+        return "absent"
+    top = res["sources"][0]
+    texte = " ".join([top.get("titre", ""), top.get("texte", ""), reponse_de(res)]).lower()
     if any(m in texte for m in URGENT):
         return "urgent"
     if any(m in texte for m in ATTENTION):
@@ -89,329 +189,229 @@ def niveau_urgence(resultat):
     return "info"
 
 
-# ---------------------------------------------------------------- configuration page & CSS pro
-st.set_page_config(page_title="Mécano de poche — Documentation Technique", page_icon=None, layout="wide")
-st.markdown("""
-<style>
-/* Typographie et sobriété générale */
-.block-container {
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-    max-width: 1080px;
-}
-h1, h2, h3 {
-    letter-spacing: -0.02em;
-    font-weight: 600;
-}
-
-/* Badges d'entités (Modèle / OBD) */
-.entity-bar {
-    margin-bottom: 0.65rem;
-}
-.chip {
-    display: inline-block;
-    padding: 3px 10px;
-    margin: 0 6px 6px 0;
-    border-radius: 4px;
-    font-size: 0.76rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    background: #f8fafc;
-    color: #334155;
-    border: 1px solid #cbd5e1;
-}
-.chip-obd {
-    background: #fffbeb;
-    color: #92400e;
-    border-color: #fcd34d;
-}
-.chip-auto {
-    background: #f0f9ff;
-    color: #0369a1;
-    border-color: #bae6fd;
-}
-
-/* Bandeaux d'état techniques */
-.status-banner {
-    padding: 0.75rem 1rem;
-    border-radius: 6px;
-    margin-bottom: 0.85rem;
-    font-size: 0.9rem;
-    line-height: 1.45;
-    border-left: 4px solid;
-}
-.status-urgent {
-    background-color: #fef2f2;
-    border-left-color: #dc2626;
-    color: #7f1d1d;
-}
-.status-attention {
-    background-color: #fffbeb;
-    border-left-color: #d97706;
-    color: #78350f;
-}
-.status-absent {
-    background-color: #f8fafc;
-    border-left-color: #64748b;
-    color: #334155;
-}
-.status-obd {
-    background-color: #f0f9ff;
-    border-left-color: #0284c7;
-    color: #0c4a6e;
-    margin-top: 0.75rem;
-}
-
-/* Cartes de sources documentaires */
-.src-card {
-    padding: 0.75rem 0;
-}
-.src-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.25rem;
-}
-.src-title {
-    font-weight: 600;
-    font-size: 0.92rem;
-    color: #0f172a;
-}
-.src-meta {
-    color: #64748b;
-    font-size: 0.8rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-.src-excerpt {
-    font-size: 0.86rem;
-    line-height: 1.55;
-    color: #334155;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 4px;
-    padding: 0.65rem 0.85rem;
-    margin: 0.45rem 0;
-    white-space: pre-wrap;
-}
-
-/* Cartes d'exemples */
-div[data-testid="stButton"] > button {
-    text-align: left;
-    font-weight: 400;
-    border-radius: 6px;
-    border: 1px solid #e2e8f0;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
-}
-div[data-testid="stButton"] > button:hover {
-    border-color: #94a3b8;
-    background-color: #f8fafc;
-}
-</style>
-""", unsafe_allow_html=True)
-
-if "historique" not in st.session_state:
-    st.session_state.historique = []
-if "question_exemple" not in st.session_state:
-    st.session_state.question_exemple = None
-
-# ---------------------------------------------------------------- barre latérale
-modeles = demo_backend.modeles_disponibles()
-with st.sidebar:
-    st.markdown("### Mécano de poche")
-    st.caption("Système RAG d'assistance technique sur notices constructeurs")
-
-    st.markdown("**Véhicule**")
-    options = ["Détection automatique"] + [m[1] for m in modeles]
-
-    def libelle(o):
-        for marque, modele, annees, langue, n in modeles:
-            if o == modele:
-                debut, fin = annees.split("-")
-                periode = debut if debut == fin else annees
-                code_lang = LANGUE_CODE.get(langue, langue.upper())
-                return f"{marque} {modele} ({periode}) [{code_lang}]"
-        return o
-
-    choix_modele = st.selectbox("Modèle", options, format_func=libelle, label_visibility="collapsed")
-
-    st.markdown("**Section de la notice**")
-    cats_dispo = [c for c in CATEGORIES if c in demo_backend.categories_disponibles()]
-    choix_cats = st.multiselect(
-        "Catégories",
-        cats_dispo,
-        format_func=lambda c: CATEGORIES[c],
-        placeholder="Toutes les sections",
-        label_visibility="collapsed",
-    )
-
-    st.markdown("**Paramètres de recherche**")
-    top_k = st.select_slider("Passages extraits (top-k)", options=[3, 5, 8, 10], value=5)
-    voir_sources = st.toggle("Afficher les extraits sources", value=True)
-
-    st.divider()
-    total = sum(m[4] for m in modeles)
-    st.caption(f"**Moteur :** {MODE}")
-    st.caption(f"**Index :** {total} passages · {len(modeles)} manuels officiels")
-    if st.button("Réinitialiser la session", use_container_width=True):
-        st.session_state.historique = []
-        st.rerun()
-    st.caption(
-        "Note de responsabilité : cet outil consulte les manuels d'utilisation officiels et ne "
-        "se substitue pas au diagnostic d'un professionnel qualifié."
-    )
+# ===================================================================== traitement d'une question
+def demander(question, origine="saisie"):
+    """Enregistre la question ; elle est traitée en fin de script, après l'affichage."""
+    st.session_state.a_traiter = (question, origine)
 
 
-# ---------------------------------------------------------------- affichage d'une réponse
-def afficher_entites(ent, filtre_auto):
-    chips = []
-    if ent["modele"]:
-        cls = "chip chip-auto" if filtre_auto else "chip"
-        txt = f"Véhicule : {ent['modele'][0]} {ent['modele'][1]}"
-        if filtre_auto:
-            txt += " (détecté)"
-        chips.append(f"<span class='{cls}'>{txt}</span>")
-    for c in ent["codes_obd"]:
-        chips.append(f"<span class='chip chip-obd'>OBD-II {c['code']} · {c['famille']}</span>")
-    if chips:
-        st.markdown(f"<div class='entity-bar'>{''.join(chips)}</div>", unsafe_allow_html=True)
+def choisir_voiture(modele):
+    st.session_state.voiture = modele
+    if st.session_state.en_attente and modele is not None:
+        demander(st.session_state.en_attente)
+        st.session_state.en_attente = None
 
 
-def afficher_reponse(tour):
-    res = tour["resultat"]
-    afficher_entites(tour["entites"], tour["filtre_auto"])
-
-    niveau = niveau_urgence(res)
-    if res["info_absente"]:
-        st.markdown(
-            f"<div class='status-banner status-absent'>"
-            f"<strong>Information hors notice :</strong> {res['reponse']}</div>",
-            unsafe_allow_html=True,
-        )
-    else:
-        if niveau == "urgent":
-            st.markdown(
-                "<div class='status-banner status-urgent'>"
-                "<strong>Arrêt impératif recommandé :</strong> la documentation constructeur indique un risque "
-                "pour la sécurité ou le moteur. Immobilisez le véhicule dès que possible en sécurité."
-                "</div>",
-                unsafe_allow_html=True,
-            )
-        elif niveau == "attention":
-            st.markdown(
-                "<div class='status-banner status-attention'>"
-                "<strong>Contrôle atelier recommandé :</strong> la notice préconise de faire vérifier le véhicule "
-                "par un réparateur qualifié."
-                "</div>",
-                unsafe_allow_html=True,
-            )
-        st.markdown(res["reponse"])
-
-    if tour["codes_sans_source"]:
-        st.markdown(
-            "<div class='status-banner status-obd'>"
-            "<strong>Note OBD-II :</strong> la table complète des codes défaut DTC ne figure pas dans le manuel "
-            "conducteur. Un relevé par outil de diagnostic en atelier est nécessaire."
-            "</div>",
-            unsafe_allow_html=True,
-        )
-
-    if voir_sources and res["sources"]:
-        suffixe = " (non retenus)" if res["info_absente"] else ""
-        titre_exp = f"Extraits des notices consultés ({len(res['sources'])}{suffixe})"
-        with st.expander(titre_exp, expanded=False):
-            for i, s in enumerate(res["sources"], 1):
-                pages = ", ".join(s["pages"])
-                code_lang = LANGUE_CODE.get(s.get("langue", ""), s.get("langue", "").upper())
-                cat_label = CATEGORIES.get(s.get("categorie", ""), s.get("categorie", ""))
-                score_pct = min(max(float(s.get("score", 0.0)), 0.0), 1.0)
-
-                st.markdown(
-                    f"<div class='src-header'>"
-                    f"<span class='src-title'>{i}. {s['titre']}</span>"
-                    f"<span class='src-meta'>Pertinence : {score_pct:.0%}</span>"
-                    f"</div>"
-                    f"<div class='src-meta'>{s['marque']} {s['modele']} [{code_lang}] · "
-                    f"Page(s) {pages} · Section : {cat_label}</div>",
-                    unsafe_allow_html=True,
-                )
-                texte = s["texte"]
-                extrait = texte if len(texte) < 1500 else texte[:1500] + "…"
-                st.markdown(f"<div class='src-excerpt'>{extrait}</div>", unsafe_allow_html=True)
-                st.markdown(
-                    f"<span class='src-meta'>Document : <a href='{s['source_url']}' target='_blank'>{s['document']}</a></span>",
-                    unsafe_allow_html=True,
-                )
-                if i < len(res["sources"]):
-                    st.divider()
-
-
-# ---------------------------------------------------------------- traitement d'une question
-def traiter(question, modele_force=None):
+def traiter(question, origine):
     ent = ner.analyser(question)
+    voiture = st.session_state.voiture
     filtre_auto = False
-    if choix_modele != "Détection automatique":
-        modele = choix_modele
-    elif modele_force:
-        modele = modele_force
-    elif ent["modele"]:
-        modele, filtre_auto = ent["modele"][1], True
-    else:
-        modele = None
-    with st.spinner("Recherche dans les notices et génération de la réponse…"):
-        res = ASK(question, modele=modele, categories=choix_cats or None, top_k=top_k)
-    codes_sans_source = bool(ent["codes_obd"]) and not any(
-        s.get("categorie") == "code_obd" for s in res["sources"]
-    )
+    if voiture is None and ent["modele"]:
+        voiture, filtre_auto = ent["modele"][1], True
+        st.session_state.voiture = voiture
+    if voiture is None:
+        # On demande la voiture avant de chercher : évite de mélanger les notices
+        st.session_state.en_attente = question
+        st.session_state.historique.append({"question": question, "type": "choix_voiture"})
+        return
+    debut = time.time()
+    with st.spinner(f"Lecture de la notice {nom_voiture(voiture)}…"):
+        res, erreur = interroger(question, voiture)
     st.session_state.historique.append({
-        "question": question,
-        "resultat": res,
-        "entites": ent,
-        "filtre_auto": filtre_auto,
-        "modele": modele,
-        "codes_sans_source": codes_sans_source,
+        "type": "reponse", "question": question, "voiture": voiture, "res": res,
+        "entites": ent, "filtre_auto": filtre_auto, "erreur": erreur, "top_k": top_k,
+        "duree": round(time.time() - debut, 1),
     })
 
 
-# ---------------------------------------------------------------- page principale
-st.subheader("Assistance technique sur notices constructeurs")
-st.caption(
-    "Interrogez les manuels d'utilisation officiels (Renault Clio 4, Hyundai i10, Ford EcoSport, Kia Picanto). "
-    "Chaque réponse est sourcée avec le numéro de page correspondant."
-)
+def enregistrer_avis(i):
+    tour = st.session_state.historique[i]
+    vote = st.session_state.get(f"avis_{i}")
+    if vote is None:
+        return
+    FEEDBACK.parent.mkdir(parents=True, exist_ok=True)
+    with FEEDBACK.open("a", encoding="utf-8") as f:
+        f.write(json.dumps({
+            "date": time.strftime("%Y-%m-%d %H:%M:%S"), "question": tour["question"],
+            "voiture": tour["voiture"], "top_k": tour["top_k"],
+            "avis": "utile" if vote == 1 else "pas utile",
+            "sources": [s.get("id") for s in tour["res"].get("sources", [])],
+            "info_absente": tour["res"].get("info_absente"),
+        }, ensure_ascii=False) + "\n")
 
-if DEMO:
-    st.info(
-        "Mode de secours actif : recherche lexicale directe sans génération LLM.",
-        icon=None,
-    )
 
-if not st.session_state.historique:
-    st.markdown("##### Questions fréquentes")
-    cols = st.columns(3)
-    for i, (q, m) in enumerate(EXEMPLES):
-        if cols[i % 3].button(q, key=f"ex{i}", use_container_width=True):
-            st.session_state.question_exemple = (q, m)
-            st.rerun()
+# ===================================================================== rendu
+def esc(t):
+    return html.escape(str(t), quote=True)
 
-for tour in st.session_state.historique:
-    with st.chat_message("user"):
+
+def nettoyer(texte):
+    """Puces mal converties depuis certains PDF (ex. notice Picanto)."""
+    return re.sub(r"\s*僅\s*", "\n• ", texte or "").strip()
+
+
+REFS_RE = re.compile(r"\n\s*(?:\*\*|#+\s*)?\s*(Références|References|Sources)\s*:?\s*(?:\*\*)?\s*:?\s*\n.*\Z",
+                     re.S | re.I)
+CITE_RE = re.compile(r"\[(p\.\s?[^\[\]]{1,40})\]")
+
+
+def mise_en_forme(texte):
+    """Retire la liste de références (affichée à part) et transforme [p. 5.44] en étiquette."""
+    texte = REFS_RE.sub("", "\n" + nettoyer(texte)).strip()
+    return CITE_RE.sub(lambda m: f"<span class='cite'>{esc(m.group(1))}</span>", texte)
+
+
+def afficher_verdict(niv):
+    titre, sous = VERDICTS[niv]
+    st.markdown(f"<div class='verdict {niv}'><span class='lampe'></span>"
+                f"<div><b>{titre}</b><span>{sous}</span></div></div>", unsafe_allow_html=True)
+
+
+def afficher_extraits(sources, absent=False):
+    plusieurs = len({s.get("modele") for s in sources}) > 1
+    titre = (f"Voir les {len(sources)} passages consultés (aucun ne répond à la question)" if absent
+             else f"Voir les {len(sources)} extraits de la notice utilisés")
+    with st.expander(titre):
+        for s in sources:
+            pages = ", ".join(s.get("pages", []))
+            score = max(0.0, min(1.0, float(s.get("score", 0) or 0)))
+            voiture = f"<span>{esc(s.get('marque', ''))} {esc(s.get('modele', ''))}</span>" if plusieurs else ""
+            texte = nettoyer(s.get("texte", ""))
+            if len(texte) > 1400:
+                texte = texte[:1400].rsplit(" ", 1)[0] + "…"
+            st.markdown(
+                f"<div class='src'><div class='src-titre'>{esc(s.get('titre', ''))}</div>"
+                f"<div class='src-meta'><span class='cite'>p. {esc(pages)}</span>{voiture}"
+                f"<span title='Pertinence'><span class='jauge'><i style='width:{score * 100:.0f}%'></i></span>"
+                f" pertinence {score:.0%}</span></div>"
+                f"<div class='src-texte'>{esc(texte)}</div>"
+                f"<a href='{esc(s.get('source_url', '#'))}' target='_blank'>Ouvrir la notice officielle</a></div>",
+                unsafe_allow_html=True)
+
+
+def afficher_tour(i, tour):
+    with st.chat_message("user", avatar=":material/person:"):
         st.markdown(tour["question"])
-        if tour["modele"] and not tour["filtre_auto"]:
-            st.caption(f"Filtre véhicule : {tour['modele']}")
-    with st.chat_message("assistant"):
-        afficher_reponse(tour)
+    with st.chat_message("assistant", avatar=":material/build:"):
+        if tour["type"] == "choix_voiture":
+            afficher_verdict("question")
+            if st.session_state.en_attente == tour["question"]:
+                st.markdown("Pour quelle voiture ? Les consignes changent d'un modèle à l'autre.")
+                cols = st.columns(len(VOITURES) + 1)
+                for c, (marque, mod, *_r) in zip(cols, VOITURES):
+                    c.button(f"{marque} {mod}", key=f"ask_{i}_{mod}", use_container_width=True,
+                             on_click=choisir_voiture, args=(mod,))
+                cols[-1].button("Toutes", key=f"ask_{i}_all", use_container_width=True,
+                                on_click=choisir_voiture, args=(TOUTES,))
+            else:
+                st.markdown("Voiture choisie : la réponse est juste en dessous.")
+            return
 
-question = st.chat_input("Posez une question technique (ex. : Que faire si le témoin de pression d'huile s'allume sur Clio 4 ?)")
-exemple = st.session_state.question_exemple
-if exemple:
-    st.session_state.question_exemple = None
-    question_a_traiter, modele_force = exemple
-elif question:
-    question_a_traiter, modele_force = question, None
+        res, ent = tour["res"], tour["entites"]
+        chips = [f"<span class='chip'>{esc(nom_voiture(tour['voiture']))}"
+                 f"{' (reconnue dans la question)' if tour['filtre_auto'] else ''}</span>"]
+        for c in ent["codes_obd"]:
+            chips.append(f"<span class='chip obd'>Code {esc(c['code'])} : {esc(c['famille'])}</span>")
+        st.markdown(f"<div class='chips'>{''.join(chips)}</div>", unsafe_allow_html=True)
+
+        afficher_verdict(niveau(res))
+        st.markdown(mise_en_forme(reponse_de(res)), unsafe_allow_html=True)
+        if ent["codes_obd"] and not any(s.get("categorie") == "code_obd" for s in res.get("sources", [])):
+            st.markdown("<p class='side-note'>Les codes défaut OBD-II ne figurent pas dans les notices des "
+                        "constructeurs. Un garagiste équipé d'une valise de diagnostic peut le lire.</p>",
+                        unsafe_allow_html=True)
+        if tour["erreur"]:
+            st.markdown("<p class='note-repli'>Gemini n'a pas répondu (quota atteint ou problème de "
+                        "connexion). Voici l'extrait le plus proche de la notice, sans reformulation. "
+                        "Réessayez dans une minute.</p>", unsafe_allow_html=True)
+        if voir_extraits and res.get("sources"):
+            afficher_extraits(res["sources"], absent=bool(res.get("info_absente")))
+        st.feedback("thumbs", key=f"avis_{i}", on_change=enregistrer_avis, args=(i,))
+
+
+def panneau_voyants():
+    classe = "selftest" if st.session_state.selftest else ""
+    voit = st.session_state.voiture
+    cible = "" if voit in (None, TOUTES) else f" sur ma {nom_voiture(voit)}"
+    with st.container(key="telltales"):
+        for ligne in (VOYANTS[:4], VOYANTS[4:]):
+            cols = st.columns(4)
+            for col, (cle, label, couleur, formulation) in zip(cols, ligne):
+                with col.container(key=f"tt_{cle}"):
+                    st.markdown(f"<div class='{classe}'><div class='tt' style='--c:{couleur}'>{svg(cle)}"
+                                f"<div class='tt-label'>{esc(label)}</div></div></div>", unsafe_allow_html=True)
+                    question = f"{formulation[0].upper()}{formulation[1:]} s'allume{cible}, que faire ?"
+                    st.button(f"Voyant {label}", key=f"btn_tt_{cle}", on_click=demander,
+                              args=(question, "voyant"))
+    st.session_state.selftest = False
+
+
+# ===================================================================== page
+st.markdown(
+    "<div class='mdp-hero'><h1 class='mdp-wordmark'>Mécano de poche</h1>"
+    "<p class='mdp-tagline'>Un voyant s'allume ? Montrez-le, et l'assistant vous dit quoi faire, "
+    "en s'appuyant uniquement sur la notice officielle de votre voiture.</p></div>",
+    unsafe_allow_html=True)
+
+# ---------------------------------------------------------------- 1. la voiture
+voiture = st.session_state.voiture
+if voiture is None:
+    st.markdown("<div class='mdp-step'>Quelle voiture conduisez-vous ?</div>", unsafe_allow_html=True)
+    with st.container(key="cars"):
+        cols = st.columns(len(VOITURES))
+        for col, (marque, mod, annees, langue, nb) in zip(cols, VOITURES):
+            with col.container(key=f"car_{re.sub(r'[^a-z0-9]', '', mod.lower())}"):
+                st.markdown(
+                    f"<div class='car'><div class='car-marque'>{esc(marque)}</div>"
+                    f"<div class='car-modele'>{esc(mod)}</div>"
+                    f"<div class='car-info'>{periode(annees)}<br>Notice {LANGUE.get(langue, langue)}</div></div>",
+                    unsafe_allow_html=True)
+                st.button(f"Choisir {marque} {mod}", key=f"btn_car_{mod}", on_click=choisir_voiture, args=(mod,))
+    st.button("Je ne sais pas, chercher dans toutes les notices", type="tertiary",
+              on_click=choisir_voiture, args=(TOUTES,))
 else:
-    question_a_traiter = None
+    if voiture == TOUTES:
+        titre, detail = "Toutes les voitures", "Les réponses peuvent mélanger plusieurs notices."
+    else:
+        marque, mod, annees, langue, _ = INFO_VOITURE[voiture]
+        titre = f"{marque} {mod}"
+        detail = f"{periode(annees)}, notice {LANGUE.get(langue, langue)}" + (
+            " : posez vos questions en français, l'assistant traduit." if langue != "fr" else "")
+    c1, c2 = st.columns([5, 1.4], vertical_alignment="center")
+    c1.markdown(f"<div class='car-strip'><span class='led'></span><b>{esc(titre)}</b>"
+                f"<span>{esc(detail)}</span></div>", unsafe_allow_html=True)
+    c2.button("Changer de voiture", use_container_width=True, on_click=choisir_voiture, args=(None,))
 
-if question_a_traiter:
-    traiter(question_a_traiter, modele_force)
+# ---------------------------------------------------------------- 2. le voyant
+historique = st.session_state.historique
+if not historique:
+    st.markdown("<div class='mdp-step'>Quel voyant s'est allumé ?"
+                "<small>Rouge : danger. Orange : à faire vérifier.</small></div>", unsafe_allow_html=True)
+    panneau_voyants()
+    st.markdown("<div class='mdp-step'>Ou choisissez une question fréquente</div>", unsafe_allow_html=True)
+    # Streamlit fait défiler les pages de chat vers le bas : on garde l'accueil en haut
+    components.html("<script>setTimeout(() => {const m = window.parent.document.querySelector("
+                    "'[data-testid=stAppScrollToBottomContainer]'); if (m) m.scrollTo({top: 0});}, 150);"
+                    "</script>", height=0)
+    cols = st.columns(2)
+    for i, q in enumerate(EXEMPLES):
+        with cols[i % 2].container(key=f"ex_{i}"):
+            st.markdown(f"<div class='ex'>{esc(q)}</div>", unsafe_allow_html=True)
+            st.button(q, key=f"btn_ex_{i}", on_click=demander, args=(q, "exemple"))
+else:
+    with st.expander("Un autre voyant s'est allumé ?"):
+        panneau_voyants()
+
+# ---------------------------------------------------------------- 3. la conversation
+for i, tour in enumerate(historique):
+    afficher_tour(i, tour)
+
+saisie = st.chat_input("Décrivez le problème, par exemple : le voyant batterie reste allumé, c'est grave ?")
+if saisie:
+    demander(saisie)
+
+if st.session_state.a_traiter:
+    question, origine = st.session_state.a_traiter
+    st.session_state.a_traiter = None
+    traiter(question, origine)
     st.rerun()

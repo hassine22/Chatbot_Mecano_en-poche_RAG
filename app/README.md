@@ -15,18 +15,27 @@ L'interface s'ouvre dans le navigateur à l'adresse : **`http://localhost:8501`*
 
 ## Fonctionnalités de l'Interface
 
+Thème « tableau de bord de nuit » : fond bleu nuit, police Saira embarquée (`app/static/fonts/`,
+licence SIL OFL, fonctionne hors connexion), couleurs rouge / orange / vert réservées aux voyants
+et au niveau d'urgence.
+
 | Fonctionnalité | Implémentation | Objectif / Barème |
 |---|---|---|
-| **Saisie libre et questions fréquentes** | Page principale (`app/streamlit_app.py`) | Prise en main immédiate lors de la démonstration |
-| **Sélection du véhicule ou détection automatique** | Barre latérale + `src/mecano/ner.py` | Filtrage automatique du modèle mentionné dans la question |
-| **Filtrage par section de la notice** | Barre latérale (`multiselect` sur 16 catégories) | Restreindre la recherche aux voyants, fusibles, entretien, etc. |
-| **Réglage dynamique du `top-k`** | Barre latérale (`select_slider` : 3, 5, 8, 10) | Tester et comparer l'impact du nombre de passages extraits |
-| **Détection des codes défaut OBD-II** | `src/mecano/ner.py` (ex. `P0420`, `C0123`) | Identification automatique du code et de la famille calculateur |
-| **Bandeaux techniques de niveau d'urgence** | `niveau_urgence()` dans `app/streamlit_app.py` | Mise en évidence sobre des consignes d'arrêt impératif ou de contrôle atelier |
-| **Signalement d'information hors notice** | Indicateur `info_absente` | Refus explicite lorsque la question sort du périmètre des manuels |
-| **Clarification des questions ambiguës** | `src/mecano/prompts.py` + `pipeline.py` | Demande de précision ciblée au lieu de répondre au hasard |
-| **Reformulation Multi-Query + Fusion RRF** | `src/mecano/pipeline.py` + `llm.py` | Robustesse face aux fautes de frappe et au croisement de langues FR/EN |
-| **Visualisation détaillée des sources** | Panneau dépliable `Extraits des notices consultés` | Affiche titre, modèle, langue (`[FR]`/`[EN]`), page, section, score `%`, extrait et lien PDF |
+| **Choix de la voiture en premier** (4 cartes) | `app/streamlit_app.py` | Évite les réponses qui mélangent plusieurs notices |
+| **Demande de la voiture si elle manque** | `traiter()` : la question est mise en attente, 4 boutons de choix | Pas de réponse au hasard quand le modèle est inconnu |
+| **Panneau de voyants cliquables** (8 pictogrammes, test d'allumage au chargement) | `app/telltales.py` + `style.css` | Le conducteur clique sur ce qu'il voit, sans connaître le nom du voyant (bonus UX) |
+| **Détection automatique du modèle et des codes défaut OBD-II** | `src/mecano/ner.py` | Bonus NER |
+| **Verdict d'urgence** : arrêtez-vous / faites vérifier / pas d'urgence / pas dans la notice | `niveau()` | Réponse prudente, lisible en une seconde |
+| **Pages citées en étiquettes** dans la réponse (`[p. 5.44]`) | `mise_en_forme()` | Sources visualisées, sans liste de références en double |
+| **Extraits de la notice** : page, jauge de pertinence, texte, lien vers la notice | `afficher_extraits()` | Transparence de la recherche |
+| **Avis 👍 / 👎** enregistré dans `evaluation/results/feedback.jsonl` | `enregistrer_avis()` | Matière pour l'évaluation |
+| **Mode hors ligne** (sans LLM) + **repli automatique** si Gemini ne répond pas | `interroger()`, `app/demo_backend.py` | La démo continue même si le quota est atteint |
+| **Réglages avancés** : catégories de la notice, top-k (3, 5, 8, 10) | barre latérale | Comparer plusieurs valeurs de top-k |
+| **Affichage mobile** | `style.css` (media queries) | Démo sur téléphone possible |
+
+Captures : `docs/images/interface_*.png`.
+
+Forcer le mode hors ligne au lancement : `MECANO_HORS_LIGNE=1` (Windows : `set MECANO_HORS_LIGNE=1`).
 
 ---
 
