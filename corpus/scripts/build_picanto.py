@@ -60,12 +60,54 @@ def category_for(text):
     return None
 
 
-def section_for(text):
-    lines = [line.strip() for line in text.splitlines() if line.strip()]
-    for line in lines[:12]:
-        if 3 <= len(line.split()) <= 12 and not re.search(r"\.{3,}", line):
-            return line
+CHAPTERS = (
+    "Introduction",
+    "Your vehicle at a glance",
+    "Safety features of your vehicle",
+    "Features of your vehicle",
+    "Driving your vehicle",
+    "Driver assistance guide",
+    "What to do in an emergency",
+    "Maintenance",
+    "Specifications & Consumer information",
+)
+
+
+def chapter_for(text):
+    for chapter in CHAPTERS:
+        if re.search(rf"(?m)^\s*{re.escape(chapter)}\s*$", text):
+            return chapter
     return "Kia Picanto owner manual"
+
+
+def section_for(page, chapter):
+    """Extract the page's actual bold heading, not its printed page number."""
+    candidates = []
+    for block in page.get_text("dict")["blocks"]:
+        if block["type"] != 0:
+            continue
+        for line in block["lines"]:
+            spans = [span for span in line["spans"] if span["text"].strip()]
+            if not spans:
+                continue
+            text = re.sub(r"\s+", " ", "".join(span["text"] for span in spans)).strip()
+            size = max(span["size"] for span in spans)
+            flags = max(span["flags"] for span in spans)
+            if (
+                2 <= len(text.split()) <= 12
+                and 9.5 <= size <= 14
+                and flags & 16
+                and text != chapter
+                and not re.fullmatch(r"\d+(?:-\d+)?", text)
+            ):
+                candidates.append((line["bbox"][1], text))
+    return candidates[0][1] if candidates else chapter
+
+
+def is_index_page(page_number, text):
+    return page_number >= 477 or re.search(
+        r"(?m)^\s*(?:Table of Contents|Index)\s*$", text
+    )
 
 
 def split_passage(text, limit=380):
@@ -94,6 +136,8 @@ def main():
         if page_number < 121:
             continue
         raw = clean_text(page.get_text())
+        if is_index_page(page_number, raw):
+            continue
         category = category_for(raw)
         if not category:
             continue
@@ -101,10 +145,11 @@ def main():
         if len(words) < 12:
             continue
         label = printed_page(raw, page_number)
-        section = section_for(raw)
+        chapter = chapter_for(raw)
+        section = section_for(page, chapter)
         for passage_number, passage in enumerate(split_passage(raw), 1):
-            subsection = f"Page {label}" if passage_number == 1 else f"Page {label} (part {passage_number})"
-            title = f"{section} > {subsection}"
+            subsection = None if passage_number == 1 else f"Part {passage_number}"
+            title = f"{section} > {subsection}" if subsection else section
             records.append({
                 "id": f"{SLUG}-{len(records) + 1:03d}",
                 "marque": META["marque"],
@@ -112,7 +157,7 @@ def main():
                 "phase": META["phase"],
                 "annees": META["annees"],
                 "langue": META["langue"],
-                "chapitre": section,
+                "chapitre": chapter,
                 "section": section,
                 "sous_section": subsection,
                 "titre": title,
