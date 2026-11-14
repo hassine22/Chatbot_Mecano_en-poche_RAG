@@ -1,0 +1,425 @@
+{
+  "summary": {
+    "total_questions": 10,
+    "in_corpus_questions": 8,
+    "out_of_corpus_questions": 2,
+    "retrieval_hit_rate_top3": 0.375,
+    "retrieval_hit_rate_top5": 0.5,
+    "rag_hit_rate_with_multiquery_rrf": 1.0,
+    "mean_fidelity_key_points": 0.917,
+    "absent_info_detection_accuracy": 1.0
+  },
+  "questions": [
+    {
+      "id": "q01",
+      "question": "Le voyant de pression d'huile s'allume pendant que je roule avec ma Clio 4, que dois-je faire ?",
+      "modele": "Clio 4",
+      "type": "voyant",
+      "expected_info_absente": false,
+      "detected_info_absente": false,
+      "expected_passages": [
+        "clio4-012",
+        "clio4-230",
+        "clio4-231"
+      ],
+      "retrieval_top3": {
+        "retrieved_ids": [
+          "clio4-012",
+          "clio4-230",
+          "clio4-231"
+        ],
+        "hit": 1.0,
+        "recall": 1.0
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [
+          "clio4-012",
+          "clio4-230",
+          "clio4-231",
+          "clio4-101",
+          "clio4-105"
+        ],
+        "hit": 1.0,
+        "recall": 1.0
+      },
+      "rag_sources": [
+        "clio4-231",
+        "clio4-230",
+        "clio4-012",
+        "clio4-101",
+        "clio4-233"
+      ],
+      "rag_hit": 1.0,
+      "key_points_score": 1.0,
+      "key_points_matched": [
+        "arrêter",
+        "couper le contact",
+        "niveau d'huile",
+        "représentant"
+      ],
+      "key_points_missing": [],
+      "reponse": "**ALERTE DE SÉCURITÉ :**\nImmobilisez le véhicule en toute sécurité, coupez le contact [p. 1.57] et arrêtez-vous [p. 5.43]. Il est fortement recommandé de faire appel à un représentant de la marque ou à un garagiste professionnel.\n\nSelon la notice officielle, le comportement à adopter dépend des circonstances de l'allumage :\n\n- **Si le témoin s'allume sur route avec le témoin STOP et un signal sonore :** Arrêtez-vous impérativement et coupez le contact. Vérifiez le niveau d'huile. Si le niveau est normal, la cause est différente et vous devez faire appel à un Représentant de la marque [p. 1.57].\n- **Si le témoin tarde à s'éteindre ou reste allumé à l'accélération :** Il peut s'agir d'un manque de pression d'huile [p. 5.43]. Vous devez vous arrêter et faire appel à un Représentant de la marque [p. 5.43].\n- **Si le témoin s'allume en virage ou au freinage :** Le niveau d'huile est probablement trop bas [p. 5.43]. Vous devez ajouter de l'huile moteur en vous reportant au paragraphe « Niveau huile moteur : appoint, remplissage » [p. 5.43].\n\n**Références :**\n- [Renault Clio 4 (2016-2020)] – Chapitre 5 - Conseils pratiques > Anomalies de fonctionnement > Sur route – Le témoin de pression d’huile s’allume: tarde à s’éteindre ou reste allumé à l’accélération — Page(s) : 5.43 (ID: clio4-231)\n- [Renault Clio 4 (2016-2020)] – Chapitre 5 - Conseils pratiques > Anomalies de fonctionnement > Sur route – Le témoin de pression d’huile s’allume: en virage ou au freinage — Page(s) : 5.43 (ID: clio4-230)\n- [Renault Clio 4 (2016-2020)] – Chapitre 1 - Faites connaissance avec votre véhicule > TÉMOINS LUMINEUX > Témoin de pression d’huile — Page(s) : 1.57 (ID: clio4-012)"
+    },
+    {
+      "id": "q02",
+      "question": "Quel fusible correspond à l'allume-cigare sur la Clio 4 ?",
+      "modele": "Clio 4",
+      "type": "fusibles",
+      "expected_info_absente": false,
+      "detected_info_absente": false,
+      "expected_passages": [
+        "clio4-207"
+      ],
+      "retrieval_top3": {
+        "retrieved_ids": [
+          "clio4-207",
+          "clio4-204",
+          "clio4-205"
+        ],
+        "hit": 1.0,
+        "recall": 1.0
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [
+          "clio4-207",
+          "clio4-204",
+          "clio4-205",
+          "clio4-206",
+          "clio4-208"
+        ],
+        "hit": 1.0,
+        "recall": 1.0
+      },
+      "rag_sources": [
+        "clio4-207",
+        "clio4-204",
+        "clio4-205",
+        "clio4-208",
+        "clio4-206"
+      ],
+      "rag_hit": 1.0,
+      "key_points_score": 1.0,
+      "key_points_matched": [
+        "17"
+      ],
+      "key_points_missing": [],
+      "reponse": "**ALERTE DE SÉCURITÉ :**\nVérifiez le fusible concerné et remplacez-le, si nécessaire, par un fusible impérativement de même ampérage que celui d’origine [p. 5.27]. Un fusible d’ampérage trop fort peut créer un échauffement excessif du réseau électrique (risque d’incendie) en cas de consommation anormale d’un équipement [p. 5.27].\n\nPour la Renault Clio 4, le fusible correspondant à l'allume-cigare est le suivant :\n- **Fusible n° 17** [p. 5.29]\n\nIl est situé dans le boîtier de fusibles de l'habitacle (trappe A) [p. 5.29]. En cas de non-fonctionnement, vous pouvez vérifier l'état du fusible et le débrocher à l'aide de la pince 1 située au dos de la trappe A [p. 5.27].\n\n**Références :**\n- [Renault Clio 4 (2016-2020)] – Chapitre 5 - Conseils pratiques > FUSIBLES — Page(s) : 5.27 (ID: clio4-205)\n- [Renault Clio 4 (2016-2020)] – Chapitre 5 - Conseils pratiques > FUSIBLES — Page(s) : 5.27 (ID: clio4-206)\n- [Renault Clio 4 (2016-2020)] – Chapitre 5 - Conseils pratiques > FUSIBLES > Affectation des fusibles de l’habitacle (n° 1 à 23) — Page(s) : 5.29 (ID: clio4-207)"
+    },
+    {
+      "id": "q03",
+      "question": "Que signifie le voyant de pression des pneus sur mon Ford EcoSport ?",
+      "modele": "EcoSport",
+      "type": "voyant",
+      "expected_info_absente": false,
+      "detected_info_absente": false,
+      "expected_passages": [
+        "ecosport-011",
+        "ecosport-035",
+        "ecosport-189"
+      ],
+      "retrieval_top3": {
+        "retrieved_ids": [],
+        "hit": 0.0,
+        "recall": 0.0
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [],
+        "hit": 0.0,
+        "recall": 0.0
+      },
+      "rag_sources": [
+        "ecosport-197",
+        "ecosport-190",
+        "ecosport-011",
+        "ecosport-035",
+        "ecosport-194"
+      ],
+      "rag_hit": 1.0,
+      "key_points_score": 1.0,
+      "key_points_matched": [
+        "pression",
+        "pneu",
+        "inférieure|basse|bas"
+      ],
+      "key_points_missing": [],
+      "reponse": "**ALERTE DE SÉCURITÉ :** Lorsqu'un ou plusieurs pneus sont nettement sous-gonflés, vous devez vous arrêter et vérifier vos pneus dès que possible, puis les gonfler à la pression appropriée [p. 262]. Conduire avec un pneu nettement sous-gonflé provoque une surchauffe et peut entraîner une défaillance du pneu [p. 262]. Cela réduit également l'efficacité énergétique, la durée de vie de la bande de roulement, et peut nuire à la tenue de route et à la capacité de freinage [p. 262].\n\nVoici la signification du témoin de pression des pneus (TPMS) selon son comportement :\n\n- **Voyant allumé en continu :** Il s'allume si la pression d'un ou de plusieurs pneus est inférieure à la pression correcte [p. 83], ou lorsque les pneus sont sous-gonflés [p. 264]. \n- **Voyant clignotant (puis restant allumé en continu) :** Cela indique un dysfonctionnement du système de surveillance de la pression des pneus (TPMS) [p. 264] ou une utilisation de la roue de secours [p. 264]. Lorsque le témoin de dysfonctionnement est allumé, le système peut ne pas être en mesure de détecter ou de signaler un pneu dégonflé [p. 262].\n\n**Références :**\n- [Ford EcoSport (2018-2018)] – Instrument Cluster > Low Tire Pressure Warning Lamp — Page : 83 (ID: ecosport-011)\n- [Ford EcoSport (2018-2018)] – Information Displays > Tire Pressure Monitoring System — Tire Pressure Low / Tire Pressure Low Specified: — Page : 90 (ID: ecosport-035)\n- [Ford EcoSport (2018-2018)] – Wheels and Tires > Understanding Your Tire Pressure Monitoring System — Page : 263 (ID: ecosport-194)\n- [Ford EcoSport (2018-2018)] – Wheels and Tires > Wheels and Tires — Page : 262 (ID: ecosport-190)\n- [Ford EcoSport (2018-2018)] – Wheels and Tires > Wheels and Tires > Low tire pressure Possible cause warning light — Page : 264 (ID: ecosport-197)"
+    },
+    {
+      "id": "q04",
+      "question": "Comment vérifier le niveau d'huile moteur sur l'EcoSport ?",
+      "modele": "EcoSport",
+      "type": "entretien",
+      "expected_info_absente": false,
+      "detected_info_absente": false,
+      "expected_passages": [
+        "ecosport-150"
+      ],
+      "retrieval_top3": {
+        "retrieved_ids": [],
+        "hit": 0.0,
+        "recall": 0.0
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [],
+        "hit": 0.0,
+        "recall": 0.0
+      },
+      "rag_sources": [
+        "ecosport-150",
+        "ecosport-156",
+        "ecosport-151",
+        "ecosport-015",
+        "ecosport-016"
+      ],
+      "rag_hit": 1.0,
+      "key_points_score": 1.0,
+      "key_points_matched": [
+        "sol plat|plat",
+        "15 minutes",
+        "jauge"
+      ],
+      "key_points_missing": [],
+      "reponse": "**ALERTE DE SÉCURITÉ :** Ne travaillez pas sur un moteur chaud [p. 206].\n\nPour vérifier le niveau d'huile moteur de manière cohérente et précise, procédez comme suit :\n1. Assurez-vous que le frein de stationnement est actionné et que la transmission est en position stationnement (P) ou neutre (N) [p. 206].\n2. Faites tourner le moteur jusqu'à ce qu'il atteigne sa température normale de fonctionnement [p. 206].\n3. Assurez-vous que le véhicule est sur un sol plat [p. 206].\n4. Coupez le moteur et attendez 15 minutes pour que l'huile s'écoule dans le carter d'huile [p. 206]. (Vérifier trop tôt pourrait donner une lecture imprécise [p. 206]).\n5. Ouvrez le capot [p. 206].\n6. Retirez la jauge et essuyez-la avec un chiffon propre et non pelucheux [p. 206].\n7. Remettez la jauge en place, puis retirez-la à nouveau pour vérifier le niveau d'huile [p. 206].\n8. Assurez-vous que le niveau d'huile se situe entre les repères maximum et minimum [p. 206]. \n   - Si le niveau d'huile est au repère minimum, ajoutez de l'huile immédiatement [p. 206].\n   - Si le niveau d'huile est entre les repères maximum et minimum, le niveau est acceptable et il ne faut pas ajouter d'huile [p. 206].\n9. Si le niveau est correct, remettez la jauge en place en vous assurant qu'elle est complètement enfoncée [p. 206].\n\n*Notes importantes :* Ne retirez jamais la jauge lorsque le moteur tourne [p. 206]. N'ajoutez pas d'huile lorsque le moteur est chaud [p. 206].\n\n**Références :**\n- [Ford EcoSport (2018-2018)] – Maintenance > ENGINE OIL CHECK — Page(s) : 206 (ID: ecosport-150)\n- [Ford EcoSport (2018-2018)] – Maintenance > Adding Engine Oil — Page(s) : 206 (ID: ecosport-151)"
+    },
+    {
+      "id": "q05",
+      "question": "L'aiguille de température de ma Kia Picanto monte vers le H, est-ce grave ?",
+      "modele": "Picanto",
+      "type": "voyant",
+      "expected_info_absente": false,
+      "detected_info_absente": false,
+      "expected_passages": [
+        "picanto-003"
+      ],
+      "retrieval_top3": {
+        "retrieved_ids": [],
+        "hit": 0.0,
+        "recall": 0.0
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [],
+        "hit": 0.0,
+        "recall": 0.0
+      },
+      "rag_sources": [
+        "picanto-027",
+        "picanto-003",
+        "picanto-025",
+        "picanto-026",
+        "picanto-089"
+      ],
+      "rag_hit": 1.0,
+      "key_points_score": 0.667,
+      "key_points_matched": [
+        "surchauffe",
+        "radiateur"
+      ],
+      "key_points_missing": [
+        "ne pas continuer|arrêter"
+      ],
+      "reponse": "**ALERTE DE SÉCURITÉ :**\nSi l'aiguille de la jauge de température dépasse la zone normale vers la position « 130 ou H », cela indique une surchauffe susceptible d'endommager le moteur [p. 7-7]. Vous ne devez pas continuer à rouler avec un moteur en surchauffe [p. 7-7]. \n\nVoici les consignes et informations issues de la notice :\n- N'continuez pas à conduire si le véhicule est en surchauffe [p. 7-7].\n- Ne retirez jamais le bouchon du radiateur lorsque le moteur est chaud, car le liquide de refroidissement est sous pression et pourrait causer de graves brûlures [p. 7-7]. Vous devez attendre que le moteur soit refroidi avant d'ajouter du liquide dans le vase d'expansion [p. 7-7].\n- Il est fortement recommandé de faire appel à un réparateur agréé ou à un garagiste professionnel en cas de surchauffe moteur.\n\n**Références :**\n- [Kia Picanto (2023-2023)] – Features of your vehicle > Engine Coolant Temperature — Page(s) : 7-7 (ID: picanto-003)"
+    },
+    {
+      "id": "q06",
+      "question": "La batterie de ma Picanto est à plat, comment la démarrer avec des câbles ?",
+      "modele": "Picanto",
+      "type": "electricite_batterie",
+      "expected_info_absente": false,
+      "detected_info_absente": false,
+      "expected_passages": [
+        "picanto-221"
+      ],
+      "retrieval_top3": {
+        "retrieved_ids": [
+          "picanto-145",
+          "picanto-166",
+          "picanto-210"
+        ],
+        "hit": 0.0,
+        "recall": 0.0
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [
+          "picanto-145",
+          "picanto-166",
+          "picanto-210",
+          "picanto-221",
+          "picanto-233"
+        ],
+        "hit": 1.0,
+        "recall": 1.0
+      },
+      "rag_sources": [
+        "picanto-221",
+        "picanto-297",
+        "picanto-145",
+        "picanto-127",
+        "picanto-166"
+      ],
+      "rag_hit": 1.0,
+      "key_points_score": 0.667,
+      "key_points_matched": [
+        "12",
+        "ordre"
+      ],
+      "key_points_missing": [
+        "inverse"
+      ],
+      "reponse": "Pour démarrer votre Kia Picanto avec des câbles de démarrage (procédure de type *jump starting*), voici la méthode officielle à suivre en prenant toutes les précautions nécessaires :\n\n**Précautions importantes :**\n* Utilisez uniquement un système de démarrage de **12 volts**. N'utilisez jamais une alimentation de 24 volts (ce qui inclut l'utilisation de deux batteries de 12 volts en série ou un groupe électrogène de 24 volts), car cela pourrait endommager irrémédiablement le moteur de démarreur, le système d'allumage et d'autres composants électriques [p. 337].\n* Ne tentez pas de démarrer le véhicule si la batterie déchargée est gelée ou si le niveau d'électrolyte est bas, car la batterie pourrait se rompre ou exploser [p. 337].\n* Éloignez impérativement toutes flammes, cigarettes allumées et étincelles de la batterie, celle-ci produisant de l'hydrogène gazeux hautement inflammable [p. 337, p. 408].\n* Portez des lunettes de protection et veillez à ne pas mettre d'acide sulfurique (contenu dans la batterie) sur vous, vos vêtements ou le véhicule [p. 337, p. 408].\n\n**Procédure de démarrage avec câbles :**\n1. Assurez-vous que la batterie de secours (ou *booster*) est une batterie de **12 volts** et que sa borne négative est reliée à la masse [p. 337].\n2. Si la batterie de secours se trouve dans un autre véhicule, veillez à ce que les deux véhicules ne se touchent pas [p. 337].\n3. Coupez toutes les charges électriques superflues [p. 337].\n4. Connectez les câbles de démarrage dans l'ordre exact indiqué (connectez et déconnectez les câbles dans l'ordre numérique) [p. 337] :\n   - Connectez d'abord une"
+    },
+    {
+      "id": "q07",
+      "question": "Le voyant de pression d'huile de ma Hyundai i10 s'allume, que faire ?",
+      "modele": "i10",
+      "type": "voyant",
+      "expected_info_absente": false,
+      "detected_info_absente": false,
+      "expected_passages": [
+        "i10-019",
+        "i10-018"
+      ],
+      "retrieval_top3": {
+        "retrieved_ids": [],
+        "hit": 0.0,
+        "recall": 0.0
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [],
+        "hit": 0.0,
+        "recall": 0.0
+      },
+      "rag_sources": [
+        "i10-019",
+        "i10-053",
+        "i10-071",
+        "i10-017",
+        "i10-022"
+      ],
+      "rag_hit": 1.0,
+      "key_points_score": 1.0,
+      "key_points_matched": [
+        "arrêter",
+        "niveau d'huile",
+        "réparateur|Hyundai"
+      ],
+      "key_points_missing": [],
+      "reponse": "**ALERTE DE SÉCURITÉ :**\nConduire avec le voyant de pression d'huile allumé peut entraîner une panne moteur ou des dommages sévères si le moteur ne s'arrête pas immédiatement [p. 4-12]. Immobilisez votre véhicule dès que possible dans un endroit sûr et coupez le moteur [p. 4-12]. Nous vous recommandons fortement de faire appel à un réparateur agréé ou un garagiste professionnel.\n\nVoici la démarche à suivre indiquée dans la notice :\n1. Conduisez prudemment jusqu'à l'endroit sûr le plus proche et arrêtez le véhicule [p. 4-12].\n2. Coupez le moteur et vérifiez le niveau d'huile moteur [p. 4-12]. Si le niveau est bas, ajoutez de l'huile selon les besoins [p. 4-12].\n3. Si le voyant d'avertissement reste allumé après l'ajout d'huile ou si vous n'avez pas d'huile à disposition, il est recommandé de faire inspecter le véhicule par un réparateur agréé HYUNDAI dès que possible [p. 4-12]. \n\nNotez que lorsque la pression d'huile diminue (en raison d'un niveau insuffisant, etc.), un système de protection renforcé du moteur limite la puissance de celui-ci [p. 4-12]. Si la pression d'huile est rétablie, le voyant et ce système de protection se désactivent [p. 4-12].\n\n**Références :**\n- [Hyundai i10 (2019-2024)] – 4. Instrument cluster > Instrument cluster > If the engine oil pressure is low: — Page(s) : 4-12, 4-13 (ID: i10-019)"
+    },
+    {
+      "id": "q08",
+      "question": "Comment utiliser le kit de réparation de pneu (Tyre Mobility Kit) sur la i10 ?",
+      "modele": "i10",
+      "type": "pneus_roues",
+      "expected_info_absente": false,
+      "detected_info_absente": false,
+      "expected_passages": [
+        "i10-168",
+        "i10-165",
+        "i10-166"
+      ],
+      "retrieval_top3": {
+        "retrieved_ids": [
+          "i10-165",
+          "i10-166",
+          "i10-168"
+        ],
+        "hit": 1.0,
+        "recall": 1.0
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [
+          "i10-165",
+          "i10-166",
+          "i10-168",
+          "i10-153",
+          "i10-157"
+        ],
+        "hit": 1.0,
+        "recall": 1.0
+      },
+      "rag_sources": [
+        "i10-165",
+        "i10-166",
+        "i10-168",
+        "i10-163",
+        "i10-164"
+      ],
+      "rag_hit": 1.0,
+      "key_points_score": 1.0,
+      "key_points_matched": [
+        "bouteille|produit",
+        "valve",
+        "compresseur",
+        "vitesse"
+      ],
+      "key_points_missing": [],
+      "reponse": "**ALERTE DE SÉCURITÉ :**\nPour utiliser le kit de réparation (Tyre Mobility Kit), garez votre voiture sur le bas-côté de la route à l'écart de la circulation et serrez toujours le frein de stationnement [p. 8-27]. Le kit est une solution de réparation temporaire [p. 8-25, 8-26] et ne doit être utilisé que pour une seule roue crevée située dans la zone de la bande de roulement [p. 8-25, 8-27]. Il ne faut pas l'utiliser en cas de dommages sur les flancs du pneu [p. 8-25], de détérioration importante due à un roulement à plat ou avec une pression d'air insuffisante [p. 8-27], si les dommages dépassent environ 6 mm, ou sur les motos et vélos [p. 8-27]. Laissez le moteur tourner si vous êtes à l'extérieur pour éviter de décharger la batterie [p. 8-27]. Nous recommandons de faire inspecter le système par un réparateur agréé HYUNDAI [p. 8-25].\n\nVoici la démarche pour utiliser le kit de réparation de pneu (Tyre Mobility Kit) :\n\n1. Détachez l'étiquette de limitation de vitesse (1) de la bouteille de produit d'étanchéité (2) et placez-la à un endroit bien en vue dans le véhicule (par exemple sur le volant) [p. 8-29].\n2. Secouez la bouteille de produit d'étanchéité (2) [p. 8-29].\n3. Vissez le tuyau de raccordement (10) sur le raccord de la bouteille de produit d'étanchéité [p. 8-29].\n4. Insérez la bouteille de produit d'étanchéité dans le boîtier (5) du compresseur de manière à ce qu'elle soit en position verticale [p. 8-29].\n5. Dévissez le bouchon de valve de la roue défectueuse et vissez le tuyau de remplissage (3) de la bouteille de produit d'étanchéité sur la valve [p. 8-29].\n\nSuivez strictement la séquence spécifiée pour éviter que le produit d'étanchéité ne s'échappe sous haute pression [p. 8-28]. Ne laissez pas le compresseur fonctionner plus de 10 minutes d'affilée pour éviter la surchauffe [p. 8-27]. Après la réparation, vous pouvez rouler prudemment sur une distance maximale de 200 km (120 miles) à une vitesse maximale de 80 km/h (50 mph) [p. 8-26]. La pression de gonflage du pneu doit être d'au moins 32 psi (220 kPa) ; si ce n'est pas le cas, ne continuez pas à rouler et appelez l'assistance routière ou un service de remorquage [p. 8-25].\n\n**Références :**\n- [Hyundai i10 (2019-2024)] – 8. Emergency situations > ,)(48,33('Ǥ — Page(s) : 8-25 (ID: i10-163)\n- [Hyundai i10 (2019-2024)] – 8. Emergency situations > ,)(48,33('Ǥ > Introduction — Page(s) : 8-26 (ID: i10-164)\n- [Hyundai i10 (2019-2024)] – 8. Emergency situations > ,)(48,33('Ǥ > Tyre Mobility Kit — Page(s) : 8-27 (ID: i10-165)\n- [Hyundai i10 (2019-2024)] – 8. Emergency situations > ,)(48,33('Ǥ > Components of the Tyre Mobility Kit — Page(s) : 8-28 (ID: i10-166)\n- [Hyundai i10 (2019-2024)] – 8. Emergency situations > ,)(48,33('Ǥ > Using the Tyre Mobility Kit — Page(s) : 8-29 (ID: i10-168)"
+    },
+    {
+      "id": "q09",
+      "question": "Combien coûte une vidange chez Renault à Tunis ?",
+      "modele": null,
+      "type": "hors_corpus",
+      "expected_info_absente": true,
+      "detected_info_absente": true,
+      "expected_passages": [],
+      "retrieval_top3": {
+        "retrieved_ids": [],
+        "hit": null,
+        "recall": null
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [],
+        "hit": null,
+        "recall": null
+      },
+      "rag_sources": [
+        "clio4-146",
+        "clio4-149",
+        "clio4-147",
+        "clio4-148",
+        "clio4-141"
+      ],
+      "rag_hit": null,
+      "key_points_score": 1.0,
+      "key_points_matched": [
+        "pas trouvé|absente|ne contient pas|pas dans"
+      ],
+      "key_points_missing": [],
+      "reponse": "Cette information n'est pas présente dans la notice officielle du véhicule (information absente). Nous vous conseillons de contacter un garagiste ou un concessionnaire."
+    },
+    {
+      "id": "q10",
+      "question": "Mon garagiste a lu le code défaut P0420 sur ma Clio 4, qu'est-ce que ça veut dire ?",
+      "modele": "Clio 4",
+      "type": "hors_corpus",
+      "expected_info_absente": true,
+      "detected_info_absente": true,
+      "expected_passages": [],
+      "retrieval_top3": {
+        "retrieved_ids": [],
+        "hit": null,
+        "recall": null
+      },
+      "retrieval_top5": {
+        "retrieved_ids": [],
+        "hit": null,
+        "recall": null
+      },
+      "rag_sources": [
+        "clio4-014",
+        "clio4-233",
+        "clio4-015",
+        "clio4-053",
+        "clio4-193"
+      ],
+      "rag_hit": null,
+      "key_points_score": 1.0,
+      "key_points_matched": [
+        "pas trouvé|absente|ne contient pas|pas dans"
+      ],
+      "key_points_missing": [],
+      "reponse": "Cette information n'est pas présente dans la notice officielle du véhicule (information absente). Nous vous conseillons de contacter un garagiste ou un concessionnaire."
+    }
+  ]
+}
