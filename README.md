@@ -26,11 +26,15 @@ mecano-de-poche/
 │   ├── merge_corpus.py          ← fusionne les corpus des 4 voitures
 │   ├── scripts/
 │   │   ├── build_clio4.py       ← corpus Renault Clio 4 (référence)
-│   │   ├── build_<slug>.py      ← un script par voiture
+│   │   ├── build_ecosport.py    ← corpus Ford EcoSport
+│   │   ├── build_i10.py         ← corpus Hyundai i10
+│   │   ├── build_picanto.py     ← corpus Kia Picanto
 │   │   └── build_obd.py         ← corpus des codes défaut (bonus)
 │   └── output/
 │       ├── clio4_corpus.jsonl
-│       ├── clio4_corpus.md
+│       ├── ecosport_corpus.jsonl
+│       ├── i10_corpus.jsonl
+│       ├── picanto_corpus.jsonl
 │       └── all_corpus.jsonl     ← corpus fusionné (généré)
 │
 ├── src/mecano/                  ← ÉTAPES 2 à 4 : le moteur RAG
@@ -80,38 +84,18 @@ cd mecano-de-poche
 pip install -r requirements.txt
 ```
 
-## Faire le corpus de sa voiture (étape actuelle)
-
-1. Lire **`FORMAT_CORPUS.md`** en entier.
-2. Télécharger la notice dans `data/pdf/` et ajouter son lien dans `data/pdf/SOURCES.md`.
-3. Copier le script de référence :
-   ```bash
-   cp corpus/scripts/build_clio4.py corpus/scripts/build_<slug>.py
-   ```
-4. Adapter `SLUG`, `META` et `KEEP` en haut du script (les instructions sont en tête du fichier).
-5. Générer le corpus :
-   ```bash
-   python corpus/scripts/build_<slug>.py data/pdf/<notice>.pdf corpus/output
-   ```
-6. Relire `corpus/output/<slug>_corpus.md`, puis valider :
-   ```bash
-   python corpus/validate_corpus.py corpus/output/<slug>_corpus.jsonl
-   ```
-   → il faut **0 erreur** avant de pousser.
-7. Pousser sur une branche `corpus-<slug>` et ouvrir une Pull Request.
-
 ## Répartition
 
-| Membre | Voiture | Branche |
-|---|---|---|
-| … | Renault Clio 4 | `corpus-clio4` ✅ |
-| … | Ford EcoSport | `corpus-ecosport` |
-| … | … | … |
-| … | … | … |
+| Membre | Voiture | Branche | Passages |
+|---|---|---|---|
+| … | Renault Clio 4 | `corpus-clio4` ✅ | 246 |
+| … | Ford EcoSport | `corpus-ecosport` ✅ | 219 |
+| … | Hyundai i10 | `corpus-i10` ✅ | 294 |
+| … | Kia Picanto | `corpus-picanto` ✅ | 367 |
 
 ## Étapes suivantes
 
-- [ ] Corpus des 4 voitures validés et fusionnés (`merge_corpus.py`)
+- [x] Corpus des 4 voitures validés et fusionnés (`merge_corpus.py` → 1126 passages)
 - [ ] Embeddings (Sentence-BERT multilingue) + index FAISS
 - [ ] Prompt LLM : réponse fondée sur les passages, citation des pages, refus si l'info est absente
 - [ ] Interface (Streamlit) avec filtre par modèle

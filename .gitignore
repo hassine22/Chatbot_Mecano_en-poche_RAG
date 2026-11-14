@@ -2,9 +2,6 @@
 data/pdf/*.pdf
 *.pdf
 
-# Fichier généré par merge_corpus.py
-corpus/output/all_corpus.jsonl
-
 # Python
 __pycache__/
 *.pyc
