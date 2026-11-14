@@ -134,6 +134,14 @@ python scripts\build_index.py `
   --batch-size 32
 ```
 
+## Lancer l'interface
+
+```bash
+streamlit run app/streamlit_app.py
+```
+
+Détails, fonctionnalités et contrat avec le pipeline : [`app/README.md`](app/README.md).
+
 ## Répartition
 
 | Membre | Voiture | Branche | Passages |
