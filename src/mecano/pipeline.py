@@ -1,12 +1,11 @@
 """
 Enchaîne recherche + génération :
-question → détection d'ambiguïté → reformulations (Multi-Query) → recherche (FAISS ou BM25) → fusion RRF → LLM → réponse + sources.
+question → détection d'ambiguïté → reformulations (Multi-Query) → recherche (VectorRetriever FAISS ou secours lexical) → fusion RRF → LLM → réponse + sources.
 
-Respecte le contrat attendu par app/streamlit_app.py (Membre 3) et scripts/ask.py (Membre 2).
+Respecte le contrat attendu par app/streamlit_app.py (Membre 3), scripts/ask.py (Membre 2) et evaluation/ (Membre 4).
 """
 import json
 import re
-from pathlib import Path
 from mecano.config import get_project_root, load_config
 from mecano.corpus_loader import load_all_corpus
 from mecano.prompts import (
@@ -16,7 +15,30 @@ from mecano.prompts import (
 )
 from mecano.llm import generate_response, generate_reformulations
 
-_FAISS_CACHE = None
+_RETRIEVER_CACHE = None
+
+MODELE_ALIASES = {
+    "clio4": "Clio 4",
+    "clio 4": "Clio 4",
+    "clio": "Clio 4",
+    "renault clio 4": "Clio 4",
+    "ecosport": "EcoSport",
+    "ford ecosport": "EcoSport",
+    "i10": "i10",
+    "hyundai i10": "i10",
+    "picanto": "Picanto",
+    "kia picanto": "Picanto",
+}
+
+
+def normalize_modele(modele: str | None) -> str | None:
+    """Normalise un identifiant de modèle (ex: 'clio4' -> 'Clio 4') pour VectorRetriever."""
+    if modele is None:
+        return None
+    clean = str(modele).strip()
+    if not clean:
+        return None
+    return MODELE_ALIASES.get(clean.lower(), clean)
 
 
 def reciprocal_rank_fusion(
@@ -58,7 +80,6 @@ def reciprocal_rank_fusion(
         p = dict(passages_by_id[pid])
         rrf_val = round(scores_rrf[pid], 4)
         p["score_rrf"] = rrf_val
-        # Score normalisé entre 0 et 1 pour les barres de progression de Streamlit
         norm_rrf = min(1.0, scores_rrf[pid] / max_possible_rrf) if max_possible_rrf > 0 else 0.0
         if pid in best_sim_score and best_sim_score[pid] > 0:
             p["score"] = round(0.5 * norm_rrf + 0.5 * best_sim_score[pid], 4)
@@ -72,9 +93,13 @@ def reciprocal_rank_fusion(
 STOP_WORDS = {
     "le", "la", "les", "de", "du", "des", "sur", "un", "une", "que", "qui", "faire", "fait",
     "est", "pour", "dans", "par", "en", "et", "ou", "si", "mon", "ma", "mes", "ton", "ta", "tes",
-    "son", "sa", "ses", "ce", "cet", "cette", "ces", "au", "aux", "avec", "sans", "sous",
+    "son", "sa", "ses", "ce", "cet", "cette", "ces", "au", "aux", "avec", "sans", "sous", "vers",
+    "quand", "comment", "quel", "quelle", "quels", "quelles", "quoi", "dois", "je", "il", "elle",
+    "on", "nous", "vous", "ils", "elles", "ne", "pas", "plus", "grave", "monte", "allume", "roulant",
+    "pendant", "roule", "veut", "dire", "signifie", "faut",
     "the", "of", "in", "on", "at", "to", "for", "with", "is", "are", "was", "a", "an", "and", "or",
-    "what", "how", "do", "does", "if", "my", "your", "its", "their", "this", "that"
+    "what", "how", "do", "does", "if", "my", "your", "its", "their", "this", "that", "when", "while",
+    "should", "can", "it", "mean", "means"
 }
 
 CAR_NAMES = {"clio", "clio4", "i10", "picanto", "ecosport", "renault", "hyundai", "kia", "ford"}
@@ -83,7 +108,8 @@ CAR_NAMES = {"clio", "clio4", "i10", "picanto", "ecosport", "renault", "hyundai"
 def _match_filters(item: dict, modele: str | None = None, categories: list[str] | None = None) -> bool:
     """Vérifie si un passage correspond aux filtres de modèle et de catégories."""
     if modele:
-        mod_clean = str(modele).lower().replace(" ", "")
+        norm_mod = normalize_modele(modele)
+        mod_clean = str(norm_mod).lower().replace(" ", "")
         item_mod = str(item.get("modele", "")).lower().replace(" ", "")
         item_marque = str(item.get("marque", "")).lower()
         if mod_clean not in item_mod and mod_clean not in item_marque:
@@ -97,15 +123,15 @@ def _match_filters(item: dict, modele: str | None = None, categories: list[str] 
     return True
 
 
-def _try_faiss_search(
+def _try_vector_retriever(
     query: str,
     modele: str | None = None,
     categories: list[str] | None = None,
     top_k: int = 5,
     config: dict | None = None
 ) -> list[dict] | None:
-    """Utilise l'index FAISS (Membre 1) s'il a été généré dans index/corpus.faiss."""
-    global _FAISS_CACHE
+    """Utilise VectorRetriever (src/mecano/retriever.py) et l'index FAISS (index/corpus.faiss)."""
+    global _RETRIEVER_CACHE
     root = get_project_root()
     cfg = config or load_config()
     idx_dir = root / cfg.get("index", {}).get("dir", "index")
@@ -116,33 +142,48 @@ def _try_faiss_search(
         return None
 
     try:
-        if _FAISS_CACHE is None:
-            from mecano.embeddings import EmbeddingModel
+        if _RETRIEVER_CACHE is None:
+            from mecano.embeddings import DEFAULT_MODEL, EmbeddingModel
             from mecano.index import load_index
+            from mecano.retriever import VectorRetriever
 
             meta = json.loads(meta_path.read_text(encoding="utf-8"))
-            emb_model = EmbeddingModel(meta.get("model", "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"))
+            records = meta.get("records", [])
+            emb_model = EmbeddingModel(meta.get("model", DEFAULT_MODEL))
             faiss_index = load_index(faiss_path)
-            _FAISS_CACHE = (emb_model, faiss_index, meta.get("records", []))
+            _RETRIEVER_CACHE = VectorRetriever(faiss_index, emb_model, records)
 
-        emb_model, faiss_index, records = _FAISS_CACHE
-        q_vec = emb_model.encode([query], batch_size=1)
-        search_k = min(len(records), max(top_k * 10, 50))
-        scores, indices = faiss_index.search(q_vec, search_k)
+        retriever = _RETRIEVER_CACHE
+        norm_modele = normalize_modele(modele)
+
+        # Cas standard : aucune catégorie ou 1 seule catégorie -> appel direct à VectorRetriever.search
+        if not categories or len(categories) == 1:
+            single_cat = categories[0] if categories else None
+            raw_results = retriever.search(
+                query,
+                top_k=top_k,
+                modele=norm_modele,
+                categorie=single_cat,
+            )
+        else:
+            # Plusieurs catégories sélectionnées dans l'interface Streamlit
+            allowed_cats = {str(c).strip().casefold() for c in categories if str(c).strip()}
+            all_matches = retriever.search(
+                query,
+                top_k=len(retriever.records),
+                modele=norm_modele,
+                categorie=None,
+            )
+            raw_results = [
+                r for r in all_matches
+                if str(r.get("categorie", "")).strip().casefold() in allowed_cats
+            ][:top_k]
 
         results = []
-        for sim, idx in zip(scores[0], indices[0]):
-            if idx < 0 or idx >= len(records):
-                continue
-            rec = records[idx]
-            if not _match_filters(rec, modele=modele, categories=categories):
-                continue
-            item_copy = dict(rec)
-            # Cosine similarity dans [0, 1]
-            item_copy["score"] = round(max(0.0, min(1.0, float(sim))), 4)
+        for item in raw_results:
+            item_copy = dict(item)
+            item_copy["score"] = round(max(0.0, min(1.0, float(item_copy.get("score", 0.0)))), 4)
             results.append(item_copy)
-            if len(results) >= top_k:
-                break
         return results
     except Exception:
         return None
@@ -155,7 +196,7 @@ def _fallback_search(
     categories: list[str] | None = None,
     top_k: int = 5
 ) -> list[dict]:
-    """Recherche lexicale autonome de secours si l'index FAISS n'est pas encore construit."""
+    """Recherche lexicale autonome de secours si faiss/sentence-transformers ne sont pas installés."""
     all_words = re.findall(r"\w+", query.lower())
     query_terms = [w for w in all_words if len(w) >= 2 and w not in STOP_WORDS and w not in CAR_NAMES]
     if not query_terms:
@@ -200,38 +241,21 @@ def retrieve_passages(
 ) -> list[dict]:
     """
     Appelle dans l'ordre :
-    1. src/mecano/retriever.py (Membre 1) s'il expose une fonction de recherche
-    2. L'index FAISS local (index/corpus.faiss) s'il a été généré
-    3. La recherche lexicale autonome de secours sur all_corpus.jsonl
+    1. VectorRetriever (src/mecano/retriever.py + index/corpus.faiss)
+    2. La recherche lexicale autonome de secours sur all_corpus.jsonl
     """
     cats_list = list(categories) if categories else ([categorie] if categorie else None)
 
-    # 1. Tenter d'utiliser le module retriever du Membre 1 s'il est implémenté
-    try:
-        from mecano import retriever
-        for fn_name in ("retrieve", "search", "rechercher"):
-            fn = getattr(retriever, fn_name, None)
-            if callable(fn):
-                try:
-                    return fn(query=query, modele=modele, categories=cats_list, top_k=top_k)
-                except TypeError:
-                    cat_single = cats_list[0] if cats_list else None
-                    return fn(query=query, modele=modele, categorie=cat_single, top_k=top_k)
-    except Exception:
-        pass
-
-    # 2. Tenter la recherche vectorielle FAISS directe si l'index est construit
-    faiss_res = _try_faiss_search(
+    vec_res = _try_vector_retriever(
         query=query,
         modele=modele,
         categories=cats_list,
         top_k=top_k,
         config=config
     )
-    if faiss_res is not None:
-        return faiss_res
+    if vec_res is not None:
+        return vec_res
 
-    # 3. Fallback lexical sur le corpus JSONL
     corpus = load_all_corpus()
     return _fallback_search(
         query=query,
@@ -249,6 +273,7 @@ def _is_refusal_response(text: str) -> bool:
         "cette information n'est pas présente dans la notice" in t_low
         or "this information is not available in the official" in t_low
         or "n'est pas dans la notice" in t_low
+        or "information absente" in t_low
     )
 
 
@@ -283,10 +308,11 @@ def ask(
     rrf_k = int(retrieval_cfg.get("rrf_k", 60))
     n_reforms = int(retrieval_cfg.get("num_reformulations", 3))
     cats_list = list(categories) if categories else ([categorie] if categorie else None)
+    norm_modele = normalize_modele(modele)
 
     # 1. Détection de question trop vague / ambiguë (demande de clarification)
     if is_question_ambiguous(question):
-        clarification = build_clarification_response(question, modele=modele)
+        clarification = build_clarification_response(question, modele=norm_modele)
         return {
             "reponse": clarification,
             "answer": clarification,
@@ -295,7 +321,7 @@ def ask(
             "sources": [],
             "question": question,
             "reformulations": [],
-            "filters": {"modele": modele, "categories": cats_list, "categorie": categorie, "top_k": k},
+            "filters": {"modele": norm_modele, "categories": cats_list, "categorie": categorie, "top_k": k},
             "multi_query_used": False,
         }
 
@@ -311,7 +337,7 @@ def ask(
     for q in all_queries:
         res = retrieve_passages(
             query=q,
-            modele=modele,
+            modele=norm_modele,
             categories=cats_list,
             top_k=k * 2 if len(all_queries) > 1 else k,
             config=cfg
@@ -329,7 +355,10 @@ def ask(
 
     # Si aucun passage n'est trouvé
     if not passages_finaux:
-        refusal = "Cette information n'est pas présente dans la notice officielle du véhicule."
+        refusal = (
+            "Cette information n'est pas présente dans la notice officielle du véhicule "
+            "(information absente). Nous vous conseillons de contacter un garagiste ou un concessionnaire."
+        )
         return {
             "reponse": refusal,
             "answer": refusal,
@@ -338,7 +367,7 @@ def ask(
             "sources": [],
             "question": question,
             "reformulations": reformulations,
-            "filters": {"modele": modele, "categories": cats_list, "categorie": categorie, "top_k": k},
+            "filters": {"modele": norm_modele, "categories": cats_list, "categorie": categorie, "top_k": k},
             "multi_query_used": bool(reformulations),
         }
 
@@ -356,6 +385,6 @@ def ask(
         "sources": passages_finaux,
         "question": question,
         "reformulations": reformulations,
-        "filters": {"modele": modele, "categories": cats_list, "categorie": categorie, "top_k": k},
+        "filters": {"modele": norm_modele, "categories": cats_list, "categorie": categorie, "top_k": k},
         "multi_query_used": bool(reformulations),
     }

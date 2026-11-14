@@ -1,7 +1,8 @@
 """
-Appel du LLM (Google Gemini via API REST rapide ou SDK google-genai).
+Appel du LLM (Google Gemini via API REST rapide avec gestion automatique du rate-limit 429).
 """
 import re
+import time
 import requests
 from mecano.config import load_config, get_api_key
 from mecano.prompts import SYSTEM_PROMPT, MULTIQUERY_SYSTEM_PROMPT, build_multiquery_prompt
@@ -13,16 +14,17 @@ def call_gemini_api(
     model_name: str = "gemini-flash-lite-latest",
     temperature: float = 0.0,
     max_tokens: int = 1024,
-    timeout: int = 25
+    timeout: int = 25,
+    max_retries: int = 3
 ) -> str:
-    """Appel direct à l'API Gemini via REST."""
+    """Appel direct à l'API Gemini via REST avec retry automatique sur code 429."""
     key = get_api_key()
     if not key:
         raise ValueError(
             "Clé GEMINI_API_KEY introuvable. Veuillez la définir dans votre fichier .env "
             "ou variable d'environnement."
         )
-        
+
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={key}"
     payload = {
         "contents": [{"parts": [{"text": user_prompt}]}],
@@ -35,17 +37,20 @@ def call_gemini_api(
         payload["system_instruction"] = {
             "parts": [{"text": system_instruction}]
         }
-        
-    response = requests.post(url, json=payload, timeout=timeout)
-    if response.status_code == 200:
-        data = response.json()
-        candidates = data.get("candidates", [])
-        if candidates:
-            parts = candidates[0].get("content", {}).get("parts", [])
-            if parts:
-                return (parts[0].get("text") or "").strip()
-        return ""
-    else:
+
+    for attempt in range(max_retries + 1):
+        response = requests.post(url, json=payload, timeout=timeout)
+        if response.status_code == 200:
+            data = response.json()
+            candidates = data.get("candidates", [])
+            if candidates:
+                parts = candidates[0].get("content", {}).get("parts", [])
+                if parts:
+                    return (parts[0].get("text") or "").strip()
+            return ""
+        if response.status_code == 429 and attempt < max_retries:
+            time.sleep(8 * (attempt + 1))
+            continue
         err_msg = response.text
         try:
             err_json = response.json()
@@ -53,6 +58,7 @@ def call_gemini_api(
         except Exception:
             pass
         raise RuntimeError(f"Erreur API Gemini ({response.status_code}) : {err_msg}")
+    return ""
 
 
 def generate_response(
@@ -66,9 +72,9 @@ def generate_response(
     model_name = llm_cfg.get("model_name", "gemini-flash-lite-latest")
     temperature = float(llm_cfg.get("temperature", 0.0))
     max_tokens = int(llm_cfg.get("max_output_tokens", 1024))
-    
+
     sys_instruction = system_prompt if system_prompt is not None else SYSTEM_PROMPT
-    
+
     try:
         return call_gemini_api(
             user_prompt=user_prompt,
@@ -91,7 +97,7 @@ def generate_reformulations(
     cfg_data = config or load_config()
     llm_cfg = cfg_data.get("llm", {})
     model_name = llm_cfg.get("model_name", "gemini-flash-lite-latest")
-    
+
     try:
         user_prompt = build_multiquery_prompt(question)
         raw_text = call_gemini_api(

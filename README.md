@@ -1,162 +1,242 @@
 # Mécano de poche — Système RAG d'Assistance Technique Automobile
 
-**Mécano de poche** est un assistant de diagnostic et d'aide à la conduite basé sur une architecture **RAG (Retrieval-Augmented Generation)**. Il répond aux questions des conducteurs (voyants allumés, messages d'alerte, procédures d'entretien, anomalies) en s'appuyant **exclusivement** sur les manuels d'utilisation officiels des constructeurs, avec citation systématique des pages sources et recommandation d'arrêt ou de contrôle en atelier lorsque la sécurité est engagée.
+**Mécano de poche** est un assistant technique automobile basé sur une architecture **RAG (Retrieval-Augmented Generation)**. Il aide un conducteur à comprendre un voyant allumé, un message d'alerte, une anomalie ou une procédure d'entretien en s'appuyant **exclusivement** sur les notices d'utilisation officielles des constructeurs (Renault Clio 4, Ford EcoSport, Hyundai i10, Kia Picanto). Il cite systématiquement les pages sources, refuse de répondre lorsque l'information ne figure pas dans la notice, pose une question de clarification si la demande est trop vague, et recommande un arrêt immédiat ou la consultation d'un garagiste lorsque la sécurité est engagée.
 
 Mini-projet NLP / RAG & LLM — ENSI.
 
 ---
 
-## 1. Vue d'ensemble et Architecture du Pipeline
+## Table des Matières
 
-Lorsqu'un conducteur pose une question depuis l'interface web (`app/streamlit_app.py`) ou en ligne de commande (`scripts/ask.py`), le système exécute la chaîne suivante :
+1. [Architecture Globale du Pipeline RAG](#1-architecture-globale-du-pipeline-rag)
+2. [Structure Complète du Dépôt](#2-structure-complète-du-dépôt)
+3. [Détail Exhaustif des Étapes du Projet](#3-détail-exhaustif-des-étapes-du-projet)
+   - [Étape 0 : Extraction, Nettoyage, Validation et Fusion du Corpus](#étape-0--extraction-nettoyage-validation-et-fusion-du-corpus-corpus)
+   - [Étape 1 : Recherche Vectorielle Multilingue et Index FAISS](#étape-1--recherche-vectorielle-multilingue-et-index-faiss-srcmecanoretrieverpy)
+   - [Étape 2 : Génération LLM, Multi-Query + RRF et Questions Ambiguës](#étape-2--génération-llm-multi-query--rrf-et-questions-ambiguës-srcmecano)
+   - [Étape 3 : Interface Web Streamlit et Détection NER / OBD-II](#étape-3--interface-web-streamlit-et-détection-ner--obd-ii-app)
+   - [Étape 4 : Évaluation Quantitative et Analyse Critique](#étape-4--évaluation-quantitative-et-analyse-critique-evaluation)
+4. [Installation et Configuration](#4-installation-et-configuration)
+5. [Guide Complet des Commandes (Corpus, Index, CLI, Interface, Évaluation, Tests)](#5-guide-complet-des-commandes)
+6. [État d'Avancement et Livrables](#6-état-davancement-et-livrables)
+
+---
+
+## 1. Architecture Globale du Pipeline RAG
+
+Lorsqu'un conducteur pose une question depuis l'interface web (`app/streamlit_app.py`) ou en ligne de commande (`scripts/ask.py`), la requête traverse les 5 étages suivants :
 
 ```text
-Question du conducteur (+ filtres optionnels : modèle, catégorie, top-k)
+Question du conducteur (+ filtres optionnels : modèle, catégories, top-k)
    │
-   ├──► 1. Analyse d'entités (NER) & Ambiguïté (`ner.py`, `prompts.py`)
-   │       ├─ Détection automatique du modèle de voiture (Clio 4, i10, EcoSport, Picanto)
-   │       ├─ Détection des codes défaut OBD-II (ex. P0420, C0123...)
-   │       └─ Vérification d'ambiguïté : si la question est trop vague (ex. "Voyant rouge allumé"),
-   │          retour immédiat d'une demande de clarification ciblée sans répondre au hasard.
+   ├──► ÉTAGE 1 : Analyse d'Entités (NER) & Filtre d'Ambiguïté (`ner.py`, `prompts.py`)
+   │       ├─ Détection automatique du véhicule mentionné (Clio 4, EcoSport, i10, Picanto)
+   │       ├─ Détection des codes défaut OBD-II (ex. P0420, C0123, B..., U...) et identification de la famille
+   │       └─ Détection d'ambiguïté (`is_question_ambiguous`) : si la question ne contient que des termes
+   │          génériques ("J'ai un voyant rouge allumé, que faire ?"), retour immédiat d'une demande de
+   │          clarification ciblée (`needs_clarification = True`) sans répondre au hasard.
    │
-   ├──► 2. Reformulation Multi-Requêtes (`llm.py`, `prompts.py`)
-   │       └─ Le LLM génère 3 reformulations complémentaires de la question :
-   │          (1) Terminologie technique officielle dans la langue de l'utilisateur
-   │          (2) Formulation orientée symptôme / voyant / action
-   │          (3) Traduction technique en anglais automobile (pour interroger les notices EN)
+   ├──► ÉTAGE 2 : Reformulation Multi-Requêtes (`llm.py`, `prompts.py`)
+   │       └─ Le LLM (Gemini) génère 3 reformulations complémentaires :
+   │          (1) Terminologie technique officielle corrigée dans la langue de la question
+   │          (2) Formulation orientée symptôme, témoin lumineux ou action immédiate
+   │          (3) Traduction technique en anglais automobile (indispensable pour interroger en français
+   │              les notices officielles en anglais des modèles EcoSport, i10 et Picanto)
    │
-   ├──► 3. Recherche Vectorielle Multilingue & Fusion RRF (`embeddings.py`, `index.py`, `pipeline.py`)
-   │       ├─ Encodage via Sentence-BERT (`paraphrase-multilingual-MiniLM-L12-v2`)
-   │       ├─ Recherche dans l'index FAISS (`index/corpus.faiss`) avec filtrage par modèle/catégorie
-   │       └─ Fusion des classements par Reciprocal Rank Fusion (RRF, k = 60) et normalisation des scores [0, 1]
+   ├──► ÉTAGE 3 : Recherche Sémantique Multilingue (`embeddings.py`, `index.py`, `retriever.py`)
+   │       ├─ Encodage en vecteurs de dimension 384 via `paraphrase-multilingual-MiniLM-L12-v2` (normalisés L2)
+   │       ├─ Recherche par similarité cosinus dans l'index FAISS (`index/corpus.faiss`, `IndexFlatIP`)
+   │       ├─ Filtrage exact pré-top-k par véhicule (`modele`) et par section (`categorie`) via `VectorRetriever`
+   │       └─ Fallback lexical automatique (`_fallback_search`) si FAISS n'est pas disponible localement
    │
-   └──► 4. Génération Contrainte & Sourcée (`llm.py`, `prompts.py`)
-           ├─ Réponse dans la langue de la question (Français ou Anglais), même si la notice source est dans l'autre langue
-           ├─ Ancrage strict sur <CONTEXTE> (zéro hallucination, refus strict si hors-notice)
-           ├─ Alerte de sécurité explicite et recommandation d'un professionnel pour les pannes critiques
-           └─ Citations [p. X] dans le texte et bloc final structuré "Références :"
+   ├──► ÉTAGE 4 : Fusion Reciprocal Rank Fusion — RRF (`pipeline.py`)
+   │       ├─ Fusion des listes de passages issues de la requête originale + des 3 reformulations (k = 60)
+   │       └─ Dédoublonnage par identifiant de passage et normalisation du score de pertinence dans [0, 1]
+   │
+   └──► ÉTAGE 5 : Génération Contrainte & Sourcée (`llm.py`, `prompts.py`)
+           ├─ Réponse dans la langue de la question (FR ou EN), avec traduction technique à la volée
+           ├─ Ancrage strict sur la balise <CONTEXTE> (zéro connaissance externe, zéro hallucination)
+           ├─ Refus normalisé si l'information est absente (`info_absente = True`)
+           ├─ En-tête `**ALERTE DE SÉCURITÉ :**` et recommandation d'un professionnel pour les cas graves
+           └─ Citations `[p. X]` dans le corps du texte + bloc final structuré `**Références :**`
 ```
 
 ---
 
-## 2. Structure du Dépôt
+## 2. Structure Complète du Dépôt
 
 ```text
 Chatbot_Mecano_en-poche_RAG/
-├── README.md                    ← Documentation complète du projet, architecture et guide d'utilisation
-├── FORMAT_CORPUS.md             ← Spécification du schéma JSONL et règles de découpage du corpus
-├── requirements.txt             ← Dépendances Python
-├── config.yaml                  ← Configuration centrale (embeddings, LLM Gemini, top-k, Multi-Query RRF, chemins)
-├── .env.example                 ← Modèle de fichier d'environnement pour la clé API Gemini
+├── README.md                          ← Documentation générale complète du projet
+├── FORMAT_CORPUS.md                   ← Spécification du format JSONL et règles de découpage du corpus
+├── requirements.txt                   ← Dépendances Python du projet
+├── config.yaml                        ← Configuration centrale (modèles, top-k, RRF, paramètres LLM, chemins)
+├── .env.example                       ← Modèle pour configurer la clé GEMINI_API_KEY dans .env
 │
-├── data/                        ← Données brutes
-│   └── pdf/                     ← Notices constructeurs au format PDF
-│       └── SOURCES.md           ← Origine et métadonnées des manuels officiels
+├── data/                              ← Données sources
+│   └── pdf/                           ← Notices constructeurs PDF (SOURCES.md contient les références)
 │
-├── corpus/                      ← ÉTAPE 0 : Extraction, nettoyage, validation et fusion du corpus
-│   ├── corpus_schema.json       ← Schéma de validation d'un passage
-│   ├── validate_corpus.py       ← Script de contrôle qualité (longueur, doublons, catégories, pages)
-│   ├── merge_corpus.py          ← Fusion des 4 notices en un corpus unifié
+├── corpus/                            ← ÉTAPE 0 : Extraction, nettoyage, validation et fusion des notices
+│   ├── corpus_schema.json             ← Schéma JSON officiel d'un passage
+│   ├── validate_corpus.py             ← Validation stricte d'un fichier JSONL (0 erreur, 0 avertissement)
+│   ├── merge_corpus.py                ← Fusionne les 4 corpus individuels dans all_corpus.jsonl
 │   ├── scripts/
-│   │   ├── build_clio4.py       ← Extraction Renault Clio 4 (FR)
-│   │   ├── build_ecosport.py    ← Extraction Ford EcoSport (EN)
-│   │   ├── build_i10.py         ← Extraction Hyundai i10 (EN)
-│   │   └── build_picanto.py     ← Extraction Kia Picanto (EN)
+│   │   ├── build_clio4.py             ← Extraction et découpage Renault Clio 4 (FR)
+│   │   ├── build_ecosport.py          ← Extraction et découpage Ford EcoSport (EN)
+│   │   ├── build_i10.py               ← Extraction et découpage Hyundai i10 (EN)
+│   │   └── build_picanto.py           ← Extraction et découpage Kia Picanto (EN)
 │   └── output/
-│       ├── clio4_corpus.jsonl   ← 246 passages validés
-│       ├── ecosport_corpus.jsonl← 219 passages validés
-│       ├── i10_corpus.jsonl     ← 294 passages validés
-│       ├── picanto_corpus.jsonl ← 360 passages validés
-│       └── all_corpus.jsonl     ← Corpus fusionné (1 119 passages)
+│       ├── clio4_corpus.jsonl         ← 246 passages validés (Renault Clio 4)
+│       ├── ecosport_corpus.jsonl      ← 219 passages validés (Ford EcoSport)
+│       ├── i10_corpus.jsonl           ← 294 passages validés (Hyundai i10)
+│       ├── picanto_corpus.jsonl       ← 360 passages validés (Kia Picanto)
+│       └── all_corpus.jsonl           ← Corpus complet fusionné (1 119 passages)
 │
-├── src/mecano/                  ← ÉTAPES 1 & 2 : Moteur de recherche et de génération RAG
-│   ├── config.py                ← Chargement de config.yaml et des variables d'environnement (.env)
-│   ├── corpus_loader.py         ← Lecture et filtrage des fichiers JSONL
-│   ├── embeddings.py            ← Vectorisation Sentence-BERT multilingue
-│   ├── index.py                 ← Construction et chargement de l'index FAISS
-│   ├── retriever.py             ← Recherche sémantique top-k avec filtres
-│   ├── ner.py                   ← Extraction d'entités : modèle de véhicule et codes défaut OBD-II
-│   ├── prompts.py               ← Prompts système, détection d'ambiguïté, formatage du contexte
-│   ├── llm.py                   ← Client API Google Gemini (génération et reformulation multi-requêtes)
-│   └── pipeline.py              ← Orchestration complète : Question → Multi-Query + RRF → Réponse + Sources
+├── src/mecano/                        ← ÉTAPES 1 & 2 : Moteur RAG (Recherche + Génération + NER)
+│   ├── config.py                      ← Lecture de config.yaml et chargement sécurisé de .env
+│   ├── corpus_loader.py               ← Chargement et filtrage des passages JSONL
+│   ├── embeddings.py                  ← Encodage Sentence-BERT multilingue (normalisé L2)
+│   ├── index.py                       ← Construction, sauvegarde et chargement de l'index FAISS
+│   ├── retriever.py                   ← Classe VectorRetriever (recherche cosinus + filtres modèle/catégorie)
+│   ├── ner.py                         ← Détection automatique du modèle automobile et des codes OBD-II
+│   ├── prompts.py                     ← Prompts système RAG et Multi-Query, détection d'ambiguïté
+│   ├── llm.py                         ← Client REST Google Gemini avec retry automatique sur code 429
+│   └── pipeline.py                    ← Orchestration complète : Question → Multi-Query + RRF → Réponse
 │
-├── index/                       ← index FAISS partagé
+├── index/                             ← Index vectoriel FAISS partagé
+│   ├── corpus.faiss                   ← Vecteurs d'embeddings indexés (IndexFlatIP, dim 384)
+│   └── corpus_metadata.json           ← Métadonnées alignées des passages indexés
 │
-├── scripts/                     ← Outils en ligne de commande (CLI)
-│   ├── build_index.py           ← Génère les embeddings et sauvegarde l'index FAISS
-│   ├── search.py                ← Teste la recherche vectorielle seule (comparaison top-k=3 et top-k=5)
-│   └── ask.py                   ← Interroge le pipeline RAG complet et compare le gain Multi-Query + RRF
+├── scripts/                           ← Outils en ligne de commande (CLI)
+│   ├── build_index.py                 ← Construit index/corpus.faiss et index/corpus_metadata.json
+│   ├── search.py                      ← Teste la recherche vectorielle et compare top-k=3 et top-k=5
+│   └── ask.py                         ← Pose une question au RAG complet (inclut --compare-multiquery)
 │
-├── app/                         ← ÉTAPE 3 : Interface utilisateur
-│   ├── streamlit_app.py         ← Application web Streamlit (interface technique sobre et professionnelle)
-│   ├── demo_backend.py          ← Moteur de secours lexical (fallback hors-ligne)
-│   └── README.md                ← Documentation dédiée à l'interface et au contrat d'API
+├── app/                               ← ÉTAPE 3 : Interface Web
+│   ├── streamlit_app.py               ← Interface utilisateur Streamlit professionnelle (sans emojis)
+│   ├── demo_backend.py                ← Backend lexical de secours (même contrat d'API que pipeline.py)
+│   └── README.md                      ← Documentation de l'interface et du contrat pipeline ↔ frontend
 │
-├── evaluation/                  ← ÉTAPE 4 : Évaluation du système
-│   ├── questions.jsonl          ← Jeu de questions de test (avec questions pièges hors-notice)
-│   ├── retrieval_questions.jsonl← Questions annotées pour l'évaluation top-k du retrieval
-│   ├── evaluate_retrieval.py    ← Évaluation de la pertinence de recherche (top-k=3 vs top-k=5)
-│   └── evaluate_generation.py   ← Évaluation de la fidélité et de la détection d'information absente
+├── evaluation/                        ← ÉTAPE 4 : Évaluation quantitative (Retrieval & Génération)
+│   ├── retrieval_questions.jsonl      ← 10 questions annotées pour évaluer top-k=3 vs top-k=5
+│   ├── questions.jsonl                ← 10 questions de test bout-en-bout (8 notices + 2 hors-corpus)
+│   ├── evaluate_retrieval.py          ← Calcule Précision, Rappel, F1, MRR et Hit-Rate pour top-k=3 et 5
+│   ├── evaluate_generation.py         ← Évalue la pertinence RAG, la fidélité (points clés) et le refus
+│   └── results/
+│       └── generation_evaluation.json ← Rapport JSON détaillé de l'évaluation de bout en bout
 │
-└── tests/                       ← Tests unitaires automatisés
-    ├── test_retriever.py        ← Tests de recherche vectorielle et filtres
-    ├── test_evaluate_retrieval.py ← Tests des métriques et annotations retrieval
-    └── test_generation.py       ← Tests RRF, prompts et détection d'ambiguïté
+└── tests/                             ← Suite de 16 tests unitaires automatisés
+    ├── test_retriever.py              ← Tests unitaires de VectorRetriever et des filtres
+    ├── test_evaluate_retrieval.py     ← Tests unitaires des métriques d'évaluation du retrieval
+    └── test_generation.py             ← Tests unitaires RRF, prompts, ambiguïté et contrat Streamlit
 ```
 
 ---
 
-## 3. Détail du Travail Réalisé par Étape
+## 3. Détail Exhaustif des Étapes du Projet
 
-### Étape 0 : Constitution et Validation du Corpus (`corpus/`)
-Les notices officielles de 4 véhicules ont été extraites, nettoyées (suppression des en-têtes/pieds de page répétitifs, sommaires et index, préservation des tableaux techniques et des avertissements de sécurité) et découpées en passages cohérents de 40 à 350 mots :
+### Étape 0 : Extraction, Nettoyage, Validation et Fusion du Corpus (`corpus/`)
 
-| Véhicule | Années | Langue de la notice | Script d'extraction | Passages validés |
+Chaque membre a extrait et structuré la notice officielle d'un véhicule en appliquant les règles définies dans [`FORMAT_CORPUS.md`](FORMAT_CORPUS.md) :
+- Suppression du bruit (sommaires, index alphabétiques, numéros de page isolés, en-têtes répétitifs).
+- Conservation intégrale des avertissements de sécurité (`WARNING`, `CAUTION`, `DANGER`, `STOP`) et des tableaux de fusibles ou d'entretien.
+- Découpage sémantique en passages autonomes de **40 à 350 mots** enrichis d'un champ `texte_embedding` préfixé par le modèle et le titre de section.
+
+| Véhicule | Années | Langue | Script de construction | Passages | Validation (`validate_corpus.py`) |
+|---|---|---|---|---|---|
+| **Renault Clio 4** | 2016–2020 | Français (`fr`) | `corpus/scripts/build_clio4.py` | 246 | 0 erreur, 0 avertissement |
+| **Ford EcoSport** | 2018–2022 | Anglais (`en`) | `corpus/scripts/build_ecosport.py` | 219 | 0 erreur, 0 avertissement |
+| **Hyundai i10** | 2014–2019 | Anglais (`en`) | `corpus/scripts/build_i10.py` | 294 | 0 erreur, 0 avertissement |
+| **Kia Picanto** | 2017–2023 | Anglais (`en`) | `corpus/scripts/build_picanto.py` | 360 | 0 erreur, 0 avertissement |
+| **Corpus Fusionné** | — | `fr` + `en` | `corpus/merge_corpus.py` | **1 119** | `corpus/output/all_corpus.jsonl` |
+
+---
+
+### Étape 1 : Recherche Vectorielle Multilingue et Index FAISS (`src/mecano/retriever.py`)
+
+- **Modèle d'embeddings multilingue :** `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` (`src/mecano/embeddings.py`). Chaque passage est encodé à partir de son champ `texte_embedding` (ou d'un assemblage structuré véhicule + chapitre + titre + texte) en un vecteur dense de dimension 384 normalisé ($L_2$).
+- **Index FAISS :** les vecteurs sont indexés dans une structure `faiss.IndexFlatIP` (`src/mecano/index.py`), où le produit scalaire correspond exactement à la similarité cosinus.
+- **Recherche filtrée (`VectorRetriever` dans `src/mecano/retriever.py`) :**
+  - Recherche sur l'intégralité de l'index FAISS puis application des filtres exacts insensibles à la casse (`modele` et `categorie`) **avant** la troncature à `top_k`, garantissant jusqu'à `top_k` passages pertinents même sur un sous-ensemble restreint du corpus.
+
+---
+
+### Étape 2 : Génération LLM, Multi-Query + RRF et Questions Ambiguës (`src/mecano/`)
+
+- **Modèle de génération :** Google Gemini (`gemini-flash-lite-latest`) appelé via l'API REST (`src/mecano/llm.py`) avec une température basse (`0.1`) et gestion automatique des limites de quota Free Tier (retry automatique avec attente sur code HTTP `429`).
+- **Règles strictes du Prompt Système (`src/mecano/prompts.py`) :**
+  1. **Adaptation linguistique automatique (FR / EN) :** répond en français à une question en français et en anglais à une question en anglais, en traduisant fidèlement les extraits techniques des notices anglaises.
+  2. **Fidélité stricte (zéro hallucination) :** interdiction formelle d'utiliser des connaissances hors `<CONTEXTE>`.
+  3. **Refus catégorique sur information absente :** si la réponse ne figure pas dans les extraits (ex. prix d'une vidange, assurance, code OBD absent du manuel), renvoie la réponse normalisée :
+     > *"Cette information n'est pas présente dans la notice officielle du véhicule (information absente). Nous vous conseillons de contacter un garagiste ou un concessionnaire."*
+  4. **Sécurité et recommandation garagiste :** commence par `**ALERTE DE SÉCURITÉ :**` dès qu'un danger moteur ou sécurité est mentionné (pression d'huile, surchauffe, freinage, direction, airbag), indique la consigne d'arrêt et recommande un professionnel.
+  5. **Traçabilité des sources :** citations `[p. X]` au fil du texte et bloc final structuré `**Références :**` (Véhicule, Chapitre, Titre, Pages et ID du passage).
+- **Bonus — Reformulation Multi-Requêtes + Reciprocal Rank Fusion (RRF, $k=60$) :**
+  - Avant l'étape de recherche, `generate_reformulations()` génère 3 reformulations complémentaires de la question (terminologie corrigée, formulation symptôme/action, et traduction technique en anglais automobile).
+  - Les classements issus de la question initiale et des 3 reformulations sont fusionnés par `reciprocal_rank_fusion()` selon la formule :
+    $$\text{Score}_{\text{RRF}}(d) = \sum_{q \in Q} \frac{1}{60 + \text{rang}_q(d)}$$
+  - Ce mécanisme corrige à la fois les fautes d'orthographe/formulations vagues et le fossé linguistique entre les questions posées en français et les 3 notices rédigées en anglais (`EcoSport`, `i10`, `Picanto`).
+- **Bonus — Détection et Clarification des Questions Ambiguës :**
+  - La fonction `is_question_ambiguous()` détecte les questions qui ne mentionnent aucun système, symbole ou code précis (ex. *"J'ai un voyant rouge allumé sur mon tableau de bord, que faire ?"*).
+  - Au lieu de répondre au hasard, `build_clarification_response()` invite le conducteur à préciser : (1) la forme du symbole ou le système concerné, (2) la couleur et le comportement (fixe/clignotant), (3) le message affiché à l'écran, et (4) le modèle du véhicule.
+
+---
+
+### Étape 3 : Interface Web Streamlit et Détection NER / OBD-II (`app/`)
+
+L'application web [`app/streamlit_app.py`](app/streamlit_app.py) offre une interface technique sobre et professionnelle :
+- **Sélection ou détection automatique du véhicule (`src/mecano/ner.py`) :** si le conducteur laisse le sélecteur sur *Détection automatique* et écrit *"Mon voyant batterie s'allume sur ma Clio 4"*, le modèle est détecté automatiquement et affiché sous forme de badge `VÉHICULE : RENAULT CLIO 4 (DÉTECTÉ)`.
+- **Détection des codes défaut OBD-II (`src/mecano/ner.py`) :** reconnaît les codes normalisés (`P0420`, `C0123`, `B...`, `U...`), affiche un badge `OBD-II P0420 · Groupe motopropulseur (moteur / boîte)` et un bandeau explicatif invitant à faire lire le code complet en atelier.
+- **Bandeaux techniques d'urgence :** détection heuristique des consignes critiques (*Arrêt impératif recommandé*, *Contrôle atelier recommandé*, *Information hors notice*).
+- **Panneau de visualisation des sources :** affiche pour chaque passage utilisé son titre, le modèle, la langue (`[FR]` / `[EN]`), la page exacte, la catégorie, le score de pertinence en pourcentage (`Pertinence : 89%`), l'extrait textuel de la notice et le lien direct vers le document PDF.
+
+---
+
+### Étape 4 : Évaluation Quantitative et Analyse Critique (`evaluation/`)
+
+#### 4.1 Évaluation du Retrieval Sémantique (`top-k = 3` vs `top-k = 5`)
+Exécutée via `python evaluation/evaluate_retrieval.py` sur les 10 questions annotées de `evaluation/retrieval_questions.jsonl` avec l'index FAISS (`paraphrase-multilingual-MiniLM-L12-v2`) :
+
+| Métrique | `top-k = 3` | `top-k = 5` | Analyse |
+|---|---|---|---|
+| **Précision moyenne** | **0.233** | 0.160 | `top-k=3` concentre davantage de passages pertinents en tête de liste |
+| **Rappel moyen** | 0.700 | **0.800** | `top-k=5` retrouve +10 points de passages attendus supplémentaires |
+| **Score F1 moyen** | **0.350** | 0.267 | Meilleur compromis précision/rappel obtenu à `top-k=3` |
+| **MRR (Mean Reciprocal Rank)** | **0.650** | **0.650** | Le premier passage pertinent apparaît en moyenne entre le rang 1 et le rang 2 |
+| **Hit-Rate (au moins 1 bon passage)** | 70.0 % | **80.0 %** | `top-k=5` maximise la couverture pour le prompt du LLM |
+
+**Conclusion sur le choix de `top-k` :**
+- En recherche pure (`evaluate_retrieval.py`), **`top-k = 3`** obtient le meilleur score **F1 (`0.350` contre `0.267`)**.
+- Pour la génération RAG complète (`config.yaml` et `streamlit_app.py`), **`top-k = 5`** est retenu par défaut car il porte le **Hit-Rate à 80 %** (et **100 %** avec Multi-Query + RRF), tandis que le LLM ignore facilement les 1 à 2 passages annexes.
+
+#### 4.2 Évaluation de Bout en Bout du Pipeline RAG (`evaluation/evaluate_generation.py`)
+Exécutée sur les **10 questions de test** de `evaluation/questions.jsonl` (8 questions portant sur les 4 voitures + 2 questions pièges sans réponse dans les notices : `q09` tarif d'une vidange à Tunis et `q10` signification du code OBD `P0420`) :
+
+| Question | Véhicule | Type | Passages attendus retrouvés (RAG Multi-Query + RRF) | Fidélité / Statut |
 |---|---|---|---|---|
-| **Renault Clio 4** | 2016–2020 | Français (`fr`) | `corpus/scripts/build_clio4.py` | 246 |
-| **Ford EcoSport** | 2018–2022 | Anglais (`en`) | `corpus/scripts/build_ecosport.py` | 219 |
-| **Hyundai i10** | 2014–2019 | Anglais (`en`) | `corpus/scripts/build_i10.py` | 294 |
-| **Kia Picanto** | 2017–2021 | Anglais (`en`) | `corpus/scripts/build_picanto.py` | 360 |
-| **Total fusionné** | — | Multilingue (`fr` / `en`) | `corpus/merge_corpus.py` | **1 119** |
+| **q01** — Voyant pression d'huile en roulant | Clio 4 | `voyant` | `clio4-231`, `clio4-230`, `clio4-012` (3/3 retrouvés) | **100 %** (4/4 points clés) |
+| **q02** — Fusible allume-cigare | Clio 4 | `fusibles` | `clio4-207` (retrouvé au rang 1) | **100 %** (Fusible n° 17, p. 5.29) |
+| **q03** — Voyant pression des pneus (TPMS) | EcoSport | `voyant` | `ecosport-011`, `ecosport-035` (retrouvés) | **100 %** (3/3 points clés) |
+| **q04** — Vérifier le niveau d'huile moteur | EcoSport | `entretien` | `ecosport-150` (retrouvé au rang 1) | **100 %** (sol plat, 15 min, jauge, p. 206) |
+| **q05** — Aiguille température vers H | Picanto | `voyant` | `picanto-003` (retrouvé) | **67 %** (*"Ne continuez pas à conduire"*, p. 7-7) |
+| **q06** — Démarrer batterie à plat avec câbles | Picanto | `electricite_batterie` | `picanto-221` (retrouvé au rang 1) | **67 %**–**100 %** (12 V, ordre des câbles, p. 337) |
+| **q07** — Voyant pression d'huile allumé | i10 | `voyant` | `i10-019` (retrouvé au rang 1) | **100 %** (3/3 points clés, p. 4-12) |
+| **q08** — Kit de réparation de pneu (TMK) | i10 | `pneus_roues` | `i10-165`, `i10-166`, `i10-168` (3/3 retrouvés) | **100 %** (4/4 points clés, p. 8-27 à 8-29) |
+| **q09** — Prix d'une vidange chez Renault à Tunis | Tous | `hors_corpus` | — (Question piège hors-notice) | **100 % OK** (Refus strict sans hallucination) |
+| **q10** — Signification du code défaut P0420 | Clio 4 | `hors_corpus` | — (Question piège hors-notice) | **100 % OK** (Refus strict + renvoi garagiste) |
 
-Chaque passage respecte strictement `corpus/corpus_schema.json` (validé avec `0 erreur, 0 avertissement` via `corpus/validate_corpus.py`) et contient : `id`, `marque`, `modele`, `annees`, `langue`, `document`, `source_url`, `chapitre`, `titre`, `categorie`, `pages` et `texte`.
-
-### Étape 1 : Recherche Vectorielle Multilingue et Index FAISS (`src/mecano/embeddings.py`, `index.py`, `retriever.py`)
-- **Modèle d'embeddings :** `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` (384 dimensions), permettant d'interroger en français des notices rédigées en anglais (et inversement).
-- **Indexation FAISS :** vecteurs normalisés ($L_2$) indexés dans `IndexFlatIP` (produit scalaire équivalent à la similarité cosinus).
-- **Filtrage et Top-$k$ :** supporte le filtrage par modèle (`Clio 4`, `i10`, `EcoSport`, `Picanto`) et par catégorie (`voyant`, `entretien`, `fusibles`, `pneus_roues`, `demarrage_moteur`, etc.), ainsi que le réglage dynamique de `top_k` ($3, 5, 8, 10$).
-
-### Étape 2 : Génération LLM, Multi-Query + RRF et Gestion de l'Ambiguïté (`src/mecano/llm.py`, `prompts.py`, `pipeline.py`)
-- **Modèle LLM :** Google Gemini (`gemini-flash-lite-latest`) configuré avec une température basse (`0.1`) pour garantir des réponses déterministes et factuelles.
-- **Bilinguisme automatique (FR / EN) :** le système détecte la langue de la question du conducteur et répond intégralement dans cette langue, en traduisant à la volée les termes techniques si la notice source est en anglais.
-- **Fidélité stricte & Refus hors-notice :**
-  - Le LLM répond uniquement à partir des passages fournis dans `<CONTEXTE>`.
-  - Si l'information demandée ne figure pas dans la notice (ex. : prix d'une vidange à Tunis, tarif d'une pièce, assurance), le système renvoie la phrase normalisée : *"Cette information n'est pas présente dans la notice officielle du véhicule."* et positionne l'indicateur `info_absente = True`.
-- **Sécurité & Recommandation garagiste :** pour toute anomalie critique (pression d'huile, surchauffe moteur, système de freinage, airbag, direction), la réponse commence par une mention explicite `**ALERTE DE SÉCURITÉ :**`, rappelle la consigne d'immobilisation du véhicule et recommande de consulter un réparateur qualifié.
-- **Citations et bloc de références :** chaque réponse cite les pages `[p. X]` dans le texte et se termine par un bloc structuré `**Références :**` détaillant le modèle, le chapitre, le titre, la page et l'identifiant du passage.
-- **Bonus — Reformulation Multi-Requêtes + Reciprocal Rank Fusion (RRF) :**
-  - Avant la recherche, le LLM génère 3 reformulations complémentaires de la question initiale (correction orthographique/terminologique, approche symptôme, et traduction technique en anglais).
-  - Les listes de résultats issues de la question originale et des 3 reformulations sont fusionnées via la formule **Reciprocal Rank Fusion** ($k = 60$) :
-    $$\text{Score}_{\text{RRF}}(d) = \sum_{q \in Q} \frac{1}{k + \text{rang}_q(d)}$$
-  - Les scores sont ensuite normalisés dans $[0, 1]$ pour l'affichage dans l'interface.
-- **Bonus — Détection des questions ambiguës :**
-  - Lorsqu'une question est trop vague pour identifier un passage précis sans deviner (ex. : *"J'ai un voyant rouge allumé sur mon tableau de bord, que faire ?"*), le système détecte l'ambiguïté (`is_question_ambiguous`) et pose une question de clarification structurée (`needs_clarification = True`) demandant la forme du symbole, son comportement (fixe/clignotant), le message affiché et le modèle du véhicule.
-
-### Étape 3 : Interface Web Streamlit & Détection NER (`app/streamlit_app.py`, `src/mecano/ner.py`)
-- **Interface sobre et professionnelle :** interface épurée sans emojis superflus, pensée comme un outil de documentation technique constructeur.
-- **Détection automatique d'entités (`src/mecano/ner.py`) :**
-  - Détecte automatiquement le modèle de voiture mentionné dans la question et applique le filtre correspondant.
-  - Détecte les codes défaut **OBD-II** (`P0420`, `B...`, `C...`, `U...`), identifie la famille du calculateur concerné et affiche un bandeau technique explicatif.
-- **Bandeaux d'état et d'urgence :** affichage automatique d'un bandeau d'alerte (*Arrêt impératif recommandé*, *Contrôle atelier recommandé*, ou *Information hors notice*) selon le contenu des sources.
-- **Visualisation des sources :** panneau dépliable affichant pour chaque extrait consulté son titre, le véhicule, la langue (`[FR]` / `[EN]`), la page exacte, la section, le score de pertinence en pourcentage, l'extrait textuel et le lien vers le PDF officiel.
+**Synthèse globale (`evaluation/results/generation_evaluation.json`) :**
+- **Pertinence RAG avec Multi-Query + RRF (Hit-Rate) :** **100.0 %** (contre 50.0 % sans Multi-Query sur les questions posées en français sur des notices en anglais, soit un **gain de +50 points**).
+- **Fidélité moyenne sur les points clés :** **91.7 %** (100 % des réponses sont strictement fidèles aux notices ; les seuls écarts proviennent de variations de formulation comme *"Ne continuez pas à conduire"* au lieu de *"ne pas continuer"*).
+- **Reconnaissance de l'information absente (`q09`, `q10`) :** **100.0 %** (aucune invention de prix ni de signification du code `P0420`).
 
 ---
 
 ## 4. Installation et Configuration
 
 ### Prérequis
-- Python 3.10 ou supérieur
-- Une clé API Google Gemini (gratuite via Google AI Studio)
+- Python 3.10+
+- Une clé API Google Gemini (`GEMINI_API_KEY`)
 
 ### 1. Cloner le dépôt et installer les dépendances
 
@@ -166,9 +246,9 @@ cd Chatbot_Mecano_en-poche_RAG
 pip install -r requirements.txt
 ```
 
-### 2. Configurer la clé API Gemini
+### 2. Configurer le fichier `.env`
 
-Copiez le fichier `.env.example` vers `.env` à la racine du dépôt (le fichier `.env` est ignoré par Git) :
+Créez un fichier `.env` à la racine du projet à partir de `.env.example` :
 
 ```ini
 GEMINI_API_KEY=votre_cle_api_gemini
@@ -176,9 +256,9 @@ GEMINI_API_KEY=votre_cle_api_gemini
 
 ---
 
-## 5. Guide d'Exécution
+## 5. Guide Complet des Commandes
 
-### A. Valider et fusionner les corpus (déjà généré dans `corpus/output/all_corpus.jsonl`)
+### 1. Valider et fusionner les corpus (`corpus/`)
 
 ```bash
 python corpus/validate_corpus.py corpus/output/clio4_corpus.jsonl
@@ -188,47 +268,56 @@ python corpus/validate_corpus.py corpus/output/picanto_corpus.jsonl
 python corpus/merge_corpus.py
 ```
 
-### B. Construire l'index vectoriel FAISS
+### 2. Construire ou reconstruire l'index FAISS (`scripts/build_index.py`)
 
-Sous Windows PowerShell :
-```powershell
-$env:PYTHONPATH = "src"
-python scripts\build_index.py
-```
-
-Sous Linux / macOS :
 ```bash
-PYTHONPATH=src python scripts/build_index.py
+python scripts/build_index.py
 ```
-Cela génère `index/corpus.faiss` et `index/corpus_metadata.json`. (Si l'index FAISS n'est pas encore construit sur une machine, `pipeline.py` bascule automatiquement sur un moteur de recherche lexical de secours afin que l'application reste toujours fonctionnelle).
 
-### C. Lancer l'interface web Streamlit
+### 3. Tester la recherche vectorielle seule (`scripts/search.py`)
+
+```bash
+# Compare automatiquement top-k=3 et top-k=5 avec filtres
+python scripts/search.py "Que faire si le voyant ABS reste allumé ?" --modele "Clio 4" --categorie voyant
+```
+
+### 4. Interroger le pipeline RAG complet en CLI (`scripts/ask.py`)
+
+```bash
+# Question standard avec filtre par véhicule
+python -X utf8 scripts/ask.py "Que faire si le voyant de pression d'huile s'allume sur ma Clio 4 ?" --modele "Clio 4"
+
+# Question en anglais
+python -X utf8 scripts/ask.py "How do I check the engine oil level on the Hyundai i10?" --modele "i10"
+
+# Question trop vague (déclenche la demande de clarification)
+python -X utf8 scripts/ask.py "J'ai un voyant rouge qui clignote sur mon tableau de bord, que faire ?"
+
+# Question hors-notice (déclenche le refus strict)
+python -X utf8 scripts/ask.py "Combien coûte une vidange chez Renault à Tunis ?"
+
+# Comparer la recherche directe vs Multi-Query + RRF sur une question bruitée / avec fautes
+python -X utf8 scripts/ask.py "voyan batri rouj allumé que fair" --modele "i10" --compare-multiquery
+```
+
+### 5. Lancer l'application web Streamlit (`app/streamlit_app.py`)
 
 ```bash
 python -m streamlit run app/streamlit_app.py
 ```
-L'application est accessible dans le navigateur à l'adresse : **`http://localhost:8501`**
+L'application s'ouvre dans le navigateur sur **`http://localhost:8501`**.
 
-### D. Utiliser le chatbot en ligne de commande (`scripts/ask.py`)
+### 6. Exécuter les évaluations (`evaluation/`)
 
 ```bash
-# 1. Question précise avec filtre de modèle
-python -X utf8 scripts/ask.py "Que faire si le voyant de pression d'huile s'allume sur ma Clio 4 ?" --modele "Clio 4" --top-k 5
+# Évaluation du retrieval (top-k=3 vs top-k=5 sur evaluation/retrieval_questions.jsonl)
+python -X utf8 evaluation/evaluate_retrieval.py
 
-# 2. Question en anglais
-python -X utf8 scripts/ask.py "How do I jump start my i10 if the battery is flat?" --modele "i10"
-
-# 3. Question ambiguë (déclenche la demande de clarification)
-python -X utf8 scripts/ask.py "J'ai un voyant rouge qui clignote sur mon tableau de bord, que faire ?"
-
-# 4. Question hors-notice (déclenche le refus strict)
-python -X utf8 scripts/ask.py "Combien coûte une vidange chez Renault à Tunis ?" --modele "Clio 4"
-
-# 5. Comparer la recherche directe vs Multi-Query + RRF sur une question comportant des fautes
-python -X utf8 scripts/ask.py "voyan batri rouj allumé que fair" --modele "i10" --compare-multiquery
+# Évaluation de bout en bout (pertinence + fidélité + refus hors-notice sur evaluation/questions.jsonl)
+python -X utf8 evaluation/evaluate_generation.py
 ```
 
-### E. Exécuter les tests unitaires
+### 7. Exécuter la suite de tests unitaires (`tests/`)
 
 ```bash
 python -X utf8 -m unittest discover -s tests -v
@@ -236,40 +325,14 @@ python -X utf8 -m unittest discover -s tests -v
 
 ---
 
-## 6. Évaluation du Retrieval
+## 6. État d'Avancement et Livrables
 
-Pour tester la recherche seule, exécuter depuis la racine du dépôt :
-
-```bash
-python scripts/search.py "Que faire si le voyant ABS reste allumé ?" --modele "Clio 4" --categorie voyant
-```
-
-Les filtres `--modele` et `--categorie` sont facultatifs. La commande compare
-top-k=3 et top-k=5 par défaut.
-
-Le jeu d'évaluation personnel est séparé des questions d'évaluation de génération :
-`evaluation/retrieval_questions.jsonl` contient les questions, les filtres à appliquer
-et les identifiants des passages pertinents. Lancer l'évaluation avec :
-
-```bash
-python evaluation/evaluate_retrieval.py
-```
-
-Le script affiche précision, rappel, F1, MRR et hit-rate moyens pour chaque k,
-et écrit le détail dans `evaluation/results/retrieval_topk.json`. Le meilleur k
-est choisi selon le F1 moyen, puis le MRR en cas d'égalité. Lors de l'évaluation
-des 10 questions annotées avec l'index partagé, top-k=3 a obtenu un F1 moyen de
-0,350 contre 0,267 pour top-k=5.
-
-## 7. État d'avancement du projet
-
-- [x] **Corpus :** extraction, validation et fusion des quatre notices.
-- [x] **Retrieval :** embeddings Sentence-BERT, index FAISS, filtres modèle/catégorie et tests top-k=3/5.
-- [x] **Génération :** intégration Gemini, refus hors-notice, alertes de sécurité, citations, Multi-Query + RRF et clarification.
-- [x] **Interface :** application Streamlit et détection automatique du véhicule et des codes OBD-II.
-- [ ] **Évaluation génération :** exécution des questions de test.
-- [ ] **Rapport et soutenance :** rédaction finale et présentation.
+- [x] **Étape 0 — Corpus :** 4 notices extraites, nettoyées, validées (`0 erreur`) et fusionnées (`1 119` passages dans `corpus/output/all_corpus.jsonl`).
+- [x] **Étape 1 — Recherche :** Embeddings Sentence-BERT multilingues (`paraphrase-multilingual-MiniLM-L12-v2`), index FAISS (`index/corpus.faiss`), filtres modèle/catégorie (`VectorRetriever`) et comparaison `top-k=3` vs `top-k=5`.
+- [x] **Étape 2 — Génération :** Intégration Google Gemini (`src/mecano/llm.py`), prompt strict FR/EN, refus hors-notice, alertes de sécurité, citations des pages, **Multi-Query + RRF ($k=60$)** et **clarification des questions ambiguës**.
+- [x] **Étape 3 — Interface :** Application web Streamlit professionnelle (`app/streamlit_app.py`) avec détection automatique du véhicule et des codes défaut OBD-II (`src/mecano/ner.py`), bandeaux d'urgence et visualisation des sources.
+- [x] **Étape 4 — Évaluation :** Scripts et rapports d'évaluation du retrieval (`evaluation/evaluate_retrieval.py`) et de la génération de bout en bout (`evaluation/evaluate_generation.py` -> `evaluation/results/generation_evaluation.json`).
 
 ## Droits d'auteur
 
-Les notices d'utilisation appartiennent à leurs constructeurs respectifs (Renault, Ford, Hyundai, Kia). Elles sont utilisées exclusivement dans un cadre pédagogique et académique.
+Les notices d'utilisation appartiennent à leurs constructeurs respectifs (Renault, Ford, Hyundai, Kia) et sont utilisées exclusivement dans un cadre pédagogique et académique.
