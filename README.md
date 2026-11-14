@@ -179,13 +179,17 @@ Chaque membre a extrait et structuré la notice officielle d'un véhicule en app
 - **Bonus — Détection et Clarification des Questions Ambiguës :**
   - La fonction `is_question_ambiguous()` détecte les questions qui ne mentionnent aucun système, symbole ou code précis (ex. *"J'ai un voyant rouge allumé sur mon tableau de bord, que faire ?"*).
   - Au lieu de répondre au hasard, `build_clarification_response()` invite le conducteur à préciser : (1) la forme du symbole ou le système concerné, (2) la couleur et le comportement (fixe/clignotant), (3) le message affiché à l'écran, et (4) le modèle du véhicule.
+- **Bonus — Mémoire Conversationnelle Multi-Tours (`<HISTORIQUE>`) :**
+  - **Persistance du véhicule en session (`infer_modele_from_history`) :** si le conducteur mentionne sa voiture au tour 1 (ex. `Clio 4`) puis pose une question de suivi au tour 2 sans répéter le modèle (*"Et quel fusible correspond à l'allume-cigare ?"*), le pipeline hérite automatiquement du véhicule actif. Dans l'interface, la voiture choisie reste affichée en haut de la page tant que le conducteur ne clique pas sur « Changer de voiture ».
+  - **Contextualisation des questions de suivi (`contextualize_question_with_history`) :** lorsqu'un conducteur répond à une demande de clarification (ex. Tour 1 : *"J'ai un voyant rouge allumé"* → Tour 2 : *"C'est une burette d'huile"*) ou utilise des pronoms (*"Et s'il clignote ?"*), la requête de recherche et les reformulations Multi-Query intègrent automatiquement le contexte des 3 derniers échanges.
+  - **Bloc `<HISTORIQUE>` dans le prompt RAG :** les 3 derniers échanges sont injectés dans `build_rag_prompt()` afin que le LLM comprenne la continuité du dialogue tout en restant strictement ancré sur `<CONTEXTE>` pour les faits techniques et les numéros de page.
 
 ---
 
 ### Étape 3 : Interface Web Streamlit et Détection NER / OBD-II (`app/`)
 
 L'application web [`app/streamlit_app.py`](app/streamlit_app.py) offre une interface technique sobre et professionnelle :
-- **Sélection ou détection automatique du véhicule (`src/mecano/ner.py`) :** si le conducteur laisse le sélecteur sur *Détection automatique* et écrit *"Mon voyant batterie s'allume sur ma Clio 4"*, le modèle est détecté automatiquement et affiché sous forme de badge `VÉHICULE : RENAULT CLIO 4 (DÉTECTÉ)`.
+- **Sélection ou détection automatique du véhicule (`src/mecano/ner.py`) :** si le conducteur n'a pas encore choisi de voiture et écrit *"Mon voyant batterie s'allume sur ma Clio 4"*, le modèle est détecté automatiquement et sélectionné (étiquette « reconnue dans la question »). S'il n'en cite aucun, l'interface lui demande sa voiture avant de chercher.
 - **Détection des codes défaut OBD-II (`src/mecano/ner.py`) :** reconnaît les codes normalisés (`P0420`, `C0123`, `B...`, `U...`), affiche un badge `OBD-II P0420 · Groupe motopropulseur (moteur / boîte)` et un bandeau explicatif invitant à faire lire le code complet en atelier.
 - **Bandeaux techniques d'urgence :** détection heuristique des consignes critiques (*Arrêt impératif recommandé*, *Contrôle atelier recommandé*, *Information hors notice*).
 - **Panneau de visualisation des sources :** affiche pour chaque passage utilisé son titre, le modèle, la langue (`[FR]` / `[EN]`), la page exacte, la catégorie, le score de pertinence en pourcentage (`Pertinence : 89%`), l'extrait textuel de la notice et le lien direct vers le document PDF.

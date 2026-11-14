@@ -7,7 +7,7 @@ Lancement, depuis la racine du dépôt :
 Parcours : choisir sa voiture → cliquer sur le voyant allumé ou décrire le problème
 → lire la réponse (verdict d'urgence, consignes, pages de la notice citées).
 
-Moteur : mecano.pipeline.ask() (embeddings + FAISS + Gemini). Si le pipeline est
+Moteur : mecano.pipeline.ask() (embeddings + FAISS + Gemini + mémoire des 3 derniers échanges). Si le pipeline est
 absent ou en erreur (quota, pas de réseau…), l'interface se replie sur
 app/demo_backend.py (recherche par mots-clés, sans LLM), qui respecte le même contrat.
 Variable d'environnement MECANO_HORS_LIGNE=1 : forcer ce mode de repli.
@@ -159,16 +159,44 @@ with st.sidebar:
 
 
 # ===================================================================== moteur : appel + repli
+def historique_pour_pipeline(n=3):
+    """Les derniers échanges, au format attendu par la mémoire conversationnelle du pipeline."""
+    tours = [t for t in st.session_state.historique if t.get("type") == "reponse"][-n:]
+    return [{"question": t["question"], "resultat": t["res"],
+             "modele": None if t["voiture"] == TOUTES else t["voiture"]} for t in tours] or None
+
+
 def interroger(question, modele):
     cats = choix_cats or None
     filtre = None if modele in (None, TOUTES) else modele
+    historique = historique_pour_pipeline()
     erreur = None
     if PIPELINE is not None and not hors_ligne:
         try:
-            return PIPELINE(question, modele=filtre, categories=cats, top_k=top_k), None
+            try:
+                res = PIPELINE(question, modele=filtre, categories=cats, top_k=top_k, historique=historique)
+            except TypeError:  # ancienne version du pipeline, sans mémoire
+                res = PIPELINE(question, modele=filtre, categories=cats, top_k=top_k)
+            texte = reponse_de(res)
+            if not texte.startswith("Erreur lors de la génération"):
+                return res, None
+            # Le pipeline renvoie l'erreur Gemini comme une réponse : on garde ses passages
+            # et on affiche l'extrait brut le plus pertinent à la place
+            erreur = texte
+            if res.get("sources"):
+                return dict(res, reponse=extrait_brut(res["sources"][0]), answer=None), erreur
         except Exception as e:  # quota, réseau, clé invalide…
             erreur = str(e)
     return demo_backend.ask(question, modele=filtre, categories=cats, top_k=top_k), erreur
+
+
+def extrait_brut(passage):
+    texte = passage.get("texte", "").strip()
+    if len(texte) > 900:
+        texte = texte[:900].rsplit(" ", 1)[0] + "…"
+    return (f"*Extrait de la notice {passage.get('marque', '')} {passage.get('modele', '')}, "
+            f"page {', '.join(passage.get('pages', []))} :*\n\n**{passage.get('titre', '')}**\n\n"
+            + texte.replace("\n", "  \n"))
 
 
 def reponse_de(res):
@@ -321,9 +349,16 @@ def afficher_tour(i, tour):
                         "constructeurs. Un garagiste équipé d'une valise de diagnostic peut le lire.</p>",
                         unsafe_allow_html=True)
         if tour["erreur"]:
-            st.markdown("<p class='note-repli'>Gemini n'a pas répondu (quota atteint ou problème de "
-                        "connexion). Voici l'extrait le plus proche de la notice, sans reformulation. "
-                        "Réessayez dans une minute.</p>", unsafe_allow_html=True)
+            err = tour["erreur"]
+            if "GEMINI_API_KEY" in err or "API key" in err:
+                cause = ("La clé Gemini est absente ou invalide : vérifiez la ligne GEMINI_API_KEY "
+                         "du fichier .env, puis relancez l'interface.")
+            elif "429" in err or "quota" in err.lower():
+                cause = "Le quota gratuit de Gemini est atteint : réessayez dans une minute."
+            else:
+                cause = "Gemini ne répond pas (connexion ?) : réessayez dans une minute."
+            st.markdown(f"<p class='note-repli'>{esc(cause)} En attendant, voici l'extrait le plus "
+                        "proche de la notice, sans reformulation.</p>", unsafe_allow_html=True)
         if voir_extraits and res.get("sources"):
             afficher_extraits(res["sources"], absent=bool(res.get("info_absente")))
         st.feedback("thumbs", key=f"avis_{i}", on_change=enregistrer_avis, args=(i,))
@@ -406,7 +441,7 @@ else:
 for i, tour in enumerate(historique):
     afficher_tour(i, tour)
 
-saisie = st.chat_input("Décrivez le problème, par exemple : le voyant batterie reste allumé, c'est grave ?")
+saisie = st.chat_input("Décrivez le problème, ou posez une question de suivi (ex. : et s'il clignote ?)")
 if saisie:
     demander(saisie)
 
