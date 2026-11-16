@@ -208,6 +208,14 @@ L'application web [`app/streamlit_app.py`](app/streamlit_app.py) propose une exp
 - **Collecte d'avis (`evaluation/results/feedback.jsonl`) :** boutons 👍 / 👎 sous chaque réponse enregistrant la question, le véhicule, le `top-k`, les sources et l'avis de l'utilisateur.
 - **Mode hors ligne et repli automatique (`MECANO_HORS_LIGNE=1`) :** bascule automatiquement sur l'extrait brut le plus pertinent ou sur le moteur lexical `app/demo_backend.py` si le quota de l'API Gemini est atteint ou en absence de connexion réseau.
 
+#### Aperçu Visuel de l'Interface (`docs/images/`)
+
+| Accueil & Voyants du Tableau de Bord | Réponse RAG & Verdict d'Urgence |
+|---|---|
+| ![Accueil](docs/images/interface_accueil.png) | ![Réponse](docs/images/interface_reponse.png) |
+| **Visualisation des Extraits & Pages Sources** | **Refus Prudent sur Information Hors-Notice** |
+| ![Sources](docs/images/interface_sources.png) | ![Info absente](docs/images/interface_info_absente.png) |
+
 ---
 
 ### Étape 4 : Évaluation Quantitative et Analyse Critique (`evaluation/`)
@@ -247,6 +255,18 @@ Exécutée sur les **10 questions de test** de `evaluation/questions.jsonl` (8 q
 - **Pertinence RAG avec Multi-Query + RRF (Hit-Rate) :** **100.0 %** (contre 50.0 % sans Multi-Query sur les questions posées en français sur des notices en anglais, soit un **gain de +50 points**).
 - **Fidélité moyenne sur les points clés :** **91.7 %** (100 % des réponses sont strictement fidèles aux notices ; les seuls écarts proviennent de variations de formulation comme *"Ne continuez pas à conduire"* au lieu de *"ne pas continuer"*).
 - **Reconnaissance de l'information absente (`q09`, `q10`) :** **100.0 %** (aucune invention de prix ni de signification du code `P0420`).
+
+#### 4.3 Analyse Critique (Forces, Limites Observées et Améliorations)
+
+1. **Barrière linguistique FR → EN résolue par Multi-Query + RRF :**
+   - *Observation :* 3 des 4 manuels officiels (`Ford EcoSport`, `Hyundai i10`, `Kia Picanto`) sont en anglais alors que les conducteurs posent leurs questions en français. En recherche lexicale directe ou sur des termes très spécifiques (*"burette d'huile"*, *"aiguille monte vers H"*), le rappel direct chute à 50 %.
+   - *Solution apportée :* La reformulation multi-requêtes génère systématiquement une 3e requête en anglais technique automobile (*"Engine coolant temperature gauge pointer moves toward H overheating"*), portant le Hit-Rate global à **100 %** après fusion RRF ($k=60$).
+2. **Gestion des questions vagues et du suivi multi-tours :**
+   - *Observation :* Une question telle que *"J'ai un voyant rouge allumé, que faire ?"* correspond à plus de 15 passages différents dans une notice. Sans garde-fou, un RAG classique répond au hasard selon le passage ayant le score cosinus légèrement supérieur.
+   - *Solution apportée :* Détection préalable d'ambiguïté (`is_question_ambiguous`) qui demande des précisions ciblées, couplée à la mémoire conversationnelle (`<HISTORIQUE>` et `contextualize_question_with_history`) pour assembler la réponse du conducteur au tour suivant.
+3. **Limites identifiées et pistes d'amélioration :**
+   - *Quotas API Free Tier (15 requêtes/min) :* Chaque question avec Multi-Query effectue 2 appels LLM (reformulation + génération). Nous avons ajouté un mécanisme de *retry* automatique sur code HTTP `429` dans `src/mecano/llm.py` ainsi qu'un repli transparent sur l'extrait brut de la notice dans `app/streamlit_app.py`.
+   - *Reranking Cross-Encoder :* Pour affiner encore la précision au rang 1 sans augmenter la latence LLM, l'ajout d'un *cross-encoder* léger (`ms-marco-MiniLM`) après la fusion RRF permettrait de reclasser finement les 5 passages retenus.
 
 ---
 
@@ -343,13 +363,30 @@ python -X utf8 -m unittest discover -s tests -v
 
 ---
 
-## 6. État d'Avancement et Livrables
+## 6. État d'Avancement, Bonus Implémentés et Historique des Commits
 
+### Livrables et Bonus Réalisés
 - [x] **Étape 0 — Corpus :** 4 notices extraites, nettoyées, validées (`0 erreur`) et fusionnées (`1 119` passages dans `corpus/output/all_corpus.jsonl`).
 - [x] **Étape 1 — Recherche :** Embeddings Sentence-BERT multilingues (`paraphrase-multilingual-MiniLM-L12-v2`), index FAISS (`index/corpus.faiss`), filtres modèle/catégorie (`VectorRetriever`) et comparaison `top-k=3` vs `top-k=5`.
-- [x] **Étape 2 — Génération :** Intégration Google Gemini (`src/mecano/llm.py`), prompt strict FR/EN, refus hors-notice, alertes de sécurité, citations des pages, **Multi-Query + RRF ($k=60$)** et **clarification des questions ambiguës**.
-- [x] **Étape 3 — Interface :** Application web Streamlit professionnelle (`app/streamlit_app.py`) avec détection automatique du véhicule et des codes défaut OBD-II (`src/mecano/ner.py`), bandeaux d'urgence et visualisation des sources.
-- [x] **Étape 4 — Évaluation :** Scripts et rapports d'évaluation du retrieval (`evaluation/evaluate_retrieval.py`) et de la génération de bout en bout (`evaluation/evaluate_generation.py` -> `evaluation/results/generation_evaluation.json`).
+- [x] **Étape 2 — Génération :** Intégration Google Gemini (`src/mecano/llm.py`), prompt strict FR/EN, refus hors-notice, alertes de sécurité, citations des pages `[p. X]`.
+- [x] **Bonus RAG 1 — Multi-Query + Reciprocal Rank Fusion (RRF, $k=60$) :** 3 reformulations + fusion des rangs (+50 points de Hit-Rate sur requêtes FR → notices EN).
+- [x] **Bonus RAG 2 — Questions ambiguës :** détection automatique et demande de clarification ciblée au lieu de répondre au hasard.
+- [x] **Bonus RAG 3 — Mémoire conversationnelle multi-tours (`<HISTORIQUE>`) :** persistance du véhicule en session et contextualisation des questions de suivi.
+- [x] **Étape 3 & Bonus UX / NER — Interface Streamlit « Tableau de bord de nuit » :** 8 voyants SVG cliquables (`app/telltales.py`), détection NER du véhicule et des codes OBD-II (`src/mecano/ner.py`), verdict d'urgence visuel, visualisation des sources, collecte d'avis (`feedback.jsonl`) et mode hors ligne (`MECANO_HORS_LIGNE=1`).
+- [x] **Étape 4 — Évaluation & Tests :** Évaluation du retrieval (`evaluate_retrieval.py`), évaluation de bout en bout de la génération (`evaluate_generation.py` → `generation_evaluation.json`), et **17 tests unitaires** (`tests/`).
+
+### Historique des Commits Clés du Projet (`main`)
+
+| Commit | Étape / Module | Description |
+|---|---|---|
+| `67e550b` – `9f5242a` | **Étape 0 (Corpus)** | Extraction, validation (`0 erreur`) et fusion des 4 notices (`clio4`, `ecosport`, `i10`, `picanto` → `all_corpus.jsonl`) |
+| `00d8b84` – `ec97953` | **Étape 1 (Index FAISS)** | Pipeline d'embeddings multilingues Sentence-BERT et génération de l'index partagé `index/corpus.faiss` |
+| `a7a20c2` – `13f13e8` | **Étape 2 (Génération)** | Implémentation Gemini, prompts stricts FR/EN, Multi-Query + RRF ($k=60$), gestion des questions ambiguës et CLI `scripts/ask.py` |
+| `07ceac3` – `3e0cb5c` | **Étape 3 (Interface v1 & NER)** | Première interface Streamlit, détection NER modèle/OBD-II (`src/mecano/ner.py`) et alignement du contrat pipeline |
+| `463ab89` – `e76b280` | **Étape 1 & 4 (Retrieval & Eval)** | Classe `VectorRetriever` (`src/mecano/retriever.py`), `scripts/search.py`, `evaluation/questions.jsonl` et `evaluation/evaluate_retrieval.py` |
+| `5cfbb38` – `5d09785` | **Étape 4 (Eval Génération)** | Intégration `VectorRetriever` dans `pipeline.py`, script `evaluation/evaluate_generation.py` et rapport `generation_evaluation.json` |
+| `ec0f571` – `50faafe` | **Bonus (Mémoire Multi-Tours)** | Ajout de la mémoire conversationnelle `<HISTORIQUE>`, persistance du véhicule et résolution des clarifications sur plusieurs tours |
+| `79bfbdb` – `95518bc` | **Étape 3 (Interface v2 & Doc)** | Interface v2 « Tableau de bord de nuit » (`.streamlit/config.toml`, `app/telltales.py`, `app/style.css`), branchement mémoire et documentation finale |
 
 ## Droits d'auteur
 
