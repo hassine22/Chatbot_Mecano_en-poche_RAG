@@ -53,6 +53,7 @@ def ask(
     categories: list[str] | None = None,
     top_k: int = 5,
     use_multi_query: bool | None = None,
+    historique: list[dict] | None = None,
 ) -> dict:
     return {
         "reponse": "Texte de la réponse générée en Markdown avec citations [p. X] et bloc Références",

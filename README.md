@@ -72,6 +72,8 @@ Chatbot_Mecano_en-poche_RAG/
 ├── requirements.txt                   ← Dépendances Python du projet
 ├── config.yaml                        ← Configuration centrale (modèles, top-k, RRF, paramètres LLM, chemins)
 ├── .env.example                       ← Modèle pour configurer la clé GEMINI_API_KEY dans .env
+├── .streamlit/
+│   └── config.toml                    ← Thème sombre « tableau de bord de nuit » et service des polices statiques
 │
 ├── data/                              ← Données sources
 │   └── pdf/                           ← Notices constructeurs PDF (SOURCES.md contient les références)
@@ -112,9 +114,12 @@ Chatbot_Mecano_en-poche_RAG/
 │   ├── search.py                      ← Teste la recherche vectorielle et compare top-k=3 et top-k=5
 │   └── ask.py                         ← Pose une question au RAG complet (inclut --compare-multiquery)
 │
-├── app/                               ← ÉTAPE 3 : Interface Web
-│   ├── streamlit_app.py               ← Interface utilisateur Streamlit professionnelle (sans emojis)
-│   ├── demo_backend.py                ← Backend lexical de secours (même contrat d'API que pipeline.py)
+├── app/                               ← ÉTAPE 3 : Interface Web (Thème « Tableau de bord de nuit »)
+│   ├── streamlit_app.py               ← Application Streamlit (sélection voiture, voyants SVG, mémoire, repli)
+│   ├── telltales.py                   ← Pictogrammes SVG des 8 voyants du tableau de bord cliquables
+│   ├── style.css                      ← Feuille de style du thème tableau de bord, animations et responsive mobile
+│   ├── static/fonts/                  ← Police embarquée Saira (woff2 + licence SIL OFL, utilisable hors ligne)
+│   ├── demo_backend.py                ← Backend lexical BM25 de secours (même contrat que pipeline.py)
 │   └── README.md                      ← Documentation de l'interface et du contrat pipeline ↔ frontend
 │
 ├── evaluation/                        ← ÉTAPE 4 : Évaluation quantitative (Retrieval & Génération)
@@ -123,12 +128,15 @@ Chatbot_Mecano_en-poche_RAG/
 │   ├── evaluate_retrieval.py          ← Calcule Précision, Rappel, F1, MRR et Hit-Rate pour top-k=3 et 5
 │   ├── evaluate_generation.py         ← Évalue la pertinence RAG, la fidélité (points clés) et le refus
 │   └── results/
-│       └── generation_evaluation.json ← Rapport JSON détaillé de l'évaluation de bout en bout
+│       ├── generation_evaluation.json ← Rapport JSON détaillé de l'évaluation de bout en bout
+│       └── feedback.jsonl             ← Retours utilisateurs (👍 / 👎) enregistrés depuis l'interface
 │
-└── tests/                             ← Suite de 16 tests unitaires automatisés
+├── docs/images/                       ← Captures d'écran de l'interface (accueil, voyants, réponse, sources, mobile)
+│
+└── tests/                             ← Suite de 17 tests unitaires automatisés
     ├── test_retriever.py              ← Tests unitaires de VectorRetriever et des filtres
     ├── test_evaluate_retrieval.py     ← Tests unitaires des métriques d'évaluation du retrieval
-    └── test_generation.py             ← Tests unitaires RRF, prompts, ambiguïté et contrat Streamlit
+    └── test_generation.py             ← Tests unitaires RRF, prompts, mémoire (<HISTORIQUE>), ambiguïté et contrat
 ```
 
 ---
@@ -188,11 +196,17 @@ Chaque membre a extrait et structuré la notice officielle d'un véhicule en app
 
 ### Étape 3 : Interface Web Streamlit et Détection NER / OBD-II (`app/`)
 
-L'application web [`app/streamlit_app.py`](app/streamlit_app.py) offre une interface technique sobre et professionnelle :
-- **Sélection ou détection automatique du véhicule (`src/mecano/ner.py`) :** si le conducteur n'a pas encore choisi de voiture et écrit *"Mon voyant batterie s'allume sur ma Clio 4"*, le modèle est détecté automatiquement et sélectionné (étiquette « reconnue dans la question »). S'il n'en cite aucun, l'interface lui demande sa voiture avant de chercher.
-- **Détection des codes défaut OBD-II (`src/mecano/ner.py`) :** reconnaît les codes normalisés (`P0420`, `C0123`, `B...`, `U...`), affiche un badge `OBD-II P0420 · Groupe motopropulseur (moteur / boîte)` et un bandeau explicatif invitant à faire lire le code complet en atelier.
-- **Bandeaux techniques d'urgence :** détection heuristique des consignes critiques (*Arrêt impératif recommandé*, *Contrôle atelier recommandé*, *Information hors notice*).
-- **Panneau de visualisation des sources :** affiche pour chaque passage utilisé son titre, le modèle, la langue (`[FR]` / `[EN]`), la page exacte, la catégorie, le score de pertinence en pourcentage (`Pertinence : 89%`), l'extrait textuel de la notice et le lien direct vers le document PDF.
+L'application web [`app/streamlit_app.py`](app/streamlit_app.py) propose une expérience pensée pour un conducteur face à son tableau de bord (détails complets et captures dans [`app/README.md`](app/README.md)) :
+- **Thème « Tableau de bord de nuit » (`.streamlit/config.toml`, `app/style.css`, `app/static/fonts/`) :** fond bleu nuit (`#0A1220`), police `Saira` embarquée (fonctionne hors connexion) et codes couleurs rouge / orange / vert réservés aux voyants et au niveau d'urgence, avec adaptation responsive sur mobile.
+- **Panneau de 8 voyants SVG cliquables (`app/telltales.py`) :** pictogrammes vectoriels (pression d'huile, température moteur, batterie, freins, moteur/OBD, pneus TPMS, ABS, ESP) avec animation d'allumage au chargement (*self-test*). Le conducteur peut cliquer directement sur le symbole allumé sans avoir à connaître son nom technique.
+- **Sélection guidée ou détection automatique du véhicule (`src/mecano/ner.py`) :**
+  - Le conducteur choisit sa voiture parmi les 4 cartes en haut de l'écran, ou la mentionne directement dans sa question (détection NER automatique avec badge *« reconnue dans la question »*).
+  - Si une question est posée sans qu'aucune voiture ne soit sélectionnée ni détectée, l'interface met la question en attente et invite l'utilisateur à cliquer sur son véhicule avant de lancer la recherche afin de ne jamais mélanger les notices.
+- **Détection des codes défaut OBD-II (`src/mecano/ner.py`) :** reconnaît les codes normalisés (`P0420`, `C0123`, `B...`, `U...`), affiche le badge `Code P0420 : Groupe motopropulseur (moteur / boîte)` et rappelle qu'une lecture à la valise de diagnostic en atelier est nécessaire.
+- **Verdict d'urgence immédiat (`niveau()`) :** bandeau visuel avec témoin lumineux indiquant immédiatement la gravité (*Arrêtez-vous dès que possible*, *Faites vérifier la voiture rapidement*, *Pas d'urgence signalée*, *Ce n'est pas dans la notice*, ou *Il manque une précision*).
+- **Citations en étiquettes et visualisation des sources :** les renvois `[p. X]` dans la réponse sont transformés en badges visuels (`mise_en_forme()`), et un panneau dépliable affiche les extraits de la notice utilisés avec page, jauge visuelle de pertinence en `%`, texte nettoyé et lien vers le PDF officiel.
+- **Collecte d'avis (`evaluation/results/feedback.jsonl`) :** boutons 👍 / 👎 sous chaque réponse enregistrant la question, le véhicule, le `top-k`, les sources et l'avis de l'utilisateur.
+- **Mode hors ligne et repli automatique (`MECANO_HORS_LIGNE=1`) :** bascule automatiquement sur l'extrait brut le plus pertinent ou sur le moteur lexical `app/demo_backend.py` si le quota de l'API Gemini est atteint ou en absence de connexion réseau.
 
 ---
 
