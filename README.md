@@ -18,11 +18,52 @@ Mini-projet NLP / RAG & LLM — ENSI.
    - [Étape 4 : Évaluation Quantitative et Analyse Critique](#étape-4--évaluation-quantitative-et-analyse-critique-evaluation)
 4. [Installation et Configuration](#4-installation-et-configuration)
 5. [Guide Complet des Commandes (Corpus, Index, CLI, Interface, Évaluation, Tests)](#5-guide-complet-des-commandes)
-6. [État d'Avancement et Livrables](#6-état-davancement-et-livrables)
+6. [État d'Avancement, Bonus Implémentés et Historique des Commits](#6-état-davancement-bonus-implémentés-et-historique-des-commits)
+7. [Scénarios de Test & Questions Prêtes pour la Soutenance](#7-scénarios-de-test--questions-prêtes-pour-la-soutenance)
 
 ---
 
 ## 1. Architecture Globale du Pipeline RAG
+
+### Graphe de Flux Complet (Question → Mémoire → Ambiguïté → Multi-Query RRF → FAISS → Réponse)
+
+```mermaid
+flowchart TD
+    U(["Conducteur : Question ou clic voyant SVG<br/>(app/streamlit_app.py ou scripts/ask.py)"]) --> NER["1. Analyse d'Entités NER (src/mecano/ner.py)<br/>• Détection du modèle (Clio 4, EcoSport, i10, Picanto)<br/>• Détection des codes défaut OBD-II (ex: P0420)"]
+
+    H[("Mémoire de Session &lt;HISTORIQUE&gt;<br/>(3 derniers échanges)")] -. "Héritage du véhicule actif<br/>(infer_modele_from_history)" .-> NER
+    H -. "Enrichissement de la question de suivi<br/>(contextualize_question_with_history)" .-> CTX
+
+    NER --> CTX["2. Contextualisation de la Requête (src/mecano/prompts.py)<br/>Combine la question actuelle avec le tour précédent<br/>si suivi de conversation ou réponse à une clarification"]
+
+    CTX --> AMB{"3. Question trop vague<br/>ou ambiguë ?<br/>(is_question_ambiguous)"}
+
+    AMB -- "OUI (ex: 'J'ai un voyant rouge allumé')" --> CLAR["Demande de Clarification Ciblée<br/>(build_clarification_response)<br/>needs_clarification = True<br/>Demande : icône, fixe/clignotant, message, modèle"]
+    CLAR --> SAVE_H["Enregistrement du tour dans &lt;HISTORIQUE&gt;"]
+    SAVE_H -. "Tour suivant : 'C'est une burette d'huile'" .-> H
+
+    AMB -- "NON (Question précise ou clarifiée)" --> MQ["4. Reformulation Multi-Requêtes (src/mecano/llm.py)<br/>Gemini génère 3 reformulations autonomes :<br/>• Q1 : Terminologie technique corrigée (FR/EN)<br/>• Q2 : Approche symptôme / témoin / action<br/>• Q3 : Traduction technique en anglais automobile"]
+
+    MQ --> RET["5. Recherche Vectorielle Multilingue (src/mecano/retriever.py)<br/>• Embeddings : paraphrase-multilingual-MiniLM-L12-v2 (dim 384)<br/>• Index FAISS (IndexFlatIP) + Filtres exacts (modèle, catégorie)<br/>• Exécutée sur : Question + Q1 + Q2 + Q3"]
+
+    RET --> RRF["6. Fusion Reciprocal Rank Fusion — RRF (src/mecano/pipeline.py)<br/>Score_RRF(d) = Σ 1 / (60 + rang)<br/>Dédoublonnage et normalisation des scores dans [0, 1] (top-k)"]
+
+    RRF --> PROMPT["7. Construction du Prompt RAG (build_rag_prompt)<br/>Assemble &lt;HISTORIQUE&gt; + &lt;CONTEXTE&gt; (passages extraits) + Question"]
+
+    PROMPT --> LLM["8. Génération Contrainte Gemini (gemini-flash-lite-latest)<br/>Température = 0.1 · Détection automatique de langue (FR / EN)"]
+
+    LLM --> CHECK_ABS{"Information présente<br/>dans &lt;CONTEXTE&gt; ?"}
+
+    CHECK_ABS -- "NON (Prix, assurance, P0420 hors-notice)" --> REFUS["Refus Strict Normalisé (info_absente = True)<br/>'Cette information n'est pas présente dans la notice officielle...'<br/>+ Recommandation de consulter un garagiste"]
+
+    CHECK_ABS -- "OUI (Ancrage 100 % sur les extraits)" --> ANS["Réponse Technique Sourcée (info_absente = False)<br/>• En-tête ALERTE DE SÉCURITÉ si danger critique<br/>• Explication claire + Citations [p. X] dans le texte<br/>• Bloc final structuré Références : (Modèle, Titre, Page, ID)"]
+
+    REFUS --> UI(["Affichage Interface Streamlit (Verdict + Badges + Extraits PDF)<br/>& Mise à jour de &lt;HISTORIQUE&gt;"])
+    ANS --> UI
+    UI -. "Conservé pour la question suivante" .-> H
+```
+
+### Résumé Textuel des 5 Étages du Pipeline
 
 Lorsqu'un conducteur pose une question depuis l'interface web (`app/streamlit_app.py`) ou en ligne de commande (`scripts/ask.py`), la requête traverse les 5 étages suivants :
 
@@ -386,7 +427,97 @@ python -X utf8 -m unittest discover -s tests -v
 | `463ab89` – `e76b280` | **Étape 1 & 4 (Retrieval & Eval)** | Classe `VectorRetriever` (`src/mecano/retriever.py`), `scripts/search.py`, `evaluation/questions.jsonl` et `evaluation/evaluate_retrieval.py` |
 | `5cfbb38` – `5d09785` | **Étape 4 (Eval Génération)** | Intégration `VectorRetriever` dans `pipeline.py`, script `evaluation/evaluate_generation.py` et rapport `generation_evaluation.json` |
 | `ec0f571` – `50faafe` | **Bonus (Mémoire Multi-Tours)** | Ajout de la mémoire conversationnelle `<HISTORIQUE>`, persistance du véhicule et résolution des clarifications sur plusieurs tours |
-| `79bfbdb` – `95518bc` | **Étape 3 (Interface v2 & Doc)** | Interface v2 « Tableau de bord de nuit » (`.streamlit/config.toml`, `app/telltales.py`, `app/style.css`), branchement mémoire et documentation finale |
+| `79bfbdb` – `d51fec3` | **Étape 3 (Interface v2 & Doc)** | Interface v2 « Tableau de bord de nuit » (`.streamlit/config.toml`, `app/telltales.py`, `app/style.css`), branchement mémoire et documentation finale |
+
+---
+
+## 7. Scénarios de Test & Questions Prêtes pour la Soutenance
+
+Vous pouvez copier-coller directement ces questions dans l'interface Streamlit (**`http://localhost:8501`**) ou via `scripts/ask.py` pour démontrer chaque fonctionnalité du barème lors de la soutenance :
+
+### Scénario 1 — Voyant critique de sécurité (Français → Notice en Français, Renault Clio 4)
+*Objectif : montrer le verdict rouge « Arrêtez-vous dès que possible », l'en-tête `ALERTE DE SÉCURITÉ`, la recommandation d'un représentant de la marque et la citation exacte des pages.*
+- **Question 1 :**
+  > `Le voyant de pression d'huile s'allume pendant que je roule avec ma Clio 4, que dois-je faire ?`
+  - *Attendu :* Arrêt impératif, couper le contact, vérifier le niveau d'huile, appeler un représentant Renault (`[p. 1.57]`, `[p. 5.43]`, IDs `clio4-012`, `clio4-230`, `clio4-231`).
+- **Question 2 :**
+  > `Quel fusible correspond à l'allume-cigare sur la Clio 4 ?`
+  - *Attendu :* Fusible n° 17 dans le boîtier de fusibles de l'habitacle (`[p. 5.29]`, ID `clio4-207`).
+
+---
+
+### Scénario 2 — Recherche inter-langue (Question en Français → Notices en Anglais)
+*Objectif : montrer que le conducteur pose sa question en français, que le système interroge les notices anglaises (`i10`, `EcoSport`, `Picanto`) grâce aux embeddings multilingues et à la 3e reformulation anglaise, et répond en français.*
+- **Hyundai i10 :**
+  > `Le voyant de pression d'huile de ma Hyundai i10 s'allume, que faire ?`
+  - *Attendu :* Réponse en français traduite de la notice anglaise, consigne d'arrêt sécurisé et contrôle du niveau d'huile (`[p. 4-12]`, ID `i10-019`).
+- **Ford EcoSport :**
+  > `Comment vérifier le niveau d'huile moteur sur l'EcoSport ?`
+  - *Attendu :* Sol plat, moteur chaud puis coupé, attendre 15 minutes, essuyer et lire la jauge (`[p. 206]`, ID `ecosport-150`).
+- **Kia Picanto :**
+  > `La batterie de ma Picanto est à plat, comment la démarrer avec des câbles ?`
+  - *Attendu :* Batterie 12 V uniquement, ordre numérique de branchement `(1) → (2) → (3) → (4)` et débranchement dans l'ordre inverse (`[p. 337]`, ID `picanto-221`).
+
+---
+
+### Scénario 3 — Question posée en Anglais (Réponse 100 % en Anglais)
+*Objectif : montrer l'adaptation automatique de la langue de réponse.*
+- **Question :**
+  > `What should I do when the EcoSport displays Steering loss Stop safely?`
+  - *Attendu :* Réponse intégralement en anglais avec alerte de sécurité (`SAFETY WARNING`), consigne de s'arrêter en sécurité et citation `[p. 102]` (ID `ecosport-076`).
+
+---
+
+### Scénario 4 — Question mal formulée / avec fautes d'orthographe (Gain Multi-Query + RRF)
+*Objectif : montrer que la reformulation Multi-Query + RRF corrige les fautes de frappe et retrouve les bons passages.*
+- **Question dans l'interface ou en CLI :**
+  > `voyan batri rouj allumé que fair sur ma i10`
+- **Commande CLI comparative pour afficher les 3 reformulations et le gain de rang :**
+  ```bash
+  python -X utf8 scripts/ask.py "voyan batri rouj allumé que fair" --modele "i10" --compare-multiquery
+  ```
+
+---
+
+### Scénario 5 — Question Ambiguë / Trop Vague + Résolution au Tour Suivant (`<HISTORIQUE>`)
+*Objectif : montrer que l'assistant ne répond jamais au hasard sur une question vague, pose une question de clarification, puis combine la réponse du conducteur au tour 2 grâce à sa mémoire.*
+1. **Tour 1 (Conducteur) :**
+   > `J'ai un voyant rouge qui clignote sur mon tableau de bord sur ma Clio 4, que faire ?`
+   - *Attendu au Tour 1 :* Bandeau **« Il manque une précision »** (`needs_clarification = True`). L'assistant demande à quoi ressemble le symbole (burette d'huile, batterie, thermomètre, frein...), s'il est fixe ou clignotant, et si un message s'affiche.
+2. **Tour 2 (Conducteur — dans la même conversation) :**
+   > `C'est le symbole d'une burette d'huile.`
+   - *Attendu au Tour 2 :* Grâce à `<HISTORIQUE>`, l'assistant assemble *"voyant rouge sur Clio 4"* + *"burette d'huile"* et donne immédiatement la procédure du témoin de pression d'huile de la Clio 4 (`[p. 1.57]`, `[p. 5.43]`).
+
+---
+
+### Scénario 6 — Conversation Multi-Tours avec Mémoire Implicite du Véhicule et Pronoms
+*Objectif : montrer que le chatbot se souvient de la voiture et du sujet sans qu'on ait besoin de les répéter.*
+1. **Tour 1 (Conducteur) :**
+   > `Que signifie le voyant de pression des pneus sur mon Ford EcoSport ?`
+   - *Attendu au Tour 1 :* Explication du témoin TPMS (pneu sous-gonflé) sur l'EcoSport (`[p. 83]`, `[p. 262]`).
+2. **Tour 2 (Conducteur — suivi avec pronom sans répéter ni "pneus" ni "EcoSport") :**
+   > `Et que veut dire ce voyant s'il clignote au démarrage ?`
+   - *Attendu au Tour 2 :* L'assistant conserve le filtre `Ford EcoSport` et le sujet `TPMS`, et explique qu'un clignotement indique un dysfonctionnement du système TPMS ou l'utilisation d'une roue de secours (`[p. 262]`).
+
+---
+
+### Scénario 7 — Question Piège Hors-Notice (Refus Strict / Information Absente)
+*Objectif : montrer la fidélité stricte (zéro hallucination) sur des informations absentes des notices (prix, garages, assurances).*
+- **Question :**
+  > `Combien coûte une vidange chez Renault à Tunis ?`
+  - *Attendu :* Bandeau **« Ce n'est pas dans la notice »** (`info_absente = True`) et réponse stricte : *"Cette information n'est pas présente dans la notice officielle du véhicule (information absente). Nous vous conseillons de contacter un garagiste ou un concessionnaire."*
+
+---
+
+### Scénario 8 — Détection Automatique d'un Code Défaut OBD-II (Bonus NER + Prudence)
+*Objectif : montrer la détection NER du code OBD-II (`src/mecano/ner.py`) combinée au refus d'inventer une signification absente de la notice.*
+- **Question :**
+  > `Mon garagiste a lu le code défaut P0420 sur ma Clio 4, qu'est-ce que ça veut dire ?`
+  - *Attendu :*
+    1. Affichage automatique du badge NER : **`Code P0420 : Groupe motopropulseur (moteur / boîte)`**.
+    2. L'assistant indique que la table des codes défaut OBD-II ne figure pas dans la notice officielle (sans inventer « catalyseur ») et recommande un diagnostic avec valise en atelier.
+
+---
 
 ## Droits d'auteur
 
